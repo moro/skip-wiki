@@ -1,0 +1,36 @@
+#header
+  #logo{:style=>"align: top; margin: 3px 0 0 5px;"}
+    %h1= link_to 'SKIP-Note', root_path
+
+  #search
+    - form_tag({:controller => "search", :action => "index"}, { :method => 'get'}) do
+      %span{:style=>"vertical-align:middle;"}= _("Search Wiki")
+      = text_field_tag('full_text_query', "Not works YET", :disabled=>true)
+      = submit_tag _('Search')
+      - if @wiki
+        = hidden_field_tag 'target_contents', ""
+        = button_to_function _("Search Wiki"), 'searchInsideWiki(this.parentNode)'
+#top
+  #user_ctl{:style=>"padding: 0;"}
+    - if logged_in?
+      %a#my_wikilink{:href=>"/", :title=>"編集可能なノート一覧です"}
+        %span#link_my_wiki&= _("My Note")
+      =link_to _("Your profile(%{name})") % {:name=>current_user.name}, user_path(current_user)
+      =link_to _("Logout") % {:name=>current_user.name}, logout_path
+    - else
+      =link_to _("Login"), login_path
+
+    %a{:href=>"FIXME", :target=>"_blank"}
+      %span#link_help&= _("Help")
+
+  #select_my_note{:style=>"margin-top: 5px; display: none;"}
+    %ul
+    .clear
+
+#flash_message= render :partial=>"layouts/flash_message"
+- config = {:url => formatted_notes_path("js"), :notes_elem => "#select_my_note"}
+:javascript
+  jQuery(document).ready(function(){
+    $("#my_wikilink").loadMyNote(#{config.to_json});
+  });
+

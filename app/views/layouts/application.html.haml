@@ -1,0 +1,17 @@
+!!! XML
+!!!
+%html{html_attrs("ja")}
+  %head
+    = render :partial => 'shared/common_header'
+
+  %body
+    = render :partial => 'shared/common_body_header'
+
+    #main
+      #content_for_layout= yield
+      .clear
+
+    #system_contents= image_tag "skip/indicator.gif"
+
+    #footer
+      = render :partial => 'shared/common_body_footer'

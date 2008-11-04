@@ -1,0 +1,164 @@
+a:hover a:active {
+  background-color: none;
+}
+table {
+  font-size: 12px;
+}
+span.tooltip_box a:hover {
+  cursor: default;
+  text-decoration: none;
+}
+div#main {
+  position: relative;
+  padding: 5px;
+  _width: 100%;
+
+}
+div#content_for_layout {
+  position: relative;
+  background-color: white;
+  border:1px solid #ccc;
+  padding-bottom:3px;
+  overflow-y: visible;
+  overflow: hidden;
+  _width: 100%;
+}
+* html div#content_for_layout {
+  height: 1%;
+  position: relative;
+  background-color: white;
+  border:1px solid #ccc;
+  padding-bottom:3px;
+  overflow-y: visible;
+  overflow: hidden;
+  width: 100%;
+}
+div.contents_for_menu ul {
+  padding-left: 15px;
+  list-style-type: none;
+}
+* html div#top div#user_ctl {
+  margin-right: 20px;
+}
+span#wiki_nav a:hover {
+  background-color:#DDFFFF;
+}
+span#wiki_nav a {
+  background-color:#FFFFFF;
+  font-weight:bold;
+  font-size:12px;
+  padding:0px 5px;
+  border: 1px solid silver;
+}
+
+/** IE6用指定 **/
+* html div#top {
+  height: 1%;
+}
+* html div#wiki_user_ctl span#wiki_nav {
+  margin-right: 20px;
+  line-height: 12px;
+  vertical-align: bottom;
+}
+
+/**
+ * Common code display
+ */
+
+table tr td.line-numbers {
+  text-align: right;
+  vertical-align: top;
+  background: #eee;
+  color: #555;
+  font-size: 10px;
+  padding: 2px;
+  width: 35px;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ddd;
+}
+table tr td.code {
+  width: 95%;
+  padding-left: 10px;
+  white-space: pre;
+  background: #fff;
+  font: 100%/110%  "Courier New", Courier, monaco, monospace;
+}
+
+/**
+ * Code Diff tables
+ */
+
+table.codediff {
+  border: 1px solid #ccc;
+  width: 100%;
+  border-collapse: collapse;
+}
+table.codediff td.line-num-cut {
+  background: #ccc;
+  border-top: 1px dashed #ccc;
+  border-bottom: 1px dashed #ccc;
+}
+table.codediff thead td.line-numbers, table.codediff thead { background: #ddd; }
+table.codediff td.code { padding-left: 2px; }
+table.codediff td.cut-line {
+  background: #eee;
+  border-top: 1px dashed #aaa;
+  border-bottom: 1px dashed #aaa;
+}
+
+ins { background: #afa; text-decoration: none; }
+table.codediff td.del { background: #fdd; }
+table.codediff td.ins { background: #dfd; }
+
+div#site_count_detail {
+  font-size: 10px;
+  margin-top: 5px;
+  color: brown;
+}
+/* --------- edit --------- */
+div.input_area table.input {
+  margin-bottom: 10px;
+}
+table.input tr {
+
+}
+table.input th {
+  font-size: 12px;
+  width: 100px;
+  background-color: #eee;
+  color: #73f;
+  font-weight: bold;
+  padding: 5px 3px;
+  text-align: center;
+}
+table.input td {
+  padding-left: 3px;
+  color: #555;
+}
+/* --------- system_contents -------- */
+div#system_contents {
+  display: none;
+}
+
+ul.wizard-nav {
+  list-style: none;
+}
+ul.wizard-nav li {
+  float:left;
+  padding : 0.5em;
+  width  : 7em;
+  height : 2em;
+  border : 3px #999999 solid;
+  margin : auto 1px;
+}
+ul.wizard-nav li.current {
+  border : 3px #0080FF solid;
+  background : #88D0FF;
+}
+ul.wizard-nav li.finished {
+  border : 3px #0080FF solid;
+  background : #CCDFFF;
+}
+
+div.clear{ clear:both; }
+

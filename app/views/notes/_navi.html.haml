@@ -1,0 +1,9 @@
+- arr = ["管理対象の選択", "カテゴリの選択", "公開範囲の選択", "操作対象の選択", "名前の入力", "デザインの選択"]
+%button.previous{:disabled=>step.zero?}&= _"Previous"
+%button.next{:disabled=>(step + 1 >= arr.size)}&= _"Next"
+%ul.wizard-nav
+  - arr.each_with_index do |mes, i|
+    - style = (i - step).zero? ? "current" : (i - step < 0) ? "finished" : ""
+    %li{:class=>style}&= mes
+
+.clear

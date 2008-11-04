@@ -1,0 +1,45 @@
+= render :partial => 'users/side_menu'
+
+#content
+  %h1= _("%{fn}'s groups index") % {:fn=>current_user.name}
+  - builtin_memberships = @memberships.select{|m| m.group_type == "BuiltinGroup" }
+  - skip_memberships = @memberships.select{|m| m.group_type == "SkipGroup" }
+
+  .typed-group
+    %h2= _("BuiltinGroup")
+    %p&= "参加しているWikiに1対1対応するグループです。"
+    %p&= "SKIPグループなどに参加していないユーザをWikiに参加させる場合に使います。"
+
+    - unless builtin_memberships.empty?
+      %table.builting-group
+        - builtin_memberships.each do |m|
+          %tr{:class=>cycle("odd", "even")}
+            %td&= m.group_type
+            %td= link_to h(m.group.wiki.name), wiki_path(m.group.wiki)
+            %td&= m.group.wiki.display_name
+    - else
+      // FIXME
+      %p.warn&= _("ローカルグループのWikiを作成していません。")
+
+  .typed-group
+    %h2= _("SkipGroup")
+    %p&= "SKIPで参加しているグループです。"
+
+    - if skip_memberships.empty?
+      %p.warn= _("SKIPのユーザ情報が存在しないか、同期されていません。")
+      - form_tag skip_user_memberships_path(current_user) do
+        = label_tag("SKIPユーザ名")
+        = text_field_tag("skip_uid")
+        = submit_tag("SKIPと同期する")
+
+    - else
+      %table.skip-group
+        - skip_memberships.each do |m|
+          %tr{:class=>cycle("odd", "even")}
+            %td&= m.group.gid
+            %td&= m.group.display_name
+            %td&= m.group.name
+
+      - form_tag skip_user_memberships_path(current_user) do
+        = submit_tag("もう一度SKIPと同期する")
+

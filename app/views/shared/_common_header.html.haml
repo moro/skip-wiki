@@ -1,0 +1,18 @@
+%link{:rel=>"shortcut icon", :href=>url_for("/favicon.ico")}
+:javascript
+  var relative_url_root = '#{controller.request.relative_url_root}';
+%meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}
+%meta{"http-equiv"=>"Content-Script-Type", :content=>"text/javascript"}
+
+%title&= [@title, "SKIP-Note"].compact.join(" - ")
+
+= yield :header
+= stylesheet_link_tag "application"
+= stylesheet_link_tag 'skip/style'
+= stylesheet_link_tag 'style'
+= stylesheet_link_tag 'round-button'
+
+= javascript_include_tag :defaults
+= javascript_include_file 'application'
+= javascript_include_file 'wiki-wizard'
+

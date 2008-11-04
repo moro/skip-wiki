@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+our_note:
+  id: 101
+  name: our_note
+  display_name: MyString
+  publicity: 0
+  deleted_on: 2008-10-20 11:04:57
+  category_id: 1
+
+my_note:
+  id: 102
+  name: my_note
+  display_name: MyString
+  publicity: 2
+  deleted_on: 2008-10-20 11:04:57
+  category_id: 1

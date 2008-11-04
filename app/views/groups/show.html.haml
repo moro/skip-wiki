@@ -1,0 +1,21 @@
+#content
+  %h1&= @group.display_name
+  =link_to _("Back To Note"), note_path(@group.owning_note)
+
+  %h2&= _("Group|Users")
+  - form_tag(group_memberships_path(@group)) do |f|
+    %table.group-users
+      - User.all.each do |user|
+        - id_attr = dom_id(user, "memberships")
+        %tr{:class=>cycle("odd","even")}
+          %td
+            =check_box_tag "memberships[][enabled]", "1", @group.users.include?(user), :id=> id_attr
+            =hidden_field_tag "memberships[][user_id]", user.id
+            =hidden_field_tag "memberships[][group_id]", @group.id
+          %td
+            %label{:for=>id_attr}&= user.name
+          %td&= user.display_name
+          %td&= user.account.identity_url
+
+    =submit_tag("send")
+

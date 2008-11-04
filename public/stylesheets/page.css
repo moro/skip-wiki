@@ -1,0 +1,79 @@
+div.input_container {
+  width: _98%;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:left;
+  padding: 3px;
+}
+div.input_container div.input_area {
+
+}
+div.input_container textarea {
+  font-size: 12px;
+  width: 98%;
+  height: 400px;
+}
+div.input_container div.image_list {
+  clear: right;
+  width: 70%;
+  padding: 5px;
+  margin-top: 10px;
+  border: 2px dotted silver;
+}
+div.input_container div.file_list {
+  padding-top: 10px;
+  padding-right: 10px;
+}
+div.file_list div.file_item{
+  background-color: #ddf;
+  width: 175px;
+  border: 1px outset silver;
+  padding: 3px;
+  margin: 4px 0;
+}
+div.file_list div.file_item a {
+  width: 175px;
+}
+div.file_list div.file_item a:hover {
+  text-decoration: none;
+  color: green;
+  background-color: white;
+}
+div.file_list div.file_item:hover {
+  text-decoration: none;
+  color: green;
+  background-color: white;
+  cursor: pointer;
+}
+div.file_list div.description {
+  color: gray;
+  font-size: 10px;
+  background-color: #fec;
+  padding: 2px;
+  border: 1px solid silver;
+}
+div.image_list div.description {
+  color: gray;
+  font-size: 10px;
+  background-color: #fec;
+  padding: 2px;
+  border: 1px solid silver;
+}
+div.image_list div.image_item {
+  text-align: center;
+  border: 1px solid #ccf;
+  width: 100px;
+  padding: 5px;
+  margin: 4px 3px;
+  cursor: pointer;
+  float: left;
+}
+div.image_list div.image_item:hover {
+  background-color: #feb;
+  color: green;
+}
+div.image_item div.title {
+  font-size: 10px;
+  color: gray;
+  text-align: center;
+}

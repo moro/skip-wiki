@@ -1,0 +1,16 @@
+- css_class = "step #{key.to_s.camelcase(:lower)}"
+%div{:class=>css_class}
+  %ul.wizard-nav
+    - Note::WIZARD_STEPS.each_with_index do |mes, i|
+      - style = (i - step).zero? ? "current" : (i - step < 0) ? "finished" : ""
+      %li{:class=>style}&= _(mes)
+  .clear
+
+  - humanized_step = step + 1
+  %h3= _"#{humanized_step}. #{Note::WIZARD_STEPS[step]}"
+  .wizard_content
+    =yield key
+
+  %button.previous{:disabled=>step.zero?}&= _"Previous"
+  %button.next{:disabled=>(step + 1 >= Note::WIZARD_STEPS.size)}&= _"Next"
+

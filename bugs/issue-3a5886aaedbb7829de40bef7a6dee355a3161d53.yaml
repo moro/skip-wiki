@@ -1,0 +1,38 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: "SKIPグループを設定できるようにする"
+desc: "- ユーザサインアップ後にSKIPグループを追加する画面を表示\n\
+  // in UsersController#create\n\
+  if SkipGroup.enabled?\n\
+  -- redirect_to /users/:id/skip_memberships\n\n\
+  // SkipMembershipsController#index\n\
+  - ユーザ名のデフォルト\n    SkipGroup.user_id(identity_url) # => SKIP's user id or nil\n\n\
+  // Ajax: GET /users/:id/skip_memberships\n\
+  - SkipGroup.fetch_associated(skip_user_id, apikey=\"ToBeDisscussed\")\n\
+  -- グループがなければここで保存しちゃっていい?? -> いわゆる find_or_create\n\
+  -- ここでDBに保存するのは、SKIPサーバが返した値を信用してDBに保存し、\n   その*ID*をユーザに提示するため。\n\n\
+  // POST /users/:id/skip_memberships\n\
+  - グロスでPOSTしてmembershipsをもりっと作る。\n\
+  -- SkipGroup.build_memberships(params[:skip_memberships]) #=> [<Membershps>]\n\n\
+  -- リダイレクト先はparams[:back_to]あたりを設定してもいいかも。\n\
+  --- あればそこへ。\n\
+  --- なければ/users/:id/membershipsへ\n\n\
+  [SKIPから欲しいデータ]\n\
+  あるユーザが参加しているグループの一覧\n\n\
+  GET /user/:name/groups\n\
+  + BASIC認証: :name, :apikey\n\n\
+  groups\n  group\n    name : english\n    display_name : 日本語名\n    gid : SKIPのグループID\n    updated_at : SKIP側membershipsの最終更新時刻(あれば, バッチでの差分更新で使用)\n  group"
+type: :task
+component: skip-wiki.git
+release: 
+reporter: k-morohashi <k-morohashi@esm.co.jp>
+status: :unstarted
+disposition: 
+creation_time: 2008-10-09 09:48:11.270644 Z
+references: []
+
+id: 3a5886aaedbb7829de40bef7a6dee355a3161d53
+log_events: 
+- - 2008-10-09 09:48:13.803959 Z
+  - k-morohashi <k-morohashi@esm.co.jp>
+  - created
+  - ""

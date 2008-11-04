@@ -1,0 +1,14 @@
+  <% if flash[:warning] != nil %>
+  <div class="warning" onclick="this.style.display = 'none';">
+    <h3 style="width: 100%;"><%= flash[:warning] %>
+          <span style="position:static;font-size:10px;margin-left:20px">[クリックでメッセージ消去]</span>
+    </h3>
+  </div>
+  <% end %>
+  <% if flash[:notice] != nil %>
+  <div class="notice" onclick="this.style.display = 'none';">
+    <h3 style="width: 100%;"><%= flash[:notice] %>
+      <span style="position:static;font-size:10px;margin-left:20px">[クリックでメッセージ消去]</span>
+    </h3>
+  </div>
+  <% end %>

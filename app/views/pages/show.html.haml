@@ -1,0 +1,15 @@
+#content
+  - div_for(@page) do
+    %h1&= @page.display_name
+    .tab= render :partial => 'pages/navi', :locals=> {:current_path => note_page_path(current_note, @page)}
+
+    .rendered~ render_page_content(@page)
+
+    .page-label-indices
+      %h2&= _("LabelIndices")
+      %ul
+        - @page.label_indices.each do |index|
+          %li= labelize(index, true)
+
+    .clear
+

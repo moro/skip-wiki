@@ -1,0 +1,22 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: "OpenIDでログインできるようにする"
+desc: "restful openid authenticationでログインできるようにする"
+type: :task
+component: skip-wiki.git
+release: 
+reporter: k-morohashi <k-morohashi@esm.co.jp>
+status: :closed
+disposition: :fixed
+creation_time: 2008-10-06 04:33:09.153171 Z
+references: []
+
+id: c2d52311254d63d711a875bf668ad4c5befa4f07
+log_events: 
+- - 2008-10-06 04:33:12.011367 Z
+  - k-morohashi <k-morohashi@esm.co.jp>
+  - created
+  - ""
+- - 2008-10-09 09:22:24.648714 Z
+  - k-morohashi <k-morohashi@esm.co.jp>
+  - closed with disposition fixed
+  - ""

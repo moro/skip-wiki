@@ -1,0 +1,22 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: "BazaarのCSSを拝借する"
+desc: "CSSや背景アイコンをもらってきて、それっぽい画面にする"
+type: :task
+component: skip-wiki.git
+release: 
+reporter: k-morohashi <k-morohashi@esm.co.jp>
+status: :closed
+disposition: :fixed
+creation_time: 2008-10-06 04:33:44.566028 Z
+references: []
+
+id: ecb915e5ec30e9cdfd0dfbe29531365ba19e1829
+log_events: 
+- - 2008-10-06 04:33:46.494615 Z
+  - k-morohashi <k-morohashi@esm.co.jp>
+  - created
+  - ""
+- - 2008-10-09 09:22:45.405872 Z
+  - k-morohashi <k-morohashi@esm.co.jp>
+  - closed with disposition fixed
+  - ""

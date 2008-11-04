@@ -1,0 +1,27 @@
+#contents
+  .login
+    %h2&= _("Welcome")
+    .welcome
+      .image
+        =image_tag("login-image.jpg")
+
+    .form
+      - form_tag session_path do
+        %h3= label_tag('openid_url', _h("Enter Your Open ID URL"))
+        %p
+          .hint
+            %p&= _("Input your OpenID URL.")
+            %p&= _("Even if you not have an account on SKIP-Note, enter OpenID URL and you'll show signup form.")
+
+          = text_field_tag "openid_url", "http://", :style=>"background-image:url(#{image_path("openid-login.gif")})"
+          %br
+          = submit_tag _("Log In")
+      -#
+        or
+        - form_tag session_path do
+          %p
+            %h2&= _("SSO Login")
+            // TODO
+            = select_tag "openid_url", [["fake-server", "http://localhost:3333"]].map{|n,u| content_tag("option", n, :value=>u)}.join("\n")
+            = submit_tag _("Log In")
+    .clear

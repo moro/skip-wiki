@@ -1,0 +1,38 @@
+- content_for :header do
+  =stylesheet_link_tag "mypage"
+
+#contents_container
+  .caption
+    %span.title&= "SKIP-Note"
+    %span.beta&= "beta"
+    誰でも簡単にプロジェクトノートが作成できるサービス。
+    = link_to content_tag("span", h(_"New note")), new_note_path, :class=>"wii_button"
+    /= link_to content_tag("span", h(_"Search note")), notes_path, :class=>"wii_button"
+
+  .contents
+    #updated-note
+      %h2= icon_tag('folder_page', "活発に更新されているNote")
+      %table.notes-index
+        %tr
+          %th.updated_title&= _("Note|DisplayName")
+          %th.description&= _("Note|Description")
+          %th.page&= _("Page|DisplayName")
+          %th.updated_at&= _("Note|UpdatedAt")
+
+        - with_last_modified_page(@updated_notes) do |note, page|
+          %tr.item_line
+            %td.updated_title
+              =link_to h(note.display_name), note_path(note.name)
+            %td.description&= note.description
+            %td.page
+              - if page
+                = link_to _(page.display_name), note_page_path(note, page)
+              - else
+                %span.not-exist&= _("No page exists")
+
+            %td.date&= note.updated_at.strftime("%m/%d %H:%M")
+
+      -#.search
+        = link_to _h("View All"), :controller => "notes", :action => "search" ,"sort".to_sym => "updated_on"
+
+

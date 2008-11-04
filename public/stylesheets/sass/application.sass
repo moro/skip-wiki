@@ -1,0 +1,335 @@
+
+.caption
+  a.wii_button
+    :margin-bottom 5px
+
+#select_my_note
+  :position relative
+  :height 1.2em
+
+  ul
+    :list-style none
+    :position absolute
+    :z-index 1
+    :right 1em
+
+    li
+      :margin auto 5px
+      :float left
+      :background #ddddff
+
+#side-menu
+  :width 150px
+  :float left
+
+  div.menu-item
+    :margin-bottom 10px
+
+    ul
+      :list-style none
+      :margin-left 1em
+
+      ul.submenu li
+        :list-style disc
+        :margin 2px 5px auto auto
+        :font-size 1em
+
+#content
+  :color gray
+
+  .user
+    dt
+      :font-size 1.2em
+      :border-bottom 1px solid gray
+      :width 40%
+
+    dd
+      :font-size 1.5em
+      :margin-left 2em
+      :margin-bottom 10px
+
+.typed-group
+  :font-size 1.2em
+  :margin-bottom 1em
+
+  table
+    :font-size 1.3em
+    :margin-top 10px
+    :margin-bottom 10px
+
+    tr.odd
+      :background #dddddd
+
+    td
+      :border 1px solid gray
+      :border-right 2px solid gray
+      :border-bottom 2px solid gray
+
+  .warn
+    :color #ff9999
+
+ul.navi-tab
+  :list-style none
+  :position absolute
+  :right 5px
+  :bottom 1px
+
+  li
+    :text-align center
+    :float left
+    :font-size 10px
+    :width 5em
+    :height 1.5em
+    :border 1px solid #0080FF
+    :margin 1px
+
+  li.current
+    :background #99DDFF
+
+.history-contents
+  :width 800px
+  :margin 1em 0
+
+  .from, .to
+    :border 1px solid gray
+    :width 49%
+
+    *
+      :margin auto
+
+  .from
+    :float left
+
+  .to
+    :margin-left 51%
+
+table.diff
+  :border 1px solid gray
+  :border-collapse collapse
+
+  tr.removed
+    :background #FFBBBB
+  tr.modified
+    :background #BBFFBB
+  tr.added
+    :background #99FF99
+
+  tr
+    td
+      :border 1px solid #CCCCCC
+
+    th
+      :background #DDDDDD
+      :border-bottom 1px solid gray
+
+    th.symbol
+      :width 10px
+
+    th.num
+      :text-align center
+      :font-family monospace
+      :font-size 11px
+      :width 30px
+    td.text
+      :width 350px
+    td.symbol
+      :text-align center
+      :font-family monospace
+      :width 1em
+
+    td.num
+      :text-align right
+      :font-family monospace
+      :vertical-align top
+      :font-size 10px
+      :width 35px
+      :padding 2px
+      :color #555
+      :border-right 1px solid #ccc
+      :border-bottom 1px solid #ddd
+
+table.histories
+  tr
+    th.description
+      :width 350px
+    td
+      :border 1px solid gray
+    td.revision
+      :width 5em
+
+span.label_badge
+  :border-width 5px 2px 2px 15px
+  :border-style solid
+  :font-size 10px
+  :display inline-block
+  :width 7em
+
+ul.label_indices
+  :list-style none
+
+  li
+    :margin 3px 10px
+    :float left
+
+div.tab
+  :position relative
+  :height 2em
+
+div.note
+  :position relative
+
+  div.tab
+    :width 100%
+
+    ul.navi-tab li
+      :width 8em
+      :border 1px solid #00FF80
+
+      a
+        :color #00AF50
+
+div.page, div.history
+  :position relative
+
+  div.tab
+    :width 70%
+
+  div.rendered
+    :width 70%
+    :font-size 13px
+    :border 1px solid gray
+    :float left
+    :padding-bottom 1em
+
+    *
+      :margin auto auto
+
+    h1, h2, h3
+      :margin 0.5em 10px
+
+    p
+      :margin 10px
+
+    pre
+      :font-family monospace
+      :background #CCFFFF
+      :padding 10px
+      :border 1px dashed gray
+
+  form
+    :width 70%
+    :float left
+    :padding-bottom 1em
+    :font-size 13px
+    :float left
+    :padding-bottom 1em
+
+    dd.content
+      :width 110%
+
+  div.page-label-indices
+    :position absolute
+    :left 72%
+
+    h2
+      :font-size 1.5em
+      :margin-bottom 1em
+
+    ul
+      :list-style none
+
+      li
+        :margin 3px 0
+
+  form
+    dt
+      :font-size 1.3em
+      :font-weight bold
+      :margin 10px auto
+    dd
+      :margin-left 10px
+      :width 80%
+
+#search-pages
+  :position absolute
+  :right 10px
+  :z-index 1
+
+div.hint
+  :border 1px dashed #0080FF
+  :margin 1em 1em
+
+  p
+    :font-size small
+    :margin 10px 1em
+
+.login
+
+  .welcome
+    :width 60%
+    :float left
+
+    div.image
+      :width 94%
+      :height 360px
+      :overflow hidden
+      :margin auto 3%
+
+  .form
+    :margin-left 60%
+    :width 35%
+
+    input
+      :font-size 1.5em
+
+    input#openid_url
+      :background-color white
+      :background-repeat no-repeat
+      :background-attachment scroll
+      :background-position 0 50%
+      :padding 2px 2px 2px 18px
+      :width 20em
+      :border 1px solid gray
+
+    input[type=submit]
+      :margin-left 60%
+
+div.caption
+  :font-weight bold
+  :color #34beed
+  :font-size 14px
+  :margin 10px 0 5px 10px
+
+  span.title
+    :color #9c9c9c
+    :font-size 32px
+    :margin-right 20px
+
+  a.wii_button
+    :margin-bottom 5px
+
+table.notes-index, table.pages-index
+  :width 90%
+  :margin-left 5%
+  :font-size 14px
+
+  td
+    :border-bottom 1px solid gray
+
+  th.updated_title, td.updated_title
+    :width 16em
+
+  th.description, td.description
+    :width 32em
+
+  th.page, td.page
+    :width 16em
+
+    span.not-exist
+      :font-size 1em
+      :color #999999
+
+  th.updated_at, td.updated_at
+    :font-size 10px
+    :width 10em
+

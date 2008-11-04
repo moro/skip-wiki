@@ -1,0 +1,59 @@
+- content_for(:header) do
+  =javascript_include_tag("fckeditor/fckeditor.js")
+
+#content
+  - div_for(@page) do
+    %h1&= @page.display_name
+    .tab= render :partial => 'pages/navi', :locals=> {:current_path => edit_note_page_path(current_note, @page)}
+
+    - page_name = @page.name.blank? ? params[:id] : @page.name
+    - form_for(:page, :url=>note_page_path(current_note, page_name)) do |f|
+      - unless @page.new_record?
+        = hidden_field_tag "_method", "PUT"
+      %dl
+        %dt= f.label(:display_name, _h("Page|DisplayName"))
+        %dd= f.text_field(:display_name)
+
+        %dt= f.label(:name, _h("Page|Name"))
+        %dd
+          = h(note_pages_url(current_note) + "/")
+          = f.text_field :name
+
+        %dt= f.label(:label_indices, _h("Page|LabelIndices"))
+        %dd
+          %ul.label_indices
+            - current_note.label_indices.each do |index|
+              %li
+                - id = "page_label_index_ids_#{index.id}"
+                = check_box_tag "page[label_index_ids][]", index.id, @page.label_index_ids.include?(index.id), :id=> id
+                %label{:for=>id}= labelize(index)
+          .clear
+
+        = f.hidden_field(:format_type)
+
+        %dt
+          = _h("Page|Content")
+        %dd.content
+          .previewable
+            %ul
+              %li.show
+                %a.wii_button.show
+                  %span= _h("Preview")
+
+              %li.hide
+                %a.wii_button
+                  %span= _h("Hide")
+
+            .rendered
+            .clear
+          = f.text_area(:content, :size=>"80x70")
+
+        = submit_tag("Send!")
+
+:javascript
+  $(document).ready(function(){
+    jQuery(".previewable").preview({"url":"#{preview_new_note_page_path(current_note.id)}"});
+    jQuery("#page_content").editor({ basePath: "/javascripts/fckeditor/" });
+    jQuery("[name='page[format_type]']").trigger("click");
+  });
+

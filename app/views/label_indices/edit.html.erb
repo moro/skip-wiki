@@ -1,0 +1,12 @@
+<h1>Editing label_index</h1>
+
+<% form_for(@label_index) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @label_index %> |
+<%= link_to 'Back', label_indices_path %>

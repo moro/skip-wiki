@@ -1,0 +1,17 @@
+= render :partial => 'users/side_menu'
+
+#content
+  - div_for(@user) do
+    %dl
+      %dt&= _("User|Name")
+      %dd&= @user.name
+
+      %dt&= _("Account|Login")
+      %dd&= @user.account.login
+
+      %dt&= _("Account|Email")
+      %dd&= @user.account.email
+
+      %dt&= _("Account|IdentityURL")
+      %dd&= @user.account.identity_url
+

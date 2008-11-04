@@ -1,0 +1,15 @@
+.by-index.menu-item
+  %h3&= _("Search by Index")
+  %ul
+    - note.label_indices.each do |label|
+      %li= labelize(label, true, note)
+
+.by-date.menu-item
+  %h3&= _("Updated")
+  %ul
+    - group_by_date(note.pages.recent(10)).each do |date, ps|
+      %li
+        %h4&= date
+        %ul.submenu
+          - ps.each do |p|
+            %li= link_to(h(p.display_name), note_page_path(note, p))

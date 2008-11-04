@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<groups type="array">
+  <group>
+    <name>SKIP</name>
+    <gid>gid:12345</gid>
+    <updated-at type="datetime">2008-10-01T09:00:00+09:00</updated-at>
+    <display-name>SKIP&#12464;&#12523;&#12540;&#12503;</display-name>
+  </group>
+  <group>
+    <name>WIKI</name>
+    <gid>gid:23456</gid>
+    <updated-at type="datetime">2008-10-10T09:00:00+09:00</updated-at>
+    <display-name>SKIP-Wiki</display-name>
+  </group>
+  <group>
+    <name>alice_private</name>
+    <gid>gid:98765</gid>
+    <updated-at type="datetime">2008-10-10T14:06:27+09:00</updated-at>
+    <display-name>alice&#12398;&#33258;&#20998;&#29992;&#12464;&#12523;&#12540;&#12503;</display-name>
+  </group>
+</groups>

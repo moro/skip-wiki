@@ -1,0 +1,6 @@
+group_1:
+  backend_id: 1
+  backend_type: BuiltinGroup
+  name: group_1
+  display_name: "builtin group 1"
+

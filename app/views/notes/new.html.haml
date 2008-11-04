@@ -1,0 +1,214 @@
+- content_for(:header) do
+  =stylesheet_link_tag "wikis"
+
+:javascript
+  $(document).ready(function(){
+    jQuery("#wiki_action").wizard();
+  });
+
+#wiki_action
+  - form_for(@note, :url=>notes_path) do |f|
+    .errors= sanitize f.error_messages
+
+    - render_wizard(0, :select_group) do
+      .wizard_content
+        .topic
+          新しくノートを作成しましょう！！！
+          <br/>
+          まずはノートを作成する対象を選択してください。
+
+        %table
+          %tr
+            %th{:width=>"150px"}
+            %th &nbsp;
+          %tr
+            %td
+              =f.radio_button(:group_backend_type, "BuiltinGroup")
+              =f.label :group_backend_type, h(_"個人用ノート"), :for=>"note_group_backend_type_builtingroup"
+            %td &nbsp;
+          %tr
+            %td
+              =f.radio_button(:group_backend_type, "SkipGroup")
+              =f.label :group_backend_type, h(_"SKIPグループ"), :for=>"note_group_backend_type_skipgroup"
+            %td
+              // FIXME
+              =f.select :group_backend_id, current_user.memberships.select{|m| m.group.backend_type == "SkipGroup" }.map{|m| [m.group.display_name, m.group.id] }
+
+    -render_wizard(1, :select_category) do
+      .wizard_content
+        .topic
+          続いてnoteのカテゴリを選択してください。<br/>
+
+        %table
+          %tr
+            %th{:width=>"100px"}
+            %th
+          - Category.lang("ja").each do |c|
+            %tr
+              %td
+                =f.radio_button :category_id, c.id
+                =f.label h("category_id_#{c.id}"), h(c.display_name)
+              %td&= c.description
+
+        .example
+          %ul
+            %li
+              =h _"オフィス"
+              %ul.sub
+                %li&= _"SWAT...TCが展開するシステム開発ツールとノウハウに関するWikiです"
+                %li&= _"QMS...生産技術部が展開するQMSに関する資料公開用のWikiです"
+
+            %li
+              =h _"ビジネス"
+              %ul.sub
+                %li&= _"SONICチーム情報共有Wiki...プロジェクトチーム内の情報共有用Wikiです"
+
+            %li
+              =h _"ライフ"
+              %ul.sub
+                %li&= _"ファシリテーションWG...社内の有志で運営している勉強会グループです"
+                %li&= _"TC部門内運営ルール...休暇申請など、部門内のルールをまとめたWikiです"
+
+            %li
+              =h _"オフ"
+              %ul.sub
+                %li&= _"ハムスターの飼育方法...その名の通り、ハムスターを元気に育てるためのノウハウ集です"
+                %li&= _"FFIX...ゲームに関する情報をまとめたWikiです"
+
+    -render_wizard(2, :select_publicity) do
+      .wizard_content
+        .topic
+          次のステップではWikiの公開範囲を設定します。<br/>
+
+        %table
+          %tr
+            %td
+              =f.radio_button(:publicity, Note::PUBLICITY_MEMBER_ONLY)
+              =f.label "publicity_#{Note::PUBLICITY_MEMBER_ONLY}", _h("グループメンバーのみ閲覧/書込できる")
+            %td &nbsp;
+          %tr
+            %td
+              =f.radio_button(:publicity, Note::PUBLICITY_READABLE)
+              =f.label "publicity_#{Note::PUBLICITY_READABLE}", _h("全員が閲覧できる")
+            %td &nbsp;
+          %tr
+            %td
+              =f.radio_button(:publicity, Note::PUBLICITY_WRITABLE)
+              =f.label "publicity_#{Note::PUBLICITY_WRITABLE}", h(_"全員が閲覧/書込できる")
+            %td &nbsp;
+
+        .example
+          %ul
+            %li
+              =h _"グループメンバーのみ閲覧/書込できる"
+              %ul.sub
+                %li&= "そのWikiにアクセス可能なグループのメンバーのみが読み書きできます。"
+                %li&= "プロジェクト内や特定のユーザのみで利用するWikiにしたい場合に選びます。"
+            %li
+              =h _"全員が閲覧できる"
+              %ul.sub
+                %li
+                  グループメンバーが読み書きできるのに加え、<strong>グループに所属していないユーザ</strong>
+                  もWikiの内容を閲覧することができます。
+                %li&= _"そのグループからグループ外に情報を発信したい場合に選びます。"
+            %li
+              =h _"全員が閲覧/書込できる"
+              %ul.sub
+                %li
+                  グループに所属していないユーザを含む、<strong>あらゆるユーザ</strong>
+                  が編集できるWikiになります。
+                %li&= _"Wikipediaのようにみんなでコンテンツを作っていくWikiにしたい場合に選びます。"
+
+
+    -render_wizard(3, :select_input_name) do
+      .wizard_content
+        .topic
+          次のステップでは
+          %strong= _("Note|DisplayName|desc")
+          と
+          %strong= _("Note|Name")
+          を入力してください。
+
+        %table
+          %tr
+            %td= f.label :display_name, _("Note|DisplayName|desc")
+            %td= f.text_field :display_name
+          %tr
+            %td= f.label :name, _("Note|Name")
+            %td= f.text_field :name
+
+        .example
+          .h4 名称の例
+          最近作成されたWikiの名称です。
+          .ul
+            - Note.recent.each do |note|
+              %li= note.display_name
+
+        .example
+          .h4 識別名の例
+          // FIXME
+          例えば、グループのWikiで識別名を<b><u>sonic_note</u></b>と入力すると、次のURLでアクセスできます。
+          %div{:style=>"margin:5px 0 0 10px;color:green"}
+            = note_url("sonic_note")
+
+    -render_wizard(4, :select_input_description) do
+      .wizard_content
+        .topic
+          次のステップでは
+          %strong= _("Note|Description")
+          を入力してください。
+
+        %table
+          %tr
+            %td= f.label :description, _("Note|Description")
+            %td= f.text_area :description, :size=>"80x2"
+
+        .example
+          .h4 説明
+          ノートの内容を簡単に説明してください
+          .ul
+            - Note.recent.each do |note|
+              %li= note.description
+
+    - render_wizard(5, :select_css) do
+      .wizard_content
+        .topic
+          新規作成時のデザインを選択します。<br/>
+        %table
+          - Dir.glob(File.expand_path("public/images/css_designs/*.png", Rails.root)).each_slice(2) do |images|
+            %tr
+            - images.each do |img|
+              %td{:width=>"250px"}
+                - next unless img
+                - name = File.basename(img, ".png")
+                =radio_button_tag "css", name
+                %label{:for=>"css_#{name}"}&= name
+                %br
+                =image_tag "css_designs/#{name}.png", :width=>240
+
+    - render_wizard(6, :confirm) do
+      %p
+        この内容でよろしいですか?
+        =f.submit _("Create")
+
+        %dl.confirmation
+          %dt.group_backend_type&= _("Note|GroupBackendType")
+          %dd.group_backend_type&= ""
+
+          %dt.category_id&= _("Note|Category")
+          %dd.category_id&= ""
+
+          %dt.publicity&= _("Note|Publicity")
+          %dd.publicity&= ""
+
+          %dt.display_name&= _("Note|DisplayName")
+          %dd.display_name&= ""
+
+          %dt.name&= _("Note|Name")
+          %dd.name&= ""
+
+          %dt.description&= _("Note|Description")
+          %dd.description&= ""
+
+= link_to 'Back', notes_path
+

@@ -1,0 +1,15 @@
+<div id="wiki_user_ctl">
+  <span id="wiki_nav" style="margin-right:20px;">
+    <% if @item %>
+    <%= parse_insite_url(breadcrumbs_list_text(@breadcrumbs_list), @item) %>
+    <% else %>
+    <%= breadcrumbs_list_text(@breadcrumbs_list) if @breadcrumbs_list %>
+    <% end %>
+  </span>
+  <span id="wiki_nav">
+    <%= link_to_wiki_nav("ページ一覧", url_for_wiki(@wiki, "updated_page"), "updated_page")%>
+    <%= link_to_wiki_nav("ページ管理", url_for_wiki(@wiki, "list"), "list") if @admin %>
+    <%= link_to_wiki_nav("Ｗｉｋｉ管理", url_for(:controller => "wiki", :action => "edit", :wid => @wiki.wid,:symbol_type_name => @wiki.symbol_type_name), "edit") if @admin %>
+  </span>
+</div><!-- wiki_user_ctl -->
+
