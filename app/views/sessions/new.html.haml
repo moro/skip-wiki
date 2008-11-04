@@ -7,7 +7,7 @@
 
     .form
       - form_tag session_path do
-        %h3= label_tag('openid_url', _h("Enter Your Open ID URL"))
+        %h3= label_tag('openid_url', h(_("Enter Your Open ID URL")))
         %p
           .hint
             %p&= _("Input your OpenID URL.")
@@ -15,7 +15,7 @@
 
           = text_field_tag "openid_url", "http://", :style=>"background-image:url(#{image_path("openid-login.gif")})"
           %br
-          = submit_tag _("Log In")
+          = submit_tag _("Login")
       -#
         or
         - form_tag session_path do
@@ -23,5 +23,5 @@
             %h2&= _("SSO Login")
             // TODO
             = select_tag "openid_url", [["fake-server", "http://localhost:3333"]].map{|n,u| content_tag("option", n, :value=>u)}.join("\n")
-            = submit_tag _("Log In")
+            = submit_tag _("Login")
     .clear

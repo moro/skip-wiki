@@ -11,15 +11,15 @@
       - unless @page.new_record?
         = hidden_field_tag "_method", "PUT"
       %dl
-        %dt= f.label(:display_name, _h("Page|DisplayName"))
+        %dt= f.label(:display_name, h(_("Page|DisplayName")))
         %dd= f.text_field(:display_name)
 
-        %dt= f.label(:name, _h("Page|Name"))
+        %dt= f.label(:name, h(_("Page|Name")))
         %dd
           = h(note_pages_url(current_note) + "/")
           = f.text_field :name
 
-        %dt= f.label(:label_indices, _h("Page|LabelIndices"))
+        %dt= f.label(:label_indices, h(_("Page|LabelIndices")))
         %dd
           %ul.label_indices
             - current_note.label_indices.each do |index|
@@ -32,17 +32,17 @@
         = f.hidden_field(:format_type)
 
         %dt
-          = _h("Page|Content")
+          = h(_("Page|Content"))
         %dd.content
           .previewable
             %ul
               %li.show
                 %a.wii_button.show
-                  %span= _h("Preview")
+                  %span&= _("Preview")
 
               %li.hide
                 %a.wii_button
-                  %span= _h("Hide")
+                  %span&= _("Hide")
 
             .rendered
             .clear

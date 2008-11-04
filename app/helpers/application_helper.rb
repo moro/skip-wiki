@@ -1,6 +1,5 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  def _h(string); h(_(string)) ; end
 
   def icon_tag(icon, desc=nil)
     img = "icons/#{File.basename(icon)}.png"

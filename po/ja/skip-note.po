@@ -1,0 +1,863 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: skip-note 0.1.0\n"
+"POT-Creation-Date: 2008-11-04 17:19+0900\n"
+"PO-Revision-Date: 2008-11-04 16:29+0900\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: app/controllers/pages_controller.rb:15
+msgid "Create new page '%{page}'."
+msgstr "新しいページ「%{page}」の内容を入力してください。"
+
+#: app/controllers/pages_controller.rb:45
+msgid "The page %{page} is successfully created"
+msgstr "「%{page}」を作成しました。"
+
+#: app/controllers/pages_controller.rb:77
+msgid "The page %{page} is successfully updated"
+msgstr "「%{page}」を更新しました。"
+
+#: app/controllers/sessions_controller.rb:71
+msgid "Logged Failed"
+msgstr "ログインに失敗しました。"
+
+#: app/helpers/histories_helper.rb:7
+msgid "NEXT"
+msgstr "前"
+
+#: app/helpers/histories_helper.rb:16
+msgid "PREV"
+msgstr "次"
+
+#: app/models/accessibility.rb:-
+msgid "accessibility"
+msgstr "アクセス権"
+
+#: app/models/accessibility.rb:-
+msgid "Accessibility|Note"
+msgstr ""
+
+#: app/models/accessibility.rb:-
+msgid "Accessibility|Group"
+msgstr ""
+
+#: app/models/accessibility.rb:-
+msgid "Accessibility|Created at"
+msgstr ""
+
+#: app/models/accessibility.rb:-
+msgid "Accessibility|Updated at"
+msgstr ""
+
+#: app/models/account.rb:-
+msgid "account"
+msgstr "アカウント"
+
+#: app/models/account.rb:- app/views/users/show.html.haml:9
+msgid "Account|Login"
+msgstr "ログイン名"
+
+#: app/models/account.rb:-
+msgid "Account|Name"
+msgstr ""
+
+#: app/models/account.rb:- app/views/users/show.html.haml:12
+msgid "Account|Email"
+msgstr "E-Mailアドレス"
+
+#: app/models/account.rb:-
+msgid "Account|Identity url"
+msgstr "Identity URL"
+
+#: app/models/account.rb:-
+msgid "Account|Crypted password"
+msgstr ""
+
+#: app/models/account.rb:-
+msgid "Account|Salt"
+msgstr ""
+
+#: app/models/account.rb:-
+msgid "Account|Created at"
+msgstr ""
+
+#: app/models/account.rb:-
+msgid "Account|Updated at"
+msgstr ""
+
+#: app/models/account.rb:-
+msgid "Account|Remember token"
+msgstr ""
+
+#: app/models/account.rb:-
+msgid "Account|Remember token expires at"
+msgstr ""
+
+#: app/models/account.rb:-
+msgid "Account|User"
+msgstr ""
+
+#: app/models/builtin_group.rb:-
+msgid "builtin group"
+msgstr "グループ"
+
+#: app/models/builtin_group.rb:-
+msgid "BuiltinGroup|Owner"
+msgstr "グループ作成者"
+
+#: app/models/builtin_group.rb:-
+msgid "BuiltinGroup|Created at"
+msgstr "グループ作成日時"
+
+#: app/models/builtin_group.rb:-
+msgid "BuiltinGroup|Updated at"
+msgstr "グループ更新日時"
+
+#: app/models/category.rb:-
+msgid "category"
+msgstr "カテゴリー"
+
+#: app/models/category.rb:-
+msgid "Category|Name"
+msgstr "カテゴリー識別子"
+
+#: app/models/category.rb:-
+msgid "Category|Display name"
+msgstr "カテゴリー名"
+
+#: app/models/category.rb:-
+msgid "Category|Description"
+msgstr "カテゴリー説明文"
+
+#: app/models/category.rb:-
+msgid "Category|Lang"
+msgstr ""
+
+#: app/models/category.rb:-
+msgid "Category|Created at"
+msgstr "カテゴリー作成日"
+
+#: app/models/category.rb:-
+msgid "Category|Updated at"
+msgstr "カテゴリー更新日"
+
+#: app/models/content.rb:-
+msgid "content"
+msgstr "内容"
+
+#: app/models/content.rb:-
+msgid "Content|Data"
+msgstr ""
+
+#: app/models/content.rb:-
+msgid "Content|Created at"
+msgstr ""
+
+#: app/models/content.rb:-
+msgid "Content|Updated at"
+msgstr ""
+
+#: app/models/group.rb:-
+msgid "group"
+msgstr "グループ"
+
+#: app/models/group.rb:-
+msgid "Group|Backend"
+msgstr ""
+
+#: app/models/group.rb:-
+msgid "Group|Backend type"
+msgstr ""
+
+#: app/models/group.rb:-
+msgid "Group|Name"
+msgstr "グループ識別子"
+
+#: app/models/group.rb:-
+msgid "Group|Display name"
+msgstr "グループ名"
+
+#: app/models/group.rb:-
+msgid "Group|Created at"
+msgstr ""
+
+#: app/models/group.rb:-
+msgid "Group|Updated at"
+msgstr ""
+
+#: app/models/history.rb:-
+msgid "history"
+msgstr "履歴"
+
+#: app/models/history.rb:-
+msgid "History|Versionable"
+msgstr ""
+
+#: app/models/history.rb:-
+msgid "History|Versionable type"
+msgstr ""
+
+#: app/models/history.rb:-
+msgid "History|User"
+msgstr "編集者"
+
+#: app/models/history.rb:- app/views/histories/show.html.haml:9
+msgid "History|Revision"
+msgstr "リビジョン"
+
+#: app/models/history.rb:-
+msgid "History|Content"
+msgstr ""
+
+#: app/models/history.rb:-
+msgid "History|Created at"
+msgstr ""
+
+#: app/models/history.rb:-
+msgid "History|Updated at"
+msgstr ""
+
+#: app/models/history.rb:- app/views/histories/index.html.haml:11
+msgid "History|Description"
+msgstr ""
+
+#: app/models/label_index.rb:-
+msgid "label index"
+msgstr "ラベル"
+
+#: app/models/label_index.rb:- app/views/label_indices/index.html.haml:7
+msgid "LabelIndex|Name"
+msgstr "ラベル識別子"
+
+#: app/models/label_index.rb:-
+msgid "LabelIndex|Display name"
+msgstr "ラベル名"
+
+#: app/models/label_index.rb:-
+msgid "LabelIndex|Color"
+msgstr "ラベル色"
+
+#: app/models/label_index.rb:-
+msgid "LabelIndex|Note"
+msgstr "ノート"
+
+#: app/models/label_indexing.rb:-
+msgid "label indexing"
+msgstr ""
+
+#: app/models/label_indexing.rb:-
+msgid "LabelIndexing|Label index"
+msgstr ""
+
+#: app/models/label_indexing.rb:-
+msgid "LabelIndexing|Page"
+msgstr ""
+
+#: app/models/label_indexing.rb:-
+msgid "LabelIndexing|Created at"
+msgstr ""
+
+#: app/models/label_indexing.rb:-
+msgid "LabelIndexing|Updated at"
+msgstr ""
+
+#: app/models/membership.rb:-
+msgid "membership"
+msgstr ""
+
+#: app/models/membership.rb:-
+msgid "Membership|User"
+msgstr ""
+
+#: app/models/membership.rb:-
+msgid "Membership|Group"
+msgstr ""
+
+#: app/models/membership.rb:-
+msgid "Membership|Created at"
+msgstr ""
+
+#: app/models/membership.rb:-
+msgid "Membership|Updated at"
+msgstr ""
+
+#: app/models/note.rb:-
+msgid "note"
+msgstr "ノート"
+
+#: app/models/note.rb:- app/views/notes/edit.html.haml:17
+#: app/views/notes/new.html.haml:129 app/views/notes/new.html.haml:137
+#: app/views/notes/new.html.haml:207
+msgid "Note|Name"
+msgstr "ノート識別子"
+
+#: app/models/note.rb:- app/views/notes/index.html.haml:17
+msgid "Note|Display name"
+msgstr "ノート名"
+
+#: app/models/note.rb:- app/views/notes/edit.html.haml:31
+#: app/views/notes/new.html.haml:201
+msgid "Note|Publicity"
+msgstr "公開範囲"
+
+#: app/models/note.rb:-
+msgid "Note|Deleted on"
+msgstr ""
+
+#: app/models/note.rb:- app/views/notes/edit.html.haml:47
+#: app/views/notes/new.html.haml:198
+msgid "Note|Category"
+msgstr ""
+
+#: app/models/note.rb:-
+msgid "Note|Owner group"
+msgstr ""
+
+#: app/models/note.rb:-
+msgid "Note|Created at"
+msgstr ""
+
+#: app/models/note.rb:- app/views/notes/index.html.haml:20
+msgid "Note|Updated at"
+msgstr ""
+
+#: app/models/note.rb:- app/views/notes/edit.html.haml:26
+#: app/views/notes/index.html.haml:18 app/views/notes/new.html.haml:158
+#: app/views/notes/new.html.haml:163 app/views/notes/new.html.haml:210
+msgid "Note|Description"
+msgstr ""
+
+#: app/models/note.rb:9
+msgid "管理対象の選択"
+msgstr ""
+
+#: app/models/note.rb:9
+msgid "カテゴリの選択"
+msgstr ""
+
+#: app/models/note.rb:9
+msgid "公開範囲の選択"
+msgstr ""
+
+#: app/models/note.rb:10
+msgid "名前の入力"
+msgstr ""
+
+#: app/models/note.rb:10
+msgid "説明の入力"
+msgstr ""
+
+#: app/models/note.rb:10
+msgid "デザインの選択"
+msgstr ""
+
+#: app/models/note.rb:10
+msgid "確認"
+msgstr ""
+
+#: app/models/page.rb:-
+msgid "page"
+msgstr ""
+
+#: app/models/page.rb:-
+msgid "Page|Note"
+msgstr ""
+
+#: app/models/page.rb:-
+msgid "Page|Last modied user"
+msgstr ""
+
+#: app/models/page.rb:- app/views/pages/_pages.html.haml:5
+#: app/views/pages/edit.html.haml:17
+msgid "Page|Name"
+msgstr ""
+
+#: app/models/page.rb:- app/views/notes/index.html.haml:19
+msgid "Page|Display name"
+msgstr ""
+
+#: app/models/page.rb:-
+msgid "Page|Format type"
+msgstr ""
+
+#: app/models/page.rb:-
+msgid "Page|Published at"
+msgstr ""
+
+#: app/models/page.rb:-
+msgid "Page|Deleted at"
+msgstr ""
+
+#: app/models/page.rb:-
+msgid "Page|Lock version"
+msgstr ""
+
+#: app/models/page.rb:-
+msgid "Page|Created at"
+msgstr ""
+
+#: app/models/page.rb:-
+msgid "Page|Updated at"
+msgstr ""
+
+#: app/models/skip_account.rb:-
+msgid "skip account"
+msgstr ""
+
+#: app/models/skip_account.rb:-
+msgid "SkipAccount|Skip uid"
+msgstr ""
+
+#: app/models/skip_account.rb:-
+msgid "SkipAccount|User"
+msgstr ""
+
+#: app/models/skip_account.rb:-
+msgid "SkipAccount|Created at"
+msgstr ""
+
+#: app/models/skip_account.rb:-
+msgid "SkipAccount|Updated at"
+msgstr ""
+
+#: app/models/skip_group.rb:-
+msgid "skip group"
+msgstr ""
+
+#: app/models/skip_group.rb:-
+msgid "SkipGroup|Name"
+msgstr ""
+
+#: app/models/skip_group.rb:-
+msgid "SkipGroup|Display name"
+msgstr ""
+
+#: app/models/skip_group.rb:-
+msgid "SkipGroup|Gid"
+msgstr ""
+
+#: app/models/skip_group.rb:-
+msgid "SkipGroup|Created at"
+msgstr ""
+
+#: app/models/skip_group.rb:-
+msgid "SkipGroup|Updated at"
+msgstr ""
+
+#: app/models/user.rb:-
+msgid "user"
+msgstr ""
+
+#: app/models/user.rb:- app/views/users/show.html.haml:6
+msgid "User|Name"
+msgstr ""
+
+#: app/models/user.rb:-
+msgid "User|Display name"
+msgstr ""
+
+#: app/models/user.rb:-
+msgid "User|Created at"
+msgstr ""
+
+#: app/models/user.rb:-
+msgid "User|Updated at"
+msgstr ""
+
+#: app/models/user.rb:54
+msgid "%{name} group"
+msgstr ""
+
+#: app/views/groups/show.html.haml:3
+msgid "Back To Note"
+msgstr ""
+
+#: app/views/groups/show.html.haml:5
+#, fuzzy
+msgid "Group|Users"
+msgstr "グループ識別子"
+
+#: app/views/histories/diff.html.haml:4
+msgid "%{page}'s diff from rev.%{from} to rev.%{to}."
+msgstr ""
+
+#: app/views/histories/diff.html.haml:7
+msgid "Back to histories"
+msgstr ""
+
+#: app/views/histories/diff.html.haml:18
+#, fuzzy
+msgid "History|Contents"
+msgstr "編集者"
+
+#: app/views/histories/diff.html.haml:37
+#, fuzzy
+msgid "History|Diffs"
+msgstr "編集者"
+
+#: app/views/histories/index.html.haml:4
+msgid "%{page}'s histories"
+msgstr ""
+
+#: app/views/histories/index.html.haml:12
+#, fuzzy
+msgid "Uesr|Name"
+msgstr "ノート識別子"
+
+#: app/views/histories/index.html.haml:13
+#: app/views/histories/show.html.haml:15
+#, fuzzy
+msgid "History|UpdatedAt"
+msgstr "カテゴリー更新日"
+
+#: app/views/histories/index.html.haml:14
+msgid "diff to next"
+msgstr ""
+
+#: app/views/histories/index.html.haml:15
+msgid "diff to prev"
+msgstr ""
+
+#: app/views/histories/index.html.haml:26
+msgid "Or diff from"
+msgstr ""
+
+#: app/views/histories/index.html.haml:28
+msgid "to"
+msgstr ""
+
+#: app/views/histories/show.html.haml:12
+#, fuzzy
+msgid "History|Author"
+msgstr "編集者"
+
+#: app/views/histories/show.html.haml:18
+msgid "Back to Hisotries"
+msgstr ""
+
+#: app/views/label_indices/index.html.haml:2
+#, fuzzy
+msgid "Label index for %{note}"
+msgstr "ノート"
+
+#: app/views/label_indices/index.html.haml:8
+#, fuzzy
+msgid "LabelIndex|DisplayName"
+msgstr "ラベル名"
+
+#: app/views/label_indices/index.html.haml:14
+msgid "Delete"
+msgstr ""
+
+#: app/views/label_indices/index.html.haml:22
+#: app/views/notes/new.html.haml:192
+msgid "Create"
+msgstr ""
+
+#: app/views/label_indices/show.html.haml:3
+msgid "Pages related to %{label}"
+msgstr ""
+
+#: app/views/layouts/notes.html.haml:17
+msgid "Search pages in %{note}"
+msgstr ""
+
+#: app/views/layouts/notes.html.haml:19
+#: app/views/shared/_common_body_header.html.haml:9
+msgid "Search"
+msgstr ""
+
+#: app/views/memberships/index.html.haml:4
+msgid "%{fn}'s groups index"
+msgstr ""
+
+#: app/views/memberships/index.html.haml:9
+#, fuzzy
+msgid "BuiltinGroup"
+msgstr "グループ"
+
+#: app/views/memberships/index.html.haml:22
+msgid "ローカルグループのWikiを作成していません。"
+msgstr ""
+
+#: app/views/memberships/index.html.haml:25
+msgid "SkipGroup"
+msgstr ""
+
+#: app/views/memberships/index.html.haml:29
+msgid "SKIPのユーザ情報が存在しないか、同期されていません。"
+msgstr ""
+
+#: app/views/notes/_menu.html.haml:2
+msgid "Search by Index"
+msgstr ""
+
+#: app/views/notes/_menu.html.haml:8
+msgid "Updated"
+msgstr ""
+
+#: app/views/notes/_navi.html.haml:2 app/views/notes/_wizard.html.haml:14
+msgid "Previous"
+msgstr ""
+
+#: app/views/notes/_navi.html.haml:3 app/views/notes/_wizard.html.haml:15
+msgid "Next"
+msgstr ""
+
+#: app/views/notes/edit.html.haml:7 app/views/notes/new.html.haml:195
+msgid "Note|GroupBackendType"
+msgstr ""
+
+#: app/views/notes/edit.html.haml:11 app/views/notes/new.html.haml:27
+msgid "個人用ノート"
+msgstr ""
+
+#: app/views/notes/edit.html.haml:14 app/views/notes/new.html.haml:32
+msgid "SKIPグループ"
+msgstr ""
+
+#: app/views/notes/edit.html.haml:21 app/views/notes/new.html.haml:204
+#, fuzzy
+msgid "Note|DisplayName"
+msgstr "ノート名"
+
+#: app/views/notes/edit.html.haml:36 app/views/notes/new.html.haml:87
+#: app/views/notes/new.html.haml:103
+msgid "グループメンバーのみ閲覧/書込できる"
+msgstr ""
+
+#: app/views/notes/edit.html.haml:40 app/views/notes/new.html.haml:92
+#: app/views/notes/new.html.haml:108
+msgid "全員が閲覧できる"
+msgstr ""
+
+#: app/views/notes/edit.html.haml:44 app/views/notes/new.html.haml:97
+#: app/views/notes/new.html.haml:115
+msgid "全員が閲覧/書込できる"
+msgstr ""
+
+#: app/views/notes/index.html.haml:9
+#, fuzzy
+msgid "New note"
+msgstr "ノート"
+
+#: app/views/notes/index.html.haml:31
+msgid "No page exists"
+msgstr ""
+
+#: app/views/notes/new.html.haml:56
+msgid "オフィス"
+msgstr ""
+
+#: app/views/notes/new.html.haml:58
+msgid "SWAT...TCが展開するシステム開発ツールとノウハウに関するWikiです"
+msgstr ""
+
+#: app/views/notes/new.html.haml:59
+msgid "QMS...生産技術部が展開するQMSに関する資料公開用のWikiです"
+msgstr ""
+
+#: app/views/notes/new.html.haml:62
+msgid "ビジネス"
+msgstr ""
+
+#: app/views/notes/new.html.haml:64
+msgid "SONICチーム情報共有Wiki...プロジェクトチーム内の情報共有用Wikiです"
+msgstr ""
+
+#: app/views/notes/new.html.haml:67
+msgid "ライフ"
+msgstr ""
+
+#: app/views/notes/new.html.haml:69
+msgid "ファシリテーションWG...社内の有志で運営している勉強会グループです"
+msgstr ""
+
+#: app/views/notes/new.html.haml:70
+msgid "TC部門内運営ルール...休暇申請など、部門内のルールをまとめたWikiです"
+msgstr ""
+
+#: app/views/notes/new.html.haml:73
+msgid "オフ"
+msgstr ""
+
+#: app/views/notes/new.html.haml:75
+msgid ""
+"ハムスターの飼育方法...その名の通り、ハムスターを元気に育てるためのノウハウ集"
+"です"
+msgstr ""
+
+#: app/views/notes/new.html.haml:76
+msgid "FFIX...ゲームに関する情報をまとめたWikiです"
+msgstr ""
+
+#: app/views/notes/new.html.haml:113
+msgid "そのグループからグループ外に情報を発信したい場合に選びます。"
+msgstr ""
+
+#: app/views/notes/new.html.haml:120
+msgid ""
+"Wikipediaのようにみんなでコンテンツを作っていくWikiにしたい場合に選びます。"
+msgstr ""
+
+#: app/views/notes/new.html.haml:127 app/views/notes/new.html.haml:134
+#, fuzzy
+msgid "Note|DisplayName|desc"
+msgstr "ノート名"
+
+#: app/views/notes/show.html.haml:8
+msgid "Edit Note"
+msgstr "ノートを編集"
+
+#: app/views/notes/show.html.haml:9
+msgid "New Page"
+msgstr "ページを追加"
+
+#: app/views/notes/show.html.haml:10
+msgid "Add Users"
+msgstr "ユーザを追加"
+
+#: app/views/notes/show.html.haml:16
+msgid "Labels"
+msgstr ""
+
+#: app/views/pages/_navi.html.haml:2
+msgid "show"
+msgstr ""
+
+#: app/views/pages/_navi.html.haml:3
+msgid "edit"
+msgstr ""
+
+#: app/views/pages/_navi.html.haml:4
+#, fuzzy
+msgid "histories"
+msgstr "履歴"
+
+#: app/views/pages/_navi.html.haml:5
+#, fuzzy
+msgid "Note"
+msgstr "ノート"
+
+#: app/views/pages/_pages.html.haml:4 app/views/pages/edit.html.haml:14
+#, fuzzy
+msgid "Page|DisplayName"
+msgstr "ノート名"
+
+#: app/views/pages/_pages.html.haml:6
+#, fuzzy
+msgid "Page|Revision"
+msgstr "リビジョン"
+
+#: app/views/pages/_pages.html.haml:7
+msgid "Page|Auther"
+msgstr ""
+
+#: app/views/pages/_pages.html.haml:8
+#, fuzzy
+msgid "Page|UpdatedAt"
+msgstr "カテゴリー更新日"
+
+#: app/views/pages/_pages.html.haml:9
+#, fuzzy
+msgid "History"
+msgstr "履歴"
+
+#: app/views/pages/edit.html.haml:22
+msgid "Page|LabelIndices"
+msgstr ""
+
+#: app/views/pages/edit.html.haml:35
+#, fuzzy
+msgid "Page|Content"
+msgstr "内容"
+
+#: app/views/pages/edit.html.haml:41
+msgid "Preview"
+msgstr "プレビュー"
+
+#: app/views/pages/edit.html.haml:45
+msgid "Hide"
+msgstr "プレビューを隠す"
+
+#: app/views/pages/show.html.haml:9
+#, fuzzy
+msgid "LabelIndices"
+msgstr "ラベル識別子"
+
+#: app/views/sessions/new.html.haml:3
+msgid "Welcome"
+msgstr "ようこそ"
+
+#: app/views/sessions/new.html.haml:10
+msgid "Enter Your Open ID URL"
+msgstr "OpenIDでログインできます"
+
+#: app/views/sessions/new.html.haml:13
+msgid "Input your OpenID URL."
+msgstr "Open ID URLを入力してください"
+
+#: app/views/sessions/new.html.haml:14
+msgid ""
+"Even if you not have an account on SKIP-Note, enter OpenID URL and you'll "
+"show signup form."
+msgstr ""
+"初めて利用する場合もあなたのOpenID URLを入力してください。そのままユーザ登録ができます。"
+""
+
+#: app/views/sessions/new.html.haml:18
+msgid "Log In"
+msgstr "ログイン"
+
+#: app/views/shared/_common_body_header.html.haml:7
+#: app/views/shared/_common_body_header.html.haml:12
+msgid "Search Wiki"
+msgstr "ノートを検索"
+
+#: app/views/shared/_common_body_header.html.haml:17
+msgid "My Note"
+msgstr ""
+
+#: app/views/shared/_common_body_header.html.haml:18
+msgid "Your profile(%{name})"
+msgstr "プロフィール(%{name}さん)"
+
+#: app/views/shared/_common_body_header.html.haml:19
+msgid "Logout"
+msgstr "ログアウト"
+
+#: app/views/shared/_common_body_header.html.haml:21
+msgid "Login"
+msgstr "ログイン"
+
+#: app/views/shared/_common_body_header.html.haml:24
+msgid "Help"
+msgstr "ヘルプ"
+
+#: app/views/users/_side_menu.html.haml:3
+msgid "User|Informations"
+msgstr ""
+
+#: app/views/users/_side_menu.html.haml:5
+msgid "User|skip_account"
+msgstr ""
+
+#: app/views/users/_side_menu.html.haml:6
+msgid "User|memberships"
+msgstr ""
+
+#: app/views/users/_side_menu.html.haml:7
+msgid "User|wikis"
+msgstr ""
+

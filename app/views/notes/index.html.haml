@@ -14,10 +14,10 @@
       %h2= icon_tag('folder_page', "活発に更新されているNote")
       %table.notes-index
         %tr
-          %th.updated_title&= _("Note|DisplayName")
+          %th.updated_title&= _("Note|Display name")
           %th.description&= _("Note|Description")
-          %th.page&= _("Page|DisplayName")
-          %th.updated_at&= _("Note|UpdatedAt")
+          %th.page&= _("Page|Display name")
+          %th.updated_at&= _("Note|Updated at")
 
         - with_last_modified_page(@updated_notes) do |note, page|
           %tr.item_line
@@ -33,6 +33,6 @@
             %td.date&= note.updated_at.strftime("%m/%d %H:%M")
 
       -#.search
-        = link_to _h("View All"), :controller => "notes", :action => "search" ,"sort".to_sym => "updated_on"
+        = link_to h(_("View All")), :controller => "notes", :action => "search" ,"sort".to_sym => "updated_on"
 
 

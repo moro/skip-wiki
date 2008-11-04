@@ -84,12 +84,12 @@
           %tr
             %td
               =f.radio_button(:publicity, Note::PUBLICITY_MEMBER_ONLY)
-              =f.label "publicity_#{Note::PUBLICITY_MEMBER_ONLY}", _h("グループメンバーのみ閲覧/書込できる")
+              =f.label "publicity_#{Note::PUBLICITY_MEMBER_ONLY}", h(_("グループメンバーのみ閲覧/書込できる"))
             %td &nbsp;
           %tr
             %td
               =f.radio_button(:publicity, Note::PUBLICITY_READABLE)
-              =f.label "publicity_#{Note::PUBLICITY_READABLE}", _h("全員が閲覧できる")
+              =f.label "publicity_#{Note::PUBLICITY_READABLE}", h(_("全員が閲覧できる"))
             %td &nbsp;
           %tr
             %td

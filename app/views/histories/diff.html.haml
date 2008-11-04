@@ -4,7 +4,7 @@
     %h1&= _("%{page}'s diff from rev.%{from} to rev.%{to}.") % {:from=>params[:from], :to=>params[:to], :page=>@page.display_name}
     .tab= render :partial => 'pages/navi', :locals=> {:current_path => treat_as_current}
 
-    %p= link_to _h("Back to histories"), treat_as_current
+    %p= link_to h(_("Back to histories")), treat_as_current
 
     - if @page.format_type == "html"
       .controll
