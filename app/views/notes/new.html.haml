@@ -53,24 +53,24 @@
         .example
           %ul
             %li
-              =h _"オフィス"
+              =h _"Office"
               %ul.sub
                 %li&= _"SWAT...TCが展開するシステム開発ツールとノウハウに関するWikiです"
                 %li&= _"QMS...生産技術部が展開するQMSに関する資料公開用のWikiです"
 
             %li
-              =h _"ビジネス"
+              =h _"Business"
               %ul.sub
                 %li&= _"SONICチーム情報共有Wiki...プロジェクトチーム内の情報共有用Wikiです"
 
             %li
-              =h _"ライフ"
+              =h _"Life"
               %ul.sub
                 %li&= _"ファシリテーションWG...社内の有志で運営している勉強会グループです"
                 %li&= _"TC部門内運営ルール...休暇申請など、部門内のルールをまとめたWikiです"
 
             %li
-              =h _"オフ"
+              =h _"Off"
               %ul.sub
                 %li&= _"ハムスターの飼育方法...その名の通り、ハムスターを元気に育てるためのノウハウ集です"
                 %li&= _"FFIX...ゲームに関する情報をまとめたWikiです"
@@ -124,14 +124,14 @@
       .wizard_content
         .topic
           次のステップでは
-          %strong= _("Note|DisplayName|desc")
+          %strong= _("Note|Display name")
           と
           %strong= _("Note|Name")
           を入力してください。
 
         %table
           %tr
-            %td= f.label :display_name, _("Note|DisplayName|desc")
+            %td= f.label :display_name, _("Note|Display name")
             %td= f.text_field :display_name
           %tr
             %td= f.label :name, _("Note|Name")
@@ -201,7 +201,7 @@
           %dt.publicity&= _("Note|Publicity")
           %dd.publicity&= ""
 
-          %dt.display_name&= _("Note|DisplayName")
+          %dt.display_name&= _("Note|Display name")
           %dd.display_name&= ""
 
           %dt.name&= _("Note|Name")

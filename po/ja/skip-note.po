@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-11-04 17:19+0900\n"
+"POT-Creation-Date: 2008-11-05 12:33+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,11 +20,11 @@ msgstr ""
 msgid "Create new page '%{page}'."
 msgstr "新しいページ「%{page}」の内容を入力してください。"
 
-#: app/controllers/pages_controller.rb:45
+#: app/controllers/pages_controller.rb:44
 msgid "The page %{page} is successfully created"
 msgstr "「%{page}」を作成しました。"
 
-#: app/controllers/pages_controller.rb:77
+#: app/controllers/pages_controller.rb:76
 msgid "The page %{page} is successfully updated"
 msgstr "「%{page}」を更新しました。"
 
@@ -76,7 +76,7 @@ msgstr ""
 msgid "Account|Email"
 msgstr "E-Mailアドレス"
 
-#: app/models/account.rb:-
+#: app/models/account.rb:- app/views/users/show.html.haml:15
 msgid "Account|Identity url"
 msgstr "Identity URL"
 
@@ -208,7 +208,7 @@ msgstr ""
 msgid "History|Versionable type"
 msgstr ""
 
-#: app/models/history.rb:-
+#: app/models/history.rb:- app/views/histories/show.html.haml:12
 msgid "History|User"
 msgstr "編集者"
 
@@ -216,7 +216,7 @@ msgstr "編集者"
 msgid "History|Revision"
 msgstr "リビジョン"
 
-#: app/models/history.rb:-
+#: app/models/history.rb:- app/views/histories/diff.html.haml:18
 msgid "History|Content"
 msgstr ""
 
@@ -224,7 +224,8 @@ msgstr ""
 msgid "History|Created at"
 msgstr ""
 
-#: app/models/history.rb:-
+#: app/models/history.rb:- app/views/histories/index.html.haml:13
+#: app/views/histories/show.html.haml:15
 msgid "History|Updated at"
 msgstr ""
 
@@ -240,7 +241,7 @@ msgstr "ラベル"
 msgid "LabelIndex|Name"
 msgstr "ラベル識別子"
 
-#: app/models/label_index.rb:-
+#: app/models/label_index.rb:- app/views/label_indices/index.html.haml:8
 msgid "LabelIndex|Display name"
 msgstr "ラベル名"
 
@@ -302,7 +303,9 @@ msgstr "ノート"
 msgid "Note|Name"
 msgstr "ノート識別子"
 
-#: app/models/note.rb:- app/views/notes/index.html.haml:17
+#: app/models/note.rb:- app/views/notes/edit.html.haml:21
+#: app/views/notes/index.html.haml:17 app/views/notes/new.html.haml:127
+#: app/views/notes/new.html.haml:134 app/views/notes/new.html.haml:204
 msgid "Note|Display name"
 msgstr "ノート名"
 
@@ -318,7 +321,7 @@ msgstr ""
 #: app/models/note.rb:- app/views/notes/edit.html.haml:47
 #: app/views/notes/new.html.haml:198
 msgid "Note|Category"
-msgstr ""
+msgstr "カテゴリ"
 
 #: app/models/note.rb:-
 msgid "Note|Owner group"
@@ -336,7 +339,7 @@ msgstr ""
 #: app/views/notes/index.html.haml:18 app/views/notes/new.html.haml:158
 #: app/views/notes/new.html.haml:163 app/views/notes/new.html.haml:210
 msgid "Note|Description"
-msgstr ""
+msgstr "ノートの説明"
 
 #: app/models/note.rb:9
 msgid "管理対象の選択"
@@ -384,8 +387,9 @@ msgid "Page|Name"
 msgstr ""
 
 #: app/models/page.rb:- app/views/notes/index.html.haml:19
+#: app/views/pages/_pages.html.haml:4 app/views/pages/edit.html.haml:14
 msgid "Page|Display name"
-msgstr ""
+msgstr "ページ名"
 
 #: app/models/page.rb:-
 msgid "Page|Format type"
@@ -407,7 +411,7 @@ msgstr ""
 msgid "Page|Created at"
 msgstr ""
 
-#: app/models/page.rb:-
+#: app/models/page.rb:- app/views/pages/_pages.html.haml:8
 msgid "Page|Updated at"
 msgstr ""
 
@@ -459,13 +463,14 @@ msgstr ""
 msgid "user"
 msgstr ""
 
-#: app/models/user.rb:- app/views/users/show.html.haml:6
+#: app/models/user.rb:- app/views/histories/index.html.haml:12
+#: app/views/users/show.html.haml:6
 msgid "User|Name"
-msgstr ""
+msgstr "ユーザ識別子"
 
 #: app/models/user.rb:-
 msgid "User|Display name"
-msgstr ""
+msgstr "ユーザ名"
 
 #: app/models/user.rb:-
 msgid "User|Created at"
@@ -486,7 +491,7 @@ msgstr ""
 #: app/views/groups/show.html.haml:5
 #, fuzzy
 msgid "Group|Users"
-msgstr "グループ識別子"
+msgstr "グループのユーザ一覧"
 
 #: app/views/histories/diff.html.haml:4
 msgid "%{page}'s diff from rev.%{from} to rev.%{to}."
@@ -496,38 +501,26 @@ msgstr ""
 msgid "Back to histories"
 msgstr ""
 
-#: app/views/histories/diff.html.haml:18
-#, fuzzy
-msgid "History|Contents"
-msgstr "編集者"
-
 #: app/views/histories/diff.html.haml:37
 #, fuzzy
-msgid "History|Diffs"
-msgstr "編集者"
+msgid "History|Diff"
+msgstr "履歴"
+
+#: app/views/histories/diff.html.haml:43 app/views/histories/diff.html.haml:44
+msgid "Contents of r%{rev}"
+msgstr "リビジョン%{rev}の内容"
 
 #: app/views/histories/index.html.haml:4
 msgid "%{page}'s histories"
-msgstr ""
-
-#: app/views/histories/index.html.haml:12
-#, fuzzy
-msgid "Uesr|Name"
-msgstr "ノート識別子"
-
-#: app/views/histories/index.html.haml:13
-#: app/views/histories/show.html.haml:15
-#, fuzzy
-msgid "History|UpdatedAt"
-msgstr "カテゴリー更新日"
+msgstr "「%{page}」の編集履歴"
 
 #: app/views/histories/index.html.haml:14
 msgid "diff to next"
-msgstr ""
+msgstr "前との差分"
 
 #: app/views/histories/index.html.haml:15
 msgid "diff to prev"
-msgstr ""
+msgstr "次との差分"
 
 #: app/views/histories/index.html.haml:26
 msgid "Or diff from"
@@ -537,41 +530,31 @@ msgstr ""
 msgid "to"
 msgstr ""
 
-#: app/views/histories/show.html.haml:12
-#, fuzzy
-msgid "History|Author"
-msgstr "編集者"
-
 #: app/views/histories/show.html.haml:18
 msgid "Back to Hisotries"
-msgstr ""
+msgstr "履歴一覧に戻る"
 
 #: app/views/label_indices/index.html.haml:2
 #, fuzzy
 msgid "Label index for %{note}"
-msgstr "ノート"
-
-#: app/views/label_indices/index.html.haml:8
-#, fuzzy
-msgid "LabelIndex|DisplayName"
-msgstr "ラベル名"
+msgstr "「%{note}」のラベル一覧"
 
 #: app/views/label_indices/index.html.haml:14
 msgid "Delete"
-msgstr ""
+msgstr "削除"
 
 #: app/views/label_indices/index.html.haml:22
 #: app/views/notes/new.html.haml:192
 msgid "Create"
-msgstr ""
+msgstr "作成"
 
 #: app/views/label_indices/show.html.haml:3
 msgid "Pages related to %{label}"
-msgstr ""
+msgstr "%{label}のついたページ一覧"
 
 #: app/views/layouts/notes.html.haml:17
 msgid "Search pages in %{note}"
-msgstr ""
+msgstr "「%{note}」内のページを検索"
 
 #: app/views/layouts/notes.html.haml:19
 #: app/views/shared/_common_body_header.html.haml:9
@@ -601,63 +584,63 @@ msgstr ""
 
 #: app/views/notes/_menu.html.haml:2
 msgid "Search by Index"
-msgstr ""
+msgstr "ラベルで探す"
 
 #: app/views/notes/_menu.html.haml:8
 msgid "Updated"
-msgstr ""
+msgstr "更新されたページ"
 
 #: app/views/notes/_navi.html.haml:2 app/views/notes/_wizard.html.haml:14
 msgid "Previous"
-msgstr ""
+msgstr "戻る"
 
 #: app/views/notes/_navi.html.haml:3 app/views/notes/_wizard.html.haml:15
 msgid "Next"
-msgstr ""
+msgstr "進む"
 
 #: app/views/notes/edit.html.haml:7 app/views/notes/new.html.haml:195
 msgid "Note|GroupBackendType"
-msgstr ""
+msgstr "管理対象の種別"
 
-#: app/views/notes/edit.html.haml:11 app/views/notes/new.html.haml:27
-msgid "個人用ノート"
-msgstr ""
+#: app/views/notes/edit.html.haml:11
+msgid "BuiltinGroup note"
+msgstr "ふつうのノート"
 
-#: app/views/notes/edit.html.haml:14 app/views/notes/new.html.haml:32
-msgid "SKIPグループ"
-msgstr ""
+#: app/views/notes/edit.html.haml:14
+msgid "SkipGroup note"
+msgstr "SKIPグループ"
 
-#: app/views/notes/edit.html.haml:21 app/views/notes/new.html.haml:204
-#, fuzzy
-msgid "Note|DisplayName"
-msgstr "ノート名"
+#: app/views/notes/edit.html.haml:36
+msgid "Access by member only"
+msgstr "メンバーのみが読み書きできる"
 
-#: app/views/notes/edit.html.haml:36 app/views/notes/new.html.haml:87
-#: app/views/notes/new.html.haml:103
-msgid "グループメンバーのみ閲覧/書込できる"
-msgstr ""
+#: app/views/notes/edit.html.haml:40
+msgid "Readable by everyone"
+msgstr "全員が読める"
 
-#: app/views/notes/edit.html.haml:40 app/views/notes/new.html.haml:92
-#: app/views/notes/new.html.haml:108
-msgid "全員が閲覧できる"
-msgstr ""
-
-#: app/views/notes/edit.html.haml:44 app/views/notes/new.html.haml:97
-#: app/views/notes/new.html.haml:115
-msgid "全員が閲覧/書込できる"
-msgstr ""
+#: app/views/notes/edit.html.haml:44
+msgid "Readable/Writable by everyone"
+msgstr "全員が読み書きできる"
 
 #: app/views/notes/index.html.haml:9
 #, fuzzy
 msgid "New note"
-msgstr "ノート"
+msgstr "ノートを作る"
 
 #: app/views/notes/index.html.haml:31
 msgid "No page exists"
+msgstr "ページが存在しません"
+
+#: app/views/notes/new.html.haml:27
+msgid "個人用ノート"
+msgstr ""
+
+#: app/views/notes/new.html.haml:32
+msgid "SKIPグループ"
 msgstr ""
 
 #: app/views/notes/new.html.haml:56
-msgid "オフィス"
+msgid "Office"
 msgstr ""
 
 #: app/views/notes/new.html.haml:58
@@ -669,7 +652,7 @@ msgid "QMS...生産技術部が展開するQMSに関する資料公開用のWiki
 msgstr ""
 
 #: app/views/notes/new.html.haml:62
-msgid "ビジネス"
+msgid "Business"
 msgstr ""
 
 #: app/views/notes/new.html.haml:64
@@ -677,7 +660,7 @@ msgid "SONICチーム情報共有Wiki...プロジェクトチーム内の情報�
 msgstr ""
 
 #: app/views/notes/new.html.haml:67
-msgid "ライフ"
+msgid "Life"
 msgstr ""
 
 #: app/views/notes/new.html.haml:69
@@ -689,7 +672,7 @@ msgid "TC部門内運営ルール...休暇申請など、部門内のルール�
 msgstr ""
 
 #: app/views/notes/new.html.haml:73
-msgid "オフ"
+msgid "Off"
 msgstr ""
 
 #: app/views/notes/new.html.haml:75
@@ -702,6 +685,18 @@ msgstr ""
 msgid "FFIX...ゲームに関する情報をまとめたWikiです"
 msgstr ""
 
+#: app/views/notes/new.html.haml:87 app/views/notes/new.html.haml:103
+msgid "グループメンバーのみ閲覧/書込できる"
+msgstr ""
+
+#: app/views/notes/new.html.haml:92 app/views/notes/new.html.haml:108
+msgid "全員が閲覧できる"
+msgstr ""
+
+#: app/views/notes/new.html.haml:97 app/views/notes/new.html.haml:115
+msgid "全員が閲覧/書込できる"
+msgstr ""
+
 #: app/views/notes/new.html.haml:113
 msgid "そのグループからグループ外に情報を発信したい場合に選びます。"
 msgstr ""
@@ -710,11 +705,6 @@ msgstr ""
 msgid ""
 "Wikipediaのようにみんなでコンテンツを作っていくWikiにしたい場合に選びます。"
 msgstr ""
-
-#: app/views/notes/new.html.haml:127 app/views/notes/new.html.haml:134
-#, fuzzy
-msgid "Note|DisplayName|desc"
-msgstr "ノート名"
 
 #: app/views/notes/show.html.haml:8
 msgid "Edit Note"
@@ -733,27 +723,22 @@ msgid "Labels"
 msgstr ""
 
 #: app/views/pages/_navi.html.haml:2
-msgid "show"
-msgstr ""
+msgid "show page"
+msgstr "ページを表示"
 
 #: app/views/pages/_navi.html.haml:3
-msgid "edit"
-msgstr ""
+msgid "edit page"
+msgstr "ページを編集"
 
 #: app/views/pages/_navi.html.haml:4
 #, fuzzy
-msgid "histories"
-msgstr "履歴"
+msgid "page histories"
+msgstr "編集履歴"
 
 #: app/views/pages/_navi.html.haml:5
 #, fuzzy
 msgid "Note"
 msgstr "ノート"
-
-#: app/views/pages/_pages.html.haml:4 app/views/pages/edit.html.haml:14
-#, fuzzy
-msgid "Page|DisplayName"
-msgstr "ノート名"
 
 #: app/views/pages/_pages.html.haml:6
 #, fuzzy
@@ -762,12 +747,7 @@ msgstr "リビジョン"
 
 #: app/views/pages/_pages.html.haml:7
 msgid "Page|Auther"
-msgstr ""
-
-#: app/views/pages/_pages.html.haml:8
-#, fuzzy
-msgid "Page|UpdatedAt"
-msgstr "カテゴリー更新日"
+msgstr "編集者"
 
 #: app/views/pages/_pages.html.haml:9
 #, fuzzy
@@ -775,8 +755,9 @@ msgid "History"
 msgstr "履歴"
 
 #: app/views/pages/edit.html.haml:22
-msgid "Page|LabelIndices"
-msgstr ""
+#, fuzzy
+msgid "Page|Label indices"
+msgstr "ラベル識別子"
 
 #: app/views/pages/edit.html.haml:35
 #, fuzzy
@@ -813,11 +794,12 @@ msgid ""
 "Even if you not have an account on SKIP-Note, enter OpenID URL and you'll "
 "show signup form."
 msgstr ""
-"初めて利用する場合もあなたのOpenID URLを入力してください。そのままユーザ登録ができます。"
-""
+"初めて利用する場合もあなたのOpenID URLを入力してください。そのままユーザ登録"
+"ができます。"
 
 #: app/views/sessions/new.html.haml:18
-msgid "Log In"
+#: app/views/shared/_common_body_header.html.haml:21
+msgid "Login"
 msgstr "ログイン"
 
 #: app/views/shared/_common_body_header.html.haml:7
@@ -836,10 +818,6 @@ msgstr "プロフィール(%{name}さん)"
 #: app/views/shared/_common_body_header.html.haml:19
 msgid "Logout"
 msgstr "ログアウト"
-
-#: app/views/shared/_common_body_header.html.haml:21
-msgid "Login"
-msgstr "ログイン"
 
 #: app/views/shared/_common_body_header.html.haml:24
 msgid "Help"
@@ -861,3 +839,33 @@ msgstr ""
 msgid "User|wikis"
 msgstr ""
 
+#, fuzzy
+#~ msgid "histories"
+#~ msgstr "履歴"
+
+#, fuzzy
+#~ msgid "History|Contents"
+#~ msgstr "編集者"
+
+#, fuzzy
+#~ msgid "History|Author"
+#~ msgstr "編集者"
+
+#, fuzzy
+#~ msgid "Note|DisplayName"
+#~ msgstr "ノート名"
+
+#, fuzzy
+#~ msgid "Note|DisplayName|desc"
+#~ msgstr "ノート名"
+
+#, fuzzy
+#~ msgid "Page|DisplayName"
+#~ msgstr "ノート名"
+
+#, fuzzy
+#~ msgid "Page|UpdatedAt"
+#~ msgstr "カテゴリー更新日"
+
+#~ msgid "Log In"
+#~ msgstr "ログイン"

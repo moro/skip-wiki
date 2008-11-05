@@ -9,13 +9,13 @@
     - if @page.format_type == "html"
       .controll
         =radio_button_tag("history_display", "contents")
-        =label_tag("history_display_contents", "History|Contents")
+        =label_tag("history_display_contents", "Show History Contents")
 
         =radio_button_tag("history_display", "diff")
-        =label_tag("history_display_diff", "History|Diff", :checked => "checked")
+        =label_tag("history_display_diff", "Show History Diffs", :checked => "checked")
 
       .history-contents{:style=>"display:none"}
-        %h3&= _("History|Contents")
+        %h3&= _("History|Content")
         .from~ render_page_content(@page, params[:from])
         .to~ render_page_content(@page, params[:to])
         .clear
@@ -34,14 +34,14 @@
 
     %table.diff
       %caption
-        %h3&= _("History|Diffs")
+        %h3&= _("History|Diff")
       %tr
         %th.symbol
         %th.num&= "r#{params[:from]}"
         %th.num&= "r#{params[:to]}"
 
-        %th&= "Contents of r#{params[:from]}"
-        %th&= "Contents of r#{params[:to]}"
+        %th&= _("Contents of r%{rev}") % {:rev => params[:from]}
+        %th&= _("Contents of r%{rev}") % {:rev => params[:to]}
 
       - @diffs.each do |symbol, (old_n,old_s), (new_n,new_s)|
         %tr{:class=>diff_symbol(symbol)}

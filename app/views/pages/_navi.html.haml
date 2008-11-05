@@ -1,6 +1,6 @@
 %ul.navi-tab.right-navi
-  = navi_item(h(_("show")), note_page_path(@page.note, @page), current_path)
-  = navi_item(h(_("edit")), edit_note_page_path(current_note, @page), current_path)
-  = navi_item(h(_("histories")), note_page_histories_path(current_note, @page), current_path)
+  = navi_item(h(_("show page")), note_page_path(@page.note, @page), current_path)
+  = navi_item(h(_("edit page")), edit_note_page_path(current_note, @page), current_path)
+  = navi_item(h(_("page histories")), note_page_histories_path(current_note, @page), current_path)
   = navi_item(h(_("Note")), note_path(@page.note), current_path)
 .clear

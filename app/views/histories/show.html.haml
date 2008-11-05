@@ -9,10 +9,10 @@
         %dt.revision&= _("History|Revision")
         %dd.revision&= "rev.%d" % @history.revision
 
-        %dt.author&= _("History|Author")
+        %dt.author&= _("History|User")
         %dd.author&= @history.user.name
 
-        %dt.updated_at&= _("History|UpdatedAt")
+        %dt.updated_at&= _("History|Updated at")
         %dd.updated_at&= @history.updated_at
 
     =link_to _("Back to Hisotries"), note_page_histories_path(current_note, @page)

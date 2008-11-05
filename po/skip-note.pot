@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-11-04 17:19+0900\n"
+"POT-Creation-Date: 2008-11-05 12:33+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,11 +20,11 @@ msgstr ""
 msgid "Create new page '%{page}'."
 msgstr ""
 
-#: app/controllers/pages_controller.rb:45
+#: app/controllers/pages_controller.rb:44
 msgid "The page %{page} is successfully created"
 msgstr ""
 
-#: app/controllers/pages_controller.rb:77
+#: app/controllers/pages_controller.rb:76
 msgid "The page %{page} is successfully updated"
 msgstr ""
 
@@ -76,7 +76,7 @@ msgstr ""
 msgid "Account|Email"
 msgstr ""
 
-#: app/models/account.rb:-
+#: app/models/account.rb:- app/views/users/show.html.haml:15
 msgid "Account|Identity url"
 msgstr ""
 
@@ -208,7 +208,7 @@ msgstr ""
 msgid "History|Versionable type"
 msgstr ""
 
-#: app/models/history.rb:-
+#: app/models/history.rb:- app/views/histories/show.html.haml:12
 msgid "History|User"
 msgstr ""
 
@@ -216,7 +216,7 @@ msgstr ""
 msgid "History|Revision"
 msgstr ""
 
-#: app/models/history.rb:-
+#: app/models/history.rb:- app/views/histories/diff.html.haml:18
 msgid "History|Content"
 msgstr ""
 
@@ -224,7 +224,8 @@ msgstr ""
 msgid "History|Created at"
 msgstr ""
 
-#: app/models/history.rb:-
+#: app/models/history.rb:- app/views/histories/index.html.haml:13
+#: app/views/histories/show.html.haml:15
 msgid "History|Updated at"
 msgstr ""
 
@@ -240,7 +241,7 @@ msgstr ""
 msgid "LabelIndex|Name"
 msgstr ""
 
-#: app/models/label_index.rb:-
+#: app/models/label_index.rb:- app/views/label_indices/index.html.haml:8
 msgid "LabelIndex|Display name"
 msgstr ""
 
@@ -302,7 +303,9 @@ msgstr ""
 msgid "Note|Name"
 msgstr ""
 
-#: app/models/note.rb:- app/views/notes/index.html.haml:17
+#: app/models/note.rb:- app/views/notes/edit.html.haml:21
+#: app/views/notes/index.html.haml:17 app/views/notes/new.html.haml:127
+#: app/views/notes/new.html.haml:134 app/views/notes/new.html.haml:204
 msgid "Note|Display name"
 msgstr ""
 
@@ -384,6 +387,7 @@ msgid "Page|Name"
 msgstr ""
 
 #: app/models/page.rb:- app/views/notes/index.html.haml:19
+#: app/views/pages/_pages.html.haml:4 app/views/pages/edit.html.haml:14
 msgid "Page|Display name"
 msgstr ""
 
@@ -407,7 +411,7 @@ msgstr ""
 msgid "Page|Created at"
 msgstr ""
 
-#: app/models/page.rb:-
+#: app/models/page.rb:- app/views/pages/_pages.html.haml:8
 msgid "Page|Updated at"
 msgstr ""
 
@@ -459,7 +463,8 @@ msgstr ""
 msgid "user"
 msgstr ""
 
-#: app/models/user.rb:- app/views/users/show.html.haml:6
+#: app/models/user.rb:- app/views/histories/index.html.haml:12
+#: app/views/users/show.html.haml:6
 msgid "User|Name"
 msgstr ""
 
@@ -495,25 +500,16 @@ msgstr ""
 msgid "Back to histories"
 msgstr ""
 
-#: app/views/histories/diff.html.haml:18
-msgid "History|Contents"
+#: app/views/histories/diff.html.haml:37
+msgid "History|Diff"
 msgstr ""
 
-#: app/views/histories/diff.html.haml:37
-msgid "History|Diffs"
+#: app/views/histories/diff.html.haml:43 app/views/histories/diff.html.haml:44
+msgid "Contents of r%{rev}"
 msgstr ""
 
 #: app/views/histories/index.html.haml:4
 msgid "%{page}'s histories"
-msgstr ""
-
-#: app/views/histories/index.html.haml:12
-msgid "Uesr|Name"
-msgstr ""
-
-#: app/views/histories/index.html.haml:13
-#: app/views/histories/show.html.haml:15
-msgid "History|UpdatedAt"
 msgstr ""
 
 #: app/views/histories/index.html.haml:14
@@ -532,20 +528,12 @@ msgstr ""
 msgid "to"
 msgstr ""
 
-#: app/views/histories/show.html.haml:12
-msgid "History|Author"
-msgstr ""
-
 #: app/views/histories/show.html.haml:18
 msgid "Back to Hisotries"
 msgstr ""
 
 #: app/views/label_indices/index.html.haml:2
 msgid "Label index for %{note}"
-msgstr ""
-
-#: app/views/label_indices/index.html.haml:8
-msgid "LabelIndex|DisplayName"
 msgstr ""
 
 #: app/views/label_indices/index.html.haml:14
@@ -610,31 +598,24 @@ msgstr ""
 msgid "Note|GroupBackendType"
 msgstr ""
 
-#: app/views/notes/edit.html.haml:11 app/views/notes/new.html.haml:27
-msgid "個人用ノート"
+#: app/views/notes/edit.html.haml:11
+msgid "BuiltinGroup note"
 msgstr ""
 
-#: app/views/notes/edit.html.haml:14 app/views/notes/new.html.haml:32
-msgid "SKIPグループ"
+#: app/views/notes/edit.html.haml:14
+msgid "SkipGroup note"
 msgstr ""
 
-#: app/views/notes/edit.html.haml:21 app/views/notes/new.html.haml:204
-msgid "Note|DisplayName"
+#: app/views/notes/edit.html.haml:36
+msgid "Access by member only"
 msgstr ""
 
-#: app/views/notes/edit.html.haml:36 app/views/notes/new.html.haml:87
-#: app/views/notes/new.html.haml:103
-msgid "グループメンバーのみ閲覧/書込できる"
+#: app/views/notes/edit.html.haml:40
+msgid "Readable by everyone"
 msgstr ""
 
-#: app/views/notes/edit.html.haml:40 app/views/notes/new.html.haml:92
-#: app/views/notes/new.html.haml:108
-msgid "全員が閲覧できる"
-msgstr ""
-
-#: app/views/notes/edit.html.haml:44 app/views/notes/new.html.haml:97
-#: app/views/notes/new.html.haml:115
-msgid "全員が閲覧/書込できる"
+#: app/views/notes/edit.html.haml:44
+msgid "Readable/Writable by everyone"
 msgstr ""
 
 #: app/views/notes/index.html.haml:9
@@ -645,8 +626,16 @@ msgstr ""
 msgid "No page exists"
 msgstr ""
 
+#: app/views/notes/new.html.haml:27
+msgid "個人用ノート"
+msgstr ""
+
+#: app/views/notes/new.html.haml:32
+msgid "SKIPグループ"
+msgstr ""
+
 #: app/views/notes/new.html.haml:56
-msgid "オフィス"
+msgid "Office"
 msgstr ""
 
 #: app/views/notes/new.html.haml:58
@@ -658,7 +647,7 @@ msgid "QMS...生産技術部が展開するQMSに関する資料公開用のWiki
 msgstr ""
 
 #: app/views/notes/new.html.haml:62
-msgid "ビジネス"
+msgid "Business"
 msgstr ""
 
 #: app/views/notes/new.html.haml:64
@@ -666,7 +655,7 @@ msgid "SONICチーム情報共有Wiki...プロジェクトチーム内の情報�
 msgstr ""
 
 #: app/views/notes/new.html.haml:67
-msgid "ライフ"
+msgid "Life"
 msgstr ""
 
 #: app/views/notes/new.html.haml:69
@@ -678,7 +667,7 @@ msgid "TC部門内運営ルール...休暇申請など、部門内のルール�
 msgstr ""
 
 #: app/views/notes/new.html.haml:73
-msgid "オフ"
+msgid "Off"
 msgstr ""
 
 #: app/views/notes/new.html.haml:75
@@ -691,6 +680,18 @@ msgstr ""
 msgid "FFIX...ゲームに関する情報をまとめたWikiです"
 msgstr ""
 
+#: app/views/notes/new.html.haml:87 app/views/notes/new.html.haml:103
+msgid "グループメンバーのみ閲覧/書込できる"
+msgstr ""
+
+#: app/views/notes/new.html.haml:92 app/views/notes/new.html.haml:108
+msgid "全員が閲覧できる"
+msgstr ""
+
+#: app/views/notes/new.html.haml:97 app/views/notes/new.html.haml:115
+msgid "全員が閲覧/書込できる"
+msgstr ""
+
 #: app/views/notes/new.html.haml:113
 msgid "そのグループからグループ外に情報を発信したい場合に選びます。"
 msgstr ""
@@ -698,10 +699,6 @@ msgstr ""
 #: app/views/notes/new.html.haml:120
 msgid ""
 "Wikipediaのようにみんなでコンテンツを作っていくWikiにしたい場合に選びます。"
-msgstr ""
-
-#: app/views/notes/new.html.haml:127 app/views/notes/new.html.haml:134
-msgid "Note|DisplayName|desc"
 msgstr ""
 
 #: app/views/notes/show.html.haml:8
@@ -721,23 +718,19 @@ msgid "Labels"
 msgstr ""
 
 #: app/views/pages/_navi.html.haml:2
-msgid "show"
+msgid "show page"
 msgstr ""
 
 #: app/views/pages/_navi.html.haml:3
-msgid "edit"
+msgid "edit page"
 msgstr ""
 
 #: app/views/pages/_navi.html.haml:4
-msgid "histories"
+msgid "page histories"
 msgstr ""
 
 #: app/views/pages/_navi.html.haml:5
 msgid "Note"
-msgstr ""
-
-#: app/views/pages/_pages.html.haml:4 app/views/pages/edit.html.haml:14
-msgid "Page|DisplayName"
 msgstr ""
 
 #: app/views/pages/_pages.html.haml:6
@@ -748,16 +741,12 @@ msgstr ""
 msgid "Page|Auther"
 msgstr ""
 
-#: app/views/pages/_pages.html.haml:8
-msgid "Page|UpdatedAt"
-msgstr ""
-
 #: app/views/pages/_pages.html.haml:9
 msgid "History"
 msgstr ""
 
 #: app/views/pages/edit.html.haml:22
-msgid "Page|LabelIndices"
+msgid "Page|Label indices"
 msgstr ""
 
 #: app/views/pages/edit.html.haml:35
@@ -795,7 +784,8 @@ msgid ""
 msgstr ""
 
 #: app/views/sessions/new.html.haml:18
-msgid "Log In"
+#: app/views/shared/_common_body_header.html.haml:21
+msgid "Login"
 msgstr ""
 
 #: app/views/shared/_common_body_header.html.haml:7
@@ -813,10 +803,6 @@ msgstr ""
 
 #: app/views/shared/_common_body_header.html.haml:19
 msgid "Logout"
-msgstr ""
-
-#: app/views/shared/_common_body_header.html.haml:21
-msgid "Login"
 msgstr ""
 
 #: app/views/shared/_common_body_header.html.haml:24
@@ -837,8 +823,4 @@ msgstr ""
 
 #: app/views/users/_side_menu.html.haml:7
 msgid "User|wikis"
-msgstr ""
-
-#: app/views/users/show.html.haml:15
-msgid "Account|IdentityURL"
 msgstr ""

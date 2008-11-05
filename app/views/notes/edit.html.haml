@@ -8,17 +8,17 @@
       %ul.radios
         %li
           =f.radio_button(:group_backend_type, "BuiltinGroup", :disabled=>!@note.new_record?)
-          =f.label :group_backend_type, h(_"個人用ノート"), :for=>"note_group_backend_type_builtingroup"
+          =f.label :group_backend_type, h(_"BuiltinGroup note"), :for=>"note_group_backend_type_builtingroup"
         %li
           =f.radio_button(:group_backend_type, "SkipGroup", :disabled=>!@note.new_record?)
-          =f.label :group_backend_type, h(_"SKIPグループ"), :for=>"note_group_backend_type_skipgroup"
+          =f.label :group_backend_type, h(_"SkipGroup note"), :for=>"note_group_backend_type_skipgroup"
 
     %p
       =f.label :name, h(_("Note|Name"))
       %br
       =f.text_field :name
     %p
-      =f.label :display_name, h(_("Note|DisplayName"))
+      =f.label :display_name, h(_("Note|Display name"))
       %br
       =f.text_field :display_name
 
@@ -33,15 +33,15 @@
       %ul.radios
         %li
           =f.radio_button(:publicity, Note::PUBLICITY_MEMBER_ONLY)
-          =f.label "publicity_#{Note::PUBLICITY_MEMBER_ONLY}", h(_("グループメンバーのみ閲覧/書込できる"))
+          =f.label "publicity_#{Note::PUBLICITY_MEMBER_ONLY}", h(_("Access by member only"))
 
         %li
           =f.radio_button(:publicity, Note::PUBLICITY_READABLE)
-          =f.label "publicity_#{Note::PUBLICITY_READABLE}", h(_("全員が閲覧できる"))
+          =f.label "publicity_#{Note::PUBLICITY_READABLE}", h(_("Readable by everyone"))
 
         %li
           =f.radio_button(:publicity, Note::PUBLICITY_WRITABLE)
-          =f.label "publicity_#{Note::PUBLICITY_WRITABLE}", h(_"全員が閲覧/書込できる")
+          =f.label "publicity_#{Note::PUBLICITY_WRITABLE}", h(_"Readable/Writable by everyone")
 
     %p
       = h(_("Note|Category"))
