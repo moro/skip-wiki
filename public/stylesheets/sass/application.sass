@@ -28,6 +28,7 @@
     ul
       :list-style none
       :margin-left 1em
+      :padding 0
 
       ul.submenu li
         :list-style disc
@@ -78,13 +79,30 @@ ul.navi-tab
     :text-align center
     :float left
     :font-size 10px
-    :width 5em
     :height 1.5em
-    :border 1px solid #0080FF
+    :padding 1px 1em
     :margin 1px
 
-  li.current
+  li.page
+    :border 1px solid #0080FF
+
+    a
+      :color #0080FF
+
+  li.page.current
     :background #99DDFF
+
+  li.note
+    :border 1px solid #00FF80
+
+    a
+      :color #00FF80
+
+  li.note.current
+    :background #99FFC0
+
+  li.current a
+    :color black
 
 .history-contents
   :width 800px
@@ -180,13 +198,6 @@ div.note
 
   div.tab
     :width 100%
-
-    ul.navi-tab li
-      :width 8em
-      :border 1px solid #00FF80
-
-      a
-        :color #00AF50
 
 div.page, div.history
   :position relative

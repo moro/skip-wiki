@@ -13,18 +13,25 @@ module PagesHelper
     end
   end
 
+  # FIXME 出力するタグの制限を相談する必要あり
   def render_richtext(content)
-    sanitize(content, :attributes=>%w[style])
+    content
+    #sanitize(content, :attributes=>%w[style])
   end
 
   def render_hiki(content)
     sanitize(HikiDoc.to_xhtml(content, :level=>2))
   end
 
-  def navi_item(text, path, current_path)
-    current = (path == current_path)
-    content_tag("li", (current ? {:class=>"current"} : {})) do
-      link_to_unless current, text, path
+  def navi_item(text, path, current_path, *css)
+    if path == current_path
+      content = h(text)
+      css = ["current", *css].join(" ")
+    else
+      content = link_to(h(text), path)
+      css = css.join(" ")
     end
+
+    content_tag("li", content, :class => css)
   end
 end

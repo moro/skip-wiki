@@ -3,7 +3,7 @@
 
 #content
   - div_for(@page) do
-    %h1&= @page.display_name
+    %h1&= @page.display_name.blank? ? _("New Page") : @page.display_name
     .tab= render :partial => 'pages/navi', :locals=> {:current_path => edit_note_page_path(current_note, @page)}
 
     - page_name = @page.name.blank? ? params[:id] : @page.name

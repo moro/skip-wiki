@@ -5,9 +5,10 @@
 
     .tab
       %ul.navi-tab
-        %li= link_to h(_("Edit Note")), edit_note_path(@note)
-        %li= link_to h(_("New Page")), new_note_page_path(@note)
-        %li= link_to h(_("Add Users")), group_path(@note.owner_group)
+        %li= link_to h(_("edit note")), edit_note_path(@note)
+        %li= link_to h(_("add users")), group_path(@note.owner_group)
+        %li= link_to h(_("note pages")), note_pages_path(@note)
+        %li= link_to h(_("new page")), new_note_page_path(@note)
 
     .pages
       =render(:partial => "pages/pages", :locals=>{:pages=>@note.pages.scoped(:order => "pages.updated_at DESC")})
