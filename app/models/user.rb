@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   def build_note(note_params)
     returning Note.new(note_params.dup) do |note|
       note.owner_group = find_or_create_group(note)
+      note.build_front_page(self)
     end
   end
 

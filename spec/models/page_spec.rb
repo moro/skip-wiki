@@ -149,5 +149,13 @@ describe Page do
       Page.fulltext("keyword").should == [@page]
     end
   end
+
+  describe ".front_page" do
+    before do
+      @page = Page.front_page
+    end
+    it { @page.should be_new_record }
+    it { @page.format_type.should == "html" }
+  end
 end
 

@@ -52,6 +52,7 @@ describe User do
 
   describe "#build_note" do
     before do
+      Page.stub!(:front_page_content).and_return("---FrontPage---")
       @user = create_user
       @note = @user.build_note(
         :name => "value for name",
@@ -94,6 +95,11 @@ describe User do
     it "should have membershipsp to @note.owner_group" do
       @note.save!
       @user.reload.memberships.find_by_group_id(@note.owner_group.id).should_not be_nil
+    end
+
+    it "should have FrontPage" do
+      @note.save!
+      @note.pages.find_by_name("FrontPage").should_not be_nil
     end
 
     describe "(with SQL injection group)" do

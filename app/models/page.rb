@@ -45,6 +45,20 @@ SQL
   before_validation :assign_default_pubulification
   after_save :reset_history_caches
 
+  def self.front_page(attrs = {})
+    attrs = {
+      :name => "FrontPage",
+      :display_name => _("FrontPage"),
+      :format_type => "html",
+      :published_at => Time.now,
+    }.merge(attrs)
+    new(attrs)
+  end
+
+  def self.front_page_content
+    File.read(File.expand_path("assets/front_page.html.erb", ::Rails.root))
+  end
+
   def head
     histories.first
   end

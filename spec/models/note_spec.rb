@@ -47,4 +47,28 @@ describe Note do
       @note.reload.should have(0).pages
     end
   end
+
+  describe "build_front_page" do
+    before(:each) do
+      Page.should_receive(:front_page_content).and_return("---FrontPage---")
+      @note = Note.new(@valid_attributes)
+      @user = mock_model(User)
+      @page = @note.build_front_page(@user)
+      @note.save!
+    end
+
+    it "create new page" do
+      @note.reload.should have(1).pages
+    end
+
+    it "ページのnameはFrontPageであること" do
+      page = @note.reload.pages.first
+      page.name.should == "FrontPage"
+    end
+
+    it "ページのcontentsは指定したものであること" do
+      page = @note.reload.pages.first
+      page.content.should == "---FrontPage---"
+    end
+  end
 end

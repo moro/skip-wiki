@@ -62,6 +62,13 @@ class Note < ActiveRecord::Base
     accessibilities.map(&:group)
   end
 
+  def build_front_page(user)
+    returning Page.front_page do |page|
+      page.edit(Page.front_page_content, user)
+      self.pages << page
+    end
+  end
+
   private
   def add_accessibility_to_owner_group
     accessibilities << Accessibility.new(:group=>owner_group)
