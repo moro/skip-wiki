@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-11-05 12:33+0900\n"
+"POT-Creation-Date: 2008-11-05 17:05+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -415,6 +415,10 @@ msgstr ""
 msgid "Page|Updated at"
 msgstr ""
 
+#: app/models/page.rb:51
+msgid "FrontPage"
+msgstr ""
+
 #: app/models/skip_account.rb:-
 msgid "skip account"
 msgstr ""
@@ -480,7 +484,7 @@ msgstr ""
 msgid "User|Updated at"
 msgstr ""
 
-#: app/models/user.rb:54
+#: app/models/user.rb:55
 msgid "%{name} group"
 msgstr ""
 
@@ -586,11 +590,23 @@ msgstr ""
 msgid "Updated"
 msgstr ""
 
-#: app/views/notes/_navi.html.haml:2 app/views/notes/_wizard.html.haml:14
+#: app/views/notes/_navi.html.haml:2 app/views/notes/show.html.haml:8
+msgid "edit note"
+msgstr ""
+
+#: app/views/notes/_navi.html.haml:3 app/views/notes/show.html.haml:10
+msgid "note pages"
+msgstr ""
+
+#: app/views/notes/_navi.html.haml:4 app/views/notes/show.html.haml:11
+msgid "new page"
+msgstr ""
+
+#: app/views/notes/_wizard.html.haml:14
 msgid "Previous"
 msgstr ""
 
-#: app/views/notes/_navi.html.haml:3 app/views/notes/_wizard.html.haml:15
+#: app/views/notes/_wizard.html.haml:15
 msgid "Next"
 msgstr ""
 
@@ -701,19 +717,11 @@ msgid ""
 "Wikipediaのようにみんなでコンテンツを作っていくWikiにしたい場合に選びます。"
 msgstr ""
 
-#: app/views/notes/show.html.haml:8
-msgid "Edit Note"
+#: app/views/notes/show.html.haml:9 app/views/pages/index.html.haml:10
+msgid "add users"
 msgstr ""
 
-#: app/views/notes/show.html.haml:9
-msgid "New Page"
-msgstr ""
-
-#: app/views/notes/show.html.haml:10
-msgid "Add Users"
-msgstr ""
-
-#: app/views/notes/show.html.haml:16
+#: app/views/notes/show.html.haml:17
 msgid "Labels"
 msgstr ""
 
@@ -729,10 +737,6 @@ msgstr ""
 msgid "page histories"
 msgstr ""
 
-#: app/views/pages/_navi.html.haml:5
-msgid "Note"
-msgstr ""
-
 #: app/views/pages/_pages.html.haml:6
 msgid "Page|Revision"
 msgstr ""
@@ -743,6 +747,10 @@ msgstr ""
 
 #: app/views/pages/_pages.html.haml:9
 msgid "History"
+msgstr ""
+
+#: app/views/pages/edit.html.haml:6
+msgid "New Page"
 msgstr ""
 
 #: app/views/pages/edit.html.haml:22

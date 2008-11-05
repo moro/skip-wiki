@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-11-05 12:33+0900\n"
+"POT-Creation-Date: 2008-11-05 17:05+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -384,7 +384,7 @@ msgstr ""
 #: app/models/page.rb:- app/views/pages/_pages.html.haml:5
 #: app/views/pages/edit.html.haml:17
 msgid "Page|Name"
-msgstr ""
+msgstr "ページ識別子"
 
 #: app/models/page.rb:- app/views/notes/index.html.haml:19
 #: app/views/pages/_pages.html.haml:4 app/views/pages/edit.html.haml:14
@@ -413,6 +413,10 @@ msgstr ""
 
 #: app/models/page.rb:- app/views/pages/_pages.html.haml:8
 msgid "Page|Updated at"
+msgstr ""
+
+#: app/models/page.rb:51
+msgid "FrontPage"
 msgstr ""
 
 #: app/models/skip_account.rb:-
@@ -480,7 +484,7 @@ msgstr ""
 msgid "User|Updated at"
 msgstr ""
 
-#: app/models/user.rb:54
+#: app/models/user.rb:55
 msgid "%{name} group"
 msgstr ""
 
@@ -495,11 +499,11 @@ msgstr "グループのユーザ一覧"
 
 #: app/views/histories/diff.html.haml:4
 msgid "%{page}'s diff from rev.%{from} to rev.%{to}."
-msgstr ""
+msgstr "「%{page}」のrev.%{from}からrev.%{to}への変更点"
 
 #: app/views/histories/diff.html.haml:7
 msgid "Back to histories"
-msgstr ""
+msgstr "履歴一覧に戻る"
 
 #: app/views/histories/diff.html.haml:37
 #, fuzzy
@@ -590,11 +594,23 @@ msgstr "ラベルで探す"
 msgid "Updated"
 msgstr "更新されたページ"
 
-#: app/views/notes/_navi.html.haml:2 app/views/notes/_wizard.html.haml:14
+#: app/views/notes/_navi.html.haml:2 app/views/notes/show.html.haml:8
+msgid "edit note"
+msgstr "ノートを編集"
+
+#: app/views/notes/_navi.html.haml:3 app/views/notes/show.html.haml:10
+msgid "note pages"
+msgstr "ページ一覧"
+
+#: app/views/notes/_navi.html.haml:4 app/views/notes/show.html.haml:11
+msgid "new page"
+msgstr "ページを追加"
+
+#: app/views/notes/_wizard.html.haml:14
 msgid "Previous"
 msgstr "戻る"
 
-#: app/views/notes/_navi.html.haml:3 app/views/notes/_wizard.html.haml:15
+#: app/views/notes/_wizard.html.haml:15
 msgid "Next"
 msgstr "進む"
 
@@ -706,19 +722,11 @@ msgid ""
 "Wikipediaのようにみんなでコンテンツを作っていくWikiにしたい場合に選びます。"
 msgstr ""
 
-#: app/views/notes/show.html.haml:8
-msgid "Edit Note"
-msgstr "ノートを編集"
-
-#: app/views/notes/show.html.haml:9
-msgid "New Page"
-msgstr "ページを追加"
-
-#: app/views/notes/show.html.haml:10
-msgid "Add Users"
+#: app/views/notes/show.html.haml:9 app/views/pages/index.html.haml:10
+msgid "add users"
 msgstr "ユーザを追加"
 
-#: app/views/notes/show.html.haml:16
+#: app/views/notes/show.html.haml:17
 msgid "Labels"
 msgstr ""
 
@@ -731,17 +739,10 @@ msgid "edit page"
 msgstr "ページを編集"
 
 #: app/views/pages/_navi.html.haml:4
-#, fuzzy
 msgid "page histories"
 msgstr "編集履歴"
 
-#: app/views/pages/_navi.html.haml:5
-#, fuzzy
-msgid "Note"
-msgstr "ノート"
-
 #: app/views/pages/_pages.html.haml:6
-#, fuzzy
 msgid "Page|Revision"
 msgstr "リビジョン"
 
@@ -750,9 +751,12 @@ msgid "Page|Auther"
 msgstr "編集者"
 
 #: app/views/pages/_pages.html.haml:9
-#, fuzzy
 msgid "History"
 msgstr "履歴"
+
+#: app/views/pages/edit.html.haml:6
+msgid "New Page"
+msgstr "新しいページを作る"
 
 #: app/views/pages/edit.html.haml:22
 #, fuzzy
@@ -838,6 +842,10 @@ msgstr ""
 #: app/views/users/_side_menu.html.haml:7
 msgid "User|wikis"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Note"
+#~ msgstr "ノート"
 
 #, fuzzy
 #~ msgid "histories"
