@@ -4,6 +4,7 @@ describe PagesController do
   fixtures :notes
   before do
     @current_note = notes(:our_note)
+    controller.stub!(:login_required).and_return(true)
     controller.stub!(:current_note).and_return(@current_note)
   end
 

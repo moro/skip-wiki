@@ -132,7 +132,7 @@ describe Page do
 
     it ".options.should == {:conditions => ['histories.id IN (?)', @history.id], :include => :histories}" do
       Page.fulltext("keyword").proxy_options.should ==
-        {:conditions => ['"histories".id IN (?)', [@history.id]], :include => :histories}
+        {:conditions => ["#{History.quoted_table_name}.id IN (?)", [@history.id]], :include => :histories}
     end
   end
 

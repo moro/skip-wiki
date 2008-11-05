@@ -56,6 +56,7 @@ describe User do
       @note = @user.build_note(
         :name => "value for name",
         :display_name => "value for display_name",
+        :description => "value for note description",
         :publicity => 0,
         :category_id => "1",
         :group_backend_type => "BuiltinGroup",

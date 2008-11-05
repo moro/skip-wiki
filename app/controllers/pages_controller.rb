@@ -12,13 +12,12 @@ class PagesController < ApplicationController
     @page = @note.pages.find_or_initialize_by_name(params[:id], :include=>:note)
 
     if @page.new_record?
-      flash[:notice] = _("Create new page '%{page}'.") % {:page=>page.name}
+      flash[:notice] = _("Create new page '%{page}'.") % {:page=>@page.name}
       respond_to do |format|
         format.html do
           render :action=>"edit", :status=>:not_found
         end
       end
-
     else
       respond_to do |format|
         format.html

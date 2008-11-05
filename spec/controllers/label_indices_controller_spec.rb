@@ -7,7 +7,8 @@ describe LabelIndicesController do
 
   before do
     @note = mock_model(Note)
-    @controller.should_receive(:current_note).at_least(:once).and_return(@note)
+    controller.should_receive(:login_required).and_return(true)
+    controller.should_receive(:current_note).at_least(:once).and_return(@note)
   end
 
   describe "responding to GET index" do

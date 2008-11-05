@@ -7,6 +7,7 @@ describe Note do
     @valid_attributes = {
       :name => "value for name",
       :display_name => "value for display_name",
+      :description => "value for description.",
       :publicity => Note::PUBLICITY_MEMBER_ONLY,
       :deleted_on => Time.now,
       :category_id => "1",

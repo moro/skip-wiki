@@ -40,7 +40,7 @@ Rails::Initializer.run do |config|
     open_id_authentication
   ]
   config.plugins << "rails-footnotes" if Rails.env == "development"
-  config.plugins << %w[cucumber webrat] if Rails.env == "test"
+  #config.plugins << "cucumber" << "webrat" if Rails.env == "test"
 
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
