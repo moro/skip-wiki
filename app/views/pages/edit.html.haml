@@ -24,9 +24,8 @@
           %ul.label_indices
             - current_note.label_indices.each do |index|
               %li
-                - id = "page_label_index_ids_#{index.id}"
-                = check_box_tag "page[label_index_ids][]", index.id, @page.label_index_ids.include?(index.id), :id=> id
-                %label{:for=>id}= labelize(index)
+                = f.radio_button :label_index_id, index.id
+                %label{:for=>"page_label_index_id_#{index.id}"}= labelize(index)
           .clear
 
         = f.hidden_field(:format_type)

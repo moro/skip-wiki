@@ -8,8 +8,7 @@
     .page-label-indices
       %h2&= _("LabelIndices")
       %ul
-        - @page.label_indices.each do |index|
-          %li= labelize(index, true)
+        %li= labelize(@page.label_index, true) if @page.label_index
 
     .clear
 

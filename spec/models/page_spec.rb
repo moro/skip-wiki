@@ -29,24 +29,36 @@ describe Page do
     }.should raise_error(ActiveRecord::RecordInvalid)
   end
 
-  describe "#label_indexings = [{:label_index_id=>1}]" do
+  describe "#label_index_id = an_label.id" do
     before do
-      @page = Page.new(@valid_attributes)
-      @label = LabelIndex.create(:note=>mock_model(Note), :name=>"foobar")
-      @page.label_index_ids = [@label.id]
+      @note = mock_model(Note)
+      @page = Page.new(@valid_attributes.merge(:note=>@note))
+      @label = LabelIndex.create(:note=>@note, :name=>"foobar")
+
+      @page.label_index_id = @label.id
     end
 
     it "should be new_record" do
       @page.should be_new_record
     end
 
-    it "#label_index_ids.should == [@label.id]" do
-      @page.label_index_ids.should == [@label.id]
+    it "#label_index_id.should == @label.id" do
+      @page.label_index_id.should == @label.id
     end
 
-    it "save! then should have 1 label_indexings" do
-      @page.save!
-      @page.should have(1).label_indexings
+    describe "save!" do
+      before do
+        @note.should_receive(:label_indices).and_return(LabelIndex)
+        @page.save!
+      end
+
+      it "then should have 1 label_indexings" do
+        @page.reload.label_index.should_not be_nil
+      end
+
+      it "#label_index_id.should_not be nil" do
+        Page.find(@page).label_index_id.should_not be_nil
+      end
     end
   end
 

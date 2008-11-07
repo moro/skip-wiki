@@ -3,11 +3,12 @@ class Page < ActiveRecord::Base
 
   has_friendly_id :name
   attr_reader :new_history
+  attr_writer :label_index_id
 
   belongs_to :note
   has_many :histories, :as => :versionable, :order => "histories.revision DESC"
   has_many :label_indexings
-  has_many :label_indices, :through => :label_indexings
+  has_one  :label_index, :through => :label_indexings
 
   validates_associated :new_history, :if => :new_history
   validates_presence_of  :name, :published_at
@@ -48,7 +49,7 @@ SQL
   }
 
   before_validation :assign_default_pubulification
-  after_save :reset_history_caches
+  after_save :reset_history_caches, :update_label_index
 
   def self.front_page(attrs = {})
     attrs = {
@@ -78,6 +79,10 @@ SQL
                     to_content.data.split(CRLF)).map(&:to_a)
   end
 
+  def label_index_id
+    @label_index_id || (label_index ? label_index.id : nil)
+  end
+
   def content(revision=nil)
     if revision.nil? # HEAD
       (history =  @new_history || head) ? history.content.data : ""
@@ -92,6 +97,7 @@ SQL
 
   def edit(content, user)
     return if content == self.content
+    self.updated_at = Time.now.utc
     @new_history = histories.build(:content => Content.new(:data => content),
                                    :user => user,
                                    :revision => revision.succ)
@@ -108,5 +114,9 @@ SQL
 
   def load_revision
     histories.maximum(:revision) || 0
+  end
+
+  def update_label_index
+    self.label_index = note.label_indices.find(label_index_id)
   end
 end
