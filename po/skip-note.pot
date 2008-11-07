@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-11-05 17:05+0900\n"
+"POT-Creation-Date: 2008-11-06 12:09+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -386,8 +386,8 @@ msgstr ""
 msgid "Page|Name"
 msgstr ""
 
-#: app/models/page.rb:- app/views/notes/index.html.haml:19
-#: app/views/pages/_pages.html.haml:4 app/views/pages/edit.html.haml:14
+#: app/models/page.rb:- app/views/pages/_pages.html.haml:4
+#: app/views/pages/edit.html.haml:14
 msgid "Page|Display name"
 msgstr ""
 
@@ -415,7 +415,7 @@ msgstr ""
 msgid "Page|Updated at"
 msgstr ""
 
-#: app/models/page.rb:51
+#: app/models/page.rb:56
 msgid "FrontPage"
 msgstr ""
 
@@ -635,7 +635,11 @@ msgid "Readable/Writable by everyone"
 msgstr ""
 
 #: app/views/notes/index.html.haml:9
-msgid "New note"
+msgid "new note"
+msgstr ""
+
+#: app/views/notes/index.html.haml:19
+msgid "Updated page"
 msgstr ""
 
 #: app/views/notes/index.html.haml:31

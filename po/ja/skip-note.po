@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-11-05 17:05+0900\n"
+"POT-Creation-Date: 2008-11-06 12:09+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -333,7 +333,7 @@ msgstr ""
 
 #: app/models/note.rb:- app/views/notes/index.html.haml:20
 msgid "Note|Updated at"
-msgstr ""
+msgstr "更新日時"
 
 #: app/models/note.rb:- app/views/notes/edit.html.haml:26
 #: app/views/notes/index.html.haml:18 app/views/notes/new.html.haml:158
@@ -386,8 +386,8 @@ msgstr ""
 msgid "Page|Name"
 msgstr "ページ識別子"
 
-#: app/models/page.rb:- app/views/notes/index.html.haml:19
-#: app/views/pages/_pages.html.haml:4 app/views/pages/edit.html.haml:14
+#: app/models/page.rb:- app/views/pages/_pages.html.haml:4
+#: app/views/pages/edit.html.haml:14
 msgid "Page|Display name"
 msgstr "ページ名"
 
@@ -415,7 +415,7 @@ msgstr ""
 msgid "Page|Updated at"
 msgstr ""
 
-#: app/models/page.rb:51
+#: app/models/page.rb:56
 msgid "FrontPage"
 msgstr ""
 
@@ -639,9 +639,12 @@ msgid "Readable/Writable by everyone"
 msgstr "全員が読み書きできる"
 
 #: app/views/notes/index.html.haml:9
-#, fuzzy
-msgid "New note"
+msgid "new note"
 msgstr "ノートを作る"
+
+#: app/views/notes/index.html.haml:19
+msgid "Updated page"
+msgstr "更新されたページ"
 
 #: app/views/notes/index.html.haml:31
 msgid "No page exists"
