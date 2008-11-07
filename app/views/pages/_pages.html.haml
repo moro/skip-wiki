@@ -14,6 +14,6 @@
       %td&= h(page.name)
       %td&= "r.#{page.head.revision}"
       %td&= page.head.user.name
-      %td.updated_at&= page.updated_at.to_s(:db)
+      %td.updated_at&= page.updated_at
       %td= link_to h("History"), note_page_histories_path(current_note, page)
 
