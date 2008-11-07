@@ -22,13 +22,18 @@ class Page < ActiveRecord::Base
 
   # TODO 採用が決まったら回帰テスト書く
   named_scope :last_modified_per_notes, proc{|note_ids|
+
     {:conditions => [<<-SQL, note_ids] }
-#{quoted_table_name}.id IN (
-  SELECT p.id
-  FROM #{quoted_table_name} AS p
-  WHERE p.note_id IN (?)
-  GROUP BY p.note_id HAVING p.updated_at = MAX(p.updated_at)
-)
+    #{quoted_table_name}.id IN (
+      SELECT p0.id
+      FROM   #{quoted_table_name} AS p0
+      INNER JOIN (
+        SELECT p2.note_id AS note_id, MAX(p2.updated_at) AS updated_at
+        FROM #{quoted_table_name} AS p2
+        WHERE p2.note_id IN (?)
+        GROUP BY p2.note_id
+      ) AS p1 USING (note_id, updated_at)
+    )
 SQL
   }
 
