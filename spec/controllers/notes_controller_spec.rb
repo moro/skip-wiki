@@ -87,7 +87,7 @@ describe NotesController do
       it "should redirect to the created note" do
         @user.should_receive(:build_note).and_return(mock_note(:save => true))
         post :create, :note => {}
-        response.should redirect_to(note_url(mock_note))
+        response.should redirect_to(note_page_url(mock_note, "FrontPage"))
       end
 
     end

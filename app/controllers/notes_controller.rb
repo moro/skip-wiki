@@ -54,7 +54,7 @@ class NotesController < ApplicationController
     respond_to do |format|
       if @note.save
         flash[:notice] = 'Note was successfully created.'
-        format.html { redirect_to(@note) }
+        format.html { redirect_to(note_page_path(@note, "FrontPage")) }
         format.xml  { render :xml => @note, :status => :created, :location => @note }
       else
         format.html { render :action => "edit" }
