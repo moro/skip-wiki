@@ -1,6 +1,5 @@
 # This controller handles the login/logout function of the site.
 class SessionsController < ApplicationController
-  include OpenIdAuthentication
   before_filter :login_required, :except=>%w[new create]
 
   # render new.rhtml
@@ -34,7 +33,7 @@ class SessionsController < ApplicationController
       if result.successful?
         # TODO クエリ最適化
         if account = Account.find_by_identity_url(identity_url)
-          logged_in_successful(account.user)
+          logged_in_successful(account.user, session[:return_to])
         else
           signup_with_openid(identity_url, sreg)
         end

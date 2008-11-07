@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   helper_method :current_note
   include AuthenticatedSystem
+  include OpenIdAuthentication
   init_gettext("skip-note") if defined? GetText
   before_filter { Time.zone = "Asia/Tokyo" }
   before_filter :login_required
@@ -19,6 +20,18 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
 
   private
+  def access_denied_with_open_id_sso
+    if defined? SSO_OPENID_PROVIDER_URL
+      store_location
+      authenticate_with_open_id(SSO_OPENID_PROVIDER_URL, :return_to=>session_url) do
+        access_denied_without_open_id_sso
+      end
+    else
+      access_denied_without_open_id_sso
+    end
+  end
+  alias_method_chain :access_denied, :open_id_sso
+
   # Get current note inside of nested controller.
   def current_note=(note)
     @__current_note = note
