@@ -1,58 +1,64 @@
 #content
-  %h1= "Editing Note"
-  - form_for(@note) do |f|
-    =f.error_messages
+  %h1&= _("Editing Note")
+  - div_for(@note) do
 
-    %p
-      = h(_("Note|GroupBackendType"))
-      %ul.radios
-        %li
-          =f.radio_button(:group_backend_type, "BuiltinGroup", :disabled=>!@note.new_record?)
-          =f.label :group_backend_type, h(_"BuiltinGroup note"), :for=>"note_group_backend_type_builtingroup"
-        %li
-          =f.radio_button(:group_backend_type, "SkipGroup", :disabled=>!@note.new_record?)
-          =f.label :group_backend_type, h(_"SkipGroup note"), :for=>"note_group_backend_type_skipgroup"
+    .tab
+      %ul.navi-tab
+        =render(:partial => "navi", :locals=>{:note=>@note, :current_path=>edit_note_path(@note)})
 
-    %p
-      =f.label :name, h(_("Note|Name"))
-      %br
-      =f.text_field :name
-    %p
-      =f.label :display_name, h(_("Note|Display name"))
-      %br
-      =f.text_field :display_name
+    - form_for(@note) do |f|
+      =f.error_messages
 
-    %p
-      =f.label :description, h(_("Note|Description"))
-      %br
-      =f.text_area :description, :size=>"80x2"
-
-    %p
-      = h(_("Note|Publicity"))
-      %br
-      %ul.radios
-        %li
-          =f.radio_button(:publicity, Note::PUBLICITY_MEMBER_ONLY)
-          =f.label "publicity_#{Note::PUBLICITY_MEMBER_ONLY}", h(_("Access by member only"))
-
-        %li
-          =f.radio_button(:publicity, Note::PUBLICITY_READABLE)
-          =f.label "publicity_#{Note::PUBLICITY_READABLE}", h(_("Readable by everyone"))
-
-        %li
-          =f.radio_button(:publicity, Note::PUBLICITY_WRITABLE)
-          =f.label "publicity_#{Note::PUBLICITY_WRITABLE}", h(_"Readable/Writable by everyone")
-
-    %p
-      = h(_("Note|Category"))
-      %br
-      %ul.radios
-        - Category.lang("ja").each do |c|
+      %p
+        = h(_("Note|GroupBackendType"))
+        %ul.radios
           %li
-            =f.radio_button :category_id, c.id
-            =f.label h("category_id_#{c.id}"), h(c.display_name)
-    %p
-      = f.submit "Update"
+            =f.radio_button(:group_backend_type, "BuiltinGroup", :disabled=>!@note.new_record?)
+            =f.label :group_backend_type, h(_"BuiltinGroup note"), :for=>"note_group_backend_type_builtingroup"
+          %li
+            =f.radio_button(:group_backend_type, "SkipGroup", :disabled=>!@note.new_record?)
+            =f.label :group_backend_type, h(_"SkipGroup note"), :for=>"note_group_backend_type_skipgroup"
+
+      %p
+        =f.label :name, h(_("Note|Name"))
+        %br
+        =f.text_field :name
+      %p
+        =f.label :display_name, h(_("Note|Display name"))
+        %br
+        =f.text_field :display_name
+
+      %p
+        =f.label :description, h(_("Note|Description"))
+        %br
+        =f.text_area :description, :size=>"80x2"
+
+      %p
+        = h(_("Note|Publicity"))
+        %br
+        %ul.radios
+          %li
+            =f.radio_button(:publicity, Note::PUBLICITY_MEMBER_ONLY)
+            =f.label "publicity_#{Note::PUBLICITY_MEMBER_ONLY}", h(_("Access by member only"))
+
+          %li
+            =f.radio_button(:publicity, Note::PUBLICITY_READABLE)
+            =f.label "publicity_#{Note::PUBLICITY_READABLE}", h(_("Readable by everyone"))
+
+          %li
+            =f.radio_button(:publicity, Note::PUBLICITY_WRITABLE)
+            =f.label "publicity_#{Note::PUBLICITY_WRITABLE}", h(_"Readable/Writable by everyone")
+
+      %p
+        = h(_("Note|Category"))
+        %br
+        %ul.radios
+          - Category.lang("ja").each do |c|
+            %li
+              =f.radio_button :category_id, c.id
+              =f.label h("category_id_#{c.id}"), h(c.display_name)
+      %p
+        = f.submit "Update"
 
 = link_to 'Show', @note
 = link_to 'Back', notes_path
