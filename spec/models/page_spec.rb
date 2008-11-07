@@ -48,7 +48,7 @@ describe Page do
 
     describe "save!" do
       before do
-        @note.should_receive(:label_indices).and_return(LabelIndex)
+        @note.stub!(:label_indices).and_return(LabelIndex)
         @page.save!
       end
 
@@ -58,6 +58,27 @@ describe Page do
 
       it "#label_index_id.should_not be nil" do
         Page.find(@page).label_index_id.should_not be_nil
+      end
+
+      it "#label_indexings.firstのpage_orderは1であること" do
+        l, = Page.find(@page).label_indexings
+        l.page_order.should == 1
+      end
+
+      describe "別のページを追加した場合" do
+        before do
+          @another = Page.new(@page.attributes) do |page|
+            page.note = @note
+            page.name = "another"
+            page.label_index_id = @label.id
+          end
+          @another.save!
+        end
+
+        it "#label_indexings.firstのpage_orderは2であること" do
+          l, = Page.find(@another).label_indexings
+          l.page_order.should == 2
+        end
       end
     end
   end

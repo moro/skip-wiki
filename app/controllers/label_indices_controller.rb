@@ -71,4 +71,30 @@ class LabelIndicesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def next
+    @label_index = current_note.label_indices.find(params[:id])
+    @page = @label_index.pages.next(params[:pivot])
+    redirect_to_page_or_back(
+      _("This is the last page in %{label}.") % {:label => @label_index.display_name}
+    )
+  end
+
+  def prev
+    @label_index = current_note.label_indices.find(params[:id])
+    @page = @label_index.pages.previous(params[:pivot])
+    redirect_to_page_or_back(
+      _("This is the first page in %{label}.") % {:label => @label_index.display_name}
+    )
+  end
+
+  private
+  def redirect_to_page_or_back(message)
+    if @page
+      redirect_to(note_page_path(current_note, @page))
+    else
+      flash[:notice] = message
+      redirect_to :back
+    end
+  end
 end

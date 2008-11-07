@@ -60,7 +60,9 @@ module FriendlyId
     #   return record
     # end
     def find_one_with_friendly(id, options)
-      result = send "find_by_#{ friendly_id_options[:column] }", id, options
+      result = unless assume_id_is_id?(id)
+                 send "find_by_#{ friendly_id_options[:column] }", id, options
+               end
 
       if result
         result.found_using_friendly_id = true
@@ -70,6 +72,7 @@ module FriendlyId
 
       result
     end
+
     def find_some_with_friendly(ids_and_names, options)
       results_by_name = with_scope :find => options do
         find :all, :conditions => ["#{ quoted_table_name }.#{ friendly_id_options[:column] } IN (?)", ids_and_names]
@@ -91,6 +94,15 @@ module FriendlyId
 
       results_by_name.each { |r| r.found_using_friendly_id = true }
       results
+    end
+
+    private
+    def assume_id_is_id?(id)
+      case id
+      when Integer then return true
+      when Array then return id.all?{|i| assume_id_is_id(i) }
+      else id.to_s =~ /\A\d+\Z/o
+      end
     end
 
   end
