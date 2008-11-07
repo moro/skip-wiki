@@ -1,6 +1,6 @@
 .by-index.menu-item
   %h3&= _("Search by Index")
-  %ul
+  %ul.label-badges
     - note.label_indices.each do |label|
       %li= labelize(label, true, note)
 

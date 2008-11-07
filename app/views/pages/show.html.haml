@@ -7,8 +7,13 @@
 
     .page-label-indices
       %h2&= _("LabelIndices")
-      %ul
-        %li= labelize(@page.label_index, true) if @page.label_index
+      %ul.label-badges
+        - current_note.label_indices.each do |index|
+          - if index == @page.label_index
+            %li= labelize(@page.label_index, false)
+          - else
+            %li
+              %span.label_badge.inactive= link_to(index.display_name, note_label_index_path(current_note, index))
 
     .clear
 

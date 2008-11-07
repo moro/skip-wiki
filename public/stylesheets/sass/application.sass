@@ -175,14 +175,28 @@ table.histories
     td.revision
       :width 5em
 
-span.label_badge
-  :border-width 5px 2px 2px 15px
-  :border-style solid
-  :font-size 10px
-  :display inline-block
-  :width 7em
+ul.label-badges
+  :list-style none
+  :padding-left 0
 
-ul.label_indices
+  li
+    :margin 3px 3px
+
+  span.label_badge
+    :border-width 10px 5px 5px 25px
+    :border-style solid
+    :display inline-block
+    :width 8em
+    :padding 2px
+
+  span.label_badge.inactive
+    :border-color #CCCCCC
+    :background #CCCCCC
+
+    a
+      :color #555555
+
+ul.label-indices
   :list-style none
 
   li
@@ -245,12 +259,6 @@ div.page, div.history
     h2
       :font-size 1.5em
       :margin-bottom 1em
-
-    ul
-      :list-style none
-
-      li
-        :margin 3px 0
 
   form
     dt
