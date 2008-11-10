@@ -45,6 +45,13 @@ class Note < ActiveRecord::Base
      :limit => args.shift || 10 # default
     }
   }
+
+  named_scope :fulltext, proc{|word|
+    return {} if word.blank?
+    t = quoted_table_name
+    w = "%#{word}%"
+    {:conditions => ["#{t}.display_name LIKE ? OR #{t}.description LIKE ?", w, w]}
+  }
   before_create :add_accessibility_to_owner_group
 
   attr_writer :group_backend_type

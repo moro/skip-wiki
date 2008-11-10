@@ -24,6 +24,25 @@ describe Note do
       should have(1).accessibilities
   end
 
+  describe ".fulltext" do
+    fixtures :notes
+    it "'Our' should hit 1 notes" do
+      Note.fulltext("Our").should have(1).items
+    end
+
+    it "'description' should hit 2 notes" do
+      Note.fulltext("description").should have(2).items
+    end
+
+    it "'--none--' should hit 0 notes" do
+      Note.fulltext("--none--").should have(0).items
+    end
+
+    it "(nil) should hit 2 notes" do
+      Note.fulltext(nil).should have(2).items
+    end
+  end
+
   describe "pages.add(attrs, user)" do
     before(:each) do
       @note = Note.create(@valid_attributes)
