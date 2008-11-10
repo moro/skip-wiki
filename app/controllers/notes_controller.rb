@@ -5,9 +5,7 @@ class NotesController < ApplicationController
   # GET /notes.xml
   def index
     accessible = logged_in? ? current_user.accessible(Note) : Note.public
-    @updated_notes = accessible.recent(10)
-
-    @notes = accessible.find(:all)
+    @notes = accessible.fulltext(params[:fulltext]).recent(params[:max] || 10)
 
     respond_to do |format|
       format.html # index.html.erb

@@ -19,7 +19,7 @@
           %th.page&= _("Updated page")
           %th.updated_at&= _("Note|Updated at")
 
-        - with_last_modified_page(@updated_notes) do |note, page|
+        - with_last_modified_page(@notes) do |note, page|
           %tr.item_line
             %td.updated_title
               =link_to h(note.display_name), note_path(note.name)

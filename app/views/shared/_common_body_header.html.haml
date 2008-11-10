@@ -3,13 +3,13 @@
     %h1= link_to 'SKIP-Note', root_path
 
   #search
-    - form_tag({:controller => "search", :action => "index"}, { :method => 'get'}) do
-      %span{:style=>"vertical-align:middle;"}= _("Search Wiki")
-      = text_field_tag('full_text_query', "Not works YET", :disabled=>true)
+    - form_tag(notes_path, { :method => 'get'}) do
+      %span{:style=>"vertical-align:middle;"}= _("Search Note")
+      = text_field_tag('fulltext', params[:fulltext])
       = submit_tag _('Search')
       - if @wiki
         = hidden_field_tag 'target_contents', ""
-        = button_to_function _("Search Wiki"), 'searchInsideWiki(this.parentNode)'
+        = button_to_function _("Search Note"), 'searchInsideWiki(this.parentNode)'
 #top
   #user_ctl{:style=>"padding: 0;"}
     - if logged_in?

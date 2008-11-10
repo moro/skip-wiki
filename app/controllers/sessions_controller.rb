@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
       if result.successful?
         # TODO クエリ最適化
         if account = Account.find_by_identity_url(identity_url)
-          logged_in_successful(account.user, session[:return_to])
+          logged_in_successful(account.user, session[:return_to] || "/")
         else
           signup_with_openid(identity_url, sreg)
         end
@@ -41,6 +41,8 @@ class SessionsController < ApplicationController
         login_failed(params.merge(:openid_url=>identity_url))
       end
     end
+  rescue StandardError
+    login_failed(params.merge(:openid_url=>openid_url))
   end
 
   def login_with_password(login, password)
