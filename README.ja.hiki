@@ -27,7 +27,7 @@
 開発中はSQLite3を使っています。
 MySQLを使う場合はこの手順は不要ですが、database.ymlを編集してください。
 
- $ sudo gem install sqlite3-ruby 
+ $ sudo gem install sqlite3-ruby
 
 !!! DBを作る
 
@@ -50,8 +50,8 @@ OpenID認証に成功すると、サインアップ画面が出ますので、�
 famfamfamのを使っています。
 
 !!! ログイン画像
+WikimediaCommonsにてCreative Commons Attribution 2.0で公開されている
 下記の画像を使っています。
-http://upload.wikimedia.org/wikipedia/commons/5/5a/KanjiPractice.jpg
 
-WikimediaCommonsにてCreative Commons Attribution 2.0で公開されています。
+http://upload.wikimedia.org/wikipedia/commons/5/5a/KanjiPractice.jpg
 
