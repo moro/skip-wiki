@@ -117,6 +117,8 @@ SQL
   end
 
   def update_label_index
-    self.label_index = note.label_indices.find(label_index_id)
+    if label_index_id
+      self.label_index = note.label_indices.find(label_index_id)
+    end
   end
 end

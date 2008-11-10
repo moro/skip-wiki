@@ -7,7 +7,7 @@ describe LabelIndicesController do
   fixtures :notes
 
   before do
-    @note = notes(:our_note)
+    @note = mock_model(Note)#notes(:our_note)
     controller.should_receive(:login_required).and_return(true)
     controller.should_receive(:current_note).at_least(:once).and_return(@note)
   end
@@ -140,7 +140,14 @@ describe LabelIndicesController do
       delete :destroy, :id => "37"
       response.should redirect_to(note_label_indices_url(@note))
     end
+  end
+end
 
+describe LabelIndicesController, "[through]" do
+  before do
+    @note = notes(:our_note)
+    controller.should_receive(:login_required).and_return(true)
+    controller.should_receive(:current_note).at_least(:once).and_return(@note)
   end
 
   describe "responding to GET next [through]" do
