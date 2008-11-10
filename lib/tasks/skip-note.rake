@@ -6,22 +6,27 @@ namespace :skip_note do
   task :release do
     raise "This directory is not Git repository." unless File.directory?(".git")
     require 'zip/zip'
+    require 'fileutils'
 
     commit = ENV["COMMIT"] || "HEAD"
     if tag = ENV["TAG"]
       system(*["git", "tag", tag, commit])
-      out = "skip_note-#{tag}.zip"
+      out = "skip_note-#{tag}"
       commit = tag
     else
-      out = Time.now.strftime("skip_note-%Y%m%d%H%M%S.zip")
+      out = Time.now.strftime("skip_note-%Y%m%d%H%M%S")
     end
-    commands = ["git", "archive", "--format", "zip", commit]
-    File.open(out, "wb") do |f|
-      IO.popen(commands.join(" ")){|io| f.write io.read }
+    FileUtils.mkdir_p "pkg/#{out}"
+    system("git archive --format tar #{commit} | tar xvf - -C pkg/#{out}")
+    Dir.chdir("pkg/#{out}") do
+      %w[log tmp].each{|d| Dir.mkdir d }
+      FileUtils.cp "config/database.yml.sample", "config/database.yml"
+      system("rake rails:freeze:gems VERSION=2.1.2")
+      system("rake gems:unpack:dependencies")
     end
-    Zip::ZipFile.open(out) do |zs|
-      %w[log tmp].each{|d| zs.mkdir d }
-      zs.get_output_stream("config/database.yml"){|z| z.write zs.read("config/database.yml.sample") }
+    Dir.chdir("pkg") do
+      system("zip #{out}.zip #{out}")
+      FileUtils.rm_rf out
     end
   end
 end
