@@ -15,30 +15,26 @@
  $ mkdir tmp log
 
 !!! database.ymlをコピーする
+database.ymlを編集し、MySQLを使うよう設定してください
 
  $ cp config/database.yml.sample config/database.yml
 
-!!! 必要なgemをインストールする
+!!! セットアップタスクを実行する
+DBの作成やマイグレーション、国際化などを行います
 
- $ sudo rake gems:install
-
-!!!! sqlite3-rubyをインストールする
-
-開発中はSQLite3を使っています。
-MySQLを使う場合はこの手順は不要ですが、database.ymlを編集してください。
-
- $ sudo gem install sqlite3-ruby
-
-!!! DBを作る
-
- $ rake db:create
- $ rake db:migrate
+ $ sudo rake skip_note:setup
 
 !!! 起動する
 
  $ ruby script/server
 
+デフォルトでは3000番ポートで起動します。オプション指定方法などは下記コマンドで確認してください。
+
+ $ ruby script/server --help
+
 !!! サインアップする
+
+ http://{アプリケーションを起動しているホスト:ポート}/login へアクセスし、OpenIDを入力してください。
 
 外部のOpenIDプロバイダーを利用できます。
 OpenID認証に成功すると、サインアップ画面が出ますので、ユーザ名とメールアドレスを入力してください。
