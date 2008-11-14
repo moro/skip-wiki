@@ -140,25 +140,5 @@ div#system_contents {
   display: none;
 }
 
-ul.wizard-nav {
-  list-style: none;
-}
-ul.wizard-nav li {
-  float:left;
-  padding : 0.5em;
-  width  : 7em;
-  height : 2em;
-  border : 3px #999999 solid;
-  margin : auto 1px;
-}
-ul.wizard-nav li.current {
-  border : 3px #0080FF solid;
-  background : #88D0FF;
-}
-ul.wizard-nav li.finished {
-  border : 3px #0080FF solid;
-  background : #CCDFFF;
-}
-
 div.clear{ clear:both; }
 

@@ -2,7 +2,7 @@
   %ul
     %li= link_to h(_("User|Informations")), user_path(current_user)
     %ul.submenu
-      %li= link_to h(_("User|skip_account")), "#" # FIXME
-      %li= link_to h(_("User|memberships")), user_memberships_path(current_user)
-      %li= link_to h(_("User|wikis")), "#"
+      %li= link_to_if false, h(_("User|Skip Account")), "#" # FIXME
+      %li= link_to_if true,  h(_("User|Memberships")), user_memberships_path(current_user)
+      %li= link_to_if false, h(_("User|Notes")), "#"
 
