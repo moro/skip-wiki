@@ -430,7 +430,7 @@ msgstr ""
 
 #: app/models/page.rb:57
 msgid "FrontPage"
-msgstr ""
+msgstr "表紙"
 
 #: app/models/skip_account.rb:-
 msgid "skip account"
