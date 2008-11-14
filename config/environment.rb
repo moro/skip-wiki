@@ -27,6 +27,7 @@ Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem 'gettext',  :lib => 'gettext/rails', :version => '1.93.0'
   config.gem 'diff-lcs', :lib => 'diff/lcs'
+  config.gem 'haml'
 
   # Only load the plugins named here, in the order given. By default, all plugins
   # in vendor/plugins are loaded in alphabetical order.
