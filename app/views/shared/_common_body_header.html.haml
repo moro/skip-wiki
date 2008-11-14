@@ -4,12 +4,9 @@
 
   #search
     - form_tag(notes_path, { :method => 'get'}) do
-      %span{:style=>"vertical-align:middle;"}= _("Search Note")
-      = text_field_tag('fulltext', params[:fulltext])
-      = submit_tag _('Search')
-      - if @wiki
-        = hidden_field_tag 'target_contents', ""
-        = button_to_function _("Search Note"), 'searchInsideWiki(this.parentNode)'
+      %span{:style=>"vertical-align:middle;"}= _("Fulltext Search")
+      = text_field_tag('none', "NOT WORKS YET", :disabled => true)
+      = submit_tag _('Search'), :disabled => true
 #top
   #user_ctl{:style=>"padding: 0;"}
     - if logged_in?

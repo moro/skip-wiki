@@ -36,7 +36,6 @@ describe SkipGroup do
       SkipGroup.fetch("alice").should have(3).items
     end
 
-
     it "and_store.should change SkipGroup.count by 3" do
       lambda{ SkipGroup.fetch_and_store("alice") }.should change(SkipGroup, :count).by(3)
     end

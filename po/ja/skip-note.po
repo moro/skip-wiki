@@ -839,6 +839,9 @@ msgstr "ログイン"
 msgid "Search Note"
 msgstr "ノートを検索"
 
+msgid "Fulltext Search"
+msgstr "SKIPファミリを全文検索"
+
 #: app/views/shared/_common_body_header.html.haml:17
 msgid "My Note"
 msgstr ""

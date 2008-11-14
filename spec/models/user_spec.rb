@@ -39,12 +39,13 @@ describe User do
 
   describe "#skip_uid" do
     before do
-      @user = create_user
+      account = Account.new(:login=>"alice", :email=>"alice@example.com")
+      account.identity_url = "http://foo.bar/user/alice"
+      account.save!
+      @user = account.user
     end
 
     it "#skip_uid.should == 'alice'" do
-      pending
-      @user.acount.identity_url = "http://foo.bar/user/alice"
       @user.skip_account.should be_nil # 念のため
       @user.skip_uid.should == 'alice'
     end
@@ -73,11 +74,6 @@ describe User do
       @note.should be_new_record
     end
 
-    it "the note.owner_group.backend.owner.should == @user" do
-      @note.save!; @note.reload
-      @note.owner_group.backend.owner.should == @user
-    end
-
     it "the note.group_backend_type.should == 'BuiltinGroup'" do
       @note.group_backend_type.should == 'BuiltinGroup'
     end
@@ -86,20 +82,46 @@ describe User do
       @note.owner_group.display_name.should == "value for display_name group"
     end
 
-    it "should accessible the note" do
-      @note.save!
-      @note.owner_group.backend.should_not be_new_record
-      @user.accessible(Note).should include(@note)
+    it "owner_group should be new_record" do
+      @note.owner_group.should be_new_record
     end
 
-    it "should have membershipsp to @note.owner_group" do
-      @note.save!
-      @user.reload.memberships.find_by_group_id(@note.owner_group.id).should_not be_nil
+    describe ".save!" do
+      before do
+        @note.save!
+        @note.reload
+      end
+
+      it "should have FrontPage" do
+        @note.pages.find_by_name("FrontPage").should_not be_nil
+      end
+
+      it "should have accessibility to @note.owner_group" do
+        @note.accessibilities.find_by_group_id(@note.owner_group)
+      end
+
+      it "'s owner should have membershipsp within @note.owner_group" do
+        @user.reload.memberships.find_by_group_id(@note.owner_group_id).should_not be_nil
+      end
+
+      it "should accessible the note" do
+        @note.owner_group.backend.should_not be_new_record
+        @user.accessible(Note).should include(@note)
+      end
+
+      it "the note.owner_group.backend.owner.should == @user" do
+        @note.owner_group.backend.owner.should == @user
+      end
     end
 
-    it "should have FrontPage" do
-      @note.save!
-      @note.pages.find_by_name("FrontPage").should_not be_nil
+    describe "validation failed" do
+      before do
+        @note.name = ""
+        @note.save #=> false
+      end
+      it "owner_group.should be_new_record" do
+        @note.owner_group.should be_new_record
+      end
     end
 
     describe "(with SQL injection group)" do
@@ -132,12 +154,55 @@ describe User do
         end
 
         @user.save!
-        @another = BuiltinGroup.create!
-        @user.memberships.replace_by_type(BuiltinGroup, Group.new(:name=>"another", :backend=>@another))
       end
 
-      it "should replace BuiltinGroup relationship" do
-        @user.memberships.map{|m| m.group.backend }.should == [@skip1, @skip2, @another]
+      describe "BuiltinGroup" do
+        before do
+          @another = BuiltinGroup.create!
+          @user.memberships.replace_by_type(BuiltinGroup, Group.new(:name=>"another", :backend=>@another))
+        end
+        it "との関連を変更できること" do
+          @user.memberships.map{|m| m.group.backend }.should == [@skip1, @skip2, @another]
+        end
+      end
+
+      describe "SkipGroup" do
+        before do
+          @another = SkipGroup.create!(:name=>"name", :display_name=>"display_name", :gid=>"hoge")
+          @user.memberships.replace_by_type(SkipGroup, Group.new(:name=>"another", :backend=>@another))
+        end
+        it "との関連を変更できること" do
+          @user.memberships.map{|m| m.group.backend }.should == [@builtin, @another]
+        end
+      end
+    end
+    describe "#build_skip_membership" do
+      # FIXME フィクスチャのセットアップまとめる
+      before do
+        account = Account.new(:login=>"alice", :email=>"alice@example.com")
+        account.identity_url = "http://foo.bar/user/alice"
+        account.save!
+        @user = account.user
+
+        SkipGroup.should_receive(:fetch_and_store).with("alice").and_return([
+          @a_group = SkipGroup.create!(:name=>"a_group", :display_name=>"display_name", :gid=>"a_group"),
+          @another = SkipGroup.create!(:name=>"another", :display_name=>"SKIP-Wiki", :gid=>"another")
+        ])
+        @user.build_skip_membership
+      end
+
+      it "SKIPグループとの関連ができること" do
+        @user.memberships.map{|m| m.group.backend }.should == [@a_group, @another]
+      end
+
+      describe "自動的に作られたグループ" do
+        before do
+          @created_group = @user.memberships.map(&:group).first
+        end
+
+        it "の名前はbackendの + (SKIP)であること" do
+          @created_group.display_name.should == @created_group.backend.display_name + "(SKIP)"
+        end
       end
     end
   end

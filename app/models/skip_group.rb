@@ -7,6 +7,8 @@ class SkipGroup < ActiveRecord::Base
 
   cattr_reader :site
 
+  has_one  :group, :as => "backend"
+
   class << self
     @@site = URI("http://localhost:10080").normalize
     def site=(uri)
