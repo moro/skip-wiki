@@ -15,7 +15,6 @@
     function validatesSelection(key, display_name){
       var val = getSelectionLabel("note["+key+"]")
       if(val){
-        document.title = ("「" + display_name + "」は「"+val+"」です");
         updateConfirmation(key, val);
         return true
       }else{
@@ -27,7 +26,6 @@
     function validatesPresenceOf(key, display_name){
       var text = root.find("[name='note["+key+"]']").val();
       if(text.length > 0){
-        document.title = ("「" + display_name + "」は「"+text+"」です");
         updateConfirmation(key, text);
         return true;
       }else{
