@@ -13,10 +13,9 @@ module PagesHelper
     end
   end
 
-  # FIXME 出力するタグの制限を相談する必要あり
   def render_richtext(content)
-    content
-    #sanitize(content, :attributes=>%w[style])
+    allow = HTML::WhiteListSanitizer.allowed_attributes.dup.add("style")
+    sanitize(content, :attributes=>allow)
   end
 
   def render_hiki(content)
