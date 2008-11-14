@@ -1,3 +1,5 @@
+!side_width = 200px
+!content_margin = 210px
 
 .caption
   a.wii_button
@@ -19,7 +21,7 @@
       :background #ddddff
 
 #side-menu
-  :width 150px
+  :width = side_width
   :float left
 
   div.menu-item
@@ -39,7 +41,7 @@
   :color gray
 
   .user
-    :margin-left 210px
+    :margin-left = !content_margin
 
     dt
       :font-size 1.2em
@@ -50,6 +52,9 @@
       :font-size 1.5em
       :margin-left 2em
       :margin-bottom 10px
+
+  .memberships
+    :margin-left = !content_margin
 
 .typed-group
   :font-size 1.2em
@@ -428,5 +433,4 @@ table.notes-index, table.pages-index
     li.finished
       :border 3px #0080FF solid
       :background #CCDFFF
-
 
