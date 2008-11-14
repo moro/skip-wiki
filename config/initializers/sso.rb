@@ -1,2 +1,2 @@
-SSO_OPENID_PROVIDER_URL = "http://localhost:3333/"
+# SSO_OPENID_PROVIDER_URL = "http://localhost:3333/"
 
