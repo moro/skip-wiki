@@ -1,9 +1,21 @@
-#!/usr/bin/env ruby
-# vim:set fileencoding=utf-8 filetype=ruby
-# $KCODE = 'u'
-
 require 'rubygems'
-#require File.expand_path("..", File.dirname(__FILE__))
+
+valid_attributes = {
+  :note => {
+    :name => "value for name",
+    :display_name => "value for display_name",
+    :description => "value for note description",
+    :publicity => 0,
+    :category_id => "1",
+    :group_backend_type => "BuiltinGroup",
+    :group_backend_id => ""
+  }.freeze,
+  :page => {
+      :name => "value for name",
+      :display_name => "value for display_name",
+      :format_type => "html",
+  }.freeze
+}
 
 Given "デフォルトのカテゴリが登録されている" do
   Category.transaction do
@@ -19,5 +31,19 @@ Given "デフォルトのカテゴリが登録されている" do
       end
     end
   end
+end
+
+
+Given(/^ノート"(.*)"が作成済みである/) do |note_name|
+  @note = @account.user.build_note(valid_attributes[:note].merge(:name=>note_name))
+  @note.save!
+end
+
+Given( /^そのノートにはページ"(.*)"が作成済みである$/)  do |page_name|
+  @page = @note.pages.create!(valid_attributes[:page].merge(:name=>page_name))
+end
+
+Given( /^ノート"(.*)"のページ"(.*)"を表示している$/) do |note, page|
+  visit note_page_path(note, page)
 end
 
