@@ -190,5 +190,32 @@ describe Page do
     it { @page.should be_new_record }
     it { @page.format_type.should == "html" }
   end
+
+  describe ".no_labels" do
+    fixtures :notes, :pages
+
+    it "notes(:our_note)は2つのラベルなしページがあること" do
+      notes(:our_note).pages.no_labels.should have(2).items
+    end
+
+    describe "nth(n) で片方のupdated_atを新しくした場合" do
+      before do
+        @page = pages(:our_note_page_1)
+        @page.update_attribute(:updated_at, 5.days.since)
+      end
+
+      it "nth(1)で更新されたページがとれること" do
+        notes(:our_note).pages.no_labels.nth(1).should == [@page]
+      end
+
+      it "nth(2)で更新されないほうのページがとれること" do
+        notes(:our_note).pages.no_labels.nth(2).should == [pages(:our_note_page_2)]
+      end
+
+      it "nth(3)では空配列がとれること" do
+        notes(:our_note).pages.no_labels.nth(3).should == []
+      end
+    end
+  end
 end
 

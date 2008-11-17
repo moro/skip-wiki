@@ -48,6 +48,25 @@ SQL
     end
   }
 
+  named_scope :no_labels, proc{
+    { :conditions => <<SQL }
+#{quoted_table_name}.id IN (
+  SELECT p.id
+  FROM pages AS p
+  LEFT JOIN label_indexings AS l ON l.page_id = p.id
+  WHERE l.id IS NULL
+)
+SQL
+  }
+
+  named_scope :nth, proc{|*args|
+    nth, order, = args
+    order ||= quoted_table_name + ".updated_at DESC"
+    { :limit => 1,
+      :offset => Integer(nth) - 1,
+      :order => order }
+  }
+
   before_validation :assign_default_pubulification
   after_save :reset_history_caches, :update_label_index
 
