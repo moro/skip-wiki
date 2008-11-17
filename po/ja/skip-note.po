@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-11-10 11:54+0900\n"
+"POT-Creation-Date: 2008-11-17 11:06+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,6 +39,10 @@ msgstr "「%{page}」を更新しました。"
 #: app/controllers/sessions_controller.rb:72
 msgid "Logged Failed"
 msgstr "ログインに失敗しました。"
+
+#: app/helpers/application_helper.rb:6
+msgid "Jump to Note"
+msgstr "ノートに移動"
 
 #: app/helpers/histories_helper.rb:7
 msgid "NEXT"
@@ -282,7 +286,6 @@ msgid "LabelIndexing|Updated at"
 msgstr ""
 
 #: app/models/label_indexing.rb:-
-#, fuzzy
 msgid "LabelIndexing|Page order"
 msgstr "ラベル識別子"
 
@@ -317,7 +320,7 @@ msgid "Note|Name"
 msgstr "ノート識別子"
 
 #: app/models/note.rb:- app/views/notes/edit.html.haml:27
-#: app/views/notes/index.html.haml:17 app/views/notes/new.html.haml:127
+#: app/views/notes/index.html.haml:21 app/views/notes/new.html.haml:127
 #: app/views/notes/new.html.haml:134 app/views/notes/new.html.haml:204
 msgid "Note|Display name"
 msgstr "ノート名"
@@ -344,12 +347,12 @@ msgstr ""
 msgid "Note|Created at"
 msgstr ""
 
-#: app/models/note.rb:- app/views/notes/index.html.haml:20
+#: app/models/note.rb:- app/views/notes/index.html.haml:24
 msgid "Note|Updated at"
 msgstr "更新日時"
 
 #: app/models/note.rb:- app/views/notes/edit.html.haml:32
-#: app/views/notes/index.html.haml:18 app/views/notes/new.html.haml:158
+#: app/views/notes/index.html.haml:22 app/views/notes/new.html.haml:158
 #: app/views/notes/new.html.haml:163 app/views/notes/new.html.haml:210
 msgid "Note|Description"
 msgstr "ノートの説明"
@@ -497,7 +500,7 @@ msgstr ""
 msgid "User|Updated at"
 msgstr ""
 
-#: app/models/user.rb:55
+#: app/models/user.rb:57
 msgid "%{name} group"
 msgstr ""
 
@@ -540,11 +543,11 @@ msgstr "次との差分"
 
 #: app/views/histories/index.html.haml:26
 msgid "Or diff from"
-msgstr ""
+msgstr "差分のバージョン指定 :"
 
 #: app/views/histories/index.html.haml:28
 msgid "to"
-msgstr ""
+msgstr "から"
 
 #: app/views/histories/show.html.haml:18
 msgid "Back to Hisotries"
@@ -571,28 +574,28 @@ msgstr "%{label}のついたページ一覧"
 msgid "Search pages in %{note}"
 msgstr "「%{note}」内のページを検索"
 
-#: app/views/layouts/notes.html.haml:19
-#: app/views/shared/_common_body_header.html.haml:9
+#: app/views/layouts/notes.html.haml:19 app/views/notes/index.html.haml:15
+#: app/views/shared/_common_body_header.html.haml:22
 msgid "Search"
-msgstr ""
+msgstr "検索"
 
-#: app/views/memberships/index.html.haml:4
+#: app/views/memberships/index.html.haml:5
 msgid "%{fn}'s groups index"
 msgstr ""
 
-#: app/views/memberships/index.html.haml:9
+#: app/views/memberships/index.html.haml:10
 msgid "BuiltinGroup"
 msgstr "グループ"
 
-#: app/views/memberships/index.html.haml:22
-msgid "ローカルグループのWikiを作成していません。"
-msgstr ""
+#: app/views/memberships/index.html.haml:21
+msgid "No builtin groups for the note."
+msgstr "SKIP Note独自のグループには入っていません"
 
-#: app/views/memberships/index.html.haml:25
+#: app/views/memberships/index.html.haml:24
 msgid "SkipGroup"
 msgstr ""
 
-#: app/views/memberships/index.html.haml:29
+#: app/views/memberships/index.html.haml:28
 msgid "SKIPのユーザ情報が存在しないか、同期されていません。"
 msgstr ""
 
@@ -658,11 +661,15 @@ msgstr "全員が読み書きできる"
 msgid "new note"
 msgstr "ノートを作る"
 
-#: app/views/notes/index.html.haml:19
+#: app/views/notes/index.html.haml:13
+msgid "Search Note"
+msgstr "ノートを検索"
+
+#: app/views/notes/index.html.haml:23
 msgid "Updated page"
 msgstr "更新されたページ"
 
-#: app/views/notes/index.html.haml:31
+#: app/views/notes/index.html.haml:35
 msgid "No page exists"
 msgstr "ページが存在しません"
 
@@ -830,48 +837,46 @@ msgstr ""
 "ができます。"
 
 #: app/views/sessions/new.html.haml:18
-#: app/views/shared/_common_body_header.html.haml:21
+#: app/views/shared/_common_body_header.html.haml:14
 msgid "Login"
 msgstr "ログイン"
 
+#: app/views/shared/_common_body_header.html.haml:6
+msgid "SKIP Official Site"
+msgstr "SKIP公式サイト"
+
 #: app/views/shared/_common_body_header.html.haml:7
+msgid "SKIP User Commnity"
+msgstr "SKIPユーザコミュニティ"
+
+#: app/views/shared/_common_body_header.html.haml:9
+msgid "Help"
+msgstr "ヘルプ"
+
 #: app/views/shared/_common_body_header.html.haml:12
-msgid "Search Note"
-msgstr "ノートを検索"
-
-msgid "Fulltext Search"
-msgstr "SKIPファミリを全文検索"
-
-#: app/views/shared/_common_body_header.html.haml:17
-msgid "My Note"
-msgstr ""
-
-#: app/views/shared/_common_body_header.html.haml:18
-msgid "Your profile(%{name})"
-msgstr "プロフィール(%{name}さん)"
-
-#: app/views/shared/_common_body_header.html.haml:19
 msgid "Logout"
 msgstr "ログアウト"
 
-#: app/views/shared/_common_body_header.html.haml:24
-msgid "Help"
-msgstr "ヘルプ"
+#: app/views/shared/_common_body_header.html.haml:26
+msgid "Your profile(%{name})"
+msgstr "プロフィール(%{name}さん)"
 
 #: app/views/users/_side_menu.html.haml:3
 msgid "User|Informations"
 msgstr ""
 
 #: app/views/users/_side_menu.html.haml:5
-msgid "User|skip_account"
+msgid "User|Skip Account"
 msgstr ""
 
 #: app/views/users/_side_menu.html.haml:6
-msgid "User|memberships"
+msgid "User|Memberships"
 msgstr ""
 
 #: app/views/users/_side_menu.html.haml:7
-msgid "User|wikis"
-msgstr ""
+#, fuzzy
+msgid "User|Notes"
+msgstr "ユーザ識別子"
 
-
+#~ msgid "Fulltext Search"
+#~ msgstr "SKIPファミリを全文検索"

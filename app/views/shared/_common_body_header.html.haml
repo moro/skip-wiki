@@ -1,28 +1,30 @@
 #header
   #logo{:style=>"align: top; margin: 3px 0 0 5px;"}
-    %h1= link_to 'SKIP-Note', root_path
+    %h1= link_to 'SKIP Note', root_path
 
-  #search
-    - form_tag(notes_path, { :method => 'get'}) do
-      %span{:style=>"vertical-align:middle;"}= _("Fulltext Search")
-      = text_field_tag('none', "NOT WORKS YET", :disabled => true)
-      = submit_tag _('Search'), :disabled => true
-#top
-  #user_ctl{:style=>"padding: 0;"}
+  #services
+    %a{:href=>"http://www.openskip.org/", :target=>"_blank"}&= _("SKIP Official Site")
+    %a{:href=>"http://user.openskip.org/", :target=>"_blank"}&= _("SKIP User Commnity")
+    %a{:href=>"./help", :target=>"_blank"}
+      %span.ss_sprite.ss_help{:title=>_("Help")}&= _("Help")
+
     - if logged_in?
-      %a#my_wikilink{:href=>"/", :title=>"編集可能なノート一覧です"}
-        %span#link_my_wiki&= _("My Note")
-      =link_to _("Your profile(%{name})") % {:name=>current_user.name}, user_path(current_user)
       =link_to _("Logout") % {:name=>current_user.name}, logout_path
     - else
       =link_to _("Login"), login_path
 
-    %a{:href=>"FIXME", :target=>"_blank"}
-      %span#link_help&= _("Help")
+  <br style="clear: right;" />
 
-  #select_my_note{:style=>"margin-top: 5px; display: none;"}
-    %ul
-    .clear
+  #search
+    - form_tag(notes_path, { :method => 'get'}) do
+      %span{:style=>"vertical-align:middle;"}
+      = text_field_tag('none', "NOT WORKS YET", :disabled => true)
+      = submit_tag _('Search'), :disabled => true
+
+#top
+  - if logged_in?
+    =link_to _("Your profile(%{name})") % {:name=>current_user.name}, user_path(current_user)
+    =select_tag("notes", notes_navi_on_header(current_user))
 
 #flash_message= render :partial=>"layouts/flash_message"
 - config = {:url => formatted_notes_path("js"), :notes_elem => "#select_my_note"}

@@ -16,6 +16,7 @@ class Note < ActiveRecord::Base
   validates_inclusion_of :publicity, :in => (PUBLICITY_READABLE..PUBLICITY_MEMBER_ONLY)
 
   belongs_to :owner_group, :class_name => "Group"
+  belongs_to :category
 
   has_many :accessibilities
   has_many :label_indices

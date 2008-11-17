@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-11-10 11:54+0900\n"
+"POT-Creation-Date: 2008-11-17 11:06+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,6 +38,10 @@ msgstr ""
 
 #: app/controllers/sessions_controller.rb:72
 msgid "Logged Failed"
+msgstr ""
+
+#: app/helpers/application_helper.rb:6
+msgid "Jump to Note"
 msgstr ""
 
 #: app/helpers/histories_helper.rb:7
@@ -316,7 +320,7 @@ msgid "Note|Name"
 msgstr ""
 
 #: app/models/note.rb:- app/views/notes/edit.html.haml:27
-#: app/views/notes/index.html.haml:17 app/views/notes/new.html.haml:127
+#: app/views/notes/index.html.haml:21 app/views/notes/new.html.haml:127
 #: app/views/notes/new.html.haml:134 app/views/notes/new.html.haml:204
 msgid "Note|Display name"
 msgstr ""
@@ -343,12 +347,12 @@ msgstr ""
 msgid "Note|Created at"
 msgstr ""
 
-#: app/models/note.rb:- app/views/notes/index.html.haml:20
+#: app/models/note.rb:- app/views/notes/index.html.haml:24
 msgid "Note|Updated at"
 msgstr ""
 
 #: app/models/note.rb:- app/views/notes/edit.html.haml:32
-#: app/views/notes/index.html.haml:18 app/views/notes/new.html.haml:158
+#: app/views/notes/index.html.haml:22 app/views/notes/new.html.haml:158
 #: app/views/notes/new.html.haml:163 app/views/notes/new.html.haml:210
 msgid "Note|Description"
 msgstr ""
@@ -496,7 +500,7 @@ msgstr ""
 msgid "User|Updated at"
 msgstr ""
 
-#: app/models/user.rb:55
+#: app/models/user.rb:57
 msgid "%{name} group"
 msgstr ""
 
@@ -569,28 +573,28 @@ msgstr ""
 msgid "Search pages in %{note}"
 msgstr ""
 
-#: app/views/layouts/notes.html.haml:19
-#: app/views/shared/_common_body_header.html.haml:9
+#: app/views/layouts/notes.html.haml:19 app/views/notes/index.html.haml:15
+#: app/views/shared/_common_body_header.html.haml:22
 msgid "Search"
 msgstr ""
 
-#: app/views/memberships/index.html.haml:4
+#: app/views/memberships/index.html.haml:5
 msgid "%{fn}'s groups index"
 msgstr ""
 
-#: app/views/memberships/index.html.haml:9
+#: app/views/memberships/index.html.haml:10
 msgid "BuiltinGroup"
 msgstr ""
 
-#: app/views/memberships/index.html.haml:22
-msgid "ローカルグループのWikiを作成していません。"
+#: app/views/memberships/index.html.haml:21
+msgid "No builtin groups for the note."
 msgstr ""
 
-#: app/views/memberships/index.html.haml:25
+#: app/views/memberships/index.html.haml:24
 msgid "SkipGroup"
 msgstr ""
 
-#: app/views/memberships/index.html.haml:29
+#: app/views/memberships/index.html.haml:28
 msgid "SKIPのユーザ情報が存在しないか、同期されていません。"
 msgstr ""
 
@@ -655,11 +659,15 @@ msgstr ""
 msgid "new note"
 msgstr ""
 
-#: app/views/notes/index.html.haml:19
+#: app/views/notes/index.html.haml:13
+msgid "Search Note"
+msgstr ""
+
+#: app/views/notes/index.html.haml:23
 msgid "Updated page"
 msgstr ""
 
-#: app/views/notes/index.html.haml:31
+#: app/views/notes/index.html.haml:35
 msgid "No page exists"
 msgstr ""
 
@@ -821,29 +829,28 @@ msgid ""
 msgstr ""
 
 #: app/views/sessions/new.html.haml:18
-#: app/views/shared/_common_body_header.html.haml:21
+#: app/views/shared/_common_body_header.html.haml:14
 msgid "Login"
 msgstr ""
 
+#: app/views/shared/_common_body_header.html.haml:6
+msgid "SKIP Official Site"
+msgstr ""
+
 #: app/views/shared/_common_body_header.html.haml:7
+msgid "SKIP User Commnity"
+msgstr ""
+
+#: app/views/shared/_common_body_header.html.haml:9
+msgid "Help"
+msgstr ""
+
 #: app/views/shared/_common_body_header.html.haml:12
-msgid "Search Note"
-msgstr ""
-
-#: app/views/shared/_common_body_header.html.haml:17
-msgid "My Note"
-msgstr ""
-
-#: app/views/shared/_common_body_header.html.haml:18
-msgid "Your profile(%{name})"
-msgstr ""
-
-#: app/views/shared/_common_body_header.html.haml:19
 msgid "Logout"
 msgstr ""
 
-#: app/views/shared/_common_body_header.html.haml:24
-msgid "Help"
+#: app/views/shared/_common_body_header.html.haml:26
+msgid "Your profile(%{name})"
 msgstr ""
 
 #: app/views/users/_side_menu.html.haml:3
@@ -851,13 +858,13 @@ msgid "User|Informations"
 msgstr ""
 
 #: app/views/users/_side_menu.html.haml:5
-msgid "User|skip_account"
+msgid "User|Skip Account"
 msgstr ""
 
 #: app/views/users/_side_menu.html.haml:6
-msgid "User|memberships"
+msgid "User|Memberships"
 msgstr ""
 
 #: app/views/users/_side_menu.html.haml:7
-msgid "User|wikis"
+msgid "User|Notes"
 msgstr ""
