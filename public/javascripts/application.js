@@ -64,7 +64,9 @@
     };
     dispatch();
   };
-
+/*
+ *  Obsolute
+ *
   jQuery.fn.loadMyNote = function(config){
     this.click(function(){
       jQuery(config["notes_elem"]).toggle();
@@ -83,5 +85,6 @@
       });
     }
   };
+*/
 })(jQuery);
 

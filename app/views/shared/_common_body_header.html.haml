@@ -27,9 +27,11 @@
     =select_tag("notes", notes_navi_on_header(current_user))
 
 #flash_message= render :partial=>"layouts/flash_message"
-- config = {:url => formatted_notes_path("js"), :notes_elem => "#select_my_note"}
 :javascript
   jQuery(document).ready(function(){
-    $("#my_wikilink").loadMyNote(#{config.to_json});
+    $("#top select").change(function(){
+      var url = jQuery(this).val();
+      if("" != url){ document.location = url; }
+    });
   });
 
