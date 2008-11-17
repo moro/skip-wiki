@@ -19,7 +19,11 @@ class Note < ActiveRecord::Base
   belongs_to :category
 
   has_many :accessibilities
-  has_many :label_indices
+  has_many :label_indices do
+    def find_or_empty_label(id)
+      id == "none" ? EmptyLabel.new(proxy_owner) : find(id)
+    end
+  end
   has_many :pages do
     def add(attrs, user)
       edit_page_content(build, attrs, user)

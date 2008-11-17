@@ -13,6 +13,10 @@ When /^"(.*)"リンクをクリックする$/ do |link|
   clicks_link(link)
 end
 
+When /再読み込みする/ do
+  visit request.request_uri
+end
+
 When /^"(.*)"に"(.*)"と入力する$/ do |field, value|
   fills_in(field, :with => value)
 end
