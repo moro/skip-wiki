@@ -2,6 +2,7 @@
   %caption&= _("note pages")
   %thead
     %tr
+      %th.label
       %th.display_name&= _("Page|Display name")
       %th.name&= _("Page|Name")
       %th.revision&= _("Page|Revision")
@@ -10,10 +11,14 @@
       %th.history&= _("History")
   - pages.each do |page|
     %tr
+      - if l = page.label_index
+        %td{:style=>"border:1px solid #{h(l.color)};background:#{h(l.color)}"}&= " "
+      - else
+        %td{:style=>"border:1px solid gray"}= " "
       %td= link_to h(page.display_name), note_page_path(current_note, page)
-      %td&= h(page.name)
+      %td&= page.name
       %td&= "r.#{page.head.revision}"
       %td&= page.head.user.name
       %td.updated_at&= page.updated_at
-      %td= link_to h("History"), note_page_histories_path(current_note, page)
+      %td= link_to h("Show history"), note_page_histories_path(current_note, page)
 
