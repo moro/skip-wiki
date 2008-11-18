@@ -49,10 +49,11 @@
 
         = submit_tag("Send!")
 
+  - editor_opt = {"basePath" => controller.request.relative_url_root + "/javascripts/fckeditor/"}
 :javascript
   $(document).ready(function(){
     jQuery(".previewable").preview({"url":"#{preview_new_note_page_path(current_note.id)}"});
-    jQuery("#page_content").editor({ basePath: "/javascripts/fckeditor/" });
+    jQuery("#page_content").editor(#{editor_opt.to_json});
     jQuery("[name='page[format_type]']").trigger("click");
   });
 

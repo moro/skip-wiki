@@ -53,7 +53,7 @@ class SessionsController < ApplicationController
     end
   end
 
-  def logged_in_successful(user, redirect="/")
+  def logged_in_successful(user, redirect=root_path)
     reset_session
     self.current_user = user
     new_cookie_flag = (params[:remember_me] == "1")
