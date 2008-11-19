@@ -1,3 +1,4 @@
+
 module HistoriesHelper
   def link_to_next_diff(histories, a_history, page = @page)
     if a_history == histories.first
@@ -25,6 +26,12 @@ module HistoriesHelper
           when "!" then "modified"
           end
     css ? sym : sym[0,1].upcase
+  end
+
+  def decode_nbsp(string)
+    nbsp = [0xA0].pack("U")
+    return nbsp if string.blank?
+    string.gsub(/&nbsp;/, nbsp)
   end
 
   private

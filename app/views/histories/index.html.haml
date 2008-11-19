@@ -18,7 +18,7 @@
           %td.revision= link_to(h("show r#{history.revision}"), note_page_history_path(current_note, @page, history))
           %td&= history.description
           %td&= history.user.name
-          %td&= history.updated_at.to_s(:db)
+          %td&= history.updated_at.to_s
           %td= link_to_next_diff(@histories, history)
           %td= link_to_previous_diff(@histories, history)
 

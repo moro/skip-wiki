@@ -32,22 +32,23 @@
           return true;
         }))
 
-    %table.diff
-      %caption
-        %h3&= _("History|Diff")
-      %tr
-        %th.symbol
-        %th.num&= "r#{params[:from]}"
-        %th.num&= "r#{params[:to]}"
+    .diff{:style=>"overflow:scroll"}
+      %table.diff
+        %caption
+          %h3&= _("History|Diff")
+        %tr
+          %th.symbol
+          %th.num&= "r#{params[:from]}"
+          %th.num&= "r#{params[:to]}"
 
-        %th&= _("Contents of r%{rev}") % {:rev => params[:from]}
-        %th&= _("Contents of r%{rev}") % {:rev => params[:to]}
+          %th&= _("Contents of r%{rev}") % {:rev => params[:from]}
+          %th&= _("Contents of r%{rev}") % {:rev => params[:to]}
 
-      - @diffs.each do |symbol, (old_n,old_s), (new_n,new_s)|
-        %tr{:class=>diff_symbol(symbol)}
-          %td.symbol&= diff_symbol(symbol, false)
-          %td.num&= old_n if old_s
-          %td.num&= new_n if new_s
-          %td.text&= old_s || " "
-          %td.text&= new_s || " "
+        - @diffs.each do |symbol, (old_n,old_s), (new_n,new_s)|
+          %tr{:class=>diff_symbol(symbol)}
+            %td.symbol&= diff_symbol(symbol, false)
+            %td.num&= old_n if old_s
+            %td.num&= new_n if new_s
+            %td.text&= decode_nbsp(old_s)
+            %td.text&= decode_nbsp(new_s)
 
