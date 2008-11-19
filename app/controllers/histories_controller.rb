@@ -17,5 +17,15 @@ class HistoriesController < ApplicationController
     @page = current_note.pages.find(params[:page_id], :include=>:histories)
     @diffs = @page.diff(params[:from], params[:to])
   end
+
+  def create
+    @page = current_note.pages.find(params[:page_id])
+    @history = @page.edit(params[:history][:content], current_user)
+    if @history.save
+      respond_to do |format|
+        format.js{ head(:created, :location => note_page_history_path(current_user, @page, @history)) }
+      end
+    end
+  end
 end
 

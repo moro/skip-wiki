@@ -57,4 +57,22 @@ describe HistoriesController do
       response.should be_success
     end
   end
+
+  describe "xhr POST create" do
+    before do
+      @user = mock_model(User)
+      @page = pages(:our_note_page_1)
+      controller.should_receive(:current_user).at_least(:once).and_return(@user)
+
+      xhr :post, :create, :page_id => @page.to_param, :history => {:content => "hogehoge"}
+    end
+
+    it "response should be redirect" do
+      response.should be_success
+    end
+
+    it "response.headers['Location'] should not be blank" do
+      response.headers['Location'].should_not be_blank
+    end
+  end
 end
