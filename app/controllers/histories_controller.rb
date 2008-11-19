@@ -23,8 +23,23 @@ class HistoriesController < ApplicationController
     @history = @page.edit(params[:history][:content], current_user)
     if @history.save
       respond_to do |format|
-        format.js{ head(:created, :location => note_page_history_path(current_user, @page, @history)) }
+        format.js{ head(:created, :location => note_page_history_path(current_note, @page, @history)) }
       end
+    end
+  end
+
+  def update
+    @page = current_note.pages.find(params[:page_id])
+    @history = @page.histories.find(params[:id], :include=>:content)
+    if @history.content.data != params[:history][:content]
+      @history.content.data = params[:history][:content]
+      ActiveRecord::Base.transaction do
+        @history.content.save!
+        @history.update_attributes!(:user => current_user, :updated_at => Time.now.utc)
+      end
+    end
+    respond_to do |format|
+      format.js{ head(:ok) }
     end
   end
 end

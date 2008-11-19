@@ -50,6 +50,8 @@
         = submit_tag("Send!")
 
   - editor_opt = {"basePath" => controller.request.relative_url_root + "/javascripts/fckeditor/"}
+  - editor_opt["historiesPath"] = note_page_histories_path(current_note, @page)
+
 :javascript
   $(document).ready(function(){
     jQuery(".previewable").preview({"url":"#{preview_new_note_page_path(current_note.id)}"});

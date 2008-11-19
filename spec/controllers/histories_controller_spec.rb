@@ -75,4 +75,40 @@ describe HistoriesController do
       response.headers['Location'].should_not be_blank
     end
   end
+
+  describe "xhr PUT update" do
+    before do
+      controller.should_receive(:current_user).at_least(:once).and_return(@user)
+      @user = mock_model(User)
+      @page = pages(:our_note_page_1)
+      @history = @page.edit("hogehoge", @user)
+      @history.save
+      @rev = @page.revision
+
+      @req = lambda{
+        xhr :put, :update, :page_id => @page.to_param,
+                           :id => @history.to_param, :history => {:content => "fugafuga"}
+      }
+    end
+
+    it "response should be redirect" do
+      @req.call
+      response.should be_success
+    end
+
+    it "もとのhistoryが更新されていること" do
+      @req.call
+      @history.reload.content.data.should == "fugafuga"
+    end
+
+    it "revisionが変わっていないこと" do
+      @req.should_not change(@page, :revision)
+    end
+    it "Contentの数が変わっていないこと" do
+      @req.should_not change(Content, :count)
+    end
+    it "Historyの数が変わっていないこと" do
+      @req.should_not change(History, :count)
+    end
+  end
 end
