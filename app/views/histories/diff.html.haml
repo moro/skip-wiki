@@ -11,8 +11,8 @@
         =radio_button_tag("history_display", "contents")
         =label_tag("history_display_contents", "Show History Contents")
 
-        =radio_button_tag("history_display", "diff")
-        =label_tag("history_display_diff", "Show History Diffs", :checked => "checked")
+        =radio_button_tag("history_display", "diff", :checked=>true)
+        =label_tag("history_display_diff", "Show History Diffs")
 
       .history-contents{:style=>"display:none"}
         %h3&= _("History|Content")
@@ -32,7 +32,7 @@
           return true;
         }))
 
-    .diff{:style=>"overflow:scroll"}
+    .diff{:style=>"overflow:auto"}
       %table.diff
         %caption
           %h3&= _("History|Diff")

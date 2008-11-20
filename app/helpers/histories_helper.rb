@@ -31,7 +31,7 @@ module HistoriesHelper
   def decode_nbsp(string)
     nbsp = [0xA0].pack("U")
     return nbsp if string.blank?
-    string.gsub(/&nbsp;/, nbsp)
+    string.gsub(/&nbsp;/, nbsp).gsub(/&gt;/, ">").gsub(/&lt;/, "<")
   end
 
   private
