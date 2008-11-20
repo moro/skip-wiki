@@ -5,6 +5,7 @@ describe PagesController do
   before do
     @current_note = notes(:our_note)
     controller.stub!(:login_required).and_return(true)
+    controller.stub!(:current_user).and_return(@user = mock_model(User))
     controller.stub!(:current_note).and_return(@current_note)
   end
 
@@ -80,6 +81,26 @@ describe PagesController do
 
     it "editテンプレートを表示すること" do
       response.should render_template("edit")
+    end
+  end
+
+  describe "PUT /notes/hoge/pages [SUCCESS]" do
+    fixtures :notes
+    before do
+      page_param = {:name => "page_1", :display_name => "page_1", :format_type => "html", :content => "<p>foobar</p>"}.with_indifferent_access
+
+      @page = @current_note.pages.add(page_param, @user)
+      @page.save!
+    end
+
+    it "responseは/notes/our_note/pages/page_01へのリダイレクトであること" do
+      put :update, :note_id => @current_note.name, :id =>@page.to_param, :page => {:name => "page_01"}
+      response.should redirect_to(note_page_path(@current_note, assigns(:page)))
+    end
+
+    it "コンテンツを指定しても無視されること" do
+      put :update, :note_id => @current_note.name, :id =>@page.to_param, :page => {:name => "page_01", :content => "new"}
+      assigns(:page).content.should == "<p>foobar</p>"
     end
   end
 end

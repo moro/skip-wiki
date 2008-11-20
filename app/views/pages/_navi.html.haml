@@ -3,5 +3,6 @@
   = navi_item(_("note pages"), note_pages_path(@page.note), current_path, "page")
   = navi_item(_("show page"), note_page_path(@page.note, @page), current_path, "page")
   = navi_item(_("edit page"), edit_note_page_path(current_note, @page), current_path, "page")
+  = navi_item(_("edit content"), new_note_page_history_path(current_note, @page), current_path, "page")
   = navi_item(_("page histories"), note_page_histories_path(current_note, @page), current_path, "page")
 .clear

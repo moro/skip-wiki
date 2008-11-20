@@ -84,7 +84,7 @@
     jQuery("#page_format_type_hiki").click(activateHikiAndPreview);
 
     function dispatch(){
-      if(jQuery("[name='page[format_type]']").val() == "html"){
+      if(config["initialState"] == "html"){
         activateFCKeditor();
       }else{
         activateHikiAndPreview();

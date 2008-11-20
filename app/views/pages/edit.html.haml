@@ -1,6 +1,3 @@
-- content_for(:header) do
-  =javascript_include_tag("fckeditor/fckeditor.js")
-
 #content
   - div_for(@page) do
     %h1&= @page.display_name.blank? ? _("New Page") : @page.display_name
@@ -17,7 +14,7 @@
         %dt= f.label(:name, h(_("Page|Name")))
         %dd
           = h(note_pages_url(current_note) + "/")
-          = f.text_field :name
+          = f.text_field :name, :size => 20
 
         %dt= f.label(:label_indices, h(_("Page|Label indices")))
         %dd
@@ -26,36 +23,11 @@
               %li
                 = f.radio_button :label_index_id, index.id
                 %label{:for=>"page_label_index_id_#{index.id}"}= labelize(index)
+            %li
+              = link_to(h(_("Add label")), note_label_indices_path(current_note))
           .clear
 
         = f.hidden_field(:format_type)
 
-        %dt
-          = h(_("Page|Content"))
-        %dd.content
-          .previewable
-            %ul
-              %li.show
-                %a.wii_button.show
-                  %span&= _("Preview")
-
-              %li.hide
-                %a.wii_button
-                  %span&= _("Hide")
-
-            .rendered
-            .clear
-          = f.text_area(:content, :size=>"80x70")
-
         = submit_tag("Send!")
-
-  - editor_opt = {"basePath" => controller.request.relative_url_root + "/javascripts/fckeditor/"}
-  - editor_opt["historiesPath"] = note_page_histories_path(current_note, @page)
-
-:javascript
-  $(document).ready(function(){
-    jQuery(".previewable").preview({"url":"#{preview_new_note_page_path(current_note.id)}"});
-    jQuery("#page_content").editor(#{editor_opt.to_json});
-    jQuery("[name='page[format_type]']").trigger("click");
-  });
 

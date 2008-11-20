@@ -70,14 +70,15 @@ class PagesController < ApplicationController
     @note = current_note
     begin
       ActiveRecord::Base.transaction do
-        @page = @note.pages.update(params[:id], params[:page], current_user)
+        @page = @note.pages.find(params[:id])
+        @page.attributes = params[:page].except(:content)
         @page.save!
       end
       flash[:notice] = _("The page %{page} is successfully updated") % {:page=>@page.display_name}
       respond_to do |format|
         format.html{ redirect_to note_page_path(@note, @page) }
       end
-    rescue
+    rescue ActiveRecord::RecordInvalid
       respond_to do |format|
         format.html{ render :action => "edit", :status => :unprocessable_entity }
       end

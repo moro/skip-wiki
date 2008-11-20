@@ -18,6 +18,10 @@ class HistoriesController < ApplicationController
     @diffs = @page.diff(params[:from], params[:to])
   end
 
+  def new
+    @page = current_note.pages.find(params[:page_id])
+  end
+
   def create
     @page = current_note.pages.find(params[:page_id])
     @history = @page.edit(params[:history][:content], current_user)
