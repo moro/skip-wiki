@@ -19,17 +19,20 @@ class EmptyLabel
       @note = note
     end
     def next(pivot)
-      return nil if pivot < 0
-      target.nth(pivot + 1).first
+      find_nth(pivot + 1)
     end
 
     def previous(pivot)
-      return nil unless pivot > 1
-      target.nth(pivot - 1).first
+      find_nth(pivot - 1)
     end
     private
     def target
       @note.pages.no_labels
+    end
+
+    def find_nth(nth)
+      return nil if nth < 1
+      target.nth(nth).first
     end
 
     def method_missing(method, *args)

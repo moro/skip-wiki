@@ -28,5 +28,7 @@ describe LabelIndex do
 
     it(".previous(1)はnilであること") { @label.pages.previous(1).should be_nil }
     it(".previous(2)は@p1であること") { @label.pages.previous(2).should == @p1 }
+
+    it("@p1のorder_in_labelは1であること"){ @p1.order_in_label.should == 1 }
   end
 end

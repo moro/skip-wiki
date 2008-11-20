@@ -3,7 +3,6 @@ class Page < ActiveRecord::Base
 
   has_friendly_id :name
   attr_reader :new_history
-  attr_writer :label_index_id
 
   belongs_to :note
   has_many :histories, :as => :versionable, :order => "histories.revision DESC"
@@ -70,6 +69,8 @@ SQL
   before_validation :assign_default_pubulification
   after_save :reset_history_caches, :update_label_index
 
+  attr_writer :order_in_label
+
   def self.front_page(attrs = {})
     attrs = {
       :name => "FrontPage",
@@ -82,6 +83,15 @@ SQL
 
   def self.front_page_content
     File.read(File.expand_path("assets/front_page.html.erb", ::Rails.root))
+  end
+
+  def order_in_label
+    if idx = self.label_indexings.first
+      idx.page_order
+    else
+      cond = ["#{self.class.quoted_table_name}.updated_at > ?", updated_at]
+      @order_in_label ||= note.pages.no_labels.count(:conditions=>cond).succ
+    end
   end
 
   def head

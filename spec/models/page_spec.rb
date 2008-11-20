@@ -198,6 +198,12 @@ describe Page do
       notes(:our_note).pages.no_labels.should have(2).items
     end
 
+      it "order_in_labelを手動設定した場合、反映されること" do
+        page = pages(:our_note_page_1)
+        page.order_in_label = 1
+        page.order_in_label.should == 1
+      end
+
     describe "nth(n) で片方のupdated_atを新しくした場合" do
       before do
         @page = pages(:our_note_page_1)

@@ -22,14 +22,13 @@
 
         - if @page.label_index.nil?
           %li
-            =h _("No Label")
+            =h _("No Labels")
             %br
-            - order = params[:pivot] || 1
-            = link_to(h(_"Previous"), prev_note_label_index_path(current_note, "none", :pivot=>order))
-            = link_to(h(_"Next"), next_note_label_index_path(current_note, "none", :pivot=>order))
+            = link_to(h(_"Previous"), prev_note_label_index_path(current_note, "none", :pivot=>@page.order_in_label))
+            = link_to(h(_"Next"), next_note_label_index_path(current_note, "none", :pivot=>@page.order_in_label))
         - else
           %li
-            %span.label_badge.inactive= link_to(_("No Label"), note_label_index_path(current_note, "none"))
+            %span.label_badge.inactive= link_to(_("No Labels"), note_label_index_path(current_note, "none"))
 
     .clear
 
