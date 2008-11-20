@@ -3,6 +3,8 @@ class Page < ActiveRecord::Base
 
   has_friendly_id :name
   attr_reader :new_history
+  attr_writer :label_index_id
+  attr_writer :order_in_label
 
   belongs_to :note
   has_many :histories, :as => :versionable, :order => "histories.revision DESC"
@@ -68,8 +70,6 @@ SQL
 
   before_validation :assign_default_pubulification
   after_save :reset_history_caches, :update_label_index
-
-  attr_writer :order_in_label
 
   def self.front_page(attrs = {})
     attrs = {
