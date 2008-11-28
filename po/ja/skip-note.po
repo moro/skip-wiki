@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-11-17 11:06+0900\n"
+"POT-Creation-Date: 2008-11-25 18:05+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,7 +32,7 @@ msgstr "新しいページ「%{page}」の内容を入力してください。"
 msgid "The page %{page} is successfully created"
 msgstr "「%{page}」を作成しました。"
 
-#: app/controllers/pages_controller.rb:76
+#: app/controllers/pages_controller.rb:77
 msgid "The page %{page} is successfully updated"
 msgstr "「%{page}」を更新しました。"
 
@@ -44,11 +44,11 @@ msgstr "ログインに失敗しました。"
 msgid "Jump to Note"
 msgstr "ノートに移動"
 
-#: app/helpers/histories_helper.rb:7
+#: app/helpers/histories_helper.rb:8
 msgid "NEXT"
 msgstr "前"
 
-#: app/helpers/histories_helper.rb:16
+#: app/helpers/histories_helper.rb:17
 msgid "PREV"
 msgstr "次"
 
@@ -120,6 +120,42 @@ msgstr ""
 msgid "Account|User"
 msgstr ""
 
+#: app/models/attachment.rb:-
+msgid "attachment"
+msgstr ""
+
+#: app/models/attachment.rb:-
+msgid "Attachment|Attachable"
+msgstr ""
+
+#: app/models/attachment.rb:-
+msgid "Attachment|Attachable type"
+msgstr ""
+
+#: app/models/attachment.rb:-
+msgid "Attachment|Content type"
+msgstr ""
+
+#: app/models/attachment.rb:-
+msgid "Attachment|Filename"
+msgstr ""
+
+#: app/models/attachment.rb:- app/views/attachments/new.html.haml:16
+msgid "Attachment|Display name"
+msgstr "ファイルの説明"
+
+#: app/models/attachment.rb:-
+msgid "Attachment|Size"
+msgstr "ファイルサイズ"
+
+#: app/models/attachment.rb:-
+msgid "Attachment|Created at"
+msgstr "ファイル作成日"
+
+#: app/models/attachment.rb:-
+msgid "Attachment|Updated at"
+msgstr "ファイル更新日"
+
 #: app/models/builtin_group.rb:-
 msgid "builtin group"
 msgstr "グループ"
@@ -178,6 +214,11 @@ msgstr ""
 
 #: app/models/content.rb:-
 msgid "Content|Updated at"
+msgstr ""
+
+#: app/models/empty_label.rb:13 app/views/pages/show.html.haml:25
+#: app/views/pages/show.html.haml:31
+msgid "No Labels"
 msgstr ""
 
 #: app/models/group.rb:-
@@ -397,13 +438,13 @@ msgstr ""
 msgid "Page|Last modied user"
 msgstr ""
 
-#: app/models/page.rb:- app/views/pages/_pages.html.haml:6
-#: app/views/pages/edit.html.haml:17
+#: app/models/page.rb:- app/views/pages/_pages.html.haml:7
+#: app/views/pages/edit.html.haml:14
 msgid "Page|Name"
 msgstr "ページ識別子"
 
-#: app/models/page.rb:- app/views/pages/_pages.html.haml:5
-#: app/views/pages/edit.html.haml:14
+#: app/models/page.rb:- app/views/pages/_pages.html.haml:6
+#: app/views/pages/edit.html.haml:11
 msgid "Page|Display name"
 msgstr "ページ名"
 
@@ -427,11 +468,11 @@ msgstr ""
 msgid "Page|Created at"
 msgstr ""
 
-#: app/models/page.rb:- app/views/pages/_pages.html.haml:9
+#: app/models/page.rb:- app/views/pages/_pages.html.haml:10
 msgid "Page|Updated at"
 msgstr ""
 
-#: app/models/page.rb:57
+#: app/models/page.rb:77
 msgid "FrontPage"
 msgstr "表紙"
 
@@ -504,9 +545,29 @@ msgstr ""
 msgid "%{name} group"
 msgstr ""
 
+#: app/views/attachments/index.html.haml:14
+msgid "Attached files to %{target}"
+msgstr ""
+
+#: app/views/attachments/index.html.haml:22
+msgid "Download"
+msgstr ""
+
+#: app/views/attachments/new.html.haml:13
+msgid "Attach file(s) to %{target}"
+msgstr ""
+
+#: app/views/attachments/new.html.haml:19
+msgid "Attachment|Upload Data"
+msgstr "ファイルを添付"
+
+#: app/views/attachments/new.html.haml:22
+msgid "Upload"
+msgstr "アップロード"
+
 #: app/views/groups/show.html.haml:3
 msgid "Back To Note"
-msgstr ""
+msgstr "ノートに戻る"
 
 #: app/views/groups/show.html.haml:5
 #, fuzzy
@@ -521,11 +582,11 @@ msgstr "「%{page}」のrev.%{from}からrev.%{to}への変更点"
 msgid "Back to histories"
 msgstr "履歴一覧に戻る"
 
-#: app/views/histories/diff.html.haml:37
+#: app/views/histories/diff.html.haml:38
 msgid "History|Diff"
 msgstr "履歴"
 
-#: app/views/histories/diff.html.haml:43 app/views/histories/diff.html.haml:44
+#: app/views/histories/diff.html.haml:44 app/views/histories/diff.html.haml:45
 msgid "Contents of r%{rev}"
 msgstr "リビジョン%{rev}の内容"
 
@@ -548,6 +609,35 @@ msgstr "差分のバージョン指定 :"
 #: app/views/histories/index.html.haml:28
 msgid "to"
 msgstr "から"
+
+#: app/views/histories/new.html.haml:6 app/views/pages/edit.html.haml:3
+msgid "New Page"
+msgstr "新しいページを作る"
+
+#: app/views/histories/new.html.haml:13
+#, fuzzy
+msgid "Page|Content"
+msgstr "内容"
+
+#: app/views/histories/new.html.haml:19
+msgid "Preview"
+msgstr "プレビュー"
+
+#: app/views/histories/new.html.haml:23
+msgid "Hide"
+msgstr "プレビューを隠す"
+
+#: app/views/histories/new.html.haml:29
+msgid "Modified, need to save."
+msgstr ""
+
+#: app/views/histories/new.html.haml:30
+msgid "Save"
+msgstr ""
+
+#: app/views/histories/new.html.haml:31 app/views/pages/_navi.html.haml:4
+msgid "show page"
+msgstr "ページを表示"
 
 #: app/views/histories/show.html.haml:18
 msgid "Back to Hisotries"
@@ -620,16 +710,21 @@ msgstr "ページ一覧"
 msgid "show note"
 msgstr "ノートを表示"
 
+#: app/views/notes/_navi.html.haml:5
+msgid "attach to note"
+msgstr "ノートの添付ファイル"
+
 #: app/views/notes/_wizard.html.haml:14 app/views/pages/show.html.haml:17
+#: app/views/pages/show.html.haml:27
 msgid "Previous"
 msgstr "戻る"
 
 #: app/views/notes/_wizard.html.haml:15 app/views/pages/show.html.haml:18
+#: app/views/pages/show.html.haml:28
 msgid "Next"
 msgstr "進む"
 
 #: app/views/notes/edit.html.haml:2
-#, fuzzy
 msgid "Editing Note"
 msgstr "ノートを編集"
 
@@ -765,51 +860,39 @@ msgstr "グループ"
 msgid "labels"
 msgstr ""
 
-#: app/views/pages/_navi.html.haml:4
-msgid "show page"
-msgstr "ページを表示"
-
 #: app/views/pages/_navi.html.haml:5
 msgid "edit page"
 msgstr "ページを編集"
 
 #: app/views/pages/_navi.html.haml:6
+#, fuzzy
+msgid "edit content"
+msgstr "ノートを編集"
+
+#: app/views/pages/_navi.html.haml:7
 msgid "page histories"
 msgstr "編集履歴"
 
-#: app/views/pages/_pages.html.haml:7
+#: app/views/pages/_pages.html.haml:8
 msgid "Page|Revision"
 msgstr "リビジョン"
 
-#: app/views/pages/_pages.html.haml:8
+#: app/views/pages/_pages.html.haml:9
 msgid "Page|Auther"
 msgstr "編集者"
 
-#: app/views/pages/_pages.html.haml:10
+#: app/views/pages/_pages.html.haml:11
 msgid "History"
 msgstr "履歴"
 
-#: app/views/pages/edit.html.haml:6
-msgid "New Page"
-msgstr "新しいページを作る"
-
-#: app/views/pages/edit.html.haml:22
+#: app/views/pages/edit.html.haml:19
 #, fuzzy
 msgid "Page|Label indices"
 msgstr "ラベル識別子"
 
-#: app/views/pages/edit.html.haml:34
-#, fuzzy
-msgid "Page|Content"
-msgstr "内容"
-
-#: app/views/pages/edit.html.haml:40
-msgid "Preview"
-msgstr "プレビュー"
-
-#: app/views/pages/edit.html.haml:44
-msgid "Hide"
-msgstr "プレビューを隠す"
+#: app/views/pages/edit.html.haml:27
+msgid "Add label"
+msgstr ""
 
 #: app/views/pages/show.html.haml:9
 #, fuzzy

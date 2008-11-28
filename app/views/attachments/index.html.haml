@@ -1,0 +1,23 @@
+#content
+  - # FIXME partialする
+  - div_for(current_note) do
+    - if current_target.is_a?(Note)
+      %h1&= current_note.display_name
+      %p.description&= current_note.description
+
+      .tab
+        %ul.navi-tab
+          - current_path = new_note_attachment_path(current_note)
+          =render(:partial => "notes/navi", :locals=>{:note=>current_note, :current_path=>current_path})
+
+    .attachments
+      %h2&= _("Attached files to %{target}") % {:target => _(current_target.class.name) }
+      %table
+        - @attachments.each do |at|
+          %tr
+            %td&= at.content_type
+            %td&= at.display_name
+            %td&= number_to_human_size(at.size)
+            %td&= at.updated_at.to_s
+            %td= link_to _("Download"), target_attachment_url(at)
+

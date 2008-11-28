@@ -1,6 +1,7 @@
 class Attachment < ActiveRecord::Base
   has_attachment :storage => :file_system,
-                 :path_prefix => "assets/uploaded_data",
+                 :size => 1..100.megabytes, # FIXME
+                 :path_prefix => "assets/uploaded_data/#{::Rails.env}",
                  :processor => :none
   belongs_to :attachable, :polymorphic => true
 
