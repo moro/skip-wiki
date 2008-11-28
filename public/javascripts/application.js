@@ -42,7 +42,7 @@
 
     function activateFCKeditor(){
       if(!this.oFCKeditor){
-        this.oFCKeditor = new FCKeditor(root.attr("id"), "100%", "500") ;
+        this.oFCKeditor = new FCKeditor(root.attr("id"), "100%", "330", "Normal") ;
         this.oFCKeditor.BasePath = config["basePath"];
         this.oFCKeditor.ReplaceTextarea() ;
         addDynamicSave();
