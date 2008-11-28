@@ -1,0 +1,19 @@
+%ul
+  %li.bar-item.navigate-in-label
+    = navigate_in_label(current_note, @page)
+
+  %li.bar-item.move-to-label
+    %span&= _("Move to Label")
+    = label_navigation(current_note, @page)
+
+  %li.bar-item.search-pages
+    - form_tag(note_pages_path(current_note), :method=>:get) do
+      %label{:for=>"pages_keyword"}&= _("Search pages in %{note}") % {:note => current_note.display_name}
+      = text_field_tag("keyword", params[:keyword], :id=>"pages_keyword")
+      = submit_tag _("Search")
+
+  %li.bar_item
+    #system_contents= image_tag "skip/indicator.gif"
+
+.clear
+
