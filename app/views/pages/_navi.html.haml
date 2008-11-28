@@ -1,11 +1,11 @@
 %ul.navi-tab.right-navi
   = navi_item(_("show page"), note_page_path(@page.note, @page), current_path, "page")
-  = navi_item(_("new page"), new_note_page_path(@page.note), current_path, "page")
-  = navi_item(_("note pages"), note_pages_path(@page.note), current_path, "page")
-  = navi_item(_("show note"), note_path(current_note), current_path, "note")
-  = navi_item(_("note attachments"), note_attachments_path(current_note), current_path, "note")
   = navi_item(_("edit page"), edit_note_page_path(current_note, @page), current_path, "page")
   = navi_item(_("edit content"), new_note_page_history_path(current_note, @page), current_path, "page")
+  = navi_item(_("new page"), new_note_page_path(@page.note), current_path, "page")
+  = navi_item(_("note pages"), note_pages_path(@page.note), current_path, "page")
   = navi_item(_("page histories"), note_page_histories_path(current_note, @page), current_path, "page")
   = navi_item(_("page attachments"), note_page_attachments_path(current_note, @page), current_path, "page")
+  = navi_item(_("show note"), note_path(current_note), current_path, "note")
+  = navi_item(_("note attachments"), note_attachments_path(current_note), current_path, "note")
 .clear

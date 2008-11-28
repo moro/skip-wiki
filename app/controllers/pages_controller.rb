@@ -1,5 +1,4 @@
 class PagesController < ApplicationController
-  layout "notes"
   def index
     pages = current_note.pages
     pages = pages.fulltext(params[:keyword]) unless params[:keyword].blank?
@@ -84,9 +83,4 @@ class PagesController < ApplicationController
       end
     end
   end
-
-  private
-  def render_new_page_form(page = @page)
-  end
-
 end
