@@ -9,16 +9,3 @@
           - current_path = new_note_attachment_path(current_note)
           =render(:partial => "notes/navi", :locals=>{:note=>current_note, :current_path=>current_path})
 
-    .attachment
-      %h2&= _("Attach file(s) to %{target}") % {:target => _(current_target.class.name) }
-      - form_for(:attachment, :url=> note_attachments_path(current_note), :html=>{:multipart=>true}) do |f|
-        %dl
-          %dt= f.label :display_name, h(_"Attachment|Display name")
-          %dd= f.text_field :display_name
-
-          %dt= f.label :uploaded_data, h(_"Attachment|Upload Data")
-          %dd= f.file_field :uploaded_data
-
-        = submit_tag h(_"Upload")
-        = debug(@attachment)
-

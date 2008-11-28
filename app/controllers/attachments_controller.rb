@@ -4,6 +4,8 @@ class AttachmentsController < ApplicationController
 
   def index
     @attachments = current_target.attachments.find(:all)
+    @attachment = current_target.attachments.build
+
     respond_to do |format|
       format.html
       format.js
@@ -11,10 +13,6 @@ class AttachmentsController < ApplicationController
   end
 
   def show
-  end
-
-  def new
-    @attachment = current_target.attachments.build
   end
 
   def create
@@ -32,16 +30,16 @@ class AttachmentsController < ApplicationController
   private
   def current_target
     @_current_target ||= \
-      params[:page_id] ? current_note.find(params[:page_id]) : current_note
+      params[:page_id] ? current_note.pages.find(params[:page_id]) : current_note
   end
 
   def target_attachments_url
-    params[:page_id] ? note_page_attachments_path(current_note, current_target) \
-                     : note_attachments_path(current_target)
+    params[:page_id] ? note_page_attachments_url(current_note, current_target) \
+                     : note_attachments_url(current_target)
   end
 
   def target_attachment_url(at)
-    at.attachable_type == "Page" ? note_page_attachment_path(current_note, current_target, at) \
-                                 : note_attachment_path(current_target, at)
+    at.attachable_type == "Page" ? note_page_attachment_url(current_note, current_target, at) \
+                                 : note_attachment_url(current_target, at)
   end
 end

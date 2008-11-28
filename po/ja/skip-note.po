@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-11-25 18:05+0900\n"
+"POT-Creation-Date: 2008-11-25 18:29+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -547,7 +547,7 @@ msgstr ""
 
 #: app/views/attachments/index.html.haml:14
 msgid "Attached files to %{target}"
-msgstr ""
+msgstr "%{target}の添付ファイル一覧"
 
 #: app/views/attachments/index.html.haml:22
 msgid "Download"
@@ -555,7 +555,7 @@ msgstr ""
 
 #: app/views/attachments/new.html.haml:13
 msgid "Attach file(s) to %{target}"
-msgstr ""
+msgstr "%{target}にファイルを添付"
 
 #: app/views/attachments/new.html.haml:19
 msgid "Attachment|Upload Data"
@@ -615,7 +615,6 @@ msgid "New Page"
 msgstr "新しいページを作る"
 
 #: app/views/histories/new.html.haml:13
-#, fuzzy
 msgid "Page|Content"
 msgstr "内容"
 
@@ -635,7 +634,7 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: app/views/histories/new.html.haml:31 app/views/pages/_navi.html.haml:4
+#: app/views/histories/new.html.haml:31 app/views/pages/_navi.html.haml:7
 msgid "show page"
 msgstr "ページを表示"
 
@@ -706,7 +705,7 @@ msgstr "ページを追加"
 msgid "note pages"
 msgstr "ページ一覧"
 
-#: app/views/notes/_navi.html.haml:4
+#: app/views/notes/_navi.html.haml:4 app/views/pages/_navi.html.haml:4
 msgid "show note"
 msgstr "ノートを表示"
 
@@ -852,26 +851,32 @@ msgid "add users"
 msgstr "ユーザを追加"
 
 #: app/views/notes/show.html.haml:14
-#, fuzzy
 msgid "add groups"
-msgstr "グループ"
+msgstr "グループを追加"
 
 #: app/views/notes/show.html.haml:15
 msgid "labels"
 msgstr ""
 
 #: app/views/pages/_navi.html.haml:5
+msgid "note attachments"
+msgstr "ノートの添付ファイル"
+
+#: app/views/pages/_navi.html.haml:8
 msgid "edit page"
-msgstr "ページを編集"
+msgstr "ページ情報を編集"
 
-#: app/views/pages/_navi.html.haml:6
-#, fuzzy
+#: app/views/pages/_navi.html.haml:9
 msgid "edit content"
-msgstr "ノートを編集"
+msgstr "ページ内容を編集"
 
-#: app/views/pages/_navi.html.haml:7
+#: app/views/pages/_navi.html.haml:10
 msgid "page histories"
 msgstr "編集履歴"
+
+#: app/views/pages/_navi.html.haml:11
+msgid "page attachments"
+msgstr "ページの添付ファイル"
 
 #: app/views/pages/_pages.html.haml:8
 msgid "Page|Revision"
@@ -886,7 +891,6 @@ msgid "History"
 msgstr "履歴"
 
 #: app/views/pages/edit.html.haml:19
-#, fuzzy
 msgid "Page|Label indices"
 msgstr "ラベル識別子"
 
@@ -895,7 +899,6 @@ msgid "Add label"
 msgstr ""
 
 #: app/views/pages/show.html.haml:9
-#, fuzzy
 msgid "LabelIndices"
 msgstr "ラベル識別子"
 
@@ -957,9 +960,8 @@ msgid "User|Memberships"
 msgstr ""
 
 #: app/views/users/_side_menu.html.haml:7
-#, fuzzy
 msgid "User|Notes"
-msgstr "ユーザ識別子"
+msgstr "ノート一覧"
 
 #~ msgid "Fulltext Search"
 #~ msgstr "SKIPファミリを全文検索"

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-11-25 18:05+0900\n"
+"POT-Creation-Date: 2008-11-25 18:29+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -633,7 +633,7 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: app/views/histories/new.html.haml:31 app/views/pages/_navi.html.haml:4
+#: app/views/histories/new.html.haml:31 app/views/pages/_navi.html.haml:7
 msgid "show page"
 msgstr ""
 
@@ -704,7 +704,7 @@ msgstr ""
 msgid "note pages"
 msgstr ""
 
-#: app/views/notes/_navi.html.haml:4
+#: app/views/notes/_navi.html.haml:4 app/views/pages/_navi.html.haml:4
 msgid "show note"
 msgstr ""
 
@@ -858,15 +858,23 @@ msgid "labels"
 msgstr ""
 
 #: app/views/pages/_navi.html.haml:5
+msgid "note attachments"
+msgstr ""
+
+#: app/views/pages/_navi.html.haml:8
 msgid "edit page"
 msgstr ""
 
-#: app/views/pages/_navi.html.haml:6
+#: app/views/pages/_navi.html.haml:9
 msgid "edit content"
 msgstr ""
 
-#: app/views/pages/_navi.html.haml:7
+#: app/views/pages/_navi.html.haml:10
 msgid "page histories"
+msgstr ""
+
+#: app/views/pages/_navi.html.haml:11
+msgid "page attachments"
 msgstr ""
 
 #: app/views/pages/_pages.html.haml:8
