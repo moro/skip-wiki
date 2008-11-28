@@ -39,7 +39,7 @@ When /^"(.*)"を選択する$/ do |field|
 end
 
 # opposite order from Engilsh one(original)
-When /^"(.*)"としてをファイル"(.*)"を添付する$/ do |field, path|
+When /^"(.*)"としてファイル"(.*)"を添付する$/ do |field, path|
   attaches_file(field, path)
 end
 
