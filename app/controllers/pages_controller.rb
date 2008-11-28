@@ -6,6 +6,7 @@ class PagesController < ApplicationController
     @pages = pages.scoped(:order=>"pages.updated_at DESC").find(:all)
   end
 
+  # FIXME WikiNameはとる
   def show
     @note = current_note
     @page = @note.pages.find_or_initialize_by_name(params[:id], :include=>:note)
@@ -26,11 +27,7 @@ class PagesController < ApplicationController
 
   def new
     @page = current_note.pages.build
-    respond_to do |format|
-      format.html do
-        render :action=>"edit"
-      end
-    end
+    respond_to(:html)
   end
 
   def create

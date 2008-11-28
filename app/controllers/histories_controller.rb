@@ -32,11 +32,11 @@ class HistoriesController < ApplicationController
     @history = @page.edit(params[:history][:content], current_user)
     if @history.save
       respond_to do |format|
+        format.html{ redirect_to note_page_url(current_note, @page) }
         format.js{ head(:created, :location => note_page_history_path(current_note, @page, @history)) }
       end
     else
       errors = [@history, @history.content].map{|m| m.errors.full_messages }.flatten
-
       respond_to do |format|
         format.js{ render(:json => errors, :status=>:unprocessable_entity) }
       end

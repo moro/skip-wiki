@@ -1,0 +1,23 @@
+%h2&= _("LabelIndices")
+%ul.label-badges
+  - current_note.label_indices.each do |index|
+    - if index == @page.label_index
+      %li
+        = labelize(@page.label_index, false)
+        %br
+        - order = @page.label_indexings.first.page_order
+        = link_to(h(_"Previous"), prev_note_label_index_path(current_note, index, :pivot=>order))
+        = link_to(h(_"Next"), next_note_label_index_path(current_note, index, :pivot=>order))
+    - else
+      %li
+        %span.label_badge.inactive= link_to(index.display_name, note_label_index_path(current_note, index))
+
+  - if @page.label_index.nil?
+    %li
+      =h _("No Labels")
+      %br
+      = link_to(h(_"Previous"), prev_note_label_index_path(current_note, "none", :pivot=>@page.order_in_label))
+      = link_to(h(_"Next"), next_note_label_index_path(current_note, "none", :pivot=>@page.order_in_label))
+  - else
+    %li
+      %span.label_badge.inactive= link_to(_("No Labels"), note_label_index_path(current_note, "none"))

@@ -1,0 +1,39 @@
+- content_for(:header) do
+  =javascript_include_tag("fckeditor/fckeditor.js")
+
+#content
+  - div_for(@page) do
+    %h1&= _("New Page")
+    .tab
+      %ul.navi-tab= render :partial => 'notes/navi', :locals=> {:current_path => new_note_page_path(current_note)}
+
+    #linkPalette
+      %span.trigger= _("Show link palette")
+
+    - form_for(:page, :url=>note_pages_path(current_note)) do |f|
+      %dl
+        = render :partial => 'page_form', :locals =>{:form =>f }
+        %dt= f.label(:content, h(_("Page|Content")))
+        %dd.content
+          = f.text_area(:content, :id=>"page_content", :size=>"80x70")
+
+      = submit_tag _("Create")
+
+:ruby
+  editor_opt = {"basePath" => controller.request.relative_url_root + "/javascripts/fckeditor/",
+                "initialState" => @page.format_type,
+                "submit_to_save" => true }
+
+  palette_opt = {
+    :editor => "page_content",
+    :note_attachments => note_attachments_path(current_note),
+    :insert_link_label => _("Insert Link"),
+    :insert_image_label => _("Insert Image")
+  }
+
+:javascript
+  $(document).ready(function(){
+    jQuery("#page_content").editor(#{editor_opt.to_json});
+    jQuery("#linkPalette").linkPalette(#{palette_opt.to_json})
+  });
+

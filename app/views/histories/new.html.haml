@@ -26,7 +26,7 @@
 
             .rendered
             .clear
-          = text_area_tag("history['content']", @page.content, :id=>"history_content", :size=>"80x70")
+          = text_area_tag("history[content]", @page.content, :id=>"history_content", :size=>"80x70")
 
       %span.notice{:style=>"display:none"}&= _("Modified, need to save.")
       = submit_tag(_("Save"))
