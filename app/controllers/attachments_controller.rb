@@ -15,6 +15,12 @@ class AttachmentsController < ApplicationController
   end
 
   def show
+    @attachment = current_target.attachments.find(params[:id])
+    opts = {:filename => @attachment.filename,
+            :type => @attachment.content_type }
+    opts[:disposition] = "inline" if params[:position] == "inline"
+
+    send_file(@attachment.full_filename, opts)
   end
 
   def create
@@ -31,7 +37,7 @@ class AttachmentsController < ApplicationController
 
   private
   def attachment_to_json(atmt)
-    returning(atmt.attributes.slice("display_name", "created_at", "updated_at")) do |json|
+    returning(atmt.attributes.slice("filename", "display_name", "created_at", "updated_at")) do |json|
       json[:path] = target_attachment_path(atmt)
       json[:inline] = target_attachment_path(atmt, :position=>"inline") if atmt.image?
     end
@@ -42,13 +48,13 @@ class AttachmentsController < ApplicationController
       params[:page_id] ? current_note.pages.find(params[:page_id]) : current_note
   end
 
-  def target_attachments_path;   URI(target_attachments_url).path end
+  def target_attachments_path;   URI(target_attachments_url).request_uri end
   def target_attachments_url
     params[:page_id] ? note_page_attachments_url(current_note, current_target) \
                      : note_attachments_url(current_target)
   end
 
-  def target_attachment_path(a, opts = {}); URI(target_attachment_url(a, opts)).path end
+  def target_attachment_path(a, opts = {}); URI(target_attachment_url(a, opts)).request_uri end
   def target_attachment_url(at, opts = {})
     at.attachable_type == "Page" ? note_page_attachment_url(current_note, current_target, at, opts) \
                                  : note_attachment_url(current_target, at, opts)

@@ -7,6 +7,9 @@
     .tab= render :partial => 'pages/navi', :locals=> {:current_path => new_note_page_history_path(current_note, @page)}
 
     - page_name = @page.name.blank? ? params[:id] : @page.name
+    #linkPalette
+      %span.trigger= _("Show link palette")
+
     - form_for(:history, @history, :url=>note_page_histories_path(current_note, @page)) do |f|
       %dl
         %dt
@@ -34,10 +37,19 @@
   editor_opt = {"basePath" => controller.request.relative_url_root + "/javascripts/fckeditor/",
                 "initialState" => @page.format_type }
 
+  palette_opt = {
+    :editor => "history_content",
+    :note_attachments => note_attachments_path(current_note),
+    :page_attachments => note_page_attachments_path(current_note, @page),
+    :insert_link_label => _("Insert Link"),
+    :insert_image_label => _("Insert Image")
+  }
+
 :javascript
   $(document).ready(function(){
     // jQuery(".previewable").preview({"url":"#{preview_new_note_page_path(current_note.id)}"});
     jQuery("#history_content").editor(#{editor_opt.to_json});
+    jQuery("#linkPalette").linkPalette(#{palette_opt.to_json})
   });
 
   function FCKeditor_OnComplete( editorInstance ){

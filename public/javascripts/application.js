@@ -118,6 +118,71 @@
     };
     dispatch();
   };
+
+  jQuery.fn.linkPalette = function(config){
+    var root = jQuery(this);
+
+    function insertToEditor(elem){
+      FCKeditorAPI.GetInstance(config["editor"]).InsertElement(elem.get(0));
+    }
+
+    function insertLink(label, href){
+      return jQuery("<span>").text(config["insert_link_label"]).click(function(){
+        insertToEditor(jQuery("<a>").text(label).attr("href", href));
+      });
+    }
+
+    function insertImage(label, src){
+      if(src){
+        return jQuery("<span>").text(config["insert_image_label"]).click(function(){
+          insertToEditor(jQuery("<img>").attr("src", src).attr("alt", label));
+        });
+      }else{
+        return jQuery("<span>").text("---");
+      }
+    }
+
+    function attachmentToTableRow(data){
+      var tr = jQuery("<tr>");
+      if(data["inline"]){
+        tr.append("<td><img height='60' width='80' src='" + data["inline"] + "' /></td>");
+      }else{
+        tr.append("<td><span>"+ data["filename"] + "</td>");
+      }
+      tr.append(jQuery("<td>").text(data["display_name"])).
+         append(jQuery("<td>").append(insertLink(data["display_name"], data["path"]))).
+         append(jQuery("<td>").append(insertImage(data["display_name"], data["inline"]))) ;
+
+      return tr;
+    }
+
+    function loadAttachments(pallete, url){
+      if(!url) return;
+      jQuery.getJSON(url, function(data,stat){
+        var table = jQuery("<table>");
+        jQuery.each(data, function(_num_, atmt){
+          table.append(attachmentToTableRow(atmt["attachment"]));
+        });
+        pallete.append(table);
+      });
+    }
+
+    function onLoad(){
+      root.empty().draggable().
+        css("z-index", 1).
+        css("position", "absolute").
+        css("background", "#bbbbff").
+        append(
+          jQuery("<div>").append(
+            jQuery("<h3>").text("Link Palette")).append(
+            jQuery("<span>").text("toggle").click(function(){ root.find("table").toggle() })
+          )
+        );
+      loadAttachments(root, config["note_attachments"]);
+      loadAttachments(root, config["page_attachments"]);
+    }
+    root.find("span.trigger").one("click", onLoad);
+  }
 /*
  *  Obsolute
  *
