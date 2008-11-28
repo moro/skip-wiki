@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-11-25 18:29+0900\n"
+"POT-Creation-Date: 2008-11-26 08:26+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -140,7 +140,7 @@ msgstr ""
 msgid "Attachment|Filename"
 msgstr ""
 
-#: app/models/attachment.rb:- app/views/attachments/new.html.haml:16
+#: app/models/attachment.rb:- app/views/attachments/index.html.haml:32
 msgid "Attachment|Display name"
 msgstr "ファイルの説明"
 
@@ -428,7 +428,7 @@ msgstr ""
 
 #: app/models/page.rb:-
 msgid "page"
-msgstr ""
+msgstr "ページ"
 
 #: app/models/page.rb:-
 msgid "Page|Note"
@@ -472,7 +472,7 @@ msgstr ""
 msgid "Page|Updated at"
 msgstr ""
 
-#: app/models/page.rb:77
+#: app/models/page.rb:79
 msgid "FrontPage"
 msgstr "表紙"
 
@@ -545,23 +545,28 @@ msgstr ""
 msgid "%{name} group"
 msgstr ""
 
-#: app/views/attachments/index.html.haml:14
+#: app/views/attachments/index.html.haml:16
 msgid "Attached files to %{target}"
 msgstr "%{target}の添付ファイル一覧"
 
-#: app/views/attachments/index.html.haml:22
+#: app/views/attachments/index.html.haml:25
 msgid "Download"
 msgstr ""
 
-#: app/views/attachments/new.html.haml:13
+#: app/views/attachments/index.html.haml:26
+#: app/views/label_indices/index.html.haml:15
+msgid "Delete"
+msgstr "削除"
+
+#: app/views/attachments/index.html.haml:29
 msgid "Attach file(s) to %{target}"
 msgstr "%{target}にファイルを添付"
 
-#: app/views/attachments/new.html.haml:19
+#: app/views/attachments/index.html.haml:35
 msgid "Attachment|Upload Data"
 msgstr "ファイルを添付"
 
-#: app/views/attachments/new.html.haml:22
+#: app/views/attachments/index.html.haml:38
 msgid "Upload"
 msgstr "アップロード"
 
@@ -634,7 +639,7 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: app/views/histories/new.html.haml:31 app/views/pages/_navi.html.haml:7
+#: app/views/histories/new.html.haml:31 app/views/pages/_navi.html.haml:2
 msgid "show page"
 msgstr "ページを表示"
 
@@ -645,10 +650,6 @@ msgstr "履歴一覧に戻る"
 #: app/views/label_indices/index.html.haml:2
 msgid "Label index for %{note}"
 msgstr "「%{note}」のラベル一覧"
-
-#: app/views/label_indices/index.html.haml:15
-msgid "Delete"
-msgstr "削除"
 
 #: app/views/label_indices/index.html.haml:23
 #: app/views/notes/new.html.haml:192
@@ -696,16 +697,16 @@ msgstr "ラベルで探す"
 msgid "Updated"
 msgstr "更新されたページ"
 
-#: app/views/notes/_navi.html.haml:2 app/views/pages/_navi.html.haml:2
+#: app/views/notes/_navi.html.haml:2 app/views/pages/_navi.html.haml:3
 msgid "new page"
 msgstr "ページを追加"
 
-#: app/views/notes/_navi.html.haml:3 app/views/pages/_navi.html.haml:3
+#: app/views/notes/_navi.html.haml:3 app/views/pages/_navi.html.haml:4
 #: app/views/pages/_pages.html.haml:2
 msgid "note pages"
 msgstr "ページ一覧"
 
-#: app/views/notes/_navi.html.haml:4 app/views/pages/_navi.html.haml:4
+#: app/views/notes/_navi.html.haml:4 app/views/pages/_navi.html.haml:5
 msgid "show note"
 msgstr "ノートを表示"
 
@@ -858,23 +859,23 @@ msgstr "グループを追加"
 msgid "labels"
 msgstr ""
 
-#: app/views/pages/_navi.html.haml:5
+#: app/views/pages/_navi.html.haml:6
 msgid "note attachments"
 msgstr "ノートの添付ファイル"
 
-#: app/views/pages/_navi.html.haml:8
+#: app/views/pages/_navi.html.haml:7
 msgid "edit page"
 msgstr "ページ情報を編集"
 
-#: app/views/pages/_navi.html.haml:9
+#: app/views/pages/_navi.html.haml:8
 msgid "edit content"
 msgstr "ページ内容を編集"
 
-#: app/views/pages/_navi.html.haml:10
+#: app/views/pages/_navi.html.haml:9
 msgid "page histories"
 msgstr "編集履歴"
 
-#: app/views/pages/_navi.html.haml:11
+#: app/views/pages/_navi.html.haml:10
 msgid "page attachments"
 msgstr "ページの添付ファイル"
 

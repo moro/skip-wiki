@@ -27,7 +27,7 @@
 
     .attachment.upload
       %h2&= _("Attach file(s) to %{target}") % {:target => _(current_target.class.name.downcase) }
-      - form_for(:attachment, :url=> note_attachments_path(current_note), :html=>{:multipart=>true}) do |f|
+      - form_for(:attachment, :url=> target_attachments_url, :html=>{:multipart=>true}) do |f|
         %dl
           %dt= f.label :display_name, h(_"Attachment|Display name")
           %dd= f.text_field :display_name
