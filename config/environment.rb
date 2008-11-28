@@ -39,6 +39,7 @@ Rails::Initializer.run do |config|
     jrails
     restful_authentication
     open_id_authentication
+    attachment_fu
   ]
   config.plugins += %w[rails-footnotes] if Rails.env == "development"
   config.plugins += %w[cucumber webrat] if Rails.env == "test"

@@ -42,6 +42,8 @@ class Note < ActiveRecord::Base
     end
   end
 
+  has_many :attachments, :as => :attachable
+
   named_scope :public, {:conditions=>PUBLIC_CONDITION}
 
   named_scope :recent, proc{|*args|
