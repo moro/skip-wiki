@@ -45,7 +45,7 @@
         this.oFCKeditor = new FCKeditor(root.attr("id"), "100%", "330", "Normal") ;
         this.oFCKeditor.BasePath = config["basePath"];
         this.oFCKeditor.ReplaceTextarea() ;
-        addDynamicSave();
+        if(!config["submit_to_save"]){ addDynamicSave() };
       }
       root.hide().
         siblings(".previewable").hide().end().
