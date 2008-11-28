@@ -29,6 +29,12 @@ class HistoriesController < ApplicationController
       respond_to do |format|
         format.js{ head(:created, :location => note_page_history_path(current_note, @page, @history)) }
       end
+    else
+      errors = [@history, @history.content].map{|m| m.errors.full_messages }.flatten
+
+      respond_to do |format|
+        format.js{ render(:json => errors, :status=>:unprocessable_entity) }
+      end
     end
   end
 

@@ -34,54 +34,80 @@
 
   jQuery.fn.editor = function(config){
     var root = this;
+    var form = root.parents("form");
+
+    function api(){
+      return FCKeditorAPI.GetInstance(root.attr("id"));
+    }
 
     function activateFCKeditor(){
       if(!this.oFCKeditor){
         this.oFCKeditor = new FCKeditor(root.attr("id"), "100%", "500") ;
         this.oFCKeditor.BasePath = config["basePath"];
         this.oFCKeditor.ReplaceTextarea() ;
-        addDynamicSave(root.parents("form"));
+        addDynamicSave();
       }
       root.hide().
         siblings(".previewable").hide().end().
         siblings("iframe").fadeIn("fast").end();
     };
-
+/* Hiki
     function activateHikiAndPreview(){
       root.fadeIn("fast").
         siblings("iframe").hide().end().
         siblings(".previewable").fadeIn("fast");
     };
-
-    function addDynamicSave(form){
-      var button = jQuery("<button>保存</button>");
-      button.one("click", createHistory);
-      form.after(button);
+*/
+    function addDynamicSave(){
+      form.one("submit", createHistory).
+           find("input[type=submit]").disable().end().
+           find("a.back").click(confirmBack);
     };
+
+    function confirmBack(){
+      if(needToSave()){
+        return confirm("未保存の更新があります。移動しますか?");
+      }else{
+        return true;
+      }
+    }
 
     function createHistory(){
       var button = jQuery(this);
-      saveHistory("POST", config["historiesPath"], function(req,_){
-        var updateHistory = function(){ saveHistory("PUT", req.getResponseHeader("Location")) };
-        button.click(updateHistory);
+      return saveHistory("POST", function(req,_){
+        form.attr("action", req.getResponseHeader("Location"));
+        button.submit( updateHistory );
       });
     };
 
-    function saveHistory(method, url, callback){
-      var d = ({
-        "authenticity_token": $("input[name=authenticity_token]").val(),
-        "history[content]"  : FCKeditorAPI.GetInstance("page_content").GetHTML(true)
-      });
-      jQuery.ajax({
-        type: method,
-        url:  url,
-        data: d,
-        complete : callback
-      });
-    };
+    function updateHistory(){
+      return saveHistory("PUT", function(){});
+    }
 
-    jQuery("#page_format_type_html").click(activateFCKeditor);
-    jQuery("#page_format_type_hiki").click(activateHikiAndPreview);
+    function needToSave(){
+      return api().IsDirty() &&
+             (jQuery.trim( api().GetHTML(true) ).length > 0);
+    }
+
+    function saveHistory(method, onSuccess){
+      if(!needToSave()){
+        alert("No need to save");
+        return false;
+      }
+      var content = api().GetHTML(true);
+
+      jQuery.ajax({ type: method,
+                    url:  form.attr("action"),
+                    data: ({"authenticity_token": $("input[name=authenticity_token]").val(),
+                            "history[content]"  : content }),
+                    complete : function(req, stat){
+                      if(stat == "success"){
+                        api().SetData(content, true);
+                        onSuccess(req, stat);
+                      }
+                    } });
+      return false;
+    };
 
     function dispatch(){
       if(config["initialState"] == "html"){
@@ -114,5 +140,6 @@
     }
   };
 */
+
 })(jQuery);
 

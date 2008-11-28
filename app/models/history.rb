@@ -2,6 +2,7 @@ class History < ActiveRecord::Base
   belongs_to :versionable, :polymorphic=>true
   belongs_to :content
   belongs_to :user
+  validates_associated :content
 
   def self.find_all_by_head_content(keyword, only_head = true)
     find_by_sql([<<-SQL, {:keyword => "%#{keyword}%"}])

@@ -7,7 +7,7 @@
     .tab= render :partial => 'pages/navi', :locals=> {:current_path => new_note_page_history_path(current_note, @page)}
 
     - page_name = @page.name.blank? ? params[:id] : @page.name
-    - form_tag(note_page_histories_path(current_note, @page)) do
+    - form_for(:history, @history, :url=>note_page_histories_path(current_note, @page)) do |f|
       %dl
         %dt
           = h(_("Page|Content"))
@@ -25,16 +25,28 @@
             .rendered
             .clear
           = text_area_tag("history['content']", @page.content, :id=>"history_content", :size=>"80x70")
-      = link_to(h(_("show page")), note_page_path(current_note, @page))
+
+      %span.notice{:style=>"display:none"}&= _("Modified, need to save.")
+      = submit_tag(_("Save"))
+      = link_to(h(_("show page")), note_page_path(current_note, @page), :class=>"back")
 
 :ruby
   editor_opt = {"basePath" => controller.request.relative_url_root + "/javascripts/fckeditor/",
-                "historiesPath" => note_page_histories_path(current_note, @page),
                 "initialState" => @page.format_type }
 
 :javascript
   $(document).ready(function(){
-    jQuery(".previewable").preview({"url":"#{preview_new_note_page_path(current_note.id)}"});
+    // jQuery(".previewable").preview({"url":"#{preview_new_note_page_path(current_note.id)}"});
     jQuery("#history_content").editor(#{editor_opt.to_json});
   });
+
+  function FCKeditor_OnComplete( editorInstance ){
+    editorInstance.Events.AttachEvent( 'OnSelectionChange', function (editorInstance){
+      if(editorInstance.IsDirty()){
+        jQuery(".page form").find("input[type=submit]").enable().end().find("span.notice").show();
+      }else{
+        jQuery(".page form").find("input[type=submit]").disable().end().find("span.notice").hide();
+      }
+    });
+  }
 
