@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-11-26 08:26+0900\n"
+"POT-Creation-Date: 2008-11-27 16:42+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,11 +28,11 @@ msgstr "%{label}中の先頭のページです。"
 msgid "Create new page '%{page}'."
 msgstr "新しいページ「%{page}」の内容を入力してください。"
 
-#: app/controllers/pages_controller.rb:44
+#: app/controllers/pages_controller.rb:40
 msgid "The page %{page} is successfully created"
 msgstr "「%{page}」を作成しました。"
 
-#: app/controllers/pages_controller.rb:77
+#: app/controllers/pages_controller.rb:73
 msgid "The page %{page} is successfully updated"
 msgstr "「%{page}」を更新しました。"
 
@@ -216,8 +216,8 @@ msgstr ""
 msgid "Content|Updated at"
 msgstr ""
 
-#: app/models/empty_label.rb:13 app/views/pages/show.html.haml:25
-#: app/views/pages/show.html.haml:31
+#: app/models/empty_label.rb:13 app/views/pages/_labels.html.haml:17
+#: app/views/pages/_labels.html.haml:23
 msgid "No Labels"
 msgstr ""
 
@@ -438,13 +438,13 @@ msgstr ""
 msgid "Page|Last modied user"
 msgstr ""
 
-#: app/models/page.rb:- app/views/pages/_pages.html.haml:7
-#: app/views/pages/edit.html.haml:14
+#: app/models/page.rb:- app/views/pages/_page_form.html.haml:4
+#: app/views/pages/_pages.html.haml:7
 msgid "Page|Name"
 msgstr "ページ識別子"
 
-#: app/models/page.rb:- app/views/pages/_pages.html.haml:6
-#: app/views/pages/edit.html.haml:11
+#: app/models/page.rb:- app/views/pages/_page_form.html.haml:1
+#: app/views/pages/_pages.html.haml:6
 msgid "Page|Display name"
 msgstr "ページ名"
 
@@ -615,33 +615,42 @@ msgstr "差分のバージョン指定 :"
 msgid "to"
 msgstr "から"
 
-#: app/views/histories/new.html.haml:6 app/views/pages/edit.html.haml:3
-msgid "New Page"
-msgstr "新しいページを作る"
+#: app/views/histories/new.html.haml:10 app/views/pages/new.html.haml:11
+msgid "Show link palette"
+msgstr ""
 
-#: app/views/histories/new.html.haml:13
+#: app/views/histories/new.html.haml:15 app/views/pages/new.html.haml:16
 msgid "Page|Content"
 msgstr "内容"
 
-#: app/views/histories/new.html.haml:19
+#: app/views/histories/new.html.haml:21
 msgid "Preview"
 msgstr "プレビュー"
 
-#: app/views/histories/new.html.haml:23
+#: app/views/histories/new.html.haml:25
 msgid "Hide"
 msgstr "プレビューを隠す"
 
-#: app/views/histories/new.html.haml:29
+#: app/views/histories/new.html.haml:31
 msgid "Modified, need to save."
 msgstr ""
 
-#: app/views/histories/new.html.haml:30
+#: app/views/histories/new.html.haml:32
 msgid "Save"
 msgstr ""
 
-#: app/views/histories/new.html.haml:31 app/views/pages/_navi.html.haml:2
+#: app/views/histories/new.html.haml:33 app/views/pages/_navi.html.haml:2
 msgid "show page"
 msgstr "ページを表示"
+
+#: app/views/histories/new.html.haml:43 app/views/pages/new.html.haml:30
+msgid "Insert Link"
+msgstr ""
+
+#: app/views/histories/new.html.haml:44 app/views/pages/new.html.haml:31
+#, fuzzy
+msgid "Insert Image"
+msgstr "ページを追加"
 
 #: app/views/histories/show.html.haml:18
 msgid "Back to Hisotries"
@@ -652,7 +661,7 @@ msgid "Label index for %{note}"
 msgstr "「%{note}」のラベル一覧"
 
 #: app/views/label_indices/index.html.haml:23
-#: app/views/notes/new.html.haml:192
+#: app/views/notes/new.html.haml:192 app/views/pages/new.html.haml:20
 msgid "Create"
 msgstr "作成"
 
@@ -697,16 +706,16 @@ msgstr "ラベルで探す"
 msgid "Updated"
 msgstr "更新されたページ"
 
-#: app/views/notes/_navi.html.haml:2 app/views/pages/_navi.html.haml:3
+#: app/views/notes/_navi.html.haml:2 app/views/pages/_navi.html.haml:5
 msgid "new page"
 msgstr "ページを追加"
 
-#: app/views/notes/_navi.html.haml:3 app/views/pages/_navi.html.haml:4
+#: app/views/notes/_navi.html.haml:3 app/views/pages/_navi.html.haml:6
 #: app/views/pages/_pages.html.haml:2
 msgid "note pages"
 msgstr "ページ一覧"
 
-#: app/views/notes/_navi.html.haml:4 app/views/pages/_navi.html.haml:5
+#: app/views/notes/_navi.html.haml:4 app/views/pages/_navi.html.haml:9
 msgid "show note"
 msgstr "ノートを表示"
 
@@ -714,13 +723,13 @@ msgstr "ノートを表示"
 msgid "attach to note"
 msgstr "ノートの添付ファイル"
 
-#: app/views/notes/_wizard.html.haml:14 app/views/pages/show.html.haml:17
-#: app/views/pages/show.html.haml:27
+#: app/views/notes/_wizard.html.haml:14 app/views/pages/_labels.html.haml:9
+#: app/views/pages/_labels.html.haml:19
 msgid "Previous"
 msgstr "戻る"
 
-#: app/views/notes/_wizard.html.haml:15 app/views/pages/show.html.haml:18
-#: app/views/pages/show.html.haml:28
+#: app/views/notes/_wizard.html.haml:15 app/views/pages/_labels.html.haml:10
+#: app/views/pages/_labels.html.haml:20
 msgid "Next"
 msgstr "進む"
 
@@ -859,25 +868,37 @@ msgstr "グループを追加"
 msgid "labels"
 msgstr ""
 
-#: app/views/pages/_navi.html.haml:6
-msgid "note attachments"
-msgstr "ノートの添付ファイル"
+#: app/views/pages/_labels.html.haml:1
+msgid "LabelIndices"
+msgstr "ラベル識別子"
 
-#: app/views/pages/_navi.html.haml:7
+#: app/views/pages/_navi.html.haml:3
 msgid "edit page"
 msgstr "ページ情報を編集"
 
-#: app/views/pages/_navi.html.haml:8
+#: app/views/pages/_navi.html.haml:4
 msgid "edit content"
 msgstr "ページ内容を編集"
 
-#: app/views/pages/_navi.html.haml:9
+#: app/views/pages/_navi.html.haml:7
 msgid "page histories"
 msgstr "編集履歴"
 
-#: app/views/pages/_navi.html.haml:10
+#: app/views/pages/_navi.html.haml:8
 msgid "page attachments"
 msgstr "ページの添付ファイル"
+
+#: app/views/pages/_navi.html.haml:10
+msgid "note attachments"
+msgstr "ノートの添付ファイル"
+
+#: app/views/pages/_page_form.html.haml:9
+msgid "Page|Label indices"
+msgstr "ラベル識別子"
+
+#: app/views/pages/_page_form.html.haml:17
+msgid "Add label"
+msgstr ""
 
 #: app/views/pages/_pages.html.haml:8
 msgid "Page|Revision"
@@ -891,17 +912,13 @@ msgstr "編集者"
 msgid "History"
 msgstr "履歴"
 
-#: app/views/pages/edit.html.haml:19
-msgid "Page|Label indices"
-msgstr "ラベル識別子"
+#: app/views/pages/edit.html.haml:3 app/views/pages/new.html.haml:6
+msgid "New Page"
+msgstr "新しいページを作る"
 
-#: app/views/pages/edit.html.haml:27
-msgid "Add label"
-msgstr ""
-
-#: app/views/pages/show.html.haml:9
-msgid "LabelIndices"
-msgstr "ラベル識別子"
+#: app/views/pages/edit.html.haml:12
+msgid "Update"
+msgstr "更新"
 
 #: app/views/sessions/new.html.haml:3
 msgid "Welcome"

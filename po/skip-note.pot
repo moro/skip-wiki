@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-11-26 08:26+0900\n"
+"POT-Creation-Date: 2008-11-27 16:42+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,11 +28,11 @@ msgstr ""
 msgid "Create new page '%{page}'."
 msgstr ""
 
-#: app/controllers/pages_controller.rb:44
+#: app/controllers/pages_controller.rb:40
 msgid "The page %{page} is successfully created"
 msgstr ""
 
-#: app/controllers/pages_controller.rb:77
+#: app/controllers/pages_controller.rb:73
 msgid "The page %{page} is successfully updated"
 msgstr ""
 
@@ -216,8 +216,8 @@ msgstr ""
 msgid "Content|Updated at"
 msgstr ""
 
-#: app/models/empty_label.rb:13 app/views/pages/show.html.haml:25
-#: app/views/pages/show.html.haml:31
+#: app/models/empty_label.rb:13 app/views/pages/_labels.html.haml:17
+#: app/views/pages/_labels.html.haml:23
 msgid "No Labels"
 msgstr ""
 
@@ -438,13 +438,13 @@ msgstr ""
 msgid "Page|Last modied user"
 msgstr ""
 
-#: app/models/page.rb:- app/views/pages/_pages.html.haml:7
-#: app/views/pages/edit.html.haml:14
+#: app/models/page.rb:- app/views/pages/_page_form.html.haml:4
+#: app/views/pages/_pages.html.haml:7
 msgid "Page|Name"
 msgstr ""
 
-#: app/models/page.rb:- app/views/pages/_pages.html.haml:6
-#: app/views/pages/edit.html.haml:11
+#: app/models/page.rb:- app/views/pages/_page_form.html.haml:1
+#: app/views/pages/_pages.html.haml:6
 msgid "Page|Display name"
 msgstr ""
 
@@ -614,32 +614,40 @@ msgstr ""
 msgid "to"
 msgstr ""
 
-#: app/views/histories/new.html.haml:6 app/views/pages/edit.html.haml:3
-msgid "New Page"
+#: app/views/histories/new.html.haml:10 app/views/pages/new.html.haml:11
+msgid "Show link palette"
 msgstr ""
 
-#: app/views/histories/new.html.haml:13
+#: app/views/histories/new.html.haml:15 app/views/pages/new.html.haml:16
 msgid "Page|Content"
 msgstr ""
 
-#: app/views/histories/new.html.haml:19
+#: app/views/histories/new.html.haml:21
 msgid "Preview"
 msgstr ""
 
-#: app/views/histories/new.html.haml:23
+#: app/views/histories/new.html.haml:25
 msgid "Hide"
 msgstr ""
 
-#: app/views/histories/new.html.haml:29
+#: app/views/histories/new.html.haml:31
 msgid "Modified, need to save."
 msgstr ""
 
-#: app/views/histories/new.html.haml:30
+#: app/views/histories/new.html.haml:32
 msgid "Save"
 msgstr ""
 
-#: app/views/histories/new.html.haml:31 app/views/pages/_navi.html.haml:2
+#: app/views/histories/new.html.haml:33 app/views/pages/_navi.html.haml:2
 msgid "show page"
+msgstr ""
+
+#: app/views/histories/new.html.haml:43 app/views/pages/new.html.haml:30
+msgid "Insert Link"
+msgstr ""
+
+#: app/views/histories/new.html.haml:44 app/views/pages/new.html.haml:31
+msgid "Insert Image"
 msgstr ""
 
 #: app/views/histories/show.html.haml:18
@@ -651,7 +659,7 @@ msgid "Label index for %{note}"
 msgstr ""
 
 #: app/views/label_indices/index.html.haml:23
-#: app/views/notes/new.html.haml:192
+#: app/views/notes/new.html.haml:192 app/views/pages/new.html.haml:20
 msgid "Create"
 msgstr ""
 
@@ -696,16 +704,16 @@ msgstr ""
 msgid "Updated"
 msgstr ""
 
-#: app/views/notes/_navi.html.haml:2 app/views/pages/_navi.html.haml:3
+#: app/views/notes/_navi.html.haml:2 app/views/pages/_navi.html.haml:5
 msgid "new page"
 msgstr ""
 
-#: app/views/notes/_navi.html.haml:3 app/views/pages/_navi.html.haml:4
+#: app/views/notes/_navi.html.haml:3 app/views/pages/_navi.html.haml:6
 #: app/views/pages/_pages.html.haml:2
 msgid "note pages"
 msgstr ""
 
-#: app/views/notes/_navi.html.haml:4 app/views/pages/_navi.html.haml:5
+#: app/views/notes/_navi.html.haml:4 app/views/pages/_navi.html.haml:9
 msgid "show note"
 msgstr ""
 
@@ -713,13 +721,13 @@ msgstr ""
 msgid "attach to note"
 msgstr ""
 
-#: app/views/notes/_wizard.html.haml:14 app/views/pages/show.html.haml:17
-#: app/views/pages/show.html.haml:27
+#: app/views/notes/_wizard.html.haml:14 app/views/pages/_labels.html.haml:9
+#: app/views/pages/_labels.html.haml:19
 msgid "Previous"
 msgstr ""
 
-#: app/views/notes/_wizard.html.haml:15 app/views/pages/show.html.haml:18
-#: app/views/pages/show.html.haml:28
+#: app/views/notes/_wizard.html.haml:15 app/views/pages/_labels.html.haml:10
+#: app/views/pages/_labels.html.haml:20
 msgid "Next"
 msgstr ""
 
@@ -858,24 +866,36 @@ msgstr ""
 msgid "labels"
 msgstr ""
 
-#: app/views/pages/_navi.html.haml:6
-msgid "note attachments"
+#: app/views/pages/_labels.html.haml:1
+msgid "LabelIndices"
 msgstr ""
 
-#: app/views/pages/_navi.html.haml:7
+#: app/views/pages/_navi.html.haml:3
 msgid "edit page"
 msgstr ""
 
-#: app/views/pages/_navi.html.haml:8
+#: app/views/pages/_navi.html.haml:4
 msgid "edit content"
 msgstr ""
 
-#: app/views/pages/_navi.html.haml:9
+#: app/views/pages/_navi.html.haml:7
 msgid "page histories"
 msgstr ""
 
-#: app/views/pages/_navi.html.haml:10
+#: app/views/pages/_navi.html.haml:8
 msgid "page attachments"
+msgstr ""
+
+#: app/views/pages/_navi.html.haml:10
+msgid "note attachments"
+msgstr ""
+
+#: app/views/pages/_page_form.html.haml:9
+msgid "Page|Label indices"
+msgstr ""
+
+#: app/views/pages/_page_form.html.haml:17
+msgid "Add label"
 msgstr ""
 
 #: app/views/pages/_pages.html.haml:8
@@ -890,16 +910,12 @@ msgstr ""
 msgid "History"
 msgstr ""
 
-#: app/views/pages/edit.html.haml:19
-msgid "Page|Label indices"
+#: app/views/pages/edit.html.haml:3 app/views/pages/new.html.haml:6
+msgid "New Page"
 msgstr ""
 
-#: app/views/pages/edit.html.haml:27
-msgid "Add label"
-msgstr ""
-
-#: app/views/pages/show.html.haml:9
-msgid "LabelIndices"
+#: app/views/pages/edit.html.haml:12
+msgid "Update"
 msgstr ""
 
 #: app/views/sessions/new.html.haml:3
