@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
       if result.successful?
         # TODO クエリ最適化
         if account = Account.find_by_identity_url(identity_url)
-          logged_in_successful(account.user, session[:return_to] || "/")
+          logged_in_successful(account.user, session[:return_to] || root_path)
         else
           signup_with_openid(identity_url, sreg)
         end

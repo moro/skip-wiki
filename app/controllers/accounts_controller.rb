@@ -14,10 +14,10 @@ class AccountsController < ApplicationController
       reset_session
 
       self.current_user = @account.user
-      redirect_back_or_default('/')
-      flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
+      redirect_back_or_default(root_path)
+      flash[:notice] = _("Thanks for signing up!.")
     else
-      flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
+      flash[:error]  = _("We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above).")
       render :action => 'new'
     end
 
