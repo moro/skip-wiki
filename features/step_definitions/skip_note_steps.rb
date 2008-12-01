@@ -17,6 +17,10 @@ valid_attributes = {
   }.freeze
 }
 
+def name_options(key)
+  {:name => key.to_s, :display_name => key.to_s.humanize }
+end
+
 Given "デフォルトのカテゴリが登録されている" do
   Category.transaction do
     [
@@ -35,12 +39,17 @@ end
 
 
 Given(/^ノート"(.*)"が作成済みである/) do |note_name|
-  @note = @account.user.build_note(valid_attributes[:note].merge(:name=>note_name))
+  @note = @account.user.build_note(valid_attributes[:note].merge(name_options(note_name)))
   @note.save!
 end
 
 Given( /^そのノートにはページ"(.*)"が作成済みである$/)  do |page_name|
-  @page = @note.pages.create!(valid_attributes[:page].merge(:name=>page_name))
+  @page = @note.pages.create!(valid_attributes[:page].merge(name_options(page_name)))
+end
+
+Given( /^そのページの更新日時を"(\d+)"分進める$/ ) do |min|
+  t = Integer(min).minutes.since(@page.updated_at)
+  Page.update_all("updated_at = '#{t.to_s(:db)}'", ["id = ?", @page.id])
 end
 
 Given( /^ノート"(.*)"のページ"(.*)"を表示している$/) do |note, page|
