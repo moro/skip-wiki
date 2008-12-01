@@ -1,10 +1,10 @@
 #content
   - div_for(@page) do
-    %h1&= @page.display_name.blank? ? _("New Page") : @page.display_name
-    .tab= render :partial => 'pages/navi', :locals=> {:current_path => edit_note_page_path(current_note, @page)}
+    .user-bar= render :partial => 'pages/user_bar'
+    .tab= render :partial => 'pages/navi', :locals=> {:current_path => note_page_path(current_note, @page)}
 
-    - page_name = @page.name.blank? ? params[:id] : @page.name
-    - form_for(:page, :url=>note_page_path(current_note, page_name)) do |f|
+    %h1&= @page.display_name
+    - form_for(:page, :url=>note_page_path(current_note, @page.name)) do |f|
       = hidden_field_tag "_method", "PUT"
       %dl
         = render :partial => 'page_form', :locals =>{:form =>f }

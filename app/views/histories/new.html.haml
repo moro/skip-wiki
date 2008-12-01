@@ -3,8 +3,10 @@
 
 #content
   - div_for(@page) do
+    .user-bar= render :partial => 'pages/user_bar'
+    .tab= render :partial => 'pages/navi', :locals=> {:current_path => note_page_path(current_note, @page)}
+
     %h1&= @page.display_name
-    .tab= render :partial => 'pages/navi', :locals=> {:current_path => new_note_page_history_path(current_note, @page)}
 
     #linkPalette
       %span.trigger= _("Show link palette")
