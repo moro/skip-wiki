@@ -6,7 +6,7 @@ our_note_page_1:
   last_modied_user_id: 1
   name: our_note_page_1
   display_name: MyString
-  format_type: MyString
+  format_type: html
   published_at: 2008-10-17 13:38:45
   deleted_at: 2008-10-17 13:38:45
   lock_version: 1
@@ -17,7 +17,7 @@ our_note_page_2:
   last_modied_user_id: 1
   name: our_note_page_2
   display_name: MyString
-  format_type: MyString
+  format_type: html
   published_at: 2008-10-17 13:38:45
   deleted_at: 2008-10-17 13:38:45
   lock_version: 1

@@ -2,6 +2,9 @@ class History < ActiveRecord::Base
   belongs_to :versionable, :polymorphic=>true
   belongs_to :content
   belongs_to :user
+
+  after_save :update_page_updated_at
+
   validates_associated :content
 
   def self.find_all_by_head_content(keyword, only_head = true)
@@ -26,4 +29,9 @@ WHERE
 SQL
   end
 
+  private
+  def update_page_updated_at
+    versionable.update_attributes(:updated_at => Time.now.utc)
+  end
 end
+

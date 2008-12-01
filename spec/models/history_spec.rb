@@ -1,10 +1,10 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe History do
+  fixtures :pages
   before(:each) do
     @valid_attributes = {
-      :versionable_id => "1",
-      :versionable_type => "value for versionable_type",
+      :versionable => pages(:our_note_page_1),
       :user_id => "1",
       :revision => "1",
       :content_id => "1"
@@ -15,9 +15,15 @@ describe History do
     History.create!(@valid_attributes)
   end
 
+  it "pageのtimestampを更新すること" do
+    @page = pages(:our_note_page_1)
+    @page.save!
+    Time.should_receive(:now).at_least(:once).and_return(mock_t = Time.local(2007,12,31, 00, 00, 00))
+    History.create!(@valid_attributes)
+    @page.reload.updated_at.should == mock_t
+  end
+
   describe ".find_all_by_head_content" do
-    def current_page; @current_page ||= mock_model(Page) end
-    def current_user; @current_user ||= mock_model(User) end
 
     def create_history_with_content(page, content)
       History.create(:content => Content.new(:data => content),
@@ -27,7 +33,7 @@ describe History do
     end
 
     before do
-      @page = mock_model(Page)
+      @page = pages(:our_note_page_1)
       @history = create_history_with_content(@page, "hoge hoge hoge")
     end
 
