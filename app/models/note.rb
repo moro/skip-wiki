@@ -26,16 +26,7 @@ class Note < ActiveRecord::Base
   end
   has_many :pages do
     def add(attrs, user)
-      edit_page_content(build, attrs, user)
-    end
-
-    def update(query_name, attrs, user)
-      edit_page_content(find(query_name), attrs, user)
-    end
-
-    private
-    def edit_page_content(page, attrs, user)
-      returning(page) do
+      returning(build) do |page|
         page.edit(attrs[:content], user)
         page.attributes = attrs.except(:content)
       end
