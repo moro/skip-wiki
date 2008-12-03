@@ -7,7 +7,7 @@ class Page < ActiveRecord::Base
   attr_writer :order_in_label
 
   belongs_to :note
-  has_many :histories, :as => :versionable, :order => "histories.revision DESC"
+  has_many :histories, :order => "histories.revision DESC"
   has_many :label_indexings
   has_one  :label_index, :through => :label_indexings
 

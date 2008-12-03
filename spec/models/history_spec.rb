@@ -4,7 +4,7 @@ describe History do
   fixtures :pages
   before(:each) do
     @valid_attributes = {
-      :versionable => pages(:our_note_page_1),
+      :page => pages(:our_note_page_1),
       :user_id => "1",
       :revision => "1",
       :content_id => "1"
@@ -27,7 +27,7 @@ describe History do
 
     def create_history_with_content(page, content)
       History.create(:content => Content.new(:data => content),
-                     :versionable => page,
+                     :page => page,
                      :user => mock_model(User),
                      :revision => History.count.succ)
     end

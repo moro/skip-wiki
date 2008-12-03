@@ -127,6 +127,7 @@ describe Page do
     describe "再編集した場合" do
       before do
         @page.save!
+        @page.reload
         @page.edit("edit to revision 2", mock_model(User))
         @page.save!
       end
@@ -173,7 +174,7 @@ describe Page do
     before do
       @page = Page.create!(@valid_attributes)
       History.create(:content => Content.new(:data => "the keyword"),
-                     :versionable => @page,
+                     :page => @page,
                      :user => mock_model(User),
                      :revision => History.count.succ)
     end
@@ -207,7 +208,8 @@ describe Page do
     describe "nth(n) で片方のupdated_atを新しくした場合" do
       before do
         @page = pages(:our_note_page_1)
-        @page.update_attribute(:updated_at, 5.days.since)
+        t = 5.days.since( @page.updated_at )
+        Page.update_all("updated_at = '#{t.to_s(:db)}'", ["id = ?", @page.id])
       end
 
       it "nth(1)で更新されたページがとれること" do

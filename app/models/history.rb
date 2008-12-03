@@ -1,5 +1,5 @@
 class History < ActiveRecord::Base
-  belongs_to :versionable, :polymorphic=>true
+  belongs_to :page
   belongs_to :content
   belongs_to :user
 
@@ -17,12 +17,12 @@ FROM
     ON hs.content_id = c.id
   INNER JOIN (
       SELECT
-        h.versionable_id AS versionable_id,
+        h.page_id AS page_id,
         MAX(h.revision) AS revision
       FROM histories AS h
-      GROUP BY h.versionable_id, h.versionable_type
+      GROUP BY h.page_id
   ) AS heads
-    ON hs.versionable_id = heads.versionable_id
+    ON hs.page_id = heads.page_id
     AND hs.revision = heads.revision
 WHERE
   c.data LIKE :keyword
@@ -31,7 +31,7 @@ SQL
 
   private
   def update_page_updated_at
-    versionable.update_attributes(:updated_at => Time.now.utc)
+    page.update_attributes(:updated_at => Time.now.utc)
   end
 end
 
