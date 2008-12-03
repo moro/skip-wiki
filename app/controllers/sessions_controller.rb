@@ -8,11 +8,7 @@ class SessionsController < ApplicationController
 
   def create
     logout_keeping_session!
-    if using_open_id?
-      login_with_openid(params[:openid_url])
-    else
-      login_with_password(params[:login], params[:password])
-    end
+    login_with_openid(params[:openid_url])
   end
 
   def destroy
@@ -41,16 +37,9 @@ class SessionsController < ApplicationController
         login_failed(params.merge(:openid_url=>identity_url))
       end
     end
-  rescue StandardError
+  rescue StandardError => ex
+    logger.debug(ex)
     login_failed(params.merge(:openid_url=>openid_url))
-  end
-
-  def login_with_password(login, password)
-    if account = Account.authenticate(login, password)
-      logged_in_successful(account.user)
-    else
-      login_failed
-    end
   end
 
   def logged_in_successful(user, redirect=root_path)
@@ -78,3 +67,4 @@ class SessionsController < ApplicationController
     render :template=>"accounts/new"
   end
 end
+

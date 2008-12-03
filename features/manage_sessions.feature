@@ -4,8 +4,8 @@
   シナリオ: サインアップ
     前提 I log in with OpenId "http://nimloth.local:3333/user/moro"
 
-    もし I fill in "account[login]" with "moro"
-    かつ I fill in "account[email]" with "moro@example.com"
+    もし I fill in "Login" with "moro"
+    かつ I fill in "Email" with "moro@example.com"
     かつ I press "Sign up"
 
     ならば I should see "Thanks for signing up!"
