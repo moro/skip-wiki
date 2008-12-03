@@ -32,20 +32,10 @@ describe PagesController do
 
   describe "GET /notes/hoge/pages/not_exists" do
     fixtures  :pages
-    before do
-      get :show, :note_id=>@current_note.name, :id=>"not_exist"
-    end
-
-    it "statusは404であること" do
-      response.code.should == "404"
-    end
-
-    it "editテンプレートをrenderしていること" do
-      response.should render_template("edit")
-    end
-
-    it "@pageは未保存であること" do
-      assigns(:page).should be_new_record
+    it "ActiveRecord::RecordNotFound例外が起こること" do
+      lambda{
+        get :show, :note_id=>@current_note.name, :id=>"not_exist"
+      }.should raise_error(ActiveRecord::RecordNotFound)
     end
   end
 

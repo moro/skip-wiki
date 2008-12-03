@@ -57,20 +57,6 @@ describe Account do
     end
   end
 
-  it 'requires password' do
-    lambda do
-      u = create_account(:password => nil)
-      u.errors.on(:password).should_not be_nil
-    end.should_not change(Account, :count)
-  end
-
-  it 'requires password confirmation' do
-    lambda do
-      u = create_account(:password_confirmation => nil)
-      u.errors.on(:password_confirmation).should_not be_nil
-    end.should_not change(Account, :count)
-  end
-
   it 'requires email' do
     lambda do
       u = create_account(:email => nil)
@@ -133,48 +119,6 @@ describe Account do
     end
   end
 
-  it 'resets password' do
-    accounts(:quentin).update_attributes(:password => 'new password', :password_confirmation => 'new password')
-    Account.authenticate('quentin', 'new password').should == accounts(:quentin)
-  end
-
-  it 'does not rehash password' do
-    accounts(:quentin).update_attributes(:login => 'quentin2')
-    Account.authenticate('quentin2', 'monkey').should == accounts(:quentin)
-  end
-
-  #
-  # Authentication
-  #
-
-  it 'authenticates account' do
-    Account.authenticate('quentin', 'monkey').should == accounts(:quentin)
-  end
-
-  it "doesn't authenticate account with bad password" do
-    Account.authenticate('quentin', 'invalid_password').should be_nil
-  end
-
- if REST_AUTH_SITE_KEY.blank?
-   # old-school passwords
-   it "authenticates a user against a hard-coded old-style password" do
-     Account.authenticate('old_password_holder', 'test').should == accounts(:old_password_holder)
-   end
- else
-   it "doesn't authenticate a user against a hard-coded old-style password" do
-     Account.authenticate('old_password_holder', 'test').should be_nil
-   end
-
-   # New installs should bump this up and set REST_AUTH_DIGEST_STRETCHES to give a 10ms encrypt time or so
-   desired_encryption_expensiveness_ms = 0.1
-   it "takes longer than #{desired_encryption_expensiveness_ms}ms to encrypt a password" do
-     test_reps = 100
-     start_time = Time.now; test_reps.times{ Account.authenticate('quentin', 'monkey'+rand.to_s) }; end_time   = Time.now
-     auth_time_ms = 1000 * (end_time - start_time)/test_reps
-     auth_time_ms.should > desired_encryption_expensiveness_ms
-   end
- end
-
   #
   # Authentication
   #
@@ -220,7 +164,7 @@ describe Account do
 
 protected
   def create_account(options = {})
-    record = Account.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire69', :password_confirmation => 'quire69' }.merge(options))
+    record = Account.new({ :login => 'quire', :email => 'quire@example.com'}.merge(options))
     record.save
     record
   end
