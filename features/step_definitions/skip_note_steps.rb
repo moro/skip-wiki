@@ -21,8 +21,9 @@ def name_options(key)
   {:name => key.to_s, :display_name => key.to_s.humanize }
 end
 
-Given "デフォルトのカテゴリが登録されている" do
+def prepare_default_category
   Category.transaction do
+    Category.delete_all
     [
       %w[OFFICE オフィス  社内の公式資料の置き場所として利用する場合に選択してください。],
       %w[BIZ    ビジネス  プロジェクト内など、業務で利用する場合に選択してください。],
@@ -37,6 +38,9 @@ Given "デフォルトのカテゴリが登録されている" do
   end
 end
 
+Before do
+  prepare_default_category
+end
 
 Given(/^ノート"(.*)"が作成済みである/) do |note_name|
   @note = @account.user.build_note(valid_attributes[:note].merge(name_options(note_name)))

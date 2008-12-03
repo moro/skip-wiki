@@ -3,7 +3,6 @@
 
   シナリオ: ページ作成
     前提   言語は"ja-JP"
-    かつ   デフォルトのカテゴリが登録されている
     かつ   ユーザ"alice"を登録する
     かつ   ユーザのIdentity URLを"http://nimloth.local:3333/user/alice"として登録する
     かつ   OpenId "http://nimloth.local:3333/user/alice"でログインする
@@ -24,7 +23,6 @@
 
   シナリオ: ページ編集
     前提 言語は"ja-JP"
-    かつ デフォルトのカテゴリが登録されている
     かつ ユーザ"alice"を登録する
     かつ ユーザのIdentity URLを"http://nimloth.local:3333/user/alice"として登録する
     かつ OpenId "http://nimloth.local:3333/user/alice"でログインする

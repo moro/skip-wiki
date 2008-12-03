@@ -3,7 +3,6 @@
 
   シナリオ: ラベルなしページを表示し、1つ進める
     前提 言語は"ja-JP"
-    かつ デフォルトのカテゴリが登録されている
     かつ ユーザ"alice"を登録する
     かつ ユーザのIdentity URLを"http://nimloth.local:3333/user/alice"として登録する
     かつ OpenId "http://nimloth.local:3333/user/alice"でログインする
