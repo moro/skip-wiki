@@ -1,6 +1,9 @@
 doc
 log
 tmp
+coverage
+pkg
+test
 db/schema.rb
 db/*.sqlite3
 db/*_structure.sql

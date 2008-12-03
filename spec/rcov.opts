@@ -1,2 +1,3 @@
---exclude "spec/*,gems/*" 
 --rails
+--exclude "spec/*,gems/*,vendor/*,features/*"
+--aggregate coverage/aggregate.rcov

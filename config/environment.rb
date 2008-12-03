@@ -28,6 +28,7 @@ Rails::Initializer.run do |config|
   config.gem 'gettext',  :lib => 'gettext/rails', :version => '1.93.0'
   config.gem 'diff-lcs', :lib => 'diff/lcs'
   config.gem 'haml'
+  config.gem 'cucumber' if Rails.env == "test"
 
   # Only load the plugins named here, in the order given. By default, all plugins
   # in vendor/plugins are loaded in alphabetical order.
@@ -42,7 +43,7 @@ Rails::Initializer.run do |config|
     attachment_fu
   ]
   config.plugins += %w[rails-footnotes] if Rails.env == "development"
-  config.plugins += %w[cucumber webrat] if Rails.env == "test"
+  config.plugins += %w[webrat] if Rails.env == "test"
 
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
