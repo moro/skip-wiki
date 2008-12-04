@@ -94,7 +94,7 @@
         alert("No need to save");
         return false;
       }
-      var content = api().GetHTML(true);
+      var content = api().GetData(true);
 
       jQuery.ajax({ type: method,
                     url:  form.attr("action"),
@@ -132,54 +132,47 @@
       });
     }
 
-    function insertImage(label, src){
+    function insertImage(label, src, filename){
       if(src){
-        return jQuery("<span>").text(config["insert_image_label"]).click(function(){
-          insertToEditor(jQuery("<img>").attr("src", src).attr("alt", label));
-        });
+        var img = jQuery("<img />").attr("src", src).attr("alt", label);
+        return img.clone().attr("width", 80).attr("height", 60).
+                 click(function(){ insertToEditor(img); });
       }else{
-        return jQuery("<span>").text("---");
+        return jQuery("<span>").text(filename);
       }
     }
 
     function attachmentToTableRow(data){
       var tr = jQuery("<tr>");
-      if(data["inline"]){
-        tr.append("<td><img height='60' width='80' src='" + data["inline"] + "' /></td>");
-      }else{
-        tr.append("<td><span>"+ data["filename"] + "</td>");
-      }
-      tr.append(jQuery("<td>").text(data["display_name"])).
-         append(jQuery("<td>").append(insertLink(data["display_name"], data["path"]))).
-         append(jQuery("<td>").append(insertImage(data["display_name"], data["inline"]))) ;
+      tr.append(jQuery("<td>").append(insertImage(data["display_name"], data["inline"], data["filename"]))).
+         append(jQuery("<td>").text(data["display_name"])).
+         append(jQuery("<td>").append(insertLink(data["display_name"], data["path"])));
 
       return tr;
     }
 
-    function loadAttachments(pallete, url){
+    function loadAttachments(palette, url){
       if(!url) return;
       jQuery.getJSON(url, function(data,stat){
-        var table = jQuery("<table>");
+        var tbody = jQuery("<tbody>");
         jQuery.each(data, function(_num_, atmt){
-          table.append(attachmentToTableRow(atmt["attachment"]));
+          tbody.append(attachmentToTableRow(atmt["attachment"]));
         });
-        pallete.append(table);
+        palette.append(jQuery("<table>").append(tbody));
       });
     }
 
     function onLoad(){
-      root.empty().draggable().
-        css("z-index", 1).
-        css("position", "absolute").
-        css("background", "#bbbbff").
+      root.empty().attr("class", "enabled").draggable().
         append(
           jQuery("<div>").append(
-            jQuery("<h3>").text("Link Palette")).append(
-            jQuery("<span>").text("toggle").click(function(){ root.find("table").toggle() })
-          )
-        );
-      loadAttachments(root, config["note_attachments"]);
-      loadAttachments(root, config["page_attachments"]);
+            jQuery("<h3>").text("Link Palette").append(
+              jQuery("<span>").text("toggle").click(function(){ root.find(".palette").toggle() })
+            )).append(
+            jQuery("<div class='palette' />")
+          ));
+      loadAttachments(root.find(".palette"), config["note_attachments"]);
+      loadAttachments(root.find(".palette"), config["page_attachments"]);
     }
     root.find("span.trigger").one("click", onLoad);
   }
