@@ -12,9 +12,27 @@
     かつ   I should see "Your profile(moro)"
 
   シナリオ: ログイン
-    前提   ユーザ"alice"を登録する
+    前提   言語は"ja-JP"
+    かつ   ユーザ"alice"を登録する
     かつ   ユーザのIdentity URLを"http://nimloth.local:3333/user/alice"として登録する
     もし   OpenId "http://nimloth.local:3333/user/alice"でログインする
     ならば I should not see "Thanks for signing up!"
-    かつ   I should see "Your profile(alice)"
+
+    もし    再読み込みする
+    ならば  "プロフィール(aliceさん)"と表示されていること
+
+  シナリオ: ログアウト
+    前提シナリオ: ログイン
+    もし   "ログアウト"リンクをクリックする
+    かつ   "再読み込みする"
+    ならば "OpenIDでログインできます"と表示されていること
+    かつ   "プロフィール(aliceさん)"と表示されていないこと
+
+  シナリオ: ログイン失敗
+    前提   言語は"ja-JP"
+    もし   OpenId "http://nimloth.local:3333/user/alice"でログイン失敗する
+    かつ   "再読み込みする"
+
+    ならば "OpenIDでログインできます"と表示されていること
+    かつ   "プロフィール(aliceさん)"と表示されていないこと
 

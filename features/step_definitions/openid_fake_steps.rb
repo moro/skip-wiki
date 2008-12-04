@@ -1,10 +1,10 @@
 require 'net/http'
 
-open_id_step = Proc.new do |n|
+def authenticate_with_fake_open_id_server(ident_url, success = true)
   visits(login_path)
   doc = Nokogiri::HTML(response_body)
   f = doc.css("form").detect{|form| !form.css("input[name=openid_url]").empty? }
-  post(f["action"], :openid_url => n)
+  post(f["action"], :openid_url => ident_url)
 
   oid_auth = URI(response.headers["Location"])
   oid_authorized_query = nil
@@ -15,7 +15,7 @@ open_id_step = Proc.new do |n|
 
     auth_req = Net::HTTP::Post.new(auth_form["action"])
     auth_req["cookie"] = res["set-cookie"]
-    auth_req.body = "yes=yes"
+    auth_req.body = success ? "yes=yes" : "yes=no"
 
     auth_res = h.request(auth_req)
     oid_authorized_query = auth_res["location"]
@@ -24,6 +24,10 @@ open_id_step = Proc.new do |n|
   visits( URI(oid_authorized_query).request_uri )
 end
 
-Given(/\AI log in with OpenId "(.*)"$/, &open_id_step)
-Given(/\AOpenId "(.*)"でログインする$/, &open_id_step)
+success = lambda{|n| authenticate_with_fake_open_id_server(n) }
+failure = lambda{|n| authenticate_with_fake_open_id_server(n, false) }
+
+Given(/\AI log in with OpenId "(.*)"$/, &success)
+Given(/\AOpenId "(.*)"でログインする$/, &success)
+Given(/\AOpenId "(.*)"でログイン失敗する$/, &failure)
 
