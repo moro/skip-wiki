@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-11-27 16:42+0900\n"
+"POT-Creation-Date: 2008-12-04 15:31+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,6 +15,16 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: app/controllers/accounts_controller.rb:18
+msgid "Thanks for signing up!."
+msgstr ""
+
+#: app/controllers/accounts_controller.rb:20
+msgid ""
+"We couldn't set up that account, sorry.  Please try again, or contact an "
+"admin (link is above)."
+msgstr ""
 
 #: app/controllers/label_indices_controller.rb:79
 msgid "This is the last page in %{label}."
@@ -24,19 +34,15 @@ msgstr ""
 msgid "This is the first page in %{label}."
 msgstr ""
 
-#: app/controllers/pages_controller.rb:15
-msgid "Create new page '%{page}'."
-msgstr ""
-
-#: app/controllers/pages_controller.rb:40
+#: app/controllers/pages_controller.rb:26
 msgid "The page %{page} is successfully created"
 msgstr ""
 
-#: app/controllers/pages_controller.rb:73
+#: app/controllers/pages_controller.rb:59
 msgid "The page %{page} is successfully updated"
 msgstr ""
 
-#: app/controllers/sessions_controller.rb:72
+#: app/controllers/sessions_controller.rb:61
 msgid "Logged Failed"
 msgstr ""
 
@@ -50,6 +56,22 @@ msgstr ""
 
 #: app/helpers/histories_helper.rb:17
 msgid "PREV"
+msgstr ""
+
+#: app/helpers/label_indices_helper.rb:7
+#: app/helpers/label_indices_helper.rb:28 app/models/empty_label.rb:13
+#: app/views/pages/_labels.html.haml:17 app/views/pages/_labels.html.haml:23
+msgid "No Labels"
+msgstr ""
+
+#: app/helpers/label_indices_helper.rb:11 app/views/notes/_wizard.html.haml:14
+#: app/views/pages/_labels.html.haml:9 app/views/pages/_labels.html.haml:19
+msgid "Previous"
+msgstr ""
+
+#: app/helpers/label_indices_helper.rb:13 app/views/notes/_wizard.html.haml:15
+#: app/views/pages/_labels.html.haml:10 app/views/pages/_labels.html.haml:20
+msgid "Next"
 msgstr ""
 
 #: app/models/accessibility.rb:-
@@ -90,14 +112,6 @@ msgstr ""
 
 #: app/models/account.rb:- app/views/users/show.html.haml:15
 msgid "Account|Identity url"
-msgstr ""
-
-#: app/models/account.rb:-
-msgid "Account|Crypted password"
-msgstr ""
-
-#: app/models/account.rb:-
-msgid "Account|Salt"
 msgstr ""
 
 #: app/models/account.rb:-
@@ -216,11 +230,6 @@ msgstr ""
 msgid "Content|Updated at"
 msgstr ""
 
-#: app/models/empty_label.rb:13 app/views/pages/_labels.html.haml:17
-#: app/views/pages/_labels.html.haml:23
-msgid "No Labels"
-msgstr ""
-
 #: app/models/group.rb:-
 msgid "group"
 msgstr ""
@@ -254,11 +263,7 @@ msgid "history"
 msgstr ""
 
 #: app/models/history.rb:-
-msgid "History|Versionable"
-msgstr ""
-
-#: app/models/history.rb:-
-msgid "History|Versionable type"
+msgid "History|Page"
 msgstr ""
 
 #: app/models/history.rb:- app/views/histories/show.html.haml:12
@@ -277,12 +282,12 @@ msgstr ""
 msgid "History|Created at"
 msgstr ""
 
-#: app/models/history.rb:- app/views/histories/index.html.haml:13
+#: app/models/history.rb:- app/views/histories/index.html.haml:14
 #: app/views/histories/show.html.haml:15
 msgid "History|Updated at"
 msgstr ""
 
-#: app/models/history.rb:- app/views/histories/index.html.haml:11
+#: app/models/history.rb:- app/views/histories/index.html.haml:12
 msgid "History|Description"
 msgstr ""
 
@@ -524,7 +529,7 @@ msgstr ""
 msgid "user"
 msgstr ""
 
-#: app/models/user.rb:- app/views/histories/index.html.haml:12
+#: app/models/user.rb:- app/views/histories/index.html.haml:13
 #: app/views/users/show.html.haml:6
 msgid "User|Name"
 msgstr ""
@@ -598,55 +603,59 @@ msgstr ""
 msgid "%{page}'s histories"
 msgstr ""
 
-#: app/views/histories/index.html.haml:14
+#: app/views/histories/index.html.haml:15
 msgid "diff to next"
 msgstr ""
 
-#: app/views/histories/index.html.haml:15
+#: app/views/histories/index.html.haml:16
 msgid "diff to prev"
 msgstr ""
 
-#: app/views/histories/index.html.haml:26
-msgid "Or diff from"
+#: app/views/histories/index.html.haml:20
+msgid "show r%{rev}"
 msgstr ""
 
 #: app/views/histories/index.html.haml:28
+msgid "Or diff from"
+msgstr ""
+
+#: app/views/histories/index.html.haml:30
 msgid "to"
 msgstr ""
 
-#: app/views/histories/new.html.haml:10 app/views/pages/new.html.haml:11
+#: app/views/histories/new.html.haml:12 app/views/pages/new.html.haml:11
 msgid "Show link palette"
 msgstr ""
 
-#: app/views/histories/new.html.haml:15 app/views/pages/new.html.haml:16
+#: app/views/histories/new.html.haml:17 app/views/pages/new.html.haml:16
 msgid "Page|Content"
 msgstr ""
 
-#: app/views/histories/new.html.haml:21
+#: app/views/histories/new.html.haml:23
 msgid "Preview"
 msgstr ""
 
-#: app/views/histories/new.html.haml:25
+#: app/views/histories/new.html.haml:27
 msgid "Hide"
 msgstr ""
 
-#: app/views/histories/new.html.haml:31
+#: app/views/histories/new.html.haml:33
 msgid "Modified, need to save."
 msgstr ""
 
-#: app/views/histories/new.html.haml:32
+#: app/views/histories/new.html.haml:34
 msgid "Save"
 msgstr ""
 
-#: app/views/histories/new.html.haml:33 app/views/pages/_navi.html.haml:2
+#: app/views/histories/new.html.haml:35 app/views/pages/_navi.html.haml:2
 msgid "show page"
 msgstr ""
 
-#: app/views/histories/new.html.haml:43 app/views/pages/new.html.haml:30
+#: app/views/histories/new.html.haml:45 app/views/pages/new.html.haml:30
 msgid "Insert Link"
 msgstr ""
 
-#: app/views/histories/new.html.haml:44 app/views/pages/new.html.haml:31
+#: app/views/histories/new.html.haml:46 app/views/pages/new.html.haml:31
 msgid "Insert Image"
 msgstr ""
 
@@ -667,11 +676,12 @@ msgstr ""
 msgid "Pages related to %{label}"
 msgstr ""
 
-#: app/views/layouts/notes.html.haml:17
+#: app/views/layouts/notes.html.haml:17 app/views/pages/_user_bar.html.haml:11
 msgid "Search pages in %{note}"
 msgstr ""
 
 #: app/views/layouts/notes.html.haml:19 app/views/notes/index.html.haml:15
+#: app/views/pages/_user_bar.html.haml:13
 #: app/views/shared/_common_body_header.html.haml:22
 msgid "Search"
 msgstr ""
@@ -719,16 +729,6 @@ msgstr ""
 
 #: app/views/notes/_navi.html.haml:5
 msgid "attach to note"
-msgstr ""
-
-#: app/views/notes/_wizard.html.haml:14 app/views/pages/_labels.html.haml:9
-#: app/views/pages/_labels.html.haml:19
-msgid "Previous"
-msgstr ""
-
-#: app/views/notes/_wizard.html.haml:15 app/views/pages/_labels.html.haml:10
-#: app/views/pages/_labels.html.haml:20
-msgid "Next"
 msgstr ""
 
 #: app/views/notes/edit.html.haml:2
@@ -910,12 +910,16 @@ msgstr ""
 msgid "History"
 msgstr ""
 
-#: app/views/pages/edit.html.haml:3 app/views/pages/new.html.haml:6
-msgid "New Page"
+#: app/views/pages/_user_bar.html.haml:6
+msgid "Move to Label"
 msgstr ""
 
 #: app/views/pages/edit.html.haml:12
 msgid "Update"
+msgstr ""
+
+#: app/views/pages/new.html.haml:6
+msgid "New Page"
 msgstr ""
 
 #: app/views/sessions/new.html.haml:3
