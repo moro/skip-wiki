@@ -10,8 +10,18 @@ When /^"(.*)"ボタンをクリックする$/ do |button|
   visit request.request_uri
 end
 
-When /^"(.*)"リンクをクリックする$/ do |link|
+When(/^"([^"]*)"リンクをクリックする$/)do |link|
   clicks_link(link)
+end
+
+When /^"(.*)"中の"(.*)"リンクをクリックする$/ do |selector, link|
+  clicks_link_within(selector, link)
+end
+
+sel = %q|"([^"]*)"|
+When(/^テーブル#{sel}の"(\d+)"行目の#{sel}リンクをクリックする/) do |cls, nth, link|
+  selector = "table.#{cls} tbody tr:nth(#{nth})"
+  clicks_link_within(selector, link)
 end
 
 When /再読み込みする/ do
