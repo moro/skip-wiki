@@ -31,10 +31,6 @@ class Account < ActiveRecord::Base
     write_attribute :email, (value ? value.downcase : nil)
   end
 
-  def password_required?
-    identity_url.blank? && super
-  end
-
   private
   def create_user
     User.create!(:name => name.blank? ? login : name,
