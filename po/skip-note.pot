@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-12-04 15:31+0900\n"
+"POT-Creation-Date: 2008-12-05 10:24+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -643,20 +643,32 @@ msgstr ""
 msgid "Modified, need to save."
 msgstr ""
 
-#: app/views/histories/new.html.haml:34
-msgid "Save"
+#: app/views/histories/new.html.haml:34 app/views/pages/edit.html.haml:12
+msgid "Update"
 msgstr ""
 
 #: app/views/histories/new.html.haml:35 app/views/pages/_navi.html.haml:2
 msgid "show page"
 msgstr ""
 
-#: app/views/histories/new.html.haml:45 app/views/pages/new.html.haml:30
+#: app/views/histories/new.html.haml:48
+msgid "Link Palette"
+msgstr ""
+
+#: app/views/histories/new.html.haml:49
+msgid "toggle"
+msgstr ""
+
+#: app/views/histories/new.html.haml:50 app/views/pages/new.html.haml:30
 msgid "Insert Link"
 msgstr ""
 
-#: app/views/histories/new.html.haml:46 app/views/pages/new.html.haml:31
-msgid "Insert Image"
+#: app/views/histories/new.html.haml:51 app/views/pages/_navi.html.haml:10
+msgid "note attachments"
+msgstr ""
+
+#: app/views/histories/new.html.haml:52 app/views/pages/_navi.html.haml:8
+msgid "page attachments"
 msgstr ""
 
 #: app/views/histories/show.html.haml:18
@@ -676,12 +688,12 @@ msgstr ""
 msgid "Pages related to %{label}"
 msgstr ""
 
-#: app/views/layouts/notes.html.haml:17 app/views/pages/_user_bar.html.haml:11
+#: app/views/layouts/notes.html.haml:17 app/views/pages/_user_bar.html.haml:4
 msgid "Search pages in %{note}"
 msgstr ""
 
 #: app/views/layouts/notes.html.haml:19 app/views/notes/index.html.haml:15
-#: app/views/pages/_user_bar.html.haml:13
+#: app/views/pages/_user_bar.html.haml:6
 #: app/views/shared/_common_body_header.html.haml:22
 msgid "Search"
 msgstr ""
@@ -882,14 +894,6 @@ msgstr ""
 msgid "page histories"
 msgstr ""
 
-#: app/views/pages/_navi.html.haml:8
-msgid "page attachments"
-msgstr ""
-
-#: app/views/pages/_navi.html.haml:10
-msgid "note attachments"
-msgstr ""
-
 #: app/views/pages/_page_form.html.haml:9
 msgid "Page|Label indices"
 msgstr ""
@@ -910,16 +914,20 @@ msgstr ""
 msgid "History"
 msgstr ""
 
-#: app/views/pages/_user_bar.html.haml:6
-msgid "Move to Label"
+#: app/views/pages/_pages.html.haml:23
+msgid "Show history"
 msgstr ""
 
-#: app/views/pages/edit.html.haml:12
-msgid "Update"
+#: app/views/pages/_user_bar.html.haml:9
+msgid "Move to Label"
 msgstr ""
 
 #: app/views/pages/new.html.haml:6
 msgid "New Page"
+msgstr ""
+
+#: app/views/pages/new.html.haml:31
+msgid "Insert Image"
 msgstr ""
 
 #: app/views/sessions/new.html.haml:3

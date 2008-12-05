@@ -42,7 +42,7 @@
 
     function activateFCKeditor(){
       if(!this.oFCKeditor){
-        this.oFCKeditor = new FCKeditor(root.attr("id"), "100%", "330", "Normal") ;
+        this.oFCKeditor = new FCKeditor(root.attr("id"), "100%", config["height"]||"330", "Normal") ;
         this.oFCKeditor.BasePath = config["basePath"];
         this.oFCKeditor.ReplaceTextarea() ;
         if(!config["submit_to_save"]){ addDynamicSave() };
@@ -121,13 +121,14 @@
 
   jQuery.fn.linkPalette = function(config){
     var root = jQuery(this);
+    var message = config["message"];
 
     function insertToEditor(elem){
       FCKeditorAPI.GetInstance(config["editor"]).InsertElement(elem.get(0));
     }
 
     function insertLink(label, href){
-      return jQuery("<span>").text(config["insert_link_label"]).click(function(){
+      return jQuery("<span>").text(message["insert_link_label"]).attr("class", "insertLink").click(function(){
         insertToEditor(jQuery("<a>").text(label).attr("href", href));
       });
     }
@@ -138,7 +139,7 @@
         return img.clone().attr("width", 80).attr("height", 60).
                  click(function(){ insertToEditor(img); });
       }else{
-        return jQuery("<span>").text(filename);
+        return jQuery("<span>").text(filename.substr(0,16));
       }
     }
 
@@ -151,14 +152,18 @@
       return tr;
     }
 
-    function loadAttachments(palette, url){
+    function loadAttachments(palette, url, label){
       if(!url) return;
       jQuery.getJSON(url, function(data,stat){
+        if(data.length == 0) return;
         var tbody = jQuery("<tbody>");
         jQuery.each(data, function(_num_, atmt){
           tbody.append(attachmentToTableRow(atmt["attachment"]));
         });
-        palette.append(jQuery("<table>").append(tbody));
+        palette.
+          append(jQuery("<table>").
+            append(jQuery("<caption>").text(label)).
+            append(tbody));
       });
     }
 
@@ -166,13 +171,13 @@
       root.empty().attr("class", "enabled").draggable().
         append(
           jQuery("<div>").append(
-            jQuery("<h3>").text("Link Palette").append(
-              jQuery("<span>").text("toggle").click(function(){ root.find(".palette").toggle() })
+            jQuery("<h3>").text(message["title"]).append(
+              jQuery("<span>").text(message["toggle"]).click(function(){ root.find(".palette").toggle() })
             )).append(
             jQuery("<div class='palette' />")
           ));
-      loadAttachments(root.find(".palette"), config["note_attachments"]);
-      loadAttachments(root.find(".palette"), config["page_attachments"]);
+      loadAttachments(root.find(".palette"), config["note_attachments"], message["note_attachments"]);
+      loadAttachments(root.find(".palette"), config["page_attachments"], message["page_attachments"]);
     }
     root.find("span.trigger").one("click", onLoad);
   }

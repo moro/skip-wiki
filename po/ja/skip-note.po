@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-12-04 15:31+0900\n"
+"POT-Creation-Date: 2008-12-05 10:24+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,7 +62,7 @@ msgstr "前"
 #: app/helpers/label_indices_helper.rb:28 app/models/empty_label.rb:13
 #: app/views/pages/_labels.html.haml:17 app/views/pages/_labels.html.haml:23
 msgid "No Labels"
-msgstr ""
+msgstr "ラベルなし"
 
 #: app/helpers/label_indices_helper.rb:11 app/views/notes/_wizard.html.haml:14
 #: app/views/pages/_labels.html.haml:9 app/views/pages/_labels.html.haml:19
@@ -643,24 +643,35 @@ msgstr "プレビューを隠す"
 
 #: app/views/histories/new.html.haml:33
 msgid "Modified, need to save."
-msgstr ""
+msgstr "未保存の編集があります。更新ボタンをおして保存してください。"
 
-#: app/views/histories/new.html.haml:34
-msgid "Save"
-msgstr ""
+#: app/views/histories/new.html.haml:34 app/views/pages/edit.html.haml:12
+msgid "Update"
+msgstr "更新"
 
 #: app/views/histories/new.html.haml:35 app/views/pages/_navi.html.haml:2
 msgid "show page"
 msgstr "ページを表示"
 
-#: app/views/histories/new.html.haml:45 app/views/pages/new.html.haml:30
-msgid "Insert Link"
-msgstr ""
+#: app/views/histories/new.html.haml:48
+msgid "Link Palette"
+msgstr "画像やリンクを挿入"
 
-#: app/views/histories/new.html.haml:46 app/views/pages/new.html.haml:31
-#, fuzzy
-msgid "Insert Image"
-msgstr "ページを追加"
+#: app/views/histories/new.html.haml:49
+msgid "toggle"
+msgstr "表示/非表示"
+
+#: app/views/histories/new.html.haml:50 app/views/pages/new.html.haml:30
+msgid "Insert Link"
+msgstr "リンクを挿入"
+
+#: app/views/histories/new.html.haml:51 app/views/pages/_navi.html.haml:10
+msgid "note attachments"
+msgstr "ノートの添付ファイル"
+
+#: app/views/histories/new.html.haml:52 app/views/pages/_navi.html.haml:8
+msgid "page attachments"
+msgstr "ページの添付ファイル"
 
 #: app/views/histories/show.html.haml:18
 msgid "Back to Hisotries"
@@ -679,12 +690,12 @@ msgstr "作成"
 msgid "Pages related to %{label}"
 msgstr "%{label}のついたページ一覧"
 
-#: app/views/layouts/notes.html.haml:17 app/views/pages/_user_bar.html.haml:11
+#: app/views/layouts/notes.html.haml:17 app/views/pages/_user_bar.html.haml:4
 msgid "Search pages in %{note}"
 msgstr "「%{note}」内のページを検索"
 
 #: app/views/layouts/notes.html.haml:19 app/views/notes/index.html.haml:15
-#: app/views/pages/_user_bar.html.haml:13
+#: app/views/pages/_user_bar.html.haml:6
 #: app/views/shared/_common_body_header.html.haml:22
 msgid "Search"
 msgstr "検索"
@@ -728,7 +739,7 @@ msgstr "ページ一覧"
 
 #: app/views/notes/_navi.html.haml:4 app/views/pages/_navi.html.haml:9
 msgid "show note"
-msgstr "ノートを表示"
+msgstr "ノート情報"
 
 #: app/views/notes/_navi.html.haml:5
 msgid "attach to note"
@@ -736,7 +747,7 @@ msgstr "ノートの添付ファイル"
 
 #: app/views/notes/edit.html.haml:2
 msgid "Editing Note"
-msgstr "ノートを編集"
+msgstr "ノートのプロパティ"
 
 #: app/views/notes/edit.html.haml:13 app/views/notes/new.html.haml:195
 msgid "Note|GroupBackendType"
@@ -875,23 +886,15 @@ msgstr "ラベル識別子"
 
 #: app/views/pages/_navi.html.haml:3
 msgid "edit page"
-msgstr "ページ情報を編集"
+msgstr "プロパティを編集"
 
 #: app/views/pages/_navi.html.haml:4
 msgid "edit content"
-msgstr "ページ内容を編集"
+msgstr "ページを編集"
 
 #: app/views/pages/_navi.html.haml:7
 msgid "page histories"
 msgstr "編集履歴"
-
-#: app/views/pages/_navi.html.haml:8
-msgid "page attachments"
-msgstr "ページの添付ファイル"
-
-#: app/views/pages/_navi.html.haml:10
-msgid "note attachments"
-msgstr "ノートの添付ファイル"
 
 #: app/views/pages/_page_form.html.haml:9
 msgid "Page|Label indices"
@@ -899,7 +902,7 @@ msgstr "ラベル識別子"
 
 #: app/views/pages/_page_form.html.haml:17
 msgid "Add label"
-msgstr ""
+msgstr "ラベルを追加"
 
 #: app/views/pages/_pages.html.haml:8
 msgid "Page|Revision"
@@ -913,17 +916,21 @@ msgstr "編集者"
 msgid "History"
 msgstr "履歴"
 
-#: app/views/pages/_user_bar.html.haml:6
-msgid "Move to Label"
-msgstr ""
+#: app/views/pages/_pages.html.haml:23
+msgid "Show history"
+msgstr "履歴を表示"
 
-#: app/views/pages/edit.html.haml:12
-msgid "Update"
-msgstr "更新"
+#: app/views/pages/_user_bar.html.haml:9
+msgid "Move to Label"
+msgstr "別のラベルに移動"
 
 #: app/views/pages/new.html.haml:6
 msgid "New Page"
 msgstr "新しいページを作る"
+
+#: app/views/pages/new.html.haml:31
+msgid "Insert Image"
+msgstr "画像を挿入"
 
 #: app/views/sessions/new.html.haml:3
 msgid "Welcome"
@@ -985,9 +992,6 @@ msgstr ""
 #: app/views/users/_side_menu.html.haml:7
 msgid "User|Notes"
 msgstr "ノート一覧"
-
-#~ msgid "Create new page '%{page}'."
-#~ msgstr "新しいページ「%{page}」の内容を入力してください。"
 
 #~ msgid "Fulltext Search"
 #~ msgstr "SKIPファミリを全文検索"

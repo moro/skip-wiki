@@ -202,6 +202,7 @@ div.tab
 
   ul.navi-tab
     :list-style none
+    :float right
 
     li
       :text-align center
@@ -291,14 +292,16 @@ div.page, div.history
       :width 80%
 
 .user-bar
-  :margin-left 20%
   ul
     :list-style none
+    :height 11px
+    :float right
+
     li.bar-item
       :font-size 10px
       :float left
       :margin 2px 10px
-      :border 1px solid gray
+      :border-bottom 1px solid gray
       :height 2em
 
     li.search-pages form
@@ -468,7 +471,7 @@ table.notes-index, table.pages-index
 #linkPalette.enabled
   :z-index 1
   :position absolute
-  :background #bbbbff
+  :background #ffffff
   :width 400px
   :border 2px solid #9999cc
 
@@ -479,4 +482,8 @@ table.notes-index, table.pages-index
   .palette
     :overflow auto
     :height 200px
+
+  span.insertLink
+    :font-size 10px
+    :color blue
 

@@ -1,4 +1,7 @@
 %ul
+  %li.bar-item.front-page
+    =link_to _("FrontPage"), note_page_path(current_note, "FrontPage")
+
   %li.bar-item.search-pages
     - form_tag(note_pages_path(current_note), :method=>:get) do
       %label{:for=>"pages_keyword"}&= _("Search pages in %{note}") % {:note => current_note.display_name}
