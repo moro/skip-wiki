@@ -35,29 +35,12 @@
       = submit_tag(_("Update"))
       = link_to(h(_("show page")), note_page_path(current_note, @page), :class=>"back")
 
-:ruby
-  editor_opt = {
-    :basePath => controller.request.relative_url_root + "/javascripts/fckeditor/",
-    :height => 450,
-    :initialState => @page.format_type
-  }
-
-  palette_opt = {
-    :editor => "history_content",
-    :note_attachments => note_attachments_path(current_note),
-    :page_attachments => note_page_attachments_path(current_note, @page),
-    :message => {:title => _("Link Palette"),
-                 :toggle=> _("toggle"),
-                 :insert_link_label => _("Insert Link"),
-                 :note_attachments => _("note attachments"),
-                 :page_attachments => _("page attachments") }
-  }
 
 :javascript
   $(document).ready(function(){
     // jQuery(".previewable").preview({"url":"#{preview_new_note_page_path(current_note.id)}"});
-    jQuery("#history_content").editor(#{editor_opt.to_json});
-    jQuery("#linkPalette").linkPalette(#{palette_opt.to_json})
+    jQuery("#history_content").editor(#{editor_opt(@page).to_json});
+    jQuery("#linkPalette").linkPalette(#{palette_opt(@page).to_json})
   });
 
   function FCKeditor_OnComplete( editorInstance ){

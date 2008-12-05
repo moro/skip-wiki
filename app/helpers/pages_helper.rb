@@ -33,4 +33,25 @@ module PagesHelper
 
     content_tag("li", content, :class => css)
   end
+
+  def editor_opt(page)
+    {
+      :basePath => controller.request.relative_url_root + "/javascripts/fckeditor/",
+      :height => 450,
+      :initialState => page.format_type
+    }
+  end
+
+  def palette_opt(page)
+    {
+      :editor => "history_content",
+      :note_attachments => note_attachments_path(current_note),
+      :page_attachments => note_page_attachments_path(current_note, page),
+      :message => {:title => _("Link Palette"),
+                   :toggle=> _("toggle"),
+                   :insert_link_label => _("Insert Link"),
+                   :note_attachments => _("note attachments"),
+                   :page_attachments => _("page attachments") }
+    }
+  end
 end
