@@ -12,17 +12,8 @@
       #side-menu
         = render :partial => "notes/menu", :locals=>{:note=>note}
 
-      #search-pages
-        - form_tag(note_pages_path(note), :method=>:get) do
-          %label{:for=>"pages_keyword"}&= _("Search pages in %{note}") % {:note => note.display_name}
-          = text_field_tag("keyword", params[:keyword], :id=>"pages_keyword")
-          = submit_tag _("Search")
-
       #content_for_layout= yield
       .clear
 
-    #system_contents= image_tag "skip/indicator.gif"
-
-    #footer
       = render :partial => 'shared/common_body_footer'
 

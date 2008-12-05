@@ -8,12 +8,13 @@
       = text_field_tag("keyword", params[:keyword], :id=>"pages_keyword")
       = submit_tag _("Search")
 
-  %li.bar-item.move-to-label
-    %span&= _("Move to Label")
-    = label_navigation(current_note, @page)
+  - if @page
+    %li.bar-item.move-to-label
+      %span&= _("Move to Label")
+      = label_navigation(current_note, @page)
 
-  %li.bar-item.navigate-in-label
-    = navigate_in_label(current_note, @page)
+    %li.bar-item.navigate-in-label
+      = navigate_in_label(current_note, @page)
 
   %li.bar_item
     #system_contents= image_tag "skip/indicator.gif"

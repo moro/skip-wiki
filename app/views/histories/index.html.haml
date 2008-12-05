@@ -1,8 +1,8 @@
 #content
   .history
-
-    %h1&= _("%{page}'s histories") % {:page=>@page.display_name}
+    .user-bar= render :partial => 'pages/user_bar'
     .tab= render :partial => 'pages/navi', :locals=> {:current_path => note_page_histories_path(current_note, @page)}
+    %h1&= _("%{page}'s histories") % {:page=>@page.display_name}
 
     // FIXME
     %table.histories

@@ -1,12 +1,13 @@
 #content
   - div_for(@note) do
-    %h1&= @note.display_name
-    %p.description&= @note.description
-
+    .user-bar= render :partial => 'pages/user_bar'
     .tab
       %ul.navi-tab
         - current_path = note_path(@note)
         =render(:partial => "navi", :locals=>{:note=>@note, :current_path=>current_path})
+
+    %h1&= @note.display_name
+    %p.description&= @note.description
 
     %ul
       %li= link_to(h(_"edit note"), edit_note_path(@note))
