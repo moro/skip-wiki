@@ -26,7 +26,7 @@
         - with_last_modified_page(@notes) do |note, page|
           %tr.item_line
             %td.updated_title
-              =link_to h(note.display_name), note_path(note.name)
+              =link_to h(note.display_name), note_page_path(note, "FrontPage")
             %td.description&= note.description
             %td.page
               - if page

@@ -5,7 +5,7 @@ module ApplicationHelper
     notes = user.accessible(Note)
     head = content_tag("option", _("Jump to Note"), :value=>"")
     notes.group_by(&:category_id).inject(head) do |out, (category_id, notes)|
-      options = notes.inject(""){|r,n| r << content_tag("option", n.display_name, :value=>note_url(n)) }
+      options = notes.inject(""){|r,n| r << content_tag("option", n.display_name, :value=>note_page_url(n, "FrontPage")) }
       out << content_tag("optgroup", options, :label => Category.find(category_id).display_name)
     end
   end
