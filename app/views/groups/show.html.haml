@@ -7,11 +7,12 @@
     %table.group-users
       - User.all.each do |user|
         - id_attr = dom_id(user, "memberships")
+        - prefix = "memberships[#{h(user.id)}]"
         %tr{:class=>cycle("odd","even")}
           %td
-            =check_box_tag "memberships[][enabled]", "1", @group.users.include?(user), :id=> id_attr
-            =hidden_field_tag "memberships[][user_id]", user.id
-            =hidden_field_tag "memberships[][group_id]", @group.id
+            =check_box_tag "#{prefix}[enabled]", "1", @group.users.include?(user), :id=> id_attr
+            =hidden_field_tag "#{prefix}[user_id]", user.id
+            =hidden_field_tag "#{prefix}[group_id]", @group.id
           %td
             %label{:for=>id_attr}&= user.name
           %td&= user.display_name

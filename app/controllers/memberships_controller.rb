@@ -9,11 +9,12 @@ class MembershipsController < ApplicationController
   #  OR raise error in find(params[:group_id])
   def create
     group = current_user.groups.find(params[:group_id])
-    valid_params = params[:memberships].select{|q| q[:enabled] && Integer(q[:group_id]) == group.id }
+    queries = params[:memberships].map{|_,q| q }
+    valid_params = queries.select{|q| q[:enabled] && Integer(q[:group_id]) == group.id }
     begin
       ActiveRecord::Base.transaction do
-        group.user_ids =
-          (valid_params.map{|q| Integer(q[:user_id]) } << current_user.id).uniq
+        ids = (valid_params.map{|q| Integer(q[:user_id]) } << current_user.id).uniq
+        group.user_ids = ids
       end
       redirect_to(group_path(group))
     rescue ActiveRecord::RecordNotSaved

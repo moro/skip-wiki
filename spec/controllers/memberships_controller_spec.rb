@@ -48,8 +48,8 @@ describe MembershipsController do
 
       @post_request = lambda do
         post :create, :group_id => @group.id,
-                      "memberships"=>[{:group_id=>@group.id, :user_id=>@user.id, :enabled=>"1"},
-                                      {:group_id=>@group.id, :user_id=>"4"}]
+                      "memberships"=>[[@user.id,{:group_id=>@group.id, :user_id=>@user.id, :enabled=>"1"}],
+                                      ["4",     {:group_id=>@group.id, :user_id=>"4"}]]
       end
     end
 
@@ -57,9 +57,9 @@ describe MembershipsController do
       other_user = users(:aaron)
       @group.should_receive(:user_ids=).with([other_user.id, @user.id])
       post :create, :group_id => @group.id,
-                    "memberships"=>[{:group_id=>@group.id, :user_id=>other_user.id, :enabled=>"1"},
-                                    {:group_id=>@group.id, :user_id=>@user.id},
-                                    {:group_id=>@group.id, :user_id=>"4"} ]
+                    "memberships"=>[[other_user.id, {:group_id=>@group.id, :user_id=>other_user.id, :enabled=>"1"}],
+                                    [@user.id,      {:group_id=>@group.id, :user_id=>@user.id}],
+                                    ["4" ,          {:group_id=>@group.id, :user_id=>"4"} ]]
     end
 
     it do
