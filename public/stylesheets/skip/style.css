@@ -156,6 +156,8 @@ div.errorExplanation {
 div.errorExplanation h2 {
   border-bottom: 1px solid red;
   background-color: pink;
+  margin: 0;
+  padding: 1px;
 }
 div.errorExplanation p {
   margin: 5px 0px 1px 0px;

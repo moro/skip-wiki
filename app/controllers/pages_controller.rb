@@ -27,9 +27,9 @@ class PagesController < ApplicationController
       respond_to do |format|
         format.html{ redirect_to note_page_path(@note, @page) }
       end
-    rescue ActiveRecord::RecordNotSaved
+    rescue ActiveRecord::RecordNotSaved, ActiveRecord::RecordInvalid
       respond_to do |format|
-        format.html{ render :action => "edit", :status => :unprocessable_entity }
+        format.html{ render :action => "new", :status => :unprocessable_entity }
       end
     end
   end
