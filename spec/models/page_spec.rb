@@ -6,6 +6,7 @@ describe Page do
       Page.new.format_type.should == 'html'
     end
   end
+
   before(:each) do
     @valid_attributes = {
       :note_id => "1",
@@ -190,6 +191,21 @@ describe Page do
     end
     it { @page.should be_new_record }
     it { @page.format_type.should == "html" }
+
+    describe "は削除や識別子の変更ができないこと" do
+      before do
+        @page.save!
+      end
+
+      it "識別子(name)を変更するとupdateできないこと" do
+        @page.name = "notFrontPage"
+        @page.should_not be_valid
+      end
+
+      it "FrontPageは削除できないこと" do
+        lambda{ @page.destroy }.should_not change(Page, :count)
+      end
+    end
   end
 
   describe ".no_labels" do

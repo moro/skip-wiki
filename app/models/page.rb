@@ -1,5 +1,6 @@
 class Page < ActiveRecord::Base
   CRLF = /\r?\n/
+  FRONTPAGE_NAME = "FrontPage"
 
   has_friendly_id :name
   attr_reader :new_history
@@ -16,6 +17,9 @@ class Page < ActiveRecord::Base
   validates_associated :new_history, :if => :new_history
   validates_presence_of  :name, :published_at
   validates_inclusion_of :format_type, :in => %w[hiki html]
+
+  validate_on_update :frontpage_cant_rename
+  before_destroy :frontpage_cant_destroy
 
   named_scope :recent, proc{|*args|
     {
@@ -75,7 +79,7 @@ SQL
 
   def self.front_page(attrs = {})
     attrs = {
-      :name => "FrontPage",
+      :name => FRONTPAGE_NAME,
       :display_name => _("FrontPage"),
       :format_type => "html",
       :published_at => Time.now,
@@ -151,5 +155,16 @@ SQL
     if label_index_id
       self.label_index = note.label_indices.find(label_index_id)
     end
+  end
+
+  def frontpage_cant_rename
+    if name_changed? && name_was == FRONTPAGE_NAME
+      errors.add :name, _("the name `%{n}' is reserved") % {:n => FRONTPAGE_NAME}
+      return false
+    end
+  end
+
+  def frontpage_cant_destroy
+    !(name_was == FRONTPAGE_NAME || name == FRONTPAGE_NAME)
   end
 end
