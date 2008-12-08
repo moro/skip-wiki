@@ -10,14 +10,12 @@ span.tooltip_box a:hover {
 }
 div#main {
   position: relative;
-  padding: 5px;
   _width: 100%;
 
 }
 div#content_for_layout {
   position: relative;
   background-color: white;
-  border:1px solid #ccc;
   padding-bottom:3px;
   overflow-y: visible;
   overflow: hidden;

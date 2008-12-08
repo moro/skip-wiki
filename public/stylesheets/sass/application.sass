@@ -78,6 +78,10 @@
   .memberships
     :margin-left = !content_margin
 
+#footer
+  :text-align center
+  :width 100%
+
 .typed-group
   :font-size 1.2em
   :margin-bottom 1em
@@ -253,18 +257,16 @@ div.tab
 div.note
   :position relative
 
+div.app-layout
+  :margin-left 5%
+
 div.page, div.history
   :position relative
-  :width 94%
-  :margin auto 3%
 
   div.rendered
-    :width 94%
     :font-size 13px
-    :border 1px solid gray
-    :float left
+    :width 100%
     :padding-bottom 1em
-    :margin auto 3% auto 3%
 
     *
       :margin auto auto
@@ -284,10 +286,18 @@ div.page, div.history
   form
     :padding-bottom 1em
     :font-size 13px
+    :margin auto 1%
     :padding-bottom 1em
 
     dd.content
       :width 100%
+    dt
+      :font-size 1.3em
+      :font-weight bold
+      :margin 10px auto
+    dd
+      :margin-left 10px
+      :width 80%
 
   div.page-label-indices
     :position absolute
@@ -296,15 +306,6 @@ div.page, div.history
     h2
       :font-size 1.5em
       :margin-bottom 1em
-
-  form
-    dt
-      :font-size 1.3em
-      :font-weight bold
-      :margin 10px auto
-    dd
-      :margin-left 10px
-      :width 80%
 
 .user-bar
   ul
