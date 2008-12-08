@@ -199,42 +199,46 @@ ul.label-indices
 
 div.tab
   :height 2.5em
-  :width 100%
 
   ul.navi-tab
     :list-style none
     :float right
 
     li
-      :text-align center
       :float left
-      :font-size 10px
-      :height 1.5em
-      :padding 1px 1em
-      :margin 1px
 
-    li.page
-      :border 1px solid #0080FF
+      ul
+        :list-style none
+        :padding 0 5px
 
-      a
-        :color #0080FF
+        li
+          :text-align center
+          :float left
+          :font-size 10px
+          :height 1.5em
+          :padding 1px 1em
+          :margin 1px
 
-    li.page.current
-      :background #99DDFF
+        li.page
+          :border 1px solid #0080FF
 
-    li.note
-      :border 1px solid #00FF80
+          a
+            :color #0080FF
 
-      a
-        :color #00FF80
+        li.page.current
+          :background #99DDFF
 
-    li.note.current
-      :background #99FFC0
+        li.note
+          :border 1px solid #00FF80
 
-    li.current a
-      :color black
+          a
+            :color #00FF80
 
+        li.note.current
+          :background #99FFC0
 
+        li.current a
+          :color black
 
 div.note
   :position relative
