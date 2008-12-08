@@ -7,7 +7,6 @@ end
 
 When /^"(.*)"ボタンをクリックする$/ do |button|
   clicks_button(button)
-  visit request.request_uri if response.redirect?
 end
 
 When(/^"([^"]*)"リンクをクリックする$/)do |link|

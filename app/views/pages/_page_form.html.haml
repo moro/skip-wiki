@@ -11,7 +11,7 @@
   %ul.label_indices
     - current_note.label_indices.each do |index|
       %li
-        = f.radio_button :label_index_id, index.id
+        = form.radio_button :label_index_id, index.id
         %label{:for=>"page_label_index_id_#{index.id}"}= labelize(index)
     %li
       = link_to(h(_("Add label")), note_label_indices_path(current_note))
