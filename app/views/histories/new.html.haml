@@ -5,7 +5,7 @@
   - div_for(@page) do
     - current_path = new_note_page_history_path(current_note, @page)
     .user-bar= render :partial => 'pages/user_bar'
-    .tab= render :partial => 'pages/navi', :locals=> {:current_path => current_path }
+    .tab= render :partial => 'shared/edit_navi', :locals=> {:current_path => current_path }
 
     %h1&= @page.display_name
 

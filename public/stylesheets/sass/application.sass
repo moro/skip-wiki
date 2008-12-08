@@ -218,27 +218,37 @@ div.tab
           :height 1.5em
           :padding 1px 1em
           :margin 1px
+          :border-width 1px
+          :border-style solid
 
-        li.page
-          :border 1px solid #0080FF
+    li.page-navi ul
+      li
+        :border-color #0080FF
+        a
+          :color #0080FF
 
-          a
-            :color #0080FF
+      li.current
+        :background #99DDFF
+        :color black
 
-        li.page.current
-          :background #99DDFF
+    li.pages-navi ul
+      li
+        :border-color #00A0A0
+        a
+          :color #00AAAA
 
-        li.note
-          :border 1px solid #00FF80
+      li.current
+        :background #9EE
+        :color black
 
-          a
-            :color #00FF80
-
-        li.note.current
-          :background #99FFC0
-
-        li.current a
-          :color black
+    li.note-navi ul
+      li
+        :border-color #00FF80
+        a
+          :color #008000
+      li.current
+        :background #99FFC0
+        :color black
 
 div.note
   :position relative

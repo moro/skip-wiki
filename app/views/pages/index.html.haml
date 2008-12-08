@@ -1,9 +1,8 @@
 #content
   - div_for(current_note) do
-    .tab
-      %ul.navi-tab
-        - current_path = note_pages_path(current_note)
-        =render(:partial => "notes/navi", :locals=>{:note => current_note, :current_path=>current_path})
+    .user-bar= render :partial => 'pages/user_bar'
+    - current_path = note_pages_path(current_note)
+    .tab= render :partial => 'shared/edit_navi', :locals=> {:current_path => note_pages_path(current_note)}
 
     %h1&= current_note.display_name
     %p.description&= current_note.description

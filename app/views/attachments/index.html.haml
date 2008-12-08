@@ -1,13 +1,9 @@
 #content
   - div_for(current_target) do
     .user-bar= render :partial => 'pages/user_bar'
-    - if current_target.is_a?(Note)
-      .tab
-        %ul.navi-tab
-          =render(:partial => "notes/navi", :locals=>{:note=>current_note, :current_path=>target_attachments_path})
-    - else
+    - if current_target.is_a?(Page)
       - @page = current_target
-      .tab= render(:partial => "pages/navi", :locals=>{:note=>current_note, :current_path=>target_attachments_path})
+    .tab= render(:partial => "shared/edit_navi", :locals=>{:note=>current_note, :current_path=>target_attachments_path})
 
     %h1&= _("%{title}'s attachments") % {:title => current_target.display_name }
     .attachments
