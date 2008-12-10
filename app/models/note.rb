@@ -74,6 +74,13 @@ class Note < ActiveRecord::Base
     end
   end
 
+  def accessible?(user)
+    accessibilities.find(:first,
+      :joins => "JOIN memberships AS m ON m.group_id = accessibilities.group_id",
+      :conditions => ["m.user_id = ?", user.id]
+    )
+  end
+
   private
   def add_accessibility_to_owner_group
     accessibilities << Accessibility.new(:group=>owner_group)

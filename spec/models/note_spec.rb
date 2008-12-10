@@ -1,8 +1,9 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Note do
+  fixtures :users
   before(:each) do
-    @user = mock_model(User)
+    @user = users(:quentin)
     @group = mock_model(Group)
     @valid_attributes = {
       :name => "value for name",
@@ -46,7 +47,6 @@ describe Note do
   describe "pages.add(attrs, user)" do
     before(:each) do
       @note = Note.create(@valid_attributes)
-      @user = mock_model(User)
       @initialize_attrs = {
         :name=>"FrontPage",
         :display_name => "トップページ",
@@ -71,7 +71,6 @@ describe Note do
     before(:each) do
       Page.should_receive(:front_page_content).and_return("---FrontPage---")
       @note = Note.new(@valid_attributes)
-      @user = mock_model(User)
       @page = @note.build_front_page(@user)
       @note.save!
     end
@@ -88,6 +87,29 @@ describe Note do
     it "ページのcontentsは指定したものであること" do
       page = @note.reload.pages.first
       page.content.should == "---FrontPage---"
+    end
+  end
+
+  describe "accessible?" do
+    before(:each) do
+      @note = @user.build_note(
+        :name => "value for name",
+        :display_name => "value for display_name",
+        :description => "value for note description",
+        :publicity => Note::PUBLICITY_READABLE,
+        :category_id => "1",
+        :group_backend_type => "BuiltinGroup",
+        :group_backend_id => ""
+      )
+      @note.save!
+    end
+
+    it "グループのユーザはaccessibleであること" do
+      @note.should be_accessible(users(:quentin))
+    end
+
+    it "グループ外のユーザはaccessibleでないこと" do
+      @note.should_not be_accessible(users(:aaron))
     end
   end
 end
