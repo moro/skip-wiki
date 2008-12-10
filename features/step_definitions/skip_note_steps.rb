@@ -67,3 +67,11 @@ Given( /^ノート"(.*)"のページ"(.*)"を表示している$/) do |note, pag
   visit note_page_path(note, page)
 end
 
+Given( /^ノート"(.*)"のページ"(.*)"を表示すると"(.*)"エラーが発生すること$/) do |note, page, e|
+  begin
+    visit note_page_path(note, page)
+    flunk("No error raised.")
+  rescue StandardError => ex
+    ex.is_a? e.constantize
+  end
+end

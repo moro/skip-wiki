@@ -19,7 +19,13 @@ class ApplicationController < ActionController::Base
   # from your application log (in this case, all fields with names like "password").
   # filter_parameter_logging :password
 
+  rescue_from ActiveRecord::RecordNotFound, :with => :render_not_found
+
   private
+  def render_not_found
+    render :template => "shared/not_found", :status => :not_found, :layout => false
+  end
+
   def access_denied_with_open_id_sso
     if defined? SSO_OPENID_PROVIDER_URL
       store_location
