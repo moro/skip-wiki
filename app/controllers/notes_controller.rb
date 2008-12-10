@@ -1,5 +1,6 @@
 class NotesController < ApplicationController
   layout :select_layout
+  before_filter :explicit_user_required, :except => %w[index new create]
 
   # GET /notes
   # GET /notes.xml
@@ -20,7 +21,7 @@ class NotesController < ApplicationController
   # GET /notes/1
   # GET /notes/1.xml
   def show
-    @note = Note.find(params[:id])
+    @note = current_note(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -41,7 +42,7 @@ class NotesController < ApplicationController
 
   # GET /notes/1/edit
   def edit
-    @note = Note.find(params[:id])
+    @note = current_note(params[:id])
   end
 
   # POST /notes
@@ -95,6 +96,12 @@ class NotesController < ApplicationController
     case params[:action]
     when *%w[index new] then "application"
     else "notes"
+    end
+  end
+
+  def explicit_user_required
+    unless current_note(params[:id]).accessible?(current_user)
+      render_not_found
     end
   end
 end

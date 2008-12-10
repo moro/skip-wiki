@@ -4,6 +4,7 @@ describe NotesController do
   fixtures :users
   before do
     controller.stub!(:current_user).and_return(@user = users(:quentin))
+    controller.stub!(:explicit_user_required).and_return(true)
   end
 
   def mock_note(stubs={})
@@ -38,7 +39,7 @@ describe NotesController do
       get :show, :id => "37"
       assigns[:note].should equal(mock_note)
     end
-    
+
     describe "with mime type of xml" do
 
       it "should render the requested note as xml" do

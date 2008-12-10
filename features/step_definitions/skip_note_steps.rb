@@ -63,6 +63,10 @@ Given( /^そのページの更新日時を"(\d+)"分進める$/ ) do |min|
   Page.update_all("updated_at = '#{t.to_s(:db)}'", ["id = ?", @page.id])
 end
 
+Given( /^ノート"(.*)"の情報を表示している$/) do |note|
+  visit note_path(note)
+end
+
 Given( /^ノート"(.*)"のページ"(.*)"を表示している$/) do |note, page|
   visit note_page_path(note, page)
 end
@@ -75,3 +79,4 @@ Given( /^ノート"(.*)"のページ"(.*)"を表示すると"(.*)"エラーが�
     ex.is_a? e.constantize
   end
 end
+

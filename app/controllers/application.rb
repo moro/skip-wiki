@@ -42,11 +42,12 @@ class ApplicationController < ActionController::Base
   def current_note=(note)
     @__current_note = note
   end
-  def current_note
+  def current_note(id = params[:note_id])
     return nil if @__current_note == :none
     return @__current_note if @__current_note
 
     scope = logged_in? ? current_user.accessible(Note) : Note.public
-    @__current_note = @note || scope.find(params[:note_id]) || :none
+    @__current_note = @note || scope.find(id) || :none
+    current_note(id)
   end
 end
