@@ -1,11 +1,9 @@
 #content
-  %h1&= _("Editing Note")
+  .user-bar= render :partial => 'pages/user_bar'
+  .tab= render :partial => 'shared/edit_navi', :locals=> {:current_path => edit_note_path(@note)}
+
   - div_for(@note) do
-
-    .tab
-      %ul.navi-tab
-        =render(:partial => "navi", :locals=>{:note=>@note, :current_path=>edit_note_path(@note)})
-
+    %h1&= _("Editing Note")
     - form_for(@note) do |f|
       =f.error_messages
 
