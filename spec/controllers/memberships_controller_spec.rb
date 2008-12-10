@@ -78,8 +78,8 @@ describe MembershipsController do
         @group.should_receive(:user_ids=).and_raise(ActiveRecord::RecordNotSaved)
 
         post :create, :group_id => @group.id,
-                      "memberships"=>[{:group_id=>@group.id, :user_id=>"1", :enabled=>"1"},
-                                      {:group_id=>@group.id, :user_id=>"4"}]
+                      "memberships"=>[["1",{:group_id=>@group.id, :user_id=>"1", :enabled=>"1"}],
+                                      ["4",{:group_id=>@group.id, :user_id=>"4"}]]
       end
 
       it do

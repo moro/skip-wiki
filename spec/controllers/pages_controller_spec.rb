@@ -32,10 +32,9 @@ describe PagesController do
 
   describe "GET /notes/hoge/pages/not_exists" do
     fixtures  :pages
-    it "ActiveRecord::RecordNotFound例外が起こること" do
-      lambda{
-        get :show, :note_id=>@current_note.name, :id=>"not_exist"
-      }.should raise_error(ActiveRecord::RecordNotFound)
+    it "responseは404であること" do
+      get :show, :note_id=>@current_note.name, :id=>"not_exist"
+      response.code.should == "404"
     end
   end
 
@@ -53,9 +52,6 @@ describe PagesController do
     it "responseは/notes/our_note/pages/page_1へのリダイレクトであること" do
       response.should redirect_to(note_page_path(@current_note, assigns(:page)))
     end
-
-    it "editテンプレートをrenderしていること" do
-    end
   end
 
   describe "POST /notes/hoge/pages [FAILED]" do
@@ -69,8 +65,8 @@ describe PagesController do
       post :create, :note_id => @current_note.name, :page => page_param
     end
 
-    it "editテンプレートを表示すること" do
-      response.should render_template("edit")
+    it "newテンプレートを表示すること" do
+      response.should render_template("new")
     end
   end
 
