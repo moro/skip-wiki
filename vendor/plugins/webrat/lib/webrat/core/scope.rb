@@ -137,7 +137,11 @@ module Webrat
       end
         
       select date.year, :from => "#{id_prefix}_#{DATE_TIME_SUFFIXES[:year]}"
-      select date.strftime('%B'), :from => "#{id_prefix}_#{DATE_TIME_SUFFIXES[:month]}"
+      if options[:use_month_numbers]
+        select date.month, :from => "#{id_prefix}_#{DATE_TIME_SUFFIXES[:month]}"
+      else
+        select date.strftime('%B'), :from => "#{id_prefix}_#{DATE_TIME_SUFFIXES[:month]}"
+      end
       select date.day, :from => "#{id_prefix}_#{DATE_TIME_SUFFIXES[:day]}"
     end
 
