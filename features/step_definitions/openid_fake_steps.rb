@@ -1,8 +1,8 @@
 require 'net/http'
 
 def authenticate_with_fake_open_id_server(ident_url, success = true)
-  visits(login_path)
-  doc = Nokogiri::HTML(response_body)
+  visit(login_path)
+  doc = Nokogiri::HTML(response.body)
   f = doc.css("form").detect{|form| !form.css("input[name=openid_url]").empty? }
   post(f["action"], :openid_url => ident_url)
 
@@ -21,7 +21,7 @@ def authenticate_with_fake_open_id_server(ident_url, success = true)
     oid_authorized_query = auth_res["location"]
   end
 
-  visits( URI(oid_authorized_query).request_uri )
+  visit( URI(oid_authorized_query).request_uri )
 end
 
 success = lambda{|n| authenticate_with_fake_open_id_server(n) }

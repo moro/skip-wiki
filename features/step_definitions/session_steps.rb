@@ -1,13 +1,3 @@
-Given /I am logged in as \"(.*)"$/ do |n|
-  visits "/login" # create request
-  u = User.create!(:name => n)
-  session[:user_id] = u.id
-end
-
-Given /I am on the new session page/ do
-  visits "/"
-end
-
 Given /there are (\d+) sessions/ do |n|
   Session.transaction do
     Session.destroy_all
