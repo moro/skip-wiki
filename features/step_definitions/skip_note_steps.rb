@@ -76,7 +76,7 @@ Given( /^ノート"(.*)"のページ"(.*)"を表示すると"(.*)"エラーが�
     visit note_page_path(note, page)
     flunk("No error raised.")
   rescue StandardError => ex
-    ex.is_a? e.constantize
+    ex.should be_kind_of(e.constantize)
   end
 end
 
