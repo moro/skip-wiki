@@ -56,7 +56,7 @@
               =f.radio_button :category_id, c.id
               =f.label h("category_id_#{c.id}"), h(c.display_name)
       %p
-        = f.submit "Update"
+        = f.submit _("Update")
 
 = link_to 'Show', @note
 = link_to 'Back', notes_path

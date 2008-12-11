@@ -81,6 +81,10 @@ class Note < ActiveRecord::Base
     )
   end
 
+  def to_param
+    name_changed? ? name_was : name
+  end
+
   private
   def add_accessibility_to_owner_group
     accessibilities << Accessibility.new(:group=>owner_group)

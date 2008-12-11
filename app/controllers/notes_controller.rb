@@ -65,7 +65,7 @@ class NotesController < ApplicationController
   # PUT /notes/1
   # PUT /notes/1.xml
   def update
-    @note = current_user.accessible(Note).find(params[:id])
+    @note = current_note
 
     respond_to do |format|
       if @note.update_attributes(params[:note])

@@ -113,7 +113,7 @@ describe NotesController do
     describe "with valid params" do
 
       it "should update the requested note" do
-        Note.should_receive(:find).with("37").and_return(mock_note)
+        controller.should_receive(:current_note).and_return(mock_note)
         mock_note.should_receive(:update_attributes).with({'these' => 'params'})
         put :update, :id => "37", :note => {:these => 'params'}
       end
@@ -135,7 +135,7 @@ describe NotesController do
     describe "with invalid params" do
 
       it "should update the requested note" do
-        Note.should_receive(:find).with("37").and_return(mock_note)
+        controller.should_receive(:current_note).and_return(mock_note)
         mock_note.should_receive(:update_attributes).with({'these' => 'params'})
         put :update, :id => "37", :note => {:these => 'params'}
       end

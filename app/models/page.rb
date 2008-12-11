@@ -138,6 +138,10 @@ SQL
                                    :revision => revision.succ)
   end
 
+  def to_param
+    name_changed? ? name_was : name
+  end
+
   private
   def assign_default_pubulification
     self.published_at ||= Time.now

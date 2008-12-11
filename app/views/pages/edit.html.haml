@@ -4,7 +4,8 @@
 
   - div_for(@page, :class => "app-layout") do
     %h1&= @page.display_name
-    - form_for(:page, :url=>note_page_path(current_note, @page.name)) do |f|
+    - form_for(:page, :url=>note_page_path(current_note, @page)) do |f|
+      =f.error_messages
       = hidden_field_tag "_method", "PUT"
       %dl
         = render :partial => 'page_form', :locals =>{:form =>f }
