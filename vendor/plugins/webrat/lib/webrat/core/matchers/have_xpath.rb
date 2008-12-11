@@ -1,5 +1,5 @@
-require "webrat/core/nokogiri"
-require "webrat/core/rexml"
+require "webrat/core/xml/nokogiri"
+require "webrat/core/xml/rexml"
 
 module Webrat
   module Matchers
@@ -11,7 +11,7 @@ module Webrat
       end
     
       def matches?(stringlike)
-        if defined?(Nokogiri::XML)
+        if Webrat.configuration.parse_with_nokogiri?
           matches_nokogiri?(stringlike)
         else
           matches_rexml?(stringlike)
@@ -45,7 +45,7 @@ module Webrat
           @query = query
         end
         
-        @document = Webrat.nokogiri_document(stringlike)
+        @document = Webrat::XML.document(stringlike)
         matched = @document.xpath(*@query)
         matched.any? && (!@block || @block.call(matched))
       end
@@ -74,8 +74,6 @@ module Webrat
     #
     # ==== Returns
     # HaveXpath:: A new have xpath matcher.
-    # ---
-    # @api public
     def have_xpath(expected, &block)
       HaveXpath.new(expected, &block)
     end

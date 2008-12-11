@@ -1,5 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + "/../../spec_helper")
-require File.expand_path(File.dirname(__FILE__) + "/helper")
+
+require "webrat/merb"
 
 describe Webrat::Session do
   
@@ -23,7 +24,6 @@ describe Webrat::Session do
   end
 
   context "a session with a response" do
-    
     setup do
       @session = Webrat::MerbSession.new
       @response = OpenStruct.new

@@ -4,3 +4,9 @@ pkg
 doc
 ri
 email.txt
+.svn
+log
+.project
+.loadpath
+*.swp
+results

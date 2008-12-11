@@ -5,18 +5,22 @@ describe Webrat::Matchers do
   include Webrat::HaveTagMatcher
   
   before(:each) do
-    @body = <<-EOF
-    <div id='main'>
-      <div class='inner'>hello, world!</div>
-      <ul>
-        <li>First</li>
-        <li>Second</li>
-      </ul>
-    </div>
-    EOF
+    @body = <<-HTML
+      <div id='main'>
+        <div class='inner'>hello, world!</div>
+        <ul>
+          <li>First</li>
+          <li>Second</li>
+        </ul>
+      </div>
+    HTML
   end
   
   describe "#have_xpath" do
+    it "should work with non-HTML documents" do
+      xml = '<foo bar="baz"></foo>'
+      xml.should have_xpath('/foo[@bar="baz"]')
+    end
     
     it "should be able to match an XPATH" do
       @body.should have_xpath("//div")

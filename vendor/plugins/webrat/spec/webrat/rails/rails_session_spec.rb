@@ -1,12 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/helper')
 
 describe Webrat::RailsSession do
-  it "should require a Rails Integration session to be initialized" do
-    lambda {
-      Webrat::RailsSession.new
-    }.should raise_error
-  end
-      
   it "should delegate response_body to the session response body" do
     response = mock("response", :body => "<html>")
     integration_session = mock("integration session", :response => response)
@@ -57,10 +51,11 @@ describe Webrat::RailsSession do
   end
   
   context "the URL is https://" do
-    it "should call #https! with true before the request" do
-      integration_session = mock("integration session", :request_via_redirect => nil)
+    it "should call #https! with true before the request and just pass on the path" do
+      integration_session = mock("integration session")
       rails_session = Webrat::RailsSession.new(integration_session)
       integration_session.should_receive(:https!).with(true)
+      integration_session.should_receive(:request_via_redirect).with(:get, "/url", "data", "headers")
       rails_session.get("https://www.example.com/url", "data", "headers")
     end
   end
