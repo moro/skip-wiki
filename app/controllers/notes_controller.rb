@@ -21,7 +21,7 @@ class NotesController < ApplicationController
   # GET /notes/1
   # GET /notes/1.xml
   def show
-    @note = current_note(params[:id])
+    @note = current_note
 
     respond_to do |format|
       format.html # show.html.erb
@@ -42,7 +42,7 @@ class NotesController < ApplicationController
 
   # GET /notes/1/edit
   def edit
-    @note = current_note(params[:id])
+    @note = current_note
   end
 
   # POST /notes
@@ -100,7 +100,8 @@ class NotesController < ApplicationController
   end
 
   def explicit_user_required
-    unless current_note(params[:id]).accessible?(current_user)
+    self.current_note = current_user.accessible(Note).find(params[:id])
+    unless current_note.accessible?(current_user)
       render_not_found
     end
   end
