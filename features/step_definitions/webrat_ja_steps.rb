@@ -6,21 +6,21 @@ When /言語は"(.*)"/ do |lang|
 end
 
 When /^"(.*)"ボタンをクリックする$/ do |button|
-  clicks_button(button)
+  click_button(button)
 end
 
 When(/^"([^"]*)"リンクをクリックする$/)do |link|
-  clicks_link(link)
+  click_link(link)
 end
 
 When /^"(.*)"中の"(.*)"リンクをクリックする$/ do |selector, link|
-  clicks_link_within(selector, link)
+  click_link_within(selector, link)
 end
 
 sel = %q|"([^"]*)"|
 When(/^テーブル#{sel}の"(\d+)"行目の#{sel}リンクをクリックする/) do |cls, nth, link|
   selector = "table.#{cls} tbody tr:nth(#{nth})"
-  clicks_link_within(selector, link)
+  click_link_within(selector, link)
 end
 
 When /再読み込みする/ do
@@ -28,29 +28,29 @@ When /再読み込みする/ do
 end
 
 When /^"(.*)"に"(.*)"と入力する$/ do |field, value|
-  fills_in(field, :with => value)
+  fill_in(field, :with => value)
 end
 
 # opposite order from Engilsh one(original)
 When /^"(.*)"から"(.*)"を選択$/ do |field, value|
-  selects(value, :from => field)
+  select(value, :from => field)
 end
 
 When /^"(.*)"をチェックする$/ do |field|
-  checks(field)
+  check(field)
 end
 
 When /^"(.*)"のチェックを外す$/ do |field|
-  unchecks(field)
+  uncheck(field)
 end
 
 When /^"(.*)"を選択する$/ do |field|
-  chooses(field)
+  choose(field)
 end
 
 # opposite order from Engilsh one(original)
 When /^"(.*)"としてファイル"(.*)"を添付する$/ do |field, path|
-  attaches_file(field, path)
+  attach_file(field, path)
 end
 
 Then /^"(.*)"と表示されていること$/ do |text|
@@ -58,7 +58,7 @@ Then /^"(.*)"と表示されていること$/ do |text|
 end
 
 Then /^"(.*)"と表示されていないこと$/ do |text|
-  response.body.should_not =~ /#{text}/m
+  response.body.should_not =~ /#{Regexp.escape(text)}/m
 end
 
 Then /^"(.*)"がチェックされていること$/ do |label|
