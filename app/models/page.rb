@@ -28,6 +28,10 @@ class Page < ActiveRecord::Base
     }
   }
 
+  named_scope :published, proc{|*date|
+    {:conditions => ["#{quoted_table_name}.published_at < ?", date.shift || DateTime.now]}
+  }
+
   # TODO 採用が決まったら回帰テスト書く
   named_scope :last_modified_per_notes, proc{|note_ids|
 

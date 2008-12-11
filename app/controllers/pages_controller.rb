@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def index
-    pages = current_note.pages
+    pages = accessible_pages
     pages = pages.fulltext(params[:keyword]) unless params[:keyword].blank?
 
     @pages = pages.scoped(:order=>"pages.updated_at DESC").find(:all)
@@ -8,7 +8,7 @@ class PagesController < ApplicationController
 
   def show
     @note = current_note
-    @page = @note.pages.find(params[:id], :include=>:note)
+    @page = accessible_pages.find(params[:id], :include=>:note)
   end
 
   def new
@@ -45,14 +45,15 @@ class PagesController < ApplicationController
 
   def edit
     @note = current_note
-    @page = @note.pages.find(params[:id])
+    @page = accessible_pages.find(params[:id])
+    respond_to(:html)
   end
 
   def update
     @note = current_note
     begin
       ActiveRecord::Base.transaction do
-        @page = @note.pages.find(params[:id])
+        @page = accessible_pages.find(params[:id])
         @page.attributes = params[:page].except(:content)
         @page.save!
       end
@@ -65,5 +66,10 @@ class PagesController < ApplicationController
         format.html{ render :action => "edit", :status => :unprocessable_entity }
       end
     end
+  end
+
+  private
+  def accessible_pages(note = current_note, user = current_user)
+    note.accessible?(user) ? note.pages : note.pages.published
   end
 end

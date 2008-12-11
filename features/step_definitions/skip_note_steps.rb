@@ -80,3 +80,13 @@ Given( /^ノート"(.*)"のページ"(.*)"を表示すると"(.*)"エラーが�
   end
 end
 
+Given(/^"(.+)"を"(\d+)"日前に設定する/) do |label, n|
+  date = Integer(n).days.ago(Time.now)
+  select_datetime(date, :from => label, :use_month_numbers=>true)
+end
+
+Given(/^"(.+)"を"(\d+)"日後に設定する/) do |label, n|
+  date = Integer(n).days.since(Time.now)
+  select_datetime(date, :from => label, :use_month_numbers=>true)
+end
+

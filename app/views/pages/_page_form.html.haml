@@ -6,6 +6,9 @@
   = h(note_pages_url(current_note) + "/")
   = form.text_field :name, :size => 20
 
+%dt= form.label(:published_at, h(_("Page|Published at")))
+%dd= form.datetime_select :published_at, :use_month_numbers => true
+
 %dt= form.label(:label_indices, h(_("Page|Label indices")))
 %dd
   %ul.label_indices
