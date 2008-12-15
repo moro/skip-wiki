@@ -6,6 +6,9 @@ class RemoveNameColumnFromLabelIndex < ActiveRecord::Migration
     ActiveRecord::Base.transaction do
       Note.find(:all).each do |note|
         note.default_label || note.label_indices << LabelIndex.no_label
+        note.pages.each do |page|
+          page.label_index = note.default_label unless page.label_index_id
+        end
       end
     end
   end
