@@ -73,7 +73,7 @@ class LabelIndicesController < ApplicationController
   end
 
   def next
-    @label_index = current_note.label_indices.find_or_empty_label(params[:id])
+    @label_index = current_note.label_indices.find(params[:id])
     @page = @label_index.pages.next(Integer(params[:pivot]))
     redirect_to_page_or_back(
       _("This is the last page in %{label}.") % {:label => @label_index.display_name}
@@ -81,7 +81,7 @@ class LabelIndicesController < ApplicationController
   end
 
   def prev
-    @label_index = current_note.label_indices.find_or_empty_label(params[:id])
+    @label_index = current_note.label_indices.find(params[:id])
     @page = @label_index.pages.previous(Integer(params[:pivot]))
     redirect_to_page_or_back(
       _("This is the first page in %{label}.") % {:label => @label_index.display_name}

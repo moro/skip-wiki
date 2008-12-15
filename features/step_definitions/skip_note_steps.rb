@@ -52,7 +52,10 @@ Given(/^ノート"(.*)"が作成済みである/) do |note_name|
 end
 
 Given( /^そのノートにはページ"(.*)"が作成済みである$/)  do |page_name|
-  @page = @note.pages.create!(valid_attributes[:page].merge(name_options(page_name)))
+  attrs = valid_attributes[:page].merge(name_options(page_name))
+  attrs[:content] = "Content for the page `#{page_name}'"
+  @page = @note.pages.add(attrs, @account.user)
+  @page.save!
 end
 
 Given( /^そのノートにはラベル"(.*)"が作成済みである$/)  do |label|
