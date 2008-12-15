@@ -29,6 +29,7 @@ class Note < ActiveRecord::Base
       returning(build) do |page|
         page.edit(attrs[:content], user)
         page.attributes = attrs.except(:content)
+        page.label_index_id ||= proxy_owner.default_label.id
       end
     end
   end
@@ -51,6 +52,7 @@ class Note < ActiveRecord::Base
     {:conditions => ["#{t}.display_name LIKE ? OR #{t}.description LIKE ?", w, w]}
   }
   before_create :add_accessibility_to_owner_group
+  before_create :add_default_label
 
   attr_writer :group_backend_type
   attr_accessor :group_backend_id
@@ -85,8 +87,16 @@ class Note < ActiveRecord::Base
     name_changed? ? name_was : name
   end
 
+  def default_label
+    label_indices.detect(&:default_label)
+  end
+
   private
   def add_accessibility_to_owner_group
     accessibilities << Accessibility.new(:group=>owner_group)
+  end
+
+  def add_default_label
+    label_indices << LabelIndex.no_label
   end
 end

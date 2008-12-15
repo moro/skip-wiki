@@ -16,8 +16,7 @@
       %li
         = form.radio_button :label_index_id, index.id
         %label{:for=>"page_label_index_id_#{index.id}"}= labelize(index)
-    %li
-      = link_to(h(_("Add label")), note_label_indices_path(current_note))
+  %span= link_to(h(_("Add label")), note_label_indices_path(current_note))
   .clear
 
 = form.hidden_field(:format_type)

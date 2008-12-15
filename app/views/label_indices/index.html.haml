@@ -5,20 +5,16 @@
     %caption&= _("label index")
     %thead
       %tr
-        %th&= _("LabelIndex|Name")
         %th&= _("LabelIndex|Display name")
         %th
     - @label_indices.each do |label_index|
       %tr
-        %td&= label_index.name
         %td= labelize(label_index)
         %td= link_to(_("Delete"), note_label_index_path(current_note, label_index),:method=>:delete)
 
     %tr.new-label
       - form_for(LabelIndex.new, :url=>note_label_indices_path(current_note)) do |f|
-        %td= f.text_field :name, :size=>16
-        %td
-          = f.text_field :display_name, :size=>16
-          = f.text_field :color, :size=>7
+        %td= f.text_field :display_name, :size=>16
+        %td= f.text_field :color, :size=>7
         %td= f.submit _("Create")
 

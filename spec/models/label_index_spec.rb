@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe LabelIndex do
   before(:each) do
     @valid_attributes = {
-      :name => "Ruby",
+      :display_name => "Ruby",
       :note => mock_model(Note)
     }
   end

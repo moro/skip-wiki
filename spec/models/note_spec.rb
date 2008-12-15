@@ -65,6 +65,11 @@ describe Note do
     it "do not create untill @page.save" do
       @note.reload.should have(0).pages
     end
+
+    it "作成されたページのLabelIndexがデフォルトラベルであること" do
+      @page.save!
+      @page.reload.label_index.should == @note.default_label
+    end
   end
 
   describe "build_front_page" do
@@ -111,5 +116,30 @@ describe Note do
     it "グループ外のユーザはaccessibleでないこと" do
       @note.should_not be_accessible(users(:aaron))
     end
+  end
+  describe "before_create :add_no_label" do
+    before do
+      @note = build_note
+    end
+    it "should have 1 label_indices" do
+      @note.save!
+      @note.reload.should have(1).label_indices
+    end
+
+    it "save!されるまでLabelIndexは追加されれないこと" do
+      lambda{ build_note }.should_not change(LabelIndex, :count)
+    end
+  end
+
+  def build_note
+    @user.build_note(
+      :name => "value for name",
+      :display_name => "value for display_name",
+      :description => "value for note description",
+      :publicity => Note::PUBLICITY_READABLE,
+      :category_id => "1",
+      :group_backend_type => "BuiltinGroup",
+      :group_backend_id => ""
+    )
   end
 end

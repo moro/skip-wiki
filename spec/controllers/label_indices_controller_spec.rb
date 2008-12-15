@@ -153,7 +153,7 @@ describe LabelIndicesController, "[through]" do
   describe "responding to GET next [through]" do
     fixtures :notes, :pages
     before do
-      @label = LabelIndex.create!(:name=>"label", :note=>@note)
+      @label = LabelIndex.create!(:display_name=>"label", :note=>@note)
       (@p1 = pages(:our_note_page_1)).label_index = @label
       (@p2 = pages(:our_note_page_2)).label_index = @label
     end
@@ -182,7 +182,7 @@ describe LabelIndicesController, "[through]" do
   describe "responding to GET prev [through][success]" do
     fixtures :notes, :pages
     before do
-      @label = LabelIndex.create!(:name=>"label", :note=>@note)
+      @label = LabelIndex.create!(:display_name=>"label", :note=>@note)
       (@p1 = pages(:our_note_page_1)).label_index = @label
       (@p2 = pages(:our_note_page_2)).label_index = @label
       get :prev, :note_id => @note.name, :id => @label.id, :pivot=>@p2.label_indexings.first.page_order

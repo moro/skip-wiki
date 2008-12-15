@@ -74,6 +74,7 @@ describe PagesController do
     fixtures :notes
     before do
       page_param = {:name => "page_1", :display_name => "page_1", :format_type => "html", :content => "<p>foobar</p>"}.with_indifferent_access
+      @current_note.label_indices << LabelIndex.no_label
 
       @page = @current_note.pages.add(page_param, @user)
       @page.save!

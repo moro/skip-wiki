@@ -13,6 +13,13 @@ class LabelIndex < ActiveRecord::Base
     end
   end
 
-  validates_presence_of :name
-  validates_uniqueness_of :name, :scope=>:note_id
+  validates_presence_of :display_name
+  validates_uniqueness_of :display_name, :scope=>:note_id
+
+  attr_accessible :display_name, :color, :note
+
+  def self.no_label
+    new(:display_name => _("No Labels"), :color => "#ffffff"){|l| l.default_label = true }
+  end
 end
+

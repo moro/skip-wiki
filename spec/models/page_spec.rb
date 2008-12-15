@@ -34,7 +34,7 @@ describe Page do
     before do
       @note = mock_model(Note)
       @page = Page.new(@valid_attributes.merge(:note=>@note))
-      @label = LabelIndex.create(:note=>@note, :name=>"foobar")
+      @label = LabelIndex.create(:note=>@note, :display_name=>"foobar")
 
       @page.label_index_id = @label.id
     end

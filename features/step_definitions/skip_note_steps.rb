@@ -16,7 +16,8 @@ valid_attributes = {
       :format_type => "html",
   }.freeze,
   :label => {
-      :name => "Ruby",
+      :display_name => "Ruby",
+      :color => "#ff0000",
   }.freeze
 }
 
@@ -55,7 +56,7 @@ Given( /^そのノートにはページ"(.*)"が作成済みである$/)  do |pa
 end
 
 Given( /^そのノートにはラベル"(.*)"が作成済みである$/)  do |label|
-  @label = @note.label_indices.create!(valid_attributes[:label].merge(name_options(label)))
+  @label = @note.label_indices.create!(valid_attributes[:label].merge(:display_name => label))
 end
 
 Given( /^そのページの更新日時を"(\d+)"分進める$/ ) do |min|

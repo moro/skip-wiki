@@ -112,6 +112,10 @@ describe User do
       it "the note.owner_group.backend.owner.should == @user" do
         @note.owner_group.backend.owner.should == @user
       end
+
+      it "should have(1) label_indices" do
+        @note.should have(1).label_indices
+      end
     end
 
     describe "validation failed" do
