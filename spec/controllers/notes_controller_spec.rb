@@ -78,16 +78,21 @@ describe NotesController do
   describe "responding to POST create" do
 
     describe "with valid params" do
+      before do
+        builder = mock("builder")
+        NoteBuilder.should_receive(:new).with(@user,{'these' => 'params'}).and_return(builder)
+        mock_note.should_receive(:save!)
+        builder.should_receive(:note).and_return(mock_note)
+        builder.should_receive(:front_page).and_return(mock_model(Page, "save!"=>true))
+      end
 
       it "should expose a newly created note as @note" do
-        @user.should_receive(:build_note).with({'these' => 'params'}).and_return(mock_note(:save => true))
         post :create, :note => {:these => 'params'}
         assigns(:note).should equal(mock_note)
       end
 
       it "should redirect to the created note" do
-        @user.should_receive(:build_note).and_return(mock_note(:save => true))
-        post :create, :note => {}
+        post :create, :note => {:these => 'params'}
         response.should redirect_to(note_page_url(mock_note, "FrontPage"))
       end
 
@@ -95,13 +100,21 @@ describe NotesController do
 
     describe "with invalid params" do
       it "@noteに作成失敗したnoteインスタンスが入ること" do
-        @user.should_receive(:build_note).with({'these' => 'params'}).and_return(mock_note(:save => false))
+        builder = mock("builder")
+        NoteBuilder.should_receive(:new).with(@user,{'these' => 'params'}).and_return(builder)
+        mock_note.should_receive(:save!).and_raise ActiveRecord::RecordNotSaved
+        builder.should_receive(:note).and_return(mock_note)
+
         post :create, :note => {:these => 'params'}
         assigns(:note).should equal(mock_note)
       end
 
       it "editテンプレートを表示すること" do
-        @user.should_receive(:build_note).and_return(mock_note(:save => false))
+        builder = mock("builder")
+        NoteBuilder.should_receive(:new).with(@user,{}).and_return(builder)
+        mock_note.should_receive(:save!).and_raise ActiveRecord::RecordNotSaved
+        builder.should_receive(:note).and_return(mock_note)
+
         post :create, :note => {}
         response.should render_template("edit")
       end

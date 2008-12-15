@@ -30,10 +30,7 @@ class User < ActiveRecord::Base
   end
 
   def build_note(note_params)
-    returning Note.new(note_params.dup) do |note|
-      note.owner_group = find_or_initialize_group(note)
-      note.build_front_page(self)
-    end
+    NoteBuilder.new(self, note_params).note
   end
 
   def accessible(klass)
@@ -49,18 +46,5 @@ class User < ActiveRecord::Base
 COND
   end
 
-  private
-  def find_or_initialize_group(note)
-    case note.group_backend_type
-    when "BuiltinGroup"
-      attrs = {:name => note.name,
-               :display_name => _("%{name} group") % {:name=>note.display_name},
-               :backend=>builtin_groups.build }
-      Group.new(attrs){|g| g.memberships = [Membership.new(:group => g, :user=>self)] }
-    when "SkipGroup"
-      groups.find(:first, :conditions=>{:backend_type => note.group_backend_type,
-                                        :backend_id => note.group_backend_id})
-    end
-  end
 end
 

@@ -12,17 +12,13 @@ describe Note do
       :publicity => Note::PUBLICITY_MEMBER_ONLY,
       :deleted_on => Time.now,
       :category_id => "1",
-      :owner_group => @group
+      :owner_group => @group,
+      :group_backend_type => "BuiltinGroup",
     }
   end
 
   it "should create a new instance given valid attributes" do
     Note.create!(@valid_attributes)
-  end
-
-  it "shoud have accesibility to owner group" do
-    Note.create(@valid_attributes).reload.
-      should have(1).accessibilities
   end
 
   describe ".fulltext" do
@@ -45,8 +41,10 @@ describe Note do
   end
 
   describe "pages.add(attrs, user)" do
+    fixtures :users
     before(:each) do
-      @note = Note.create(@valid_attributes)
+      @note = NoteBuilder.new(@user, @valid_attributes).note
+      @note.save!
       @initialize_attrs = {
         :name=>"FrontPage",
         :display_name => "トップページ",
@@ -75,9 +73,12 @@ describe Note do
   describe "build_front_page" do
     before(:each) do
       Page.should_receive(:front_page_content).and_return("---FrontPage---")
-      @note = Note.new(@valid_attributes)
-      @page = @note.build_front_page(@user)
+      builder = NoteBuilder.new(@user, @valid_attributes)
+      @note = builder.note
+      @page = builder.front_page
+
       @note.save!
+      @page.save!
     end
 
     it "create new page" do

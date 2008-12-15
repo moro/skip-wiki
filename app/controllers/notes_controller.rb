@@ -48,14 +48,17 @@ class NotesController < ApplicationController
   # POST /notes
   # POST /notes.xml
   def create
-    @note = current_user.build_note(params[:note])
+    builder = NoteBuilder.new(current_user, params[:note])
+    @note = builder.note
 
     respond_to do |format|
-      if @note.save
-        flash[:notice] = 'Note was successfully created.'
+      begin
+        @note.save!
+        builder.front_page.save!
+        flash[:notice] = _('Note was successfully created.')
         format.html { redirect_to(note_page_path(@note, "FrontPage")) }
         format.xml  { render :xml => @note, :status => :created, :location => @note }
-      else
+      rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved
         format.html { render :action => "edit" }
         format.xml  { render :xml => @note.errors, :status => :unprocessable_entity }
       end

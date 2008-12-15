@@ -47,8 +47,6 @@ class Note < ActiveRecord::Base
     w = "%#{word}%"
     {:conditions => ["#{t}.display_name LIKE ? OR #{t}.description LIKE ?", w, w]}
   }
-  before_create :add_accessibility_to_owner_group
-  before_create :add_default_label
 
   attr_writer :group_backend_type
   attr_accessor :group_backend_id
@@ -65,13 +63,6 @@ class Note < ActiveRecord::Base
     accessibilities.map(&:group)
   end
 
-  def build_front_page(user)
-    returning Page.front_page do |page|
-      page.edit(Page.front_page_content, user)
-      self.pages << page
-    end
-  end
-
   def accessible?(user)
     accessibilities.find(:first,
       :joins => "JOIN memberships AS m ON m.group_id = accessibilities.group_id",
@@ -85,14 +76,5 @@ class Note < ActiveRecord::Base
 
   def default_label
     label_indices.detect(&:default_label)
-  end
-
-  private
-  def add_accessibility_to_owner_group
-    accessibilities << Accessibility.new(:group=>owner_group)
-  end
-
-  def add_default_label
-    label_indices << LabelIndex.no_label
   end
 end

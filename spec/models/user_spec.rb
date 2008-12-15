@@ -66,68 +66,6 @@ describe User do
       )
     end
 
-    it "the note should not be_nil" do
-      @note.should_not be_nil
-    end
-
-    it "the note should be_new_record" do
-      @note.should be_new_record
-    end
-
-    it "the note.group_backend_type.should == 'BuiltinGroup'" do
-      @note.group_backend_type.should == 'BuiltinGroup'
-    end
-
-    it "the note.group_backend_type.should == 'value for display_name group'" do
-      @note.owner_group.display_name.should == "value for display_name group"
-    end
-
-    it "owner_group should be new_record" do
-      @note.owner_group.should be_new_record
-    end
-
-    describe ".save!" do
-      before do
-        @note.save!
-        @note.reload
-      end
-
-      it "should have FrontPage" do
-        @note.pages.find_by_name("FrontPage").should_not be_nil
-      end
-
-      it "should have accessibility to @note.owner_group" do
-        @note.accessibilities.find_by_group_id(@note.owner_group)
-      end
-
-      it "'s owner should have membershipsp within @note.owner_group" do
-        @user.reload.memberships.find_by_group_id(@note.owner_group_id).should_not be_nil
-      end
-
-      it "should accessible the note" do
-        @note.owner_group.backend.should_not be_new_record
-        @user.accessible(Note).should include(@note)
-      end
-
-      it "the note.owner_group.backend.owner.should == @user" do
-        @note.owner_group.backend.owner.should == @user
-      end
-
-      it "should have(1) label_indices" do
-        @note.should have(1).label_indices
-      end
-    end
-
-    describe "validation failed" do
-      before do
-        @note.name = ""
-        @note.save #=> false
-      end
-      it "owner_group.should be_new_record" do
-        @note.owner_group.should be_new_record
-      end
-    end
-
     describe "(with SQL injection group)" do
       before do
         @note = @user.build_note(
