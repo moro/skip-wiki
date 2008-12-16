@@ -1,7 +1,14 @@
-#footer
-  %span ふったー
+.info
+  .first
+    %b
+      = link_to_function _("About this site"), "open_site()"
+      |
+      = link_to_function _("Rule to use"), "open_rule()"
+      |
+      = link_to_function _("FIXME"), "open_rule()"
+  .second&= "お問い合わせはこちら | Since 2008 SKIP" # FIXME
 
--#<%#FIXME|%>
--#div id="statusbar"><%= render :partial => "shared/site_count" +|</div>
--#<%#<%= skip_footer_link -+|%>
+.powerd_by
+  powered by
+  =link_to(image_tag("footer_logo.png"), "http://www.openskip.org/")
 
