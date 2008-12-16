@@ -1,6 +1,7 @@
 %div.note-info
-  =link_to h(current_note.display_name), note_page_path(current_note, "FrontPage")
-  %span&= current_note.description
+  %p= link_to h(current_note.display_name), note_page_path(current_note, "FrontPage")
+  %p
+    %span&= current_note.description
 
 %ul
   %li.bar-item.search-pages

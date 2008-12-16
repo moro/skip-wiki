@@ -4,10 +4,6 @@
   .tab= render :partial => 'shared/edit_navi', :locals=> {:current_path => current_path}
 
   - div_for(@note) do
-
-    %h1&= @note.display_name
-    %p.description&= @note.description
-
     %ul
       %li= link_to(h(_"edit note"), edit_note_path(@note))
       %li= link_to(h(_"add users"), group_path(@note.owner_group))

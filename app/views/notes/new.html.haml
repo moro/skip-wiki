@@ -140,7 +140,7 @@
         .example
           .h4 名称の例
           最近作成されたWikiの名称です。
-          .ul
+          %ul
             - Note.recent.each do |note|
               %li= note.display_name
 
@@ -161,12 +161,12 @@
         %table
           %tr
             %td= f.label :description, _("Note|Description")
-            %td= f.text_area :description, :size=>"80x2"
+            %td= f.text_field :description, :size=>"100"
 
         .example
           .h4 説明
           ノートの内容を簡単に説明してください
-          .ul
+          %ul
             - Note.recent.each do |note|
               %li= note.description
 
