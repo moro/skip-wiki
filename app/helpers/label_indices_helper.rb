@@ -1,16 +1,10 @@
 module LabelIndicesHelper
+=begin
   def navigate_in_label(note, page)
-    if index = page.label_index
-      label_badge = labelize(index)
-    else
-      index = "none"
-      label_badge = content_tag("span", _("No Labels"))
-    end
-
-    [ label_badge,
-      link_to(h(_"Previous"), prev_note_label_index_path(note, index, :pivot=>page.order_in_label)),
-      "|",
-      link_to(h(_"Next"), next_note_label_index_path(note, index, :pivot=>page.order_in_label))].join("\n")
+    idx, pivot = page.label_index, page.order_in_label
+    [ labelize(idx),
+      link_to(h(_"Previous"), prev_note_label_index_path(note, idx, :pivot=>pivot)),
+      link_to(h(_"Next"), next_note_label_index_path(note, idx, :pivot=>pivot))].join("\n")
   end
 
   def label_navigation(note, page)
@@ -29,7 +23,7 @@ module LabelIndicesHelper
                 :value=> val,
                 :selected => (val == current))
   end
-
+=end
   def labelize(label_index, link=false, note=nil)
     content = h(label_index.display_name)
     content = link_to content, note_label_index_path(note||label_index.note, label_index) if link

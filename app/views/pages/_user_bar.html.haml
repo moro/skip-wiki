@@ -3,29 +3,33 @@
   %p
     %span&= current_note.description
 
-%ul
+%ul.float
   %li.bar-item.search-pages
     - form_tag(note_pages_path(current_note), :method=>:get) do
       - search_label = _("Search pages in %{note}") % {:note => current_note.display_name}
       - val = params[:keyword].blank? ? search_label : params[:keyword]
-      = text_field_tag("keyword", val, :id=>"pages_keyword", :class=>"labeled-field")
+      = text_field_tag("keyword", val, :id=>"pages_keyword", :class=>"labeled-field", :size=>32)
       = submit_tag _("Search")
-
-      :ruby
-        label_config = {:message => search_label}
 
       :javascript
         jQuery(function(){
-          jQuery("input.labeled-field").labeledTextField(#{label_config.to_json});
+          jQuery("input.labeled-field").labeledTextField(#{{:message => search_label}.to_json});
         });
 
-  - if @page
-    %li.bar-item.move-to-label
-      %span&= _("Move to Label")
-      = label_navigation(current_note, @page)
-
+  - if @page && !@page.new_record?
     %li.bar-item.navigate-in-label
-      = navigate_in_label(current_note, @page)
+      - idx, pivot = @page.label_index, @page.order_in_label
+      %ul.float
+        %li= labelize(idx)
+        %li= link_to_function(_("other"), "$(this).parents('li.navigate-in-label').find('div.move-to-label').show()")
+        %li= link_to(h(_"Previous"), prev_note_label_index_path(current_note, idx, :pivot=>pivot))
+        %li= link_to(h(_"Next"), next_note_label_index_path(current_note, idx, :pivot=>pivot))
+
+      .move-to-label{:style=>"display:none"}
+        =link_to_function(_("close"), "$(this).parent('div.move-to-label').hide()")
+        %ul
+          - current_note.label_indices.each do |l|
+            %li= link_to labelize(l), prev_note_label_index_path(current_note, l, :pivot=>2)
 
   %li.bar_item
     #system_contents= image_tag "skip/indicator.gif"
