@@ -10,6 +10,18 @@ module ApplicationHelper
     end
   end
 
+  def date_picker(selector)
+    inclusion = javascript_include_tag "jquery/ui/i18n/ui.datepicker-#{locale}.js"
+    date_picker_scripts = <<-JS
+jQuery(function(){
+  jQuery('#{selector}').datepicker(
+      jQuery.extend({}, jQuery.datepicker.regional['#{locale}'], #{date_picker_opts.to_json})
+  );
+})
+    JS
+    [inclusion, javascript_tag(date_picker_scripts)].join("\n")
+  end
+
   def icon_tag(icon, desc=nil)
     img = "icons/#{File.basename(icon)}.png"
     if desc
@@ -26,5 +38,19 @@ module ApplicationHelper
     else
       javascript_include_tag filename
     end
+  end
+
+  private
+  def locale
+    GetText.locale
+  end
+
+  def date_picker_opts
+    { :duration => '',
+      :yearRange => '-80:10',
+      :showOn => 'both',
+      :buttonImage => image_path("jquery/ui.datepicker/calendar.png"),
+      :buttonImageOnly => true,
+      :dateFormat => "yy-mm-dd" }
   end
 end

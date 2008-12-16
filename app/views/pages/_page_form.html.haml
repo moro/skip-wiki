@@ -10,26 +10,9 @@
   = form.text_field :name, :size => 20
 
 %dt= form.label(:published_at, h(_("Page|Published at")))
-%dd= form.text_field :published_at, :value => @page.published_at.iso8601, :class => "datepicker"
-:ruby
-  dpicker ={
-    :duration => '',
-    :yearRange => '-80:10',
-    :showOn => 'both',
-    :buttonImage => image_path("jquery/ui.datepicker/calendar.png"),
-    :buttonImageOnly => true,
-    :dateFormat => "yy-mm-dd",
-  }
-=javascript_include_tag "jquery/ui/i18n/ui.datepicker-#{GetText.locale}.js"
-:javascript
-  jQuery(function(){
-    jQuery('.datepicker').datepicker(
-        jQuery.extend({},
-            jQuery.datepicker.regional['#{GetText.locale}'],
-            #{dpicker.to_json}
-        )
-    );
-  })
+%dd
+  = form.text_field :published_at, :value => @page.published_at.strftime("%Y-%m-%d"), :class => "datepicker"
+  = date_picker("input.datepicker")
 
 %dt= form.label(:label_indices, h(_("Page|Label indices")))
 %dd
