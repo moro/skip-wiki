@@ -6,9 +6,18 @@
 %ul
   %li.bar-item.search-pages
     - form_tag(note_pages_path(current_note), :method=>:get) do
-      %label{:for=>"pages_keyword"}&= _("Search pages in %{note}") % {:note => current_note.display_name}
-      = text_field_tag("keyword", params[:keyword], :id=>"pages_keyword")
+      - search_label = _("Search pages in %{note}") % {:note => current_note.display_name}
+      - val = params[:keyword].blank? ? search_label : params[:keyword]
+      = text_field_tag("keyword", val, :id=>"pages_keyword", :class=>"labeled-field")
       = submit_tag _("Search")
+
+      :ruby
+        label_config = {:message => search_label}
+
+      :javascript
+        jQuery(function(){
+          jQuery("input.labeled-field").labeledTextField(#{label_config.to_json});
+        });
 
   - if @page
     %li.bar-item.move-to-label

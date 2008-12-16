@@ -180,6 +180,26 @@
       loadAttachments(root.find(".palette"), config["page_attachments"], message["page_attachments"]);
     }
     root.find("span.trigger").one("click", onLoad);
+  },
+
+  jQuery.fn.labeledTextField = function(config){
+    var target = jQuery(this);
+    var focusClass = config["focusClass"] || "focus";
+    var message = config["message"];
+
+    target.parent("form").reset();
+    if(target.val() != message){ target.addClass(focusClass); };
+
+    target.focus(function(){
+        target.addClass(focusClass);
+        if(target.val() == message){ target.val("") };
+      });
+    target.blur(function(){
+        if(target.val() == ""){
+          target.removeClass(focusClass);
+          target.parent("form").reset()
+        };
+      });
   }
 /*
  *  Obsolute
