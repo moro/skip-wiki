@@ -3,17 +3,11 @@
 
 #contents_container
   .caption
-    %span.title&= "SKIP Note"
-    %span.beta&= "beta"
-    誰でも簡単にプロジェクトノートが作成できるサービス。
     = link_to content_tag("span", h(_"new note")), new_note_path, :class=>"wii_button"
-    /= link_to content_tag("span", h(_"Search note")), notes_path, :class=>"wii_button"
+    %span{:style=>"vertical-align:middle;"}= _("Search Note")
+    = text_field_tag('fulltext', params[:fulltext])
+    = submit_tag _('Search')
   .contents
-    #search-notes
-      %span{:style=>"vertical-align:middle;"}= _("Search Note")
-      = text_field_tag('fulltext', params[:fulltext])
-      = submit_tag _('Search')
-
     #updated-note
       %h2= icon_tag('folder_page', "活発に更新されているNote")
       %table.notes-index
