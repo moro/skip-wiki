@@ -26,7 +26,7 @@
         %li= link_to(h(_"Next"), next_note_label_index_path(current_note, idx, :pivot=>pivot))
 
       .move-to-label{:style=>"display:none"}
-        =link_to_function(_("close"), "$(this).parent('div.move-to-label').hide()")
+        =link_to_function(_("close"), "$(this).parents('div.move-to-label').hide()")
         %ul
           - current_note.label_indices.each do |l|
             %li= link_to labelize(l), prev_note_label_index_path(current_note, l, :pivot=>2)

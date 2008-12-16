@@ -187,7 +187,7 @@
     var focusClass = config["focusClass"] || "focus";
     var message = config["message"];
 
-    target.parent("form").reset();
+    target.parents("form").get(0).reset();
     if(target.val() != message){ target.addClass(focusClass); };
 
     target.focus(function(){
@@ -197,7 +197,7 @@
     target.blur(function(){
         if(target.val() == ""){
           target.removeClass(focusClass);
-          target.parent("form").reset()
+          target.parents("form").get(0).reset()
         };
       });
   }
