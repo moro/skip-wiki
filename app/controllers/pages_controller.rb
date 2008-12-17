@@ -13,6 +13,7 @@ class PagesController < ApplicationController
 
   def new
     @page = current_note.pages.build
+    @page.published_at ||= Time.now
     respond_to(:html)
   end
 

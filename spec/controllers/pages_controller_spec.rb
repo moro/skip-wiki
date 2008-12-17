@@ -90,4 +90,12 @@ describe PagesController do
       assigns(:page).content.should == "<p>foobar</p>"
     end
   end
+
+  describe "GET /notes/hoge/new" do
+    it "作成されるページの公開日時が作成日時に設定されていること" do
+      get :new
+      assigns(:page).published_at.strftime("%Y-%m-%d").should == Time.now.strftime("%Y-%m-%d")
+    end
+  end
+   
 end
