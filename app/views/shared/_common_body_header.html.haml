@@ -22,17 +22,19 @@
       = submit_tag _('Search'), :disabled => true
       &nbsp;
 
+#flash_message= render :partial=>"layouts/flash_message"
+
 #top
   - if logged_in?
     =link_to _("Your profile(%{name})") % {:name=>current_user.name}, user_path(current_user)
     =select_tag("notes", notes_navi_on_header(current_user))
 
-#flash_message= render :partial=>"layouts/flash_message"
 :javascript
   jQuery(document).ready(function(){
     $("#top select").change(function(){
       var url = jQuery(this).val();
       if("" != url){ document.location = url; }
     });
+    setTimeout(function(){ $("#flash_message div").fadeOut("slow"); }, 10*1000);
   });
 

@@ -86,36 +86,6 @@ div#statusbar span {
   vertical-align: middle;
 }
 /* ----------------------------------- */
-/* ----------------------------------- */
-/* flashで表示するメッセージ */
-* html div.flash_message {
-  height: 1%;
-}
-div.notice {
-  border: 2px solid limegreen;
-  margin: 3px 0 1em 0;
-  font-size: 12px;
-  background-color: palegreen;
-}
-div.warning {
-  border: 2px solid orange;
-  margin: 3px 0 1em 0;
-  font-size: 12px;
-  background-color: yellow;
-}
-div.error {
-  border: 2px solid red;
-  margin: 3px 0 1em 0;
-  font-size: 12px;
-  background-color: pink;
-}
-div.notice span, div.warning span, div.error span {
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  font-size: 10px;
-}
-/* ----------------------------------- */
 /* エラーメッセージ */
 div.errorExplanation {
   margin: 3px 0px 1em 0px;

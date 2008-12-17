@@ -82,6 +82,7 @@ describe NotesController do
         builder = mock("builder")
         NoteBuilder.should_receive(:new).with(@user,{'these' => 'params'}).and_return(builder)
         mock_note.should_receive(:save!)
+        mock_note.should_receive(:display_name).and_return("the note's display name")
         builder.should_receive(:note).and_return(mock_note)
         builder.should_receive(:front_page).and_return(mock_model(Page, "save!"=>true))
       end

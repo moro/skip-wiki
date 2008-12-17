@@ -10,6 +10,14 @@ module ApplicationHelper
     end
   end
 
+  def render_flash(type)
+    if message = flash[type]
+      content_tag("div", :onclick => "$(this).fadeOut('fast')", :class => type.to_s) do
+        content_tag("h3", h(message) + content_tag("span", _("[Click to hide]")))
+      end
+    end
+  end
+
   def date_picker(selector)
     inclusion = javascript_include_tag "jquery/ui/i18n/ui.datepicker-#{locale}.js"
     date_picker_scripts = <<-JS

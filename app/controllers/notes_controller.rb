@@ -55,7 +55,7 @@ class NotesController < ApplicationController
       begin
         @note.save!
         builder.front_page.save!
-        flash[:notice] = _('Note was successfully created.')
+        flash[:notice] = _("Note `%{note}' was successfully created.") % {:note => @note.display_name}
         format.html { redirect_to(note_page_path(@note, "FrontPage")) }
         format.xml  { render :xml => @note, :status => :created, :location => @note }
       rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved

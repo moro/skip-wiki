@@ -570,3 +570,36 @@ ul.float
   li
     :float left
 
+#flash_message
+  :position absolute
+  :top 3px
+  :width 100%
+  :zindex 3
+
+  div
+    :width 50%
+    :margin auto
+    :text-align center
+    :font-size 12px
+    :border-width 2px
+    :border-style solid
+
+    h3
+      :width 100%
+      span
+        :position static
+        :font-size 10px
+        :margin-left 20px
+        :right 15px
+        :top 15px
+
+  div.warn
+    :border-color orange
+    :background-color yellow
+  div.notice
+    :border-color limegreen
+    :background-color palegreen
+  div.error
+    :border-color red
+    :background-color pink
+
