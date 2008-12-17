@@ -11,7 +11,7 @@
 
 %dt= form.label(:published_at, h(_("Page|Published at")))
 %dd
-  = form.text_field :published_at, :value => @page.published_at.strftime("%Y-%m-%d"), :class => "datepicker"
+  = form.text_field :published_at, :value => (@page.published_at||Time.now).strftime("%Y-%m-%d"), :class => "datepicker"
   = date_picker("input.datepicker")
 
 %dt= form.label(:label_indices, h(_("Page|Label indices")))

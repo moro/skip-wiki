@@ -148,7 +148,7 @@ SQL
 
   private
   def assign_default_pubulification
-    self.published_at ||= Time.now
+    self.published_at ||= DateTime.now
   end
 
   def reset_history_caches
