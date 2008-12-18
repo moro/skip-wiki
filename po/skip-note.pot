@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-12-17 12:04+0900\n"
+"POT-Creation-Date: 2008-12-18 10:34+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,15 +34,15 @@ msgstr ""
 msgid "This is the first page in %{label}."
 msgstr ""
 
-#: app/controllers/notes_controller.rb:59
+#: app/controllers/notes_controller.rb:58
 msgid "Note `%{note}' was successfully created."
 msgstr ""
 
-#: app/controllers/pages_controller.rb:26
+#: app/controllers/pages_controller.rb:27
 msgid "The page %{page} is successfully created"
 msgstr ""
 
-#: app/controllers/pages_controller.rb:60
+#: app/controllers/pages_controller.rb:61
 msgid "The page %{page} is successfully updated"
 msgstr ""
 
@@ -68,6 +68,56 @@ msgstr ""
 
 #: app/helpers/histories_helper.rb:17
 msgid "PREV"
+msgstr ""
+
+#: app/helpers/notes_helper.rb:4 app/models/note.rb:-
+#: app/views/notes/edit.html.haml:21 app/views/notes/new.html.haml:129
+#: app/views/notes/new.html.haml:137 app/views/notes/new.html.haml:207
+msgid "Note|Name"
+msgstr ""
+
+#: app/helpers/notes_helper.rb:6 app/models/note.rb:-
+#: app/views/notes/edit.html.haml:35 app/views/notes/new.html.haml:201
+msgid "Note|Publicity"
+msgstr ""
+
+#: app/helpers/notes_helper.rb:8 app/models/note.rb:-
+#: app/views/notes/edit.html.haml:51 app/views/notes/new.html.haml:198
+msgid "Note|Category"
+msgstr ""
+
+#: app/helpers/notes_helper.rb:11
+msgid ""
+"This note's %{name_key} is `%{name_val}', %{publicity_key} is `%"
+"{publicity_val}', and %{category_key} is `%{category_val}'."
+msgstr ""
+
+#: app/helpers/notes_helper.rb:16 app/helpers/notes_helper.rb:22
+msgid ", "
+msgstr ""
+
+#: app/helpers/notes_helper.rb:16 app/helpers/notes_helper.rb:22
+msgid " and "
+msgstr ""
+
+#: app/helpers/notes_helper.rb:17
+msgid "%{user_str} are accessible to the note"
+msgstr ""
+
+#: app/helpers/notes_helper.rb:23
+msgid "%{group_str}'s members are accessible to the note"
+msgstr ""
+
+#: app/helpers/notes_helper.rb:39
+msgid "Access by member only"
+msgstr ""
+
+#: app/helpers/notes_helper.rb:40
+msgid "Readable by everyone"
+msgstr ""
+
+#: app/helpers/notes_helper.rb:41
+msgid "Readable/Writable by everyone"
 msgstr ""
 
 #: app/helpers/pages_helper.rb:50
@@ -308,6 +358,7 @@ msgid "History|Description"
 msgstr ""
 
 #: app/models/label_index.rb:- app/views/label_indices/index.html.haml:5
+#: app/views/notes/show.html.haml:27
 msgid "label index"
 msgstr ""
 
@@ -380,30 +431,14 @@ msgstr ""
 msgid "note"
 msgstr ""
 
-#: app/models/note.rb:- app/views/notes/edit.html.haml:21
-#: app/views/notes/new.html.haml:129 app/views/notes/new.html.haml:137
-#: app/views/notes/new.html.haml:207
-msgid "Note|Name"
-msgstr ""
-
 #: app/models/note.rb:- app/views/notes/edit.html.haml:25
 #: app/views/notes/index.html.haml:15 app/views/notes/new.html.haml:127
 #: app/views/notes/new.html.haml:134 app/views/notes/new.html.haml:204
 msgid "Note|Display name"
 msgstr ""
 
-#: app/models/note.rb:- app/views/notes/edit.html.haml:35
-#: app/views/notes/new.html.haml:201
-msgid "Note|Publicity"
-msgstr ""
-
 #: app/models/note.rb:-
 msgid "Note|Deleted on"
-msgstr ""
-
-#: app/models/note.rb:- app/views/notes/edit.html.haml:51
-#: app/views/notes/new.html.haml:198
-msgid "Note|Category"
 msgstr ""
 
 #: app/models/note.rb:-
@@ -589,6 +624,7 @@ msgstr ""
 
 #: app/views/attachments/index.html.haml:20
 #: app/views/label_indices/index.html.haml:13
+#: app/views/notes/show.html.haml:33
 msgid "Delete"
 msgstr ""
 
@@ -691,7 +727,8 @@ msgid "Label index for %{note}"
 msgstr ""
 
 #: app/views/label_indices/index.html.haml:19
-#: app/views/notes/new.html.haml:192 app/views/pages/new.html.haml:22
+#: app/views/notes/new.html.haml:192 app/views/notes/show.html.haml:39
+#: app/views/pages/new.html.haml:22
 msgid "Create"
 msgstr ""
 
@@ -751,18 +788,6 @@ msgstr ""
 
 #: app/views/notes/edit.html.haml:18
 msgid "SkipGroup note"
-msgstr ""
-
-#: app/views/notes/edit.html.haml:40
-msgid "Access by member only"
-msgstr ""
-
-#: app/views/notes/edit.html.haml:44
-msgid "Readable by everyone"
-msgstr ""
-
-#: app/views/notes/edit.html.haml:48
-msgid "Readable/Writable by everyone"
 msgstr ""
 
 #: app/views/notes/index.html.haml:6
@@ -861,20 +886,24 @@ msgid ""
 "Wikipediaのようにみんなでコンテンツを作っていくWikiにしたい場合に選びます。"
 msgstr ""
 
-#: app/views/notes/show.html.haml:8
-msgid "edit note"
-msgstr ""
-
-#: app/views/notes/show.html.haml:9
-msgid "add users"
-msgstr ""
-
 #: app/views/notes/show.html.haml:10
-msgid "add groups"
+msgid "Note Propaties"
 msgstr ""
 
 #: app/views/notes/show.html.haml:11
-msgid "add labels"
+msgid "edit note"
+msgstr ""
+
+#: app/views/notes/show.html.haml:17
+msgid "Users and Groups"
+msgstr ""
+
+#: app/views/notes/show.html.haml:18
+msgid "edit users permission"
+msgstr ""
+
+#: app/views/notes/show.html.haml:19
+msgid "add groups"
 msgstr ""
 
 #: app/views/pages/_labels.html.haml:1

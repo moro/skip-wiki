@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-12-17 12:04+0900\n"
+"POT-Creation-Date: 2008-12-18 10:34+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,15 +34,15 @@ msgstr "%{label}中の最後のページです。"
 msgid "This is the first page in %{label}."
 msgstr "%{label}中の先頭のページです。"
 
-#: app/controllers/notes_controller.rb:59
+#: app/controllers/notes_controller.rb:58
 msgid "Note `%{note}' was successfully created."
 msgstr "ノート「%{note}」を作成しました。"
 
-#: app/controllers/pages_controller.rb:26
+#: app/controllers/pages_controller.rb:27
 msgid "The page %{page} is successfully created"
 msgstr "「%{page}」を作成しました。"
 
-#: app/controllers/pages_controller.rb:60
+#: app/controllers/pages_controller.rb:61
 msgid "The page %{page} is successfully updated"
 msgstr "「%{page}」を更新しました。"
 
@@ -69,6 +69,58 @@ msgstr "次"
 #: app/helpers/histories_helper.rb:17
 msgid "PREV"
 msgstr "前"
+
+#: app/helpers/notes_helper.rb:4 app/models/note.rb:-
+#: app/views/notes/edit.html.haml:21 app/views/notes/new.html.haml:129
+#: app/views/notes/new.html.haml:137 app/views/notes/new.html.haml:207
+msgid "Note|Name"
+msgstr "ノート識別子"
+
+#: app/helpers/notes_helper.rb:6 app/models/note.rb:-
+#: app/views/notes/edit.html.haml:35 app/views/notes/new.html.haml:201
+msgid "Note|Publicity"
+msgstr "公開範囲"
+
+#: app/helpers/notes_helper.rb:8 app/models/note.rb:-
+#: app/views/notes/edit.html.haml:51 app/views/notes/new.html.haml:198
+msgid "Note|Category"
+msgstr "カテゴリ"
+
+#: app/helpers/notes_helper.rb:11
+msgid ""
+"This note's %{name_key} is `%{name_val}', %{publicity_key} is `%"
+"{publicity_val}', and %{category_key} is `%{category_val}'."
+msgstr ""
+"このノートの%{name_key}は%{name_val}、%{publicity_key}は%{publicity_val}です。"
+"%{category_key}は%{category_val}です。"
+
+#: app/helpers/notes_helper.rb:16 app/helpers/notes_helper.rb:22
+msgid ", "
+msgstr "、"
+
+#: app/helpers/notes_helper.rb:16 app/helpers/notes_helper.rb:22
+msgid " and "
+msgstr "と"
+
+#: app/helpers/notes_helper.rb:17
+msgid "%{user_str} are accessible to the note"
+msgstr "%{user_str}がこのノートのにアクセスできます。"
+
+#: app/helpers/notes_helper.rb:23
+msgid "%{group_str}'s members are accessible to the note"
+msgstr "%{group_str}グループのメンバーがこのノートのアクセスできます。"
+
+#: app/helpers/notes_helper.rb:39
+msgid "Access by member only"
+msgstr "メンバーのみが読み書きできる"
+
+#: app/helpers/notes_helper.rb:40
+msgid "Readable by everyone"
+msgstr "全員が読める"
+
+#: app/helpers/notes_helper.rb:41
+msgid "Readable/Writable by everyone"
+msgstr "全員が読み書きできる"
 
 #: app/helpers/pages_helper.rb:50
 msgid "Link Palette"
@@ -309,6 +361,7 @@ msgid "History|Description"
 msgstr ""
 
 #: app/models/label_index.rb:- app/views/label_indices/index.html.haml:5
+#: app/views/notes/show.html.haml:27
 msgid "label index"
 msgstr "ラベル"
 
@@ -381,31 +434,15 @@ msgstr ""
 msgid "note"
 msgstr "ノート"
 
-#: app/models/note.rb:- app/views/notes/edit.html.haml:21
-#: app/views/notes/new.html.haml:129 app/views/notes/new.html.haml:137
-#: app/views/notes/new.html.haml:207
-msgid "Note|Name"
-msgstr "ノート識別子"
-
 #: app/models/note.rb:- app/views/notes/edit.html.haml:25
 #: app/views/notes/index.html.haml:15 app/views/notes/new.html.haml:127
 #: app/views/notes/new.html.haml:134 app/views/notes/new.html.haml:204
 msgid "Note|Display name"
 msgstr "ノート名"
 
-#: app/models/note.rb:- app/views/notes/edit.html.haml:35
-#: app/views/notes/new.html.haml:201
-msgid "Note|Publicity"
-msgstr "公開範囲"
-
 #: app/models/note.rb:-
 msgid "Note|Deleted on"
 msgstr ""
-
-#: app/models/note.rb:- app/views/notes/edit.html.haml:51
-#: app/views/notes/new.html.haml:198
-msgid "Note|Category"
-msgstr "カテゴリ"
 
 #: app/models/note.rb:-
 msgid "Note|Owner group"
@@ -591,6 +628,7 @@ msgstr ""
 
 #: app/views/attachments/index.html.haml:20
 #: app/views/label_indices/index.html.haml:13
+#: app/views/notes/show.html.haml:33
 msgid "Delete"
 msgstr "削除"
 
@@ -694,7 +732,8 @@ msgid "Label index for %{note}"
 msgstr "「%{note}」のラベル一覧"
 
 #: app/views/label_indices/index.html.haml:19
-#: app/views/notes/new.html.haml:192 app/views/pages/new.html.haml:22
+#: app/views/notes/new.html.haml:192 app/views/notes/show.html.haml:39
+#: app/views/pages/new.html.haml:22
 msgid "Create"
 msgstr "作成"
 
@@ -755,18 +794,6 @@ msgstr "ふつうのノート"
 #: app/views/notes/edit.html.haml:18
 msgid "SkipGroup note"
 msgstr "SKIPグループ"
-
-#: app/views/notes/edit.html.haml:40
-msgid "Access by member only"
-msgstr "メンバーのみが読み書きできる"
-
-#: app/views/notes/edit.html.haml:44
-msgid "Readable by everyone"
-msgstr "全員が読める"
-
-#: app/views/notes/edit.html.haml:48
-msgid "Readable/Writable by everyone"
-msgstr "全員が読み書きできる"
 
 #: app/views/notes/index.html.haml:6
 msgid "new note"
@@ -864,22 +891,25 @@ msgid ""
 "Wikipediaのようにみんなでコンテンツを作っていくWikiにしたい場合に選びます。"
 msgstr ""
 
-#: app/views/notes/show.html.haml:8
+#: app/views/notes/show.html.haml:10
+msgid "Note Propaties"
+msgstr "ノートのプロパティ"
+
+#: app/views/notes/show.html.haml:11
 msgid "edit note"
 msgstr "ノートを編集"
 
-#: app/views/notes/show.html.haml:9
-msgid "add users"
-msgstr "ユーザを追加"
+#: app/views/notes/show.html.haml:17
+msgid "Users and Groups"
+msgstr "ユーザとグループ"
 
-#: app/views/notes/show.html.haml:10
+#: app/views/notes/show.html.haml:18
+msgid "edit users permission"
+msgstr "ユーザの権限変更"
+
+#: app/views/notes/show.html.haml:19
 msgid "add groups"
 msgstr "グループを追加"
-
-#: app/views/notes/show.html.haml:11
-#, fuzzy
-msgid "add labels"
-msgstr "ラベルを追加"
 
 #: app/views/pages/_labels.html.haml:1
 msgid "LabelIndices"
@@ -1026,6 +1056,19 @@ msgstr ""
 #: app/views/users/_side_menu.html.haml:7
 msgid "User|Notes"
 msgstr "ノート一覧"
+
+#~ msgid "Users"
+#~ msgstr "ユーザ"
+
+#~ msgid "Groups"
+#~ msgstr "グループ"
+
+#~ msgid "add users"
+#~ msgstr "ユーザを追加"
+
+#, fuzzy
+#~ msgid "add labels"
+#~ msgstr "ラベルを追加"
 
 #~ msgid "Logged Failed"
 #~ msgstr "ログインに失敗しました。"

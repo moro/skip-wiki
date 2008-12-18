@@ -37,15 +37,15 @@
         %ul.radios
           %li
             =f.radio_button(:publicity, Note::PUBLICITY_MEMBER_ONLY)
-            =f.label "publicity_#{Note::PUBLICITY_MEMBER_ONLY}", h(_("Access by member only"))
+            =f.label "publicity_#{Note::PUBLICITY_MEMBER_ONLY}", h(publicity_label(Note::PUBLICITY_MEMBER_ONLY))
 
           %li
             =f.radio_button(:publicity, Note::PUBLICITY_READABLE)
-            =f.label "publicity_#{Note::PUBLICITY_READABLE}", h(_("Readable by everyone"))
+            =f.label "publicity_#{Note::PUBLICITY_READABLE}", h(_(publicity_label(Note::PUBLICITY_READABLE)))
 
           %li
             =f.radio_button(:publicity, Note::PUBLICITY_WRITABLE)
-            =f.label "publicity_#{Note::PUBLICITY_WRITABLE}", h(_"Readable/Writable by everyone")
+            =f.label "publicity_#{Note::PUBLICITY_WRITABLE}", h(publicity_label(Note::PUBLICITY_WRITABLE))
 
       %p
         = h(_("Note|Category"))

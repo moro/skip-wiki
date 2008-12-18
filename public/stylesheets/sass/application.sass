@@ -206,19 +206,19 @@ ul.label-badges
   li
     :margin 3px 3px
 
-  span.label_badge
-    :border-width 10px 5px 5px 25px
-    :border-style solid
-    :display inline-block
-    :width 8em
-    :padding 2px
+span.label_badge
+  :border-width 10px 5px 5px 25px
+  :border-style solid
+  :display inline-block
+  :width 8em
+  :padding 2px
 
-  span.label_badge.inactive
-    :border-color #CCCCCC
-    :background #CCCCCC
+span.label_badge.inactive
+  :border-color #CCCCCC
+  :background #CCCCCC
 
-    a
-      :color #555555
+  a
+    :color #555555
 
 ul.label-indices
   :list-style none
@@ -280,11 +280,40 @@ div.tab
         :background #99FFC0
         :color black
 
-div.note
-  :position relative
-
 div.app-layout
   :margin-left 5%
+
+div.note
+  :position relative
+  :font-size 16px
+
+  h3
+    :font-size 1.3em
+    :text-decoration underline
+
+    span
+      :font-size 10px
+      :margin auto 2px
+
+  .explain
+    :color gray
+    span
+      :margin 0
+    span.key
+      :color brack
+    span.val
+      :color #00cccc
+  dl
+    dt
+      :font-size 1.1em
+      :margin 2px
+      :font-weight bold
+    dd
+      :margin-left 8em
+
+  ul.users
+    li
+      :margin auto 5px
 
 div.page, div.history
   :position relative

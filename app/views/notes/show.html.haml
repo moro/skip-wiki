@@ -3,10 +3,38 @@
   .user-bar= render :partial => 'pages/user_bar'
   .tab= render :partial => 'shared/edit_navi', :locals=> {:current_path => current_path}
 
-  - div_for(@note) do
-    %ul
-      %li= link_to(h(_"edit note"), edit_note_path(@note))
-      %li= link_to(h(_"add users"), group_path(@note.owner_group))
-      %li= link_to_if false, h(_"add groups"), group_path(current_note.owner_group) # TODO グループ追加
-      %li= link_to(h(_"add labels"), note_label_indices_path(@note))
+  .app-layout
+    - div_for(@note) do
+      .property
+        %h3
+          =h _("Note Propaties")
+          %span= link_to(h(_"edit note"), edit_note_path(@note))
+        %p.explain
+          =sanitize explain_note(@note), :tags => %w[span]
+
+      .users
+        %h3
+          =h _("Users and Groups")
+          %span= link_to(h(_"edit users permission"), group_path(@note.owner_group))
+          %span= link_to_if false, h(_"add groups"), group_path(current_note.owner_group) # TODO グループ追加
+        %ul
+          - unless (us = @note.owner_group.users).empty?
+            %li.explain= explain_users(us)
+          - unless (gs = @note.groups - [@note.owner_group]).empty?
+            %li.explain= explain_groups(gs)
+
+      .labels
+        %h3&= _("label index")
+        %table.label-indices
+          %tbody
+            - current_note.label_indices.each do |label_index|
+              %tr
+                %td= labelize(label_index, true, @note)
+                %td= link_to(_("Delete"), note_label_index_path(current_note, label_index),:method=>:delete)
+
+          %tr.new-label
+            - form_for(LabelIndex.new, :url=>note_label_indices_path(current_note)) do |f|
+              %td= f.text_field :display_name, :size=>16
+              %td= f.text_field :color, :size=>7
+              %td= f.submit _("Create")
 
