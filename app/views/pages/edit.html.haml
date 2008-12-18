@@ -1,6 +1,5 @@
 #content
-  .user-bar= render :partial => 'pages/user_bar'
-  .tab= render :partial => 'shared/edit_navi', :locals=> {:current_path => edit_note_page_path(current_note, @page)}
+  =render_toolbar(edit_note_page_path(current_note, @page))
 
   - div_for(@page, :class => "app-layout") do
     %h1&= @page.display_name

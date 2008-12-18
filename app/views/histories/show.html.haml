@@ -1,8 +1,6 @@
 #content
+  =render_toolbar(note_page_histories_path(current_note, @page))
   - div_for(@page, :class=>"history") do
-    .user-bar= render :partial => 'pages/user_bar'
-    .tab= render :partial => 'shared/edit_navi', :locals=> {:current_path => note_page_histories_path(current_note, @page)}
-
     %h1&= @page.display_name
 
     .rendered~ render_page_content(@page, @history.revision)
