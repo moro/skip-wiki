@@ -1,7 +1,5 @@
 #content
-  - current_path = note_path(@note)
-  .user-bar= render :partial => 'pages/user_bar'
-  .tab= render :partial => 'shared/edit_navi', :locals=> {:current_path => current_path}
+  = render_toolbar(note_path(@note))
 
   .app-layout
     - div_for(@note) do
