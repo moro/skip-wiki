@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-12-18 11:55+0900\n"
+"POT-Creation-Date: 2008-12-18 12:35+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,7 +81,7 @@ msgid "Note|Name"
 msgstr "ノート識別子"
 
 #: app/helpers/notes_helper.rb:6 app/models/note.rb:-
-#: app/views/notes/edit.html.haml:35 app/views/notes/new.html.haml:201
+#: app/views/notes/edit.html.haml:36 app/views/notes/new.html.haml:201
 msgid "Note|Publicity"
 msgstr "公開範囲"
 
@@ -438,7 +438,7 @@ msgstr ""
 msgid "note"
 msgstr "ノート"
 
-#: app/models/note.rb:- app/views/notes/edit.html.haml:25
+#: app/models/note.rb:- app/views/notes/edit.html.haml:26
 #: app/views/notes/index.html.haml:15 app/views/notes/new.html.haml:127
 #: app/views/notes/new.html.haml:134 app/views/notes/new.html.haml:204
 msgid "Note|Display name"
@@ -460,7 +460,7 @@ msgstr ""
 msgid "Note|Updated at"
 msgstr "更新日時"
 
-#: app/models/note.rb:- app/views/notes/edit.html.haml:30
+#: app/models/note.rb:- app/views/notes/edit.html.haml:31
 #: app/views/notes/index.html.haml:16 app/views/notes/new.html.haml:158
 #: app/views/notes/new.html.haml:163 app/views/notes/new.html.haml:210
 msgid "Note|Description"
@@ -660,12 +660,13 @@ msgstr "このノートのにアクセスできるユーザです。"
 msgid "Users who belongs to this note."
 msgstr "このグループのユーザ一覧です。"
 
-#: app/views/groups/show.html.haml:26 app/views/notes/show.html.haml:8
+#: app/views/groups/show.html.haml:26 app/views/notes/edit.html.haml:59
+#: app/views/notes/show.html.haml:8
 msgid "Note Properties"
 msgstr "ノートのプロパティ"
 
 #: app/views/groups/show.html.haml:27 app/views/histories/new.html.haml:34
-#: app/views/notes/edit.html.haml:59 app/views/pages/edit.html.haml:13
+#: app/views/notes/edit.html.haml:60 app/views/pages/edit.html.haml:13
 msgid "Update"
 msgstr "更新"
 
@@ -790,9 +791,9 @@ msgstr "戻る"
 msgid "Next"
 msgstr "進む"
 
-#: app/views/notes/edit.html.haml:6
-msgid "Editing Note"
-msgstr "ノートのプロパティ"
+#: app/views/notes/edit.html.haml:6 app/views/notes/show.html.haml:9
+msgid "edit note properties"
+msgstr "ノートのプロパティを編集"
 
 #: app/views/notes/edit.html.haml:11 app/views/notes/new.html.haml:195
 msgid "Note|GroupBackendType"
@@ -901,10 +902,6 @@ msgstr ""
 msgid ""
 "Wikipediaのようにみんなでコンテンツを作っていくWikiにしたい場合に選びます。"
 msgstr ""
-
-#: app/views/notes/show.html.haml:9
-msgid "edit note"
-msgstr "ノートを編集"
 
 #: app/views/notes/show.html.haml:15
 msgid "Users and Groups"
@@ -1064,3 +1061,8 @@ msgstr ""
 msgid "User|Notes"
 msgstr "ノート一覧"
 
+#~ msgid "edit note"
+#~ msgstr "ノートを編集"
+
+#~ msgid "Editing Note"
+#~ msgstr "ノートのプロパティ"

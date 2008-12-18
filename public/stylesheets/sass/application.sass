@@ -280,10 +280,26 @@ div.app-layout
   :margin-left 5%
   :font-size 18px
 
-  input[type=submit]
-    :font-size = !modern_page_font_size
-    :font-weight bold
-    :margin 10px
+  form
+    div.fieldWithErrors
+      :display inline
+
+    div > label
+      :font-weight bold
+    ul.radios
+      :list-style none
+      :padding-left 10px
+
+    input[type=text], input[type=submit], textarea
+      :font-size = !modern_page_font_size
+      :margin 5px 10px
+
+    input[type=text], textarea
+      :border 1px solid gray
+      :padding 1px
+
+    input[type=submit]
+      :font-weight bold
 
 div.note
   :position relative

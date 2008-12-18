@@ -1,62 +1,61 @@
 #content
-  .user-bar= render :partial => 'pages/user_bar'
-  .tab= render :partial => 'shared/edit_navi', :locals=> {:current_path => edit_note_path(@note)}
+  = render_toolbar(edit_note_path(current_note))
 
-  - div_for(@note) do
-    %h1&= _("Editing Note")
-    - form_for(@note) do |f|
-      =f.error_messages
+  .app-layout
+    - div_for(@note) do
+      %p&= _("edit note properties")
+      - form_for(@note) do |f|
+        =f.error_messages
 
-      %p
-        = h(_("Note|GroupBackendType"))
-        %ul.radios
-          %li
-            =f.radio_button(:group_backend_type, "BuiltinGroup", :disabled=>!@note.new_record?)
-            =f.label :group_backend_type, h(_"BuiltinGroup note"), :for=>"note_group_backend_type_builtingroup"
-          %li
-            =f.radio_button(:group_backend_type, "SkipGroup", :disabled=>!@note.new_record?)
-            =f.label :group_backend_type, h(_"SkipGroup note"), :for=>"note_group_backend_type_skipgroup"
-
-      %p
-        =f.label :name, h(_("Note|Name"))
-        %br
-        =f.text_field :name
-      %p
-        =f.label :display_name, h(_("Note|Display name"))
-        %br
-        =f.text_field :display_name
-
-      %p
-        =f.label :description, h(_("Note|Description"))
-        %br
-        =f.text_field :description, :size=>"80"
-
-      %p
-        = h(_("Note|Publicity"))
-        %br
-        %ul.radios
-          %li
-            =f.radio_button(:publicity, Note::PUBLICITY_MEMBER_ONLY)
-            =f.label "publicity_#{Note::PUBLICITY_MEMBER_ONLY}", h(publicity_label(Note::PUBLICITY_MEMBER_ONLY))
-
-          %li
-            =f.radio_button(:publicity, Note::PUBLICITY_READABLE)
-            =f.label "publicity_#{Note::PUBLICITY_READABLE}", h(_(publicity_label(Note::PUBLICITY_READABLE)))
-
-          %li
-            =f.radio_button(:publicity, Note::PUBLICITY_WRITABLE)
-            =f.label "publicity_#{Note::PUBLICITY_WRITABLE}", h(publicity_label(Note::PUBLICITY_WRITABLE))
-
-      %p
-        = h(_("Note|Category"))
-        %br
-        %ul.radios
-          - Category.lang("ja").each do |c|
+        %div
+          %label&= _("Note|GroupBackendType")
+          %ul.radios
             %li
-              =f.radio_button :category_id, c.id
-              =f.label h("category_id_#{c.id}"), h(c.display_name)
-      %p
-        = f.submit _("Update")
+              =f.radio_button(:group_backend_type, "BuiltinGroup", :disabled=>!@note.new_record?)
+              =f.label :group_backend_type, h(_"BuiltinGroup note"), :for=>"note_group_backend_type_builtingroup"
+            %li
+              =f.radio_button(:group_backend_type, "SkipGroup", :disabled=>!@note.new_record?)
+              =f.label :group_backend_type, h(_"SkipGroup note"), :for=>"note_group_backend_type_skipgroup"
 
-= link_to 'Show', @note
-= link_to 'Back', notes_path
+        %div
+          =f.label :name, h(_("Note|Name"))
+          %br
+          =f.text_field :name
+
+        %div
+          =f.label :display_name, h(_("Note|Display name"))
+          %br
+          =f.text_field :display_name
+
+        %div
+          =f.label :description, h(_("Note|Description"))
+          %br
+          =f.text_field :description, :size=>"60"
+
+        %div
+          %label&= _("Note|Publicity")
+          %br
+          %ul.radios
+            %li
+              =f.radio_button(:publicity, Note::PUBLICITY_MEMBER_ONLY)
+              =f.label "publicity_#{Note::PUBLICITY_MEMBER_ONLY}", h(publicity_label(Note::PUBLICITY_MEMBER_ONLY))
+
+            %li
+              =f.radio_button(:publicity, Note::PUBLICITY_READABLE)
+              =f.label "publicity_#{Note::PUBLICITY_READABLE}", h(_(publicity_label(Note::PUBLICITY_READABLE)))
+
+            %li
+              =f.radio_button(:publicity, Note::PUBLICITY_WRITABLE)
+              =f.label "publicity_#{Note::PUBLICITY_WRITABLE}", h(publicity_label(Note::PUBLICITY_WRITABLE))
+
+          %label&= _("Note|Category")
+          %br
+          %ul.radios
+            - Category.lang("ja").each do |c|
+              %li
+                =f.radio_button :category_id, c.id
+                =f.label h("category_id_#{c.id}"), h(c.display_name)
+        %div
+          = back_link_to(_("Note Properties"), note_path(current_note))
+          = f.submit _("Update")
+

@@ -6,7 +6,7 @@
       .property
         %h3
           =h _("Note Properties")
-          %span= link_to(h(_"edit note"), edit_note_path(@note))
+          %span= link_to(h(_"edit note properties"), edit_note_path(@note))
         %p.explain
           =sanitize explain_note(@note), :tags => %w[span]
 
