@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-12-18 10:34+0900\n"
+"POT-Creation-Date: 2008-12-18 11:55+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,9 +58,13 @@ msgstr "ログインしました。"
 msgid "Jump to Note"
 msgstr "ノートに移動"
 
-#: app/helpers/application_helper.rb:16
+#: app/helpers/application_helper.rb:24
 msgid "[Click to hide]"
 msgstr "[クリックして消去]"
+
+#: app/helpers/application_helper.rb:52
+msgid "Back to %{page}"
+msgstr "%{page}に戻る"
 
 #: app/helpers/histories_helper.rb:8
 msgid "NEXT"
@@ -91,8 +95,8 @@ msgid ""
 "This note's %{name_key} is `%{name_val}', %{publicity_key} is `%"
 "{publicity_val}', and %{category_key} is `%{category_val}'."
 msgstr ""
-"このノートの%{name_key}は%{name_val}、%{publicity_key}は%{publicity_val}です。"
-"%{category_key}は%{category_val}です。"
+"このノートの%{name_key}は%{name_val}、%{publicity_key}は%{publicity_val}で"
+"す。%{category_key}は%{category_val}です。"
 
 #: app/helpers/notes_helper.rb:16 app/helpers/notes_helper.rb:22
 msgid ", "
@@ -361,7 +365,7 @@ msgid "History|Description"
 msgstr ""
 
 #: app/models/label_index.rb:- app/views/label_indices/index.html.haml:5
-#: app/views/notes/show.html.haml:27
+#: app/views/notes/show.html.haml:25
 msgid "label index"
 msgstr "ラベル"
 
@@ -628,7 +632,7 @@ msgstr ""
 
 #: app/views/attachments/index.html.haml:20
 #: app/views/label_indices/index.html.haml:13
-#: app/views/notes/show.html.haml:33
+#: app/views/notes/show.html.haml:31
 msgid "Delete"
 msgstr "削除"
 
@@ -644,14 +648,26 @@ msgstr "ファイルを添付"
 msgid "Upload"
 msgstr "アップロード"
 
-#: app/views/groups/show.html.haml:3
-msgid "Back To Note"
-msgstr "ノートに戻る"
-
 #: app/views/groups/show.html.haml:5
-#, fuzzy
 msgid "Group|Users"
 msgstr "グループのユーザ一覧"
+
+#: app/views/groups/show.html.haml:7
+msgid "Users who can access to this note."
+msgstr "このノートのにアクセスできるユーザです。"
+
+#: app/views/groups/show.html.haml:9
+msgid "Users who belongs to this note."
+msgstr "このグループのユーザ一覧です。"
+
+#: app/views/groups/show.html.haml:26 app/views/notes/show.html.haml:8
+msgid "Note Properties"
+msgstr "ノートのプロパティ"
+
+#: app/views/groups/show.html.haml:27 app/views/histories/new.html.haml:34
+#: app/views/notes/edit.html.haml:59 app/views/pages/edit.html.haml:13
+msgid "Update"
+msgstr "更新"
 
 #: app/views/histories/diff.html.haml:4
 msgid "%{page}'s diff from rev.%{from} to rev.%{to}."
@@ -709,11 +725,6 @@ msgstr "プレビュー"
 msgid "Hide"
 msgstr "プレビューを隠す"
 
-#: app/views/histories/new.html.haml:34 app/views/notes/edit.html.haml:59
-#: app/views/pages/edit.html.haml:13
-msgid "Update"
-msgstr "更新"
-
 #: app/views/histories/new.html.haml:35
 #: app/views/shared/_edit_navi.html.haml:5
 msgid "show page"
@@ -732,7 +743,7 @@ msgid "Label index for %{note}"
 msgstr "「%{note}」のラベル一覧"
 
 #: app/views/label_indices/index.html.haml:19
-#: app/views/notes/new.html.haml:192 app/views/notes/show.html.haml:39
+#: app/views/notes/new.html.haml:192 app/views/notes/show.html.haml:37
 #: app/views/pages/new.html.haml:22
 msgid "Create"
 msgstr "作成"
@@ -891,23 +902,19 @@ msgid ""
 "Wikipediaのようにみんなでコンテンツを作っていくWikiにしたい場合に選びます。"
 msgstr ""
 
-#: app/views/notes/show.html.haml:10
-msgid "Note Propaties"
-msgstr "ノートのプロパティ"
-
-#: app/views/notes/show.html.haml:11
+#: app/views/notes/show.html.haml:9
 msgid "edit note"
 msgstr "ノートを編集"
 
-#: app/views/notes/show.html.haml:17
+#: app/views/notes/show.html.haml:15
 msgid "Users and Groups"
 msgstr "ユーザとグループ"
 
-#: app/views/notes/show.html.haml:18
+#: app/views/notes/show.html.haml:16
 msgid "edit users permission"
 msgstr "ユーザの権限変更"
 
-#: app/views/notes/show.html.haml:19
+#: app/views/notes/show.html.haml:17
 msgid "add groups"
 msgstr "グループを追加"
 
@@ -1057,33 +1064,3 @@ msgstr ""
 msgid "User|Notes"
 msgstr "ノート一覧"
 
-#~ msgid "Users"
-#~ msgstr "ユーザ"
-
-#~ msgid "Groups"
-#~ msgstr "グループ"
-
-#~ msgid "add users"
-#~ msgstr "ユーザを追加"
-
-#, fuzzy
-#~ msgid "add labels"
-#~ msgstr "ラベルを追加"
-
-#~ msgid "Logged Failed"
-#~ msgstr "ログインに失敗しました。"
-
-#~ msgid "LabelIndex|Name"
-#~ msgstr "ラベル識別子"
-
-#~ msgid "Move to Label"
-#~ msgstr "別のラベルに移動"
-
-#~ msgid "attach to note"
-#~ msgstr "ノートの添付ファイル"
-
-#~ msgid "Insert Image"
-#~ msgstr "画像を挿入"
-
-#~ msgid "Fulltext Search"
-#~ msgstr "SKIPファミリを全文検索"

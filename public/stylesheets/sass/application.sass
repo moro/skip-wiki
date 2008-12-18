@@ -1,5 +1,6 @@
 !side_width = 200px
 !content_margin = 210px
+!modern_page_font_size = 16px
 
 .caption
   a.wii_button
@@ -277,6 +278,12 @@ div.tab
 
 div.app-layout
   :margin-left 5%
+  :font-size 18px
+
+  input[type=submit]
+    :font-size = !modern_page_font_size
+    :font-weight bold
+    :margin 10px
 
 div.note
   :position relative
@@ -626,4 +633,15 @@ ul.float
   div.error
     :border-color red
     :background-color pink
+
+table.group-users
+  td
+    :font-size = !modern_page_font_size
+  td.identity_url
+    :font-size 10px
+    :color gray
+
+a.back
+  :color #3333aa
+  :font-size small
 

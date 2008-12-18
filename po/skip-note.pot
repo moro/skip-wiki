@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-12-18 10:34+0900\n"
+"POT-Creation-Date: 2008-12-18 11:55+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,8 +58,12 @@ msgstr ""
 msgid "Jump to Note"
 msgstr ""
 
-#: app/helpers/application_helper.rb:16
+#: app/helpers/application_helper.rb:24
 msgid "[Click to hide]"
+msgstr ""
+
+#: app/helpers/application_helper.rb:52
+msgid "Back to %{page}"
 msgstr ""
 
 #: app/helpers/histories_helper.rb:8
@@ -358,7 +362,7 @@ msgid "History|Description"
 msgstr ""
 
 #: app/models/label_index.rb:- app/views/label_indices/index.html.haml:5
-#: app/views/notes/show.html.haml:27
+#: app/views/notes/show.html.haml:25
 msgid "label index"
 msgstr ""
 
@@ -624,7 +628,7 @@ msgstr ""
 
 #: app/views/attachments/index.html.haml:20
 #: app/views/label_indices/index.html.haml:13
-#: app/views/notes/show.html.haml:33
+#: app/views/notes/show.html.haml:31
 msgid "Delete"
 msgstr ""
 
@@ -640,12 +644,25 @@ msgstr ""
 msgid "Upload"
 msgstr ""
 
-#: app/views/groups/show.html.haml:3
-msgid "Back To Note"
-msgstr ""
-
 #: app/views/groups/show.html.haml:5
 msgid "Group|Users"
+msgstr ""
+
+#: app/views/groups/show.html.haml:7
+msgid "Users who can access to this note."
+msgstr ""
+
+#: app/views/groups/show.html.haml:9
+msgid "Users who belongs to this note."
+msgstr ""
+
+#: app/views/groups/show.html.haml:26 app/views/notes/show.html.haml:8
+msgid "Note Properties"
+msgstr ""
+
+#: app/views/groups/show.html.haml:27 app/views/histories/new.html.haml:34
+#: app/views/notes/edit.html.haml:59 app/views/pages/edit.html.haml:13
+msgid "Update"
 msgstr ""
 
 #: app/views/histories/diff.html.haml:4
@@ -704,11 +721,6 @@ msgstr ""
 msgid "Hide"
 msgstr ""
 
-#: app/views/histories/new.html.haml:34 app/views/notes/edit.html.haml:59
-#: app/views/pages/edit.html.haml:13
-msgid "Update"
-msgstr ""
-
 #: app/views/histories/new.html.haml:35
 #: app/views/shared/_edit_navi.html.haml:5
 msgid "show page"
@@ -727,7 +739,7 @@ msgid "Label index for %{note}"
 msgstr ""
 
 #: app/views/label_indices/index.html.haml:19
-#: app/views/notes/new.html.haml:192 app/views/notes/show.html.haml:39
+#: app/views/notes/new.html.haml:192 app/views/notes/show.html.haml:37
 #: app/views/pages/new.html.haml:22
 msgid "Create"
 msgstr ""
@@ -886,23 +898,19 @@ msgid ""
 "Wikipediaのようにみんなでコンテンツを作っていくWikiにしたい場合に選びます。"
 msgstr ""
 
-#: app/views/notes/show.html.haml:10
-msgid "Note Propaties"
-msgstr ""
-
-#: app/views/notes/show.html.haml:11
+#: app/views/notes/show.html.haml:9
 msgid "edit note"
 msgstr ""
 
-#: app/views/notes/show.html.haml:17
+#: app/views/notes/show.html.haml:15
 msgid "Users and Groups"
 msgstr ""
 
-#: app/views/notes/show.html.haml:18
+#: app/views/notes/show.html.haml:16
 msgid "edit users permission"
 msgstr ""
 
-#: app/views/notes/show.html.haml:19
+#: app/views/notes/show.html.haml:17
 msgid "add groups"
 msgstr ""
 
