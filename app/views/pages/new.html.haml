@@ -2,9 +2,8 @@
   =javascript_include_tag("fckeditor/fckeditor.js")
 
 #content
-  render_toolbar( new_note_page_path(current_note) )
+  = render_toolbar( new_note_page_path(current_note) )
   - div_for(@page) do
-
     %h1&= _("New Page")
     = error_messages_for :page
 
