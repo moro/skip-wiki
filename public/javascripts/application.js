@@ -219,7 +219,7 @@
         type: "POST",
         data: f.serializeArray(),
         dataType: "json",
-        success: function(data, _){ f.get(0).reset(); appendLabel(data); }
+        complete: function(req, stat){ if(stat == "success"){ f.get(0).reset(); appendLabel(req);} }
       });
       return false;
     }
@@ -260,24 +260,25 @@
       return false;
     }
 
-    function appendLabel(data){
-      jQuery.each(data, function(_, d){
-        if(!d["url"]){
-          d["url"] = "/skip_note/notes/"+d["note_id"]+"/label_indices/"+d["id"];
-        }
-        jQuery.each(table.find("tr div.show"), function(){ hideOPE(this) });
+    function appendLabel(xhr){
+      var data = jQuery.httpData( xhr, "json")["label_index"];
+      var display_name = data["display_name"];
+      var color = data["color"];
+      var url = xhr.getResponseHeader("Location");
 
-        var row = table.find("tr:first").clone(true).
-                    find("span.label_badge").
-                      attr("style", "border-color:"+d["color"]).
-                      text(d["display_name"]).end().
-                    find("td.inplace-edit form").attr("action", d["url"]).
-                      find("[name='label_index[display_name]']").val(d["display_name"]).end().
-                      find("[name='label_index[color]']").val(d["color"]).end().end().
-                    find("td.delete form").attr("action", d["url"]).end();
+      alert(url);
+      jQuery.each(table.find("tr div.show"), function(){ hideOPE(this) });
 
-        table.find("tbody").append(row);
-      });
+      var row = table.find("tr:first").clone(true).
+                  find("span.label_badge").
+                    attr("style", "border-color:"+color).
+                    text(display_name).end().
+                  find("td.inplace-edit form").attr("action", url).
+                    find("[name='label_index[display_name]']").val(display_name).end().
+                    find("[name='label_index[color]']").val(color).end().end().
+                  find("td.delete form").attr("action", url).end();
+
+      table.find("tbody").append(row);
     }
 
     jQuery(this).find("div.new form").submit(create);
