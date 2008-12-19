@@ -13,7 +13,7 @@ module NotesHelper
 
   def explain_users(users)
     spans = users.map{|u| content_tag("span", u.name, :class => "val") }
-    user_str = spans[0..-2].join(_(", ")) + _(" and ") + spans.last
+    user_str = spans.size == 1 ? spans.first : spans[0..-2].join(_(", ")) + _(" and ") + spans.last
     _("%{user_str} are accessible to the note") % {:user_str => user_str }
   end
 
