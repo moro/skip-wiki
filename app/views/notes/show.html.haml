@@ -25,14 +25,32 @@
         %h3&= _("label index")
         %table.label-indices
           %tbody
-            - current_note.label_indices.each do |label_index|
+            - current_note.label_indices.each do |l_idx|
               %tr
-                %td= labelize(label_index, true, @note)
-                %td= link_to(_("Delete"), note_label_index_path(current_note, label_index),:method=>:delete)
+                - form_opt = {:url=>note_label_index_path(@note, l_idx)}
+                %td.inplace-edit
+                  .show
+                    = labelize(l_idx, false, @note)
+                    %span.op&= _("Click to edit")
+                  .edit{:style=>"display:none"}
+                    - form_for :label_index, l_idx, form_opt.merge(:html=>{:method=>"PUT",:style=>"display:visible"}) do |f|
+                      = f.text_field :display_name, :size=>12, :id=>"#{l_idx.id}_display_name"
+                      = f.text_field :color, :maxlength=>7, :id=>"#{l_idx.id}_display_color"
+                      = f.submit _("Update")
+                      %span.op&= _("Cancel")
 
-          %tr.new-label
-            - form_for(LabelIndex.new, :url=>note_label_indices_path(current_note)) do |f|
-              %td= f.text_field :display_name, :size=>16
-              %td= f.text_field :color, :size=>7
-              %td= f.submit _("Create")
+                %td.delete
+                  - form_for :label_index, l_idx, form_opt.merge(:html =>{:method=>"DELETE"}) do |f|
+                    = f.submit _("Delete")
+
+        .new
+          - form_for(LabelIndex.new, :url=>note_label_indices_path(current_note)) do |f|
+            = f.label(:display_name, _("add labels"))
+            %br
+            = f.text_field :display_name, :size=>16
+            = f.text_field :color, :size=>7
+            = f.submit _("Create")
+
+:javascript
+  jQuery(function(){ $("div.labels").manageLabel() });
 

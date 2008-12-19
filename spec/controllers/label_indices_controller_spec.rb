@@ -3,6 +3,8 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe LabelIndicesController do
   def mock_label_index(stubs={})
     @mock_label_index ||= mock_model(LabelIndex, stubs)
+    @mock_label_index.stub!(:display_name).and_return("Display name")
+    @mock_label_index
   end
   fixtures :notes
 
@@ -69,9 +71,29 @@ describe LabelIndicesController do
 
       it "should redirect to the created label_index" do
         post :create, :label_index => {:these => 'params'}
-        response.should redirect_to(note_label_indices_url(@note))
+        response.should redirect_to(note_url(@note))
       end
     end
+
+    describe "with valid params via Ajax" do
+      before do
+        @note.should_receive(:label_indices).and_return(proxy = mock("proxy"))
+        m = mock_label_index(:save => true)
+        m.should_receive(:to_json).and_return("--- JSON ---")
+        proxy.should_receive(:build).with({'these' => 'params'}).and_return(m)
+      end
+
+      it "should expose a newly created label_index as @label_index" do
+        xhr :post, :create, :label_index => {:these => 'params'}
+        assigns(:label_index).should equal(mock_label_index)
+      end
+
+      it "should redirect to the created label_index" do
+        xhr :post, :create, :label_index => {:these => 'params'}
+        response.code.should == "201"
+      end
+    end
+
 
     describe "with invalid params" do
       before do

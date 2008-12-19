@@ -200,29 +200,93 @@
           target.parents("form").get(0).reset()
         };
       });
-  }
-/*
- *  Obsolute
- *
-  jQuery.fn.loadMyNote = function(config){
-    this.click(function(){
-      jQuery(config["notes_elem"]).toggle();
-      return false;
-    });
-    this.one("click", loadMyNote);
+  },
 
-    function loadMyNote(){
-      jQuery.getJSON(config["url"], {}, appedToMyNote);
-      return true;
-    }
-    function appedToMyNote(json){
-      var ul = jQuery(config["notes_elem"]).find("ul");
-      jQuery.each(json, function(_,a){
-        ul.append("<li><a href='"+a["url"]+"'>"+a["display_name"]+"</a></li>");
+  jQuery.fn.manageLabel = function(config){
+    var table = jQuery(this).find("table");
+
+    function post(f, callback){
+      jQuery.ajax({url: f.attr("action") + ".js",
+        type: "POST",
+        data: f.serializeArray(),
+        success: callback
       });
     }
-  };
-*/
 
+    function create(){
+      var f = jQuery(this);
+      jQuery.ajax({url: f.attr("action") + ".js",
+        type: "POST",
+        data: f.serializeArray(),
+        dataType: "json",
+        success: function(data, _){ f.get(0).reset(); appendLabel(data); }
+      });
+      return false;
+    }
+
+    function destroy(){
+      if(!confirm("削除しますか?")) return false ;
+      var f = jQuery(this);
+      post(f, function(){f.parents("tr").fadeOut().remove()});
+
+      return false;
+    }
+
+    function update(){
+      var f = jQuery(this);
+      post(jQuery(this), function(){
+        var name = f.find("[name='label_index[display_name]']").val();
+        var color = f.find("[name='label_index[color]']").val();
+
+        f.parents("tr").find("span.label_badge").
+                          attr("style", "border-color:"+color).
+                          text(name).end();
+        hideOPE(f);
+      });
+      return false;
+    }
+
+    function showOPE(child){
+      jQuery(child).parents("td.inplace-edit").
+        find("div.show").hide().end().
+        find("div.edit").show().end ;
+      return false;
+    }
+
+    function hideOPE(child){
+      jQuery(child).parents("td.inplace-edit").
+        find("div.show").show().end().
+        find("div.edit").hide().end ;
+      return false;
+    }
+
+    function appendLabel(data){
+      jQuery.each(data, function(_, d){
+        if(!d["url"]){
+          d["url"] = "/skip_note/notes/"+d["note_id"]+"/label_indices/"+d["id"];
+        }
+        jQuery.each(table.find("tr div.show"), function(){ hideOPE(this) });
+
+        var row = table.find("tr:first").clone(true).
+                    find("span.label_badge").
+                      attr("style", "border-color:"+d["color"]).
+                      text(d["display_name"]).end().
+                    find("td.inplace-edit form").attr("action", d["url"]).
+                      find("[name='label_index[display_name]']").val(d["display_name"]).end().
+                      find("[name='label_index[color]']").val(d["color"]).end().end().
+                    find("td.delete form").attr("action", d["url"]).end();
+
+        table.find("tbody").append(row);
+      });
+    }
+
+    jQuery(this).find("div.new form").submit(create);
+    table.find("td.inplace-edit").
+      find("div.show span.op").click(function(){return showOPE(this)}).end().
+      find("div.edit span.op").click(function(){return hideOPE(this)}).end().
+      find("form").submit(update);
+    table.find("td.delete form").submit(destroy);
+
+  }
 })(jQuery);
 

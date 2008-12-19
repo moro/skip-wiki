@@ -33,12 +33,15 @@ class LabelIndicesController < ApplicationController
 
     respond_to do |format|
       if @label_index.save
-        flash[:notice] = 'LabelIndex was successfully created.'
-        format.html { redirect_to note_label_indices_url(@note) }
-        format.xml  { render :xml => @label_index, :status => :created, :location => @label_index }
+        flash[:notice] = _('LabelIndex %{display_name} was successfully created.') % {:display_name => @label_index.display_name}
+        format.html { redirect_to note_url(@note) }
+        heders = {:status => :created, :location => note_label_index_url(current_note, @label_index)}
+        format.xml  { render heders.merge(:xml => @label_index) }
+        format.js  { render heders.merge(:json => @label_index) }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @label_index.errors, :status => :unprocessable_entity }
+        format.js  { render :json => @label_index.errors.full_messages, :status => :unprocessable_entity }
       end
     end
   end
@@ -53,6 +56,7 @@ class LabelIndicesController < ApplicationController
         flash[:notice] = 'LabelIndex was successfully updated.'
         format.html { redirect_to note_label_indices_url(current_note) }
         format.xml  { head :ok }
+        format.js  { head :ok }
       else
         format.html { render :action => "index" }
         format.xml  { render :xml => @label_index.errors, :status => :unprocessable_entity }
@@ -69,6 +73,7 @@ class LabelIndicesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(note_label_indices_url(current_note)) }
       format.xml  { head :ok }
+      format.js   { head :ok }
     end
   end
 

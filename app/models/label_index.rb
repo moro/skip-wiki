@@ -16,10 +16,17 @@ class LabelIndex < ActiveRecord::Base
   validates_presence_of :display_name
   validates_uniqueness_of :display_name, :scope=>:note_id
 
+  before_destroy :deletable?
+
   attr_accessible :display_name, :color, :note
 
   def self.no_label
     new(:display_name => _("No Labels"), :color => "#ffffff"){|l| l.default_label = true }
+  end
+
+  private
+  def deletable?
+    !default_label
   end
 end
 
