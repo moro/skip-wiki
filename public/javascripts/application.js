@@ -97,7 +97,7 @@
       var content = api().GetData(true);
 
       jQuery.ajax({ type: method,
-                    url:  form.attr("action"),
+                    url:  form.attr("action") + ".js",
                     data: ({"authenticity_token": $("input[name=authenticity_token]").val(),
                             "history[content]"  : content }),
                     complete : function(req, stat){
