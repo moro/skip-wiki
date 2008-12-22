@@ -3,13 +3,18 @@ class LabelIndex < ActiveRecord::Base
   has_many :label_indexings
   has_many :pages, :through => :label_indexings do
     def previous(order)
-      col = LabelIndexing.quoted_table_name + ".page_order"
-      find(:first, :conditions => ["#{col} < ?", order], :order => "#{col} DESC")
+      load_target_with_label_indexings
+      target.sort_by(&:order_in_label).reverse.detect{|page| page.order_in_label < order }
     end
 
     def next(order)
-      col = LabelIndexing.quoted_table_name + ".page_order"
-      find(:first, :conditions => ["#{col} > ?", order], :order => "#{col} ASC")
+      load_target_with_label_indexings
+      target.sort_by(&:order_in_label).detect{|page| page.order_in_label > order }
+    end
+
+    private
+    def load_target_with_label_indexings
+      with_scope(:find =>{:include => "label_indexings"}){ load_target }
     end
   end
 
