@@ -18,7 +18,7 @@
         =link_to_function(_("close"), "$(this).parents('div.move-to-label').hide()")
         %ul
           - current_note.label_indices.each do |l|
-            %li= link_to labelize(l), prev_note_label_index_path(current_note, l, :pivot=>2)
+            %li= link_to labelize(l), note_label_index_path(current_note, l)
 
   %li.bar-item.search-pages
     - form_tag(note_pages_path(current_note), :method=>:get) do
