@@ -6,12 +6,13 @@
 %ul.float
   - if @page && !@page.new_record?
     %li.bar-item.navigate-in-label
-      - idx, pivot = @page.label_index, @page.order_in_label
+      - _next = @page.label_index.pages.next(@page.order_in_label)
+      - _prev = @page.label_index.pages.previous(@page.order_in_label)
       %ul.float
-        %li= labelize(idx)
-        %li= link_to_function(_("other"), "$(this).parents('li.navigate-in-label').find('div.move-to-label').show()")
-        %li= link_to(h(_"Previous"), prev_note_label_index_path(current_note, idx, :pivot=>pivot))
-        %li= link_to(h(_"Next"), next_note_label_index_path(current_note, idx, :pivot=>pivot))
+        %li= labelize(@page.label_index)
+        %li= link_to_function(_("other.."), "$(this).parents('li.navigate-in-label').find('div.move-to-label').show()")
+        %li= link_to_if(_prev, h(_"Previous"), note_page_path(current_note, _prev))
+        %li= link_to_if(_next, h(_"Next"), note_page_path(current_note, _next))
 
       .move-to-label{:style=>"display:none"}
         =link_to_function(_("close"), "$(this).parents('div.move-to-label').hide()")

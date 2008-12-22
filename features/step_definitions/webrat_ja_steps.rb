@@ -65,3 +65,8 @@ Then /^"(.*)"がチェックされていること$/ do |label|
   field_labeled(label).should be_checked
 end
 
+Then /^"(.*?)"がリンクになっていないこと$/ do |label|
+  Nokogiri(response.body).search("a").select{|a| a.text == label }.should be_empty
+  response.body.should =~ /#{Regexp.escape(label)}/m
+end
+
