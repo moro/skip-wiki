@@ -32,6 +32,13 @@ class Page < ActiveRecord::Base
     {:conditions => ["#{quoted_table_name}.published_at < ?", date.shift || DateTime.now]}
   }
 
+  named_scope :authored, proc{|*authors|
+    hs = History.heads.find(:all, :select => "#{History.quoted_table_name}.page_id",
+                                  :include  => :user,
+                                  :conditions => ["#{User.quoted_table_name}.name IN (?)", authors])
+    {:conditions => ["#{quoted_table_name}.id IN (?)", hs.map(&:page_id)]}
+  }
+
   # TODO 採用が決まったら回帰テスト書く
   named_scope :last_modified_per_notes, proc{|note_ids|
 

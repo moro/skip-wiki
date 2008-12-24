@@ -241,5 +241,26 @@ describe Page do
       end
     end
   end
+
+  describe ".authored(*authors)" do
+    fixtures :users
+    before do
+      @page = Page.new(@valid_attributes)
+      @page.edit("hogehogehoge", users(:quentin))
+      @page.save!
+
+      another = Page.new(@valid_attributes)
+      another.edit("foobar", users(:aaron))
+      another.save!
+    end
+
+    it "authored('quentin') should == [@page]" do
+      Page.authored("quentin").should == [@page]
+    end
+
+    it do
+      Page.authored("quentin").fulltext("foobar").should == []
+    end
+  end
 end
 
