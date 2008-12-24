@@ -104,6 +104,10 @@ SQL
     end
   end
 
+  def published?(pivot = Time.now)
+    published_at <= pivot
+  end
+
   def head
     histories.first
   end
