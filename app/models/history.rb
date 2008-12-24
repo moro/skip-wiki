@@ -7,26 +7,27 @@ class History < ActiveRecord::Base
 
   validates_associated :content
 
-  def self.find_all_by_head_content(keyword, only_head = true)
-    find_by_sql([<<-SQL, {:keyword => "%#{keyword}%"}])
-SELECT
-  hs.*
-FROM
-  histories AS hs
-  INNER JOIN contents AS c
-    ON hs.content_id = c.id
+  named_scope :heads, lambda{|*opts|
+    heads_sql = <<-SQL
+  SELECT hs.id
+  FROM   #{quoted_table_name} AS hs
   INNER JOIN (
-      SELECT
-        h.page_id AS page_id,
-        MAX(h.revision) AS revision
-      FROM histories AS h
-      GROUP BY h.page_id
+    SELECT
+      h.page_id AS page_id,
+      MAX(h.revision) AS revision
+    FROM histories AS h
+    GROUP BY h.page_id
   ) AS heads
-    ON hs.page_id = heads.page_id
-    AND hs.revision = heads.revision
-WHERE
-  c.data LIKE :keyword
+  ON hs.page_id = heads.page_id AND hs.revision = heads.revision
 SQL
+    # or/ {:conditions => ["#{quoted_table_name}.id IN (#{heads_sql})"]}
+    ids = connection.select_all(heads_sql).map{|h| Integer(h["id"]) }
+    {:conditions => ["#{quoted_table_name}.id IN (?)", ids ]}
+  }
+
+  def self.find_all_by_head_content(keyword, only_head = true)
+    heads.find(:all, :include => :content,
+                     :conditions => ["contents.data LIKE ?", "%#{keyword}%"])
   end
 
   private
