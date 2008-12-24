@@ -57,12 +57,11 @@ SQL
   }
 
   named_scope :fulltext, proc{|keyword|
-    hids = History.find_all_by_head_content(keyword).map(&:id)
+    hids = History.find_all_by_head_content(keyword).map(&:page_id)
     if hids.empty?
       { :conditions => "1 = 2" } # force false
     else
-      { :conditions => ["#{History.quoted_table_name}.id IN (?)", hids],
-        :include => :histories }
+      { :conditions => ["#{quoted_table_name}.id IN (?)", hids] }
     end
   }
 

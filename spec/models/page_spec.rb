@@ -162,12 +162,12 @@ describe Page do
     before do
       History.should_receive(:find_all_by_head_content).
         with('keyword').
-        and_return( [@history = mock_model(History)] )
+        and_return( [@history = mock_model(History, :page_id => "10")] )
     end
 
-    it ".options.should == {:conditions => ['histories.id IN (?)', @history.id], :include => :histories}" do
+    it ".options.should == {:conditions => ['pages.id IN (?)', @history.page_id]}" do
       Page.fulltext("keyword").proxy_options.should ==
-        {:conditions => ["#{History.quoted_table_name}.id IN (?)", [@history.id]], :include => :histories}
+        {:conditions => ["#{Page.quoted_table_name}.id IN (?)", [@history.page_id]]}
     end
   end
 
