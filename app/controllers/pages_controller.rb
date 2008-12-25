@@ -1,22 +1,12 @@
 class PagesController < ApplicationController
   def index
-    pages = accessible_pages
-    pages = pages.fulltext(params[:keyword]) unless params[:keyword].blank?
-    pages = pages.authored(*params[:authors].split(/\s*,\s*/)) unless params[:authors].blank?
-    pages = pages.labeled(params[:label_index_id]) unless params[:label_index_id].blank?
+    pages = accessible_pages.fulltext(params[:keyword]).
+                             labeled(params[:label_index_id]).
+                             authored(*safe_split(params[:authors])).
+                             scoped(page_order_white_list(params[:order]))
 
-    @pages = pages.scoped(page_order_white_list(params[:order])).find(:all)
+    @pages = pages.find(:all)
   end
-
-  def page_order_white_list(order, default = "#{Page.quoted_table_name}.updated_at DESC")
-    {:order =>
-      case order
-      when "updated_at_DESC" then "#{Page.quoted_table_name}.updated_at DESC"
-      when "updated_at_ASC"  then "#{Page.quoted_table_name}.updated_at ASC"
-      else default
-      end }
-  end
-  private :page_order_white_list
 
   def show
     @note = current_note
@@ -84,5 +74,18 @@ class PagesController < ApplicationController
   private
   def accessible_pages(note = current_note, user = current_user)
     note.accessible?(user) ? note.pages : note.pages.published
+  end
+
+  def safe_split(str, separator = /\s*,\s*/)
+    str.nil? ? [] : str.to_s.split(separator)
+  end
+
+  def page_order_white_list(order, default = "#{Page.quoted_table_name}.updated_at DESC")
+    {:order =>
+      case order
+      when "updated_at_DESC" then "#{Page.quoted_table_name}.updated_at DESC"
+      when "updated_at_ASC"  then "#{Page.quoted_table_name}.updated_at ASC"
+      else default
+      end }
   end
 end
