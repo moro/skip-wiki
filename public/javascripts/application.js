@@ -266,7 +266,6 @@
       var color = data["color"];
       var url = xhr.getResponseHeader("Location");
 
-      alert(url);
       jQuery.each(table.find("tr div.show"), function(){ hideOPE(this) });
 
       var row = table.find("tr:first").clone(true).
