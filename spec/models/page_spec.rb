@@ -262,5 +262,34 @@ describe Page do
       Page.authored("quentin").fulltext("foobar").should == []
     end
   end
+
+  describe ".labeled(*labels)" do
+    fixtures :users, :notes, :pages
+    before do
+      @label = LabelIndex.create(:note=>notes(:our_note), :display_name=>"foobar")
+
+      @page = pages(:our_note_page_1)
+      @page.label_index_id = @label.id
+      @page.save!
+
+      another_label = LabelIndex.create(:note=>notes(:our_note), :display_name=>"piyo")
+      @another = pages(:our_note_page_2)
+      @another.label_index_id = another_label.id
+      @another.save!
+    end
+
+    it "labeled(@label) should == [@page]" do
+      Page.labeled(@label.id).should == [@page]
+    end
+
+    it "labeled([]) should == [@page, @another]" do
+      Page.labeled([]).should == [@page, @another]
+      Page.labeled([]).labeled(@label.id).should == [@page]
+    end
+
+    it do
+      Page.authored("quentin").fulltext("foobar").should == []
+    end
+  end
 end
 

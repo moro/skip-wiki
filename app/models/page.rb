@@ -39,6 +39,21 @@ class Page < ActiveRecord::Base
     {:conditions => ["#{quoted_table_name}.id IN (?)", hs.map(&:page_id)]}
   }
 
+  named_scope :labeled, proc{|*labels|
+    {:include => :label_index, :conditions => ["#{LabelIndex.quoted_table_name}.id IN (?)", labels]}
+  }
+
+  def self.enable_scope_chain(*scope_names)
+    scope_names.each do |scope_name|
+      if defined_scope = scopes[scope_name]
+        scopes[scope_name] = proc{|parent_scope, *args|
+          args.flatten.blank? ?  scoped({}) : defined_scope.call(parent_scope, *args)
+        }
+      end
+    end
+  end
+  enable_scope_chain(:labeled)
+
   # TODO 採用が決まったら回帰テスト書く
   named_scope :last_modified_per_notes, proc{|note_ids|
 
