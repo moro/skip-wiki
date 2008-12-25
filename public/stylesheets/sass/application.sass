@@ -213,10 +213,9 @@ table.histories
   tr
     th.description
       :width 350px
-    td
-      :border 1px solid gray
     td.revision
       :width 10em
+      :font-size 10px
 
 ul.label-badges
   :list-style none
@@ -480,12 +479,8 @@ div.caption
 table.notes-index, table.pages-index
   :width 90%
   :margin-left 5%
-  :font-size 14px
 
-  td
-    :border-bottom 1px solid gray
-
-  th, td.timestamp, td.history
+  td.history
     :font-size 10px
     :text-align center
 
@@ -672,8 +667,6 @@ ul.float
     :background-color pink
 
 table.group-users
-  td
-    :font-size = !modern_page_font_size
   td.identity_url
     :font-size 10px
     :color gray
@@ -701,4 +694,20 @@ table.label-indices
         :padding-left 0.5em
       input[type=submit]
         :font-size 10px
+
+table
+  :border-collapse collapse
+  tr
+    th
+      :font-weight bold
+      :font-size   10px
+      :background  #cccccc
+      :text-align  center
+    td
+      :font-size = !modern_page_font_size
+      :border-bottom 1px solid #ddddff
+      :height 1.8em
+    td.timestamp
+      :font-size 10px
+      :text-align center
 
