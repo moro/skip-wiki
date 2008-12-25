@@ -81,9 +81,7 @@ module AuthenticatedSystem
     #
     # We can return to this location by calling #redirect_back_or_default.
     def store_location
-      url = request.request_uri =~ /\A#{request.relative_url_root}/ ?
-              request.request_uri : [relative_url_root, request.request_uri].join("/")
-      session[:return_to] = url
+      session[:return_to] = request.request_uri
     end
 
     # Redirect to the URI stored by the most recent store_location call or
