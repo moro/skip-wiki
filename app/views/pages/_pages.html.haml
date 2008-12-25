@@ -4,7 +4,7 @@
       %th.label&= _("LabelIndices")
       %th.display_name&= _("Page|Display name")
       %th.user&= _("Page|Auther")
-      %th.updated_at.timestamp&= _("Page|Published at")
+      %th.published.timestamp&= _("Page|Published at")
       %th.updated_at.timestamp&= _("Page|Updated at")
       %th.history&= _("History")
   - pages.each do |page|
@@ -13,18 +13,13 @@
         %td.label= labelize(page.label_index)
       - else
         %td{:style=>"border:1px solid gray"}= " "
-      %td
+      %td.name
         - url = note_page_url(current_note, page)
         = link_to h(page.display_name), note_page_url(current_note, page)
         %br
         %span.url&= url
       %td&= page.head.user.name
-      - if page.published?
-        %td
-          = image_tag("icons/star.png")
-          %span&= ("Published")
-      - else
-        %td&= page.published_at.strftime("%Y-%m-%d %H:%M")
-      %td.updated_at&= page.updated_at.strftime("%Y-%m-%d %H:%M")
-      %td= link_to h(_"Show history"), note_page_histories_path(current_note, page)
+      %td.timestamp{:class=>page.updated_at ? "published" : "notyet"}&= page.published_at.strftime("%Y-%m-%d %H:%M")
+      %td.updated_at.timestamp&= page.updated_at.strftime("%Y-%m-%d %H:%M")
+      %td.history= link_to h(_"Show history"), note_page_histories_path(current_note, page)
 

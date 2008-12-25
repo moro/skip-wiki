@@ -2,9 +2,20 @@ class PagesController < ApplicationController
   def index
     pages = accessible_pages
     pages = pages.fulltext(params[:keyword]) unless params[:keyword].blank?
+    pages = pages.authored(*params[:authors].split(/\s*,\s*/)) unless params[:authors].blank?
 
-    @pages = pages.scoped(:order=>"pages.updated_at DESC").find(:all)
+    @pages = pages.scoped(page_order_white_list(params[:order])).find(:all)
   end
+
+  def page_order_white_list(order, default = "#{Page.quoted_table_name}.updated_at DESC")
+    {:order =>
+      case order
+      when "updated_at_DESC" then "#{Page.quoted_table_name}.updated_at DESC"
+      when "updated_at_ASC"  then "#{Page.quoted_table_name}.updated_at ASC"
+      else default
+      end }
+  end
+  private :page_order_white_list
 
   def show
     @note = current_note

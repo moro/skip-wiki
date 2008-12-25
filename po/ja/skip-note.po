@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-12-19 17:29+0900\n"
+"POT-Creation-Date: 2008-12-24 17:35+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,14 +29,6 @@ msgstr ""
 #: app/controllers/label_indices_controller.rb:36
 msgid "LabelIndex %{display_name} was successfully created."
 msgstr "ラベル「%{note}」を作成しました。"
-
-#: app/controllers/label_indices_controller.rb:84
-msgid "This is the last page in %{label}."
-msgstr "%{label}中の最後のページです。"
-
-#: app/controllers/label_indices_controller.rb:92
-msgid "This is the first page in %{label}."
-msgstr "%{label}中の先頭のページです。"
 
 #: app/controllers/notes_controller.rb:58
 msgid "Note `%{note}' was successfully created."
@@ -389,7 +381,7 @@ msgstr "ノート"
 msgid "LabelIndex|Default label"
 msgstr "標準のラベル"
 
-#: app/models/label_index.rb:24 app/views/pages/_labels.html.haml:17
+#: app/models/label_index.rb:29 app/views/pages/_labels.html.haml:17
 #: app/views/pages/_labels.html.haml:23
 msgid "No Labels"
 msgstr "ラベルなし"
@@ -515,12 +507,11 @@ msgid "Page|Last modied user"
 msgstr ""
 
 #: app/models/page.rb:- app/views/pages/_page_form.html.haml:7
-#: app/views/pages/_pages.html.haml:7
 msgid "Page|Name"
 msgstr "ページ識別子"
 
 #: app/models/page.rb:- app/views/pages/_page_form.html.haml:4
-#: app/views/pages/_pages.html.haml:6
+#: app/views/pages/_pages.html.haml:5
 msgid "Page|Display name"
 msgstr "ページ名"
 
@@ -529,6 +520,7 @@ msgid "Page|Format type"
 msgstr ""
 
 #: app/models/page.rb:- app/views/pages/_page_form.html.haml:12
+#: app/views/pages/_pages.html.haml:7
 msgid "Page|Published at"
 msgstr "公開日時"
 
@@ -544,15 +536,15 @@ msgstr ""
 msgid "Page|Created at"
 msgstr ""
 
-#: app/models/page.rb:- app/views/pages/_pages.html.haml:10
+#: app/models/page.rb:- app/views/pages/_pages.html.haml:8
 msgid "Page|Updated at"
 msgstr ""
 
-#: app/models/page.rb:87
+#: app/models/page.rb:93
 msgid "FrontPage"
 msgstr "表紙"
 
-#: app/models/page.rb:170
+#: app/models/page.rb:180
 msgid "the name `%{n}' is reserved"
 msgstr "ページ識別子は「%{n}」意外にしてください。"
 
@@ -715,11 +707,11 @@ msgstr "差分のバージョン指定 :"
 msgid "to"
 msgstr "から"
 
-#: app/views/histories/new.html.haml:10 app/views/pages/new.html.haml:12
+#: app/views/histories/new.html.haml:10 app/views/pages/new.html.haml:11
 msgid "Show link palette"
 msgstr ""
 
-#: app/views/histories/new.html.haml:15 app/views/pages/new.html.haml:17
+#: app/views/histories/new.html.haml:15 app/views/pages/new.html.haml:16
 msgid "Page|Content"
 msgstr "内容"
 
@@ -750,7 +742,7 @@ msgstr "「%{note}」のラベル一覧"
 
 #: app/views/label_indices/index.html.haml:19
 #: app/views/notes/new.html.haml:192 app/views/notes/show.html.haml:52
-#: app/views/pages/new.html.haml:21
+#: app/views/pages/new.html.haml:20
 msgid "Create"
 msgstr "作成"
 
@@ -783,12 +775,12 @@ msgid "Updated"
 msgstr "更新されたページ"
 
 #: app/views/notes/_wizard.html.haml:14 app/views/pages/_labels.html.haml:9
-#: app/views/pages/_labels.html.haml:19 app/views/pages/_user_bar.html.haml:26
+#: app/views/pages/_labels.html.haml:19 app/views/pages/_user_bar.html.haml:14
 msgid "Previous"
 msgstr "戻る"
 
 #: app/views/notes/_wizard.html.haml:15 app/views/pages/_labels.html.haml:10
-#: app/views/pages/_labels.html.haml:20 app/views/pages/_user_bar.html.haml:27
+#: app/views/pages/_labels.html.haml:20 app/views/pages/_user_bar.html.haml:15
 msgid "Next"
 msgstr "進む"
 
@@ -816,7 +808,8 @@ msgstr "ノートを作る"
 msgid "Search Note"
 msgstr "ノートを検索"
 
-#: app/views/notes/index.html.haml:9 app/views/pages/_user_bar.html.haml:12
+#: app/views/notes/index.html.haml:9 app/views/pages/_user_bar.html.haml:28
+#: app/views/pages/index.html.haml:23
 #: app/views/shared/_common_body_header.html.haml:22
 msgid "Search"
 msgstr "検索"
@@ -928,7 +921,7 @@ msgstr "取消"
 msgid "add labels"
 msgstr "ラベルを追加"
 
-#: app/views/pages/_labels.html.haml:1
+#: app/views/pages/_labels.html.haml:1 app/views/pages/_pages.html.haml:4
 msgid "LabelIndices"
 msgstr "ラベル識別子"
 
@@ -940,39 +933,56 @@ msgstr "ラベル識別子"
 msgid "Add label"
 msgstr "ラベルを追加"
 
-#: app/views/pages/_pages.html.haml:2 app/views/shared/_edit_navi.html.haml:14
-msgid "note pages"
-msgstr "ページ一覧"
-
-#: app/views/pages/_pages.html.haml:8
-msgid "Page|Revision"
-msgstr "リビジョン"
-
-#: app/views/pages/_pages.html.haml:9
+#: app/views/pages/_pages.html.haml:6
 msgid "Page|Auther"
 msgstr "編集者"
 
-#: app/views/pages/_pages.html.haml:11
+#: app/views/pages/_pages.html.haml:9
 msgid "History"
 msgstr "履歴"
 
-#: app/views/pages/_pages.html.haml:23
+#: app/views/pages/_pages.html.haml:24
 msgid "Show history"
 msgstr "履歴を表示"
 
-#: app/views/pages/_user_bar.html.haml:9
-msgid "Search pages in %{note}"
-msgstr "「%{note}」内のページを検索"
-
-#: app/views/pages/_user_bar.html.haml:25
-msgid "other"
+#: app/views/pages/_user_bar.html.haml:13
+#, fuzzy
+msgid "other.."
 msgstr "その他"
 
-#: app/views/pages/_user_bar.html.haml:30
+#: app/views/pages/_user_bar.html.haml:18
 msgid "close"
 msgstr "閉じる"
 
-#: app/views/pages/new.html.haml:8
+#: app/views/pages/_user_bar.html.haml:25
+msgid "Search pages in %{note}"
+msgstr "「%{note}」内のページを検索"
+
+#: app/views/pages/index.html.haml:8
+msgid "Keyword in a page"
+msgstr "ページ内のキーワード"
+
+#: app/views/pages/index.html.haml:11
+msgid "Authors"
+msgstr "最終更新者"
+
+#: app/views/pages/index.html.haml:14
+msgid "Input author names ,separete by comma."
+msgstr "最終更新したユーザの名前(英数字)をカンマ区切りで入力してください。"
+
+#: app/views/pages/index.html.haml:16
+msgid "Order"
+msgstr "並び順"
+
+#: app/views/pages/index.html.haml:19
+msgid "Newly updated"
+msgstr "更新時刻が新しい順"
+
+#: app/views/pages/index.html.haml:21
+msgid "Oldly updated"
+msgstr "更新時刻が古い順"
+
+#: app/views/pages/new.html.haml:7
 msgid "New Page"
 msgstr "新しいページを作る"
 
@@ -1045,6 +1055,10 @@ msgstr "プロパティを編集"
 msgid "page histories"
 msgstr "編集履歴"
 
+#: app/views/shared/_edit_navi.html.haml:14
+msgid "note pages"
+msgstr "ページ一覧"
+
 #: app/views/shared/_edit_navi.html.haml:15
 msgid "new page"
 msgstr "ページを追加"
@@ -1073,11 +1087,3 @@ msgstr ""
 msgid "User|Notes"
 msgstr "ノート一覧"
 
-#~ msgid "Search by Index"
-#~ msgstr "ラベルで探す"
-
-#~ msgid "edit note"
-#~ msgstr "ノートを編集"
-
-#~ msgid "Editing Note"
-#~ msgstr "ノートのプロパティ"

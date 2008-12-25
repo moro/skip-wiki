@@ -485,6 +485,13 @@ table.notes-index, table.pages-index
   td
     :border-bottom 1px solid gray
 
+  th, td.timestamp, td.history
+    :font-size 10px
+    :text-align center
+
+  td.name
+    a
+      :font-size 18px
     span.url
       :color gray
       :font-size 10px
@@ -496,25 +503,21 @@ table.notes-index, table.pages-index
   td.label
     :width 60px
     :background #ccc
+
     span
       :background #eee
       :font-size 10px
 
-  th.updated_title, td.updated_title
-    :width 16em
+  th.published
+    :width 12em
+  td.published, td.notyet
+    :padding-left 16px
+    :background-repeat no-repeat
 
-  th.description, td.description
-    :width 32em
-
-  th.page, td.page
-    :width 16em
-
-    span.not-exist
-      :font-size 1em
-      :color #999999
+  td.published
+    :background-image url("../images/icons/star.png")
 
   th.updated_at, td.updated_at
-    :font-size 10px
     :width 10em
 
 #wiki_action

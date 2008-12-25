@@ -54,11 +54,11 @@ When /^"(.*)"としてファイル"(.*)"を添付する$/ do |field, path|
 end
 
 Then /^"(.*)"と表示されていること$/ do |text|
-  response.body.should =~ /#{Regexp.escape(text)}/m
+  Nokogiri(response.body).text.should =~ /#{Regexp.escape(text)}/m
 end
 
 Then /^"(.*)"と表示されていないこと$/ do |text|
-  response.body.should_not =~ /#{Regexp.escape(text)}/m
+  Nokogiri(response.body).text.should_not =~ /#{Regexp.escape(text)}/m
 end
 
 Then /^"(.*)"がチェックされていること$/ do |label|
