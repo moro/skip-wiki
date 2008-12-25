@@ -2,9 +2,9 @@
   = render_toolbar(note_pages_path(current_note))
   - div_for(current_note, :class=>"app-layout") do
 
-    %span{:onclick=>"$('div.query').toggle()"}&= "Apply filter.."
     .query
-      - form_tag note_pages_path(current_note), :method => "GET" do
+      =link_to_function _("Apply filter.."), "$(this).next('form').toggle(); return false", :class=>"op"
+      - form_tag note_pages_path(current_note), :method => "GET", :style=>"display:none" do
         %dl
           %dt= label_tag "query_keyword", h(_("Keyword in a page"))
           %dd= text_field_tag "keyword", params[:keyword], :id=>"query_keyword"
@@ -16,7 +16,7 @@
 
           %dt&= _("Order")
           %dd
-            =radio_button_tag "order", "updated_at_DESC", params[:order] == "updated_at_DESC"
+            =radio_button_tag "order", "updated_at_DESC", params[:order] == "updated_at_DESC" || params[:order].blank?
             %label{:for=>"order_updated_at_desc"}&= _("Newly updated")
             =radio_button_tag "order", "updated_at_ASC", params[:order] == "updated_at_ASC"
             %label{:for=>"order_updated_at_asc"}&= _("Oldly updated")
@@ -26,7 +26,10 @@
             - label_opts = options_from_collection_for_select(current_note.label_indices, :id, :display_name, params[:label_index_id].to_i)
             =select_tag("label_index_id", content_tag("option", "&nbsp;",:value=>"") + label_opts, :id=>"query_label_index_id")
 
-        =submit_tag _("絞り込み")# FIXME
+          =submit_tag _("Filter")
+          =link_to _("Show all"), note_pages_path(current_note), :class => "back"
+
+    .clear
 
     .pages
       =render(:partial => "pages/pages")

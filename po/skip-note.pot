@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-12-24 17:35+0900\n"
+"POT-Creation-Date: 2008-12-25 14:59+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,11 +34,11 @@ msgstr ""
 msgid "Note `%{note}' was successfully created."
 msgstr ""
 
-#: app/controllers/pages_controller.rb:27
+#: app/controllers/pages_controller.rb:29
 msgid "The page %{page} is successfully created"
 msgstr ""
 
-#: app/controllers/pages_controller.rb:61
+#: app/controllers/pages_controller.rb:63
 msgid "The page %{page} is successfully updated"
 msgstr ""
 
@@ -537,11 +537,11 @@ msgstr ""
 msgid "Page|Updated at"
 msgstr ""
 
-#: app/models/page.rb:93
+#: app/models/page.rb:111
 msgid "FrontPage"
 msgstr ""
 
-#: app/models/page.rb:180
+#: app/models/page.rb:198
 msgid "the name `%{n}' is reserved"
 msgstr ""
 
@@ -805,7 +805,6 @@ msgid "Search Note"
 msgstr ""
 
 #: app/views/notes/index.html.haml:9 app/views/pages/_user_bar.html.haml:28
-#: app/views/pages/index.html.haml:23
 #: app/views/shared/_common_body_header.html.haml:22
 msgid "Search"
 msgstr ""
@@ -918,6 +917,7 @@ msgid "add labels"
 msgstr ""
 
 #: app/views/pages/_labels.html.haml:1 app/views/pages/_pages.html.haml:4
+#: app/views/pages/index.html.haml:24
 msgid "LabelIndices"
 msgstr ""
 
@@ -953,28 +953,36 @@ msgstr ""
 msgid "Search pages in %{note}"
 msgstr ""
 
-#: app/views/pages/index.html.haml:8
-msgid "Keyword"
+#: app/views/pages/index.html.haml:5
+msgid "Apply filter.."
 msgstr ""
 
-#: app/views/pages/index.html.haml:11
+#: app/views/pages/index.html.haml:9
+msgid "Keyword in a page"
+msgstr ""
+
+#: app/views/pages/index.html.haml:12
 msgid "Authors"
 msgstr ""
 
-#: app/views/pages/index.html.haml:14
+#: app/views/pages/index.html.haml:15
 msgid "Input author names ,separete by comma."
 msgstr ""
 
-#: app/views/pages/index.html.haml:16
+#: app/views/pages/index.html.haml:17
 msgid "Order"
 msgstr ""
 
-#: app/views/pages/index.html.haml:19
+#: app/views/pages/index.html.haml:20
 msgid "Newly updated"
 msgstr ""
 
-#: app/views/pages/index.html.haml:21
+#: app/views/pages/index.html.haml:22
 msgid "Oldly updated"
+msgstr ""
+
+#: app/views/pages/index.html.haml:29
+msgid "Filter"
 msgstr ""
 
 #: app/views/pages/new.html.haml:7

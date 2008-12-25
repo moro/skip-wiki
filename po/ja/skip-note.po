@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-12-24 17:35+0900\n"
+"POT-Creation-Date: 2008-12-25 14:59+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,11 +34,11 @@ msgstr "ラベル「%{note}」を作成しました。"
 msgid "Note `%{note}' was successfully created."
 msgstr "ノート「%{note}」を作成しました。"
 
-#: app/controllers/pages_controller.rb:27
+#: app/controllers/pages_controller.rb:29
 msgid "The page %{page} is successfully created"
 msgstr "「%{page}」を作成しました。"
 
-#: app/controllers/pages_controller.rb:61
+#: app/controllers/pages_controller.rb:63
 msgid "The page %{page} is successfully updated"
 msgstr "「%{page}」を更新しました。"
 
@@ -540,11 +540,11 @@ msgstr ""
 msgid "Page|Updated at"
 msgstr ""
 
-#: app/models/page.rb:93
+#: app/models/page.rb:111
 msgid "FrontPage"
 msgstr "表紙"
 
-#: app/models/page.rb:180
+#: app/models/page.rb:198
 msgid "the name `%{n}' is reserved"
 msgstr "ページ識別子は「%{n}」意外にしてください。"
 
@@ -809,7 +809,6 @@ msgid "Search Note"
 msgstr "ノートを検索"
 
 #: app/views/notes/index.html.haml:9 app/views/pages/_user_bar.html.haml:28
-#: app/views/pages/index.html.haml:23
 #: app/views/shared/_common_body_header.html.haml:22
 msgid "Search"
 msgstr "検索"
@@ -922,6 +921,7 @@ msgid "add labels"
 msgstr "ラベルを追加"
 
 #: app/views/pages/_labels.html.haml:1 app/views/pages/_pages.html.haml:4
+#: app/views/pages/index.html.haml:24
 msgid "LabelIndices"
 msgstr "ラベル識別子"
 
@@ -958,29 +958,37 @@ msgstr "閉じる"
 msgid "Search pages in %{note}"
 msgstr "「%{note}」内のページを検索"
 
-#: app/views/pages/index.html.haml:8
+#: app/views/pages/index.html.haml:5
+msgid "Apply filter.."
+msgstr "ページ一覧を絞り込み..."
+
+#: app/views/pages/index.html.haml:9
 msgid "Keyword in a page"
 msgstr "ページ内のキーワード"
 
-#: app/views/pages/index.html.haml:11
+#: app/views/pages/index.html.haml:12
 msgid "Authors"
 msgstr "最終更新者"
 
-#: app/views/pages/index.html.haml:14
+#: app/views/pages/index.html.haml:15
 msgid "Input author names ,separete by comma."
 msgstr "最終更新したユーザの名前(英数字)をカンマ区切りで入力してください。"
 
-#: app/views/pages/index.html.haml:16
+#: app/views/pages/index.html.haml:17
 msgid "Order"
 msgstr "並び順"
 
-#: app/views/pages/index.html.haml:19
+#: app/views/pages/index.html.haml:20
 msgid "Newly updated"
 msgstr "更新時刻が新しい順"
 
-#: app/views/pages/index.html.haml:21
+#: app/views/pages/index.html.haml:22
 msgid "Oldly updated"
 msgstr "更新時刻が古い順"
+
+#: app/views/pages/index.html.haml:29
+msgid "Filter"
+msgstr "絞り込み"
 
 #: app/views/pages/new.html.haml:7
 msgid "New Page"
@@ -1086,4 +1094,3 @@ msgstr ""
 #: app/views/users/_side_menu.html.haml:7
 msgid "User|Notes"
 msgstr "ノート一覧"
-
