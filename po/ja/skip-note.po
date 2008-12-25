@@ -538,7 +538,7 @@ msgstr ""
 
 #: app/models/page.rb:- app/views/pages/_pages.html.haml:8
 msgid "Page|Updated at"
-msgstr ""
+msgstr "更新日時"
 
 #: app/models/page.rb:111
 msgid "FrontPage"
@@ -946,7 +946,6 @@ msgid "Show history"
 msgstr "履歴を表示"
 
 #: app/views/pages/_user_bar.html.haml:13
-#, fuzzy
 msgid "other.."
 msgstr "その他"
 
@@ -980,11 +979,11 @@ msgstr "並び順"
 
 #: app/views/pages/index.html.haml:20
 msgid "Newly updated"
-msgstr "更新時刻が新しい順"
+msgstr "更新日時が新しい順"
 
 #: app/views/pages/index.html.haml:22
 msgid "Oldly updated"
-msgstr "更新時刻が古い順"
+msgstr "更新日時が古い順"
 
 #: app/views/pages/index.html.haml:29
 msgid "Filter"
