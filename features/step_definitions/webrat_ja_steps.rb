@@ -1,6 +1,8 @@
 # Commonly used webrat steps
 # http://github.com/brynary/webrat
 
+sel = %q|"([^"]*)"|
+
 When /言語は"(.*)"/ do |lang|
   header("ACCEPT_LANGUAGE", lang)
 end
@@ -17,7 +19,6 @@ When /^"(.*)"中の"(.*)"リンクをクリックする$/ do |selector, link|
   click_link_within(selector, link)
 end
 
-sel = %q|"([^"]*)"|
 When(/^テーブル#{sel}の"(\d+)"行目の#{sel}リンクをクリックする/) do |cls, nth, link|
   selector = "table.#{cls} tbody tr:nth(#{nth})"
   click_link_within(selector, link)
@@ -32,7 +33,7 @@ When /^"(.*)"に"(.*)"と入力する$/ do |field, value|
 end
 
 # opposite order from Engilsh one(original)
-When /^"(.*)"から"(.*)"を選択$/ do |field, value|
+When /^"(.*?)"から"(.*?)"を選択する$/ do |field, value|
   select(value, :from => field)
 end
 
@@ -44,7 +45,7 @@ When /^"(.*)"のチェックを外す$/ do |field|
   uncheck(field)
 end
 
-When /^"(.*)"を選択する$/ do |field|
+When /^#{sel}を選択する$/ do |field|
   choose(field)
 end
 

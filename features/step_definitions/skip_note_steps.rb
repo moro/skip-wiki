@@ -60,8 +60,14 @@ Given( /^そのノートにはページ"(.*)"が作成済みである$/)  do |pa
   @page.save!
 end
 
-Given( /^そのノートにはラベル"(.*)"が作成済みである$/)  do |label|
+Given(/^そのノートにはラベル"(.*?)"が作成済みである$/)  do |label|
   @label = @note.label_indices.create!(valid_attributes[:label].merge(:display_name => label))
+end
+
+Given(/^そのページはラベル"(.*?)"と関連付けられている$/) do |label|
+  label = @note.label_indices.find_by_display_name(label)
+  @page.label_index_id = label.id
+  @page.save!
 end
 
 Given( /^そのページの更新日時を"(\d+)"分進める$/ ) do |min|

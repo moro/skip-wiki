@@ -2,6 +2,7 @@
   = render_toolbar(note_pages_path(current_note))
   - div_for(current_note, :class=>"app-layout") do
 
+    %span{:onclick=>"$('div.query').toggle()"}&= "Apply filter.."
     .query
       - form_tag note_pages_path(current_note), :method => "GET" do
         %dl
@@ -19,6 +20,11 @@
             %label{:for=>"order_updated_at_desc"}&= _("Newly updated")
             =radio_button_tag "order", "updated_at_ASC", params[:order] == "updated_at_ASC"
             %label{:for=>"order_updated_at_asc"}&= _("Oldly updated")
+
+          %dt= label_tag "query_label_index_id", h(_("LabelIndices"))
+          %dd
+            - label_opts = options_from_collection_for_select(current_note.label_indices, :id, :display_name, params[:label_index_id].to_i)
+            =select_tag("label_index_id", content_tag("option", "&nbsp;",:value=>"") + label_opts, :id=>"query_label_index_id")
 
         =submit_tag _("絞り込み")# FIXME
 

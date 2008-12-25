@@ -3,6 +3,7 @@ class PagesController < ApplicationController
     pages = accessible_pages
     pages = pages.fulltext(params[:keyword]) unless params[:keyword].blank?
     pages = pages.authored(*params[:authors].split(/\s*,\s*/)) unless params[:authors].blank?
+    pages = pages.labeled(params[:label_index_id]) unless params[:label_index_id].blank?
 
     @pages = pages.scoped(page_order_white_list(params[:order])).find(:all)
   end
