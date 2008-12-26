@@ -17,7 +17,7 @@
       .move-to-label{:style=>"display:none"}
         =link_to_function(_("close"), "$(this).parents('div.move-to-label').hide()")
         %ul
-          - current_note.label_indices.each do |l|
+          - current_note.label_indices.has_pages.each do |l|
             %li= link_to labelize(l), note_pages_path(current_note, :label_index_id =>l)
 
   %li.bar-item.page-index

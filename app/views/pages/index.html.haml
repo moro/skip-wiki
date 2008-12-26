@@ -23,7 +23,7 @@
 
           %dt= label_tag "query_label_index_id", h(_("LabelIndices"))
           %dd
-            - label_opts = options_from_collection_for_select(current_note.label_indices, :id, :display_name, params[:label_index_id].to_i)
+            - label_opts = options_from_collection_for_select(current_note.label_indices.has_pages, :id, :display_name, params[:label_index_id].to_i)
             =select_tag("label_index_id", content_tag("option", "&nbsp;",:value=>"") + label_opts, :id=>"query_label_index_id")
 
           =submit_tag _("Filter")
