@@ -18,6 +18,8 @@ class LabelIndex < ActiveRecord::Base
     end
   end
 
+  named_scope :has_pages, {:conditions => "EXISTS(SELECT lx.page_id FROM label_indexings AS lx WHERE #{quoted_table_name}.id = lx.label_index_id)"}
+
   validates_presence_of :display_name
   validates_uniqueness_of :display_name, :scope=>:note_id
 

@@ -12,6 +12,21 @@ describe LabelIndex do
     LabelIndex.create!(@valid_attributes)
   end
 
+  describe ".has_pages" do
+    fixtures :notes, :pages
+    before do
+      @note = notes(:our_note)
+      @label = @note.label_indices.create!(:display_name=>"the Label")
+      another = @note.label_indices.create!(:display_name => "another")
+
+      (@p1 = pages(:our_note_page_1)).label_index = @label
+    end
+
+    it "はページにひもづいたラベルのみを返すこと" do
+      LabelIndex.has_pages.should == [@label]
+    end
+  end
+
   describe "#pages" do
     fixtures :notes, :pages
     before do
