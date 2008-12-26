@@ -104,6 +104,7 @@ body
   :width 100%
   :height 50pt
   :position relative
+  :border-top silver 1px solid
 
   .info
     :margin auto
@@ -373,8 +374,6 @@ span.help
 
 div.page, div.history
   :position relative
-  :border silver 1px solid
-  :border-style solid none
 
   div.rendered
     :color #555555
@@ -386,7 +385,7 @@ div.page, div.history
     :padding-bottom 1em
 
     dd.content
-      :width 100%
+      :width 99%
     dt
       :font-size 1.3em
       :font-weight bold
@@ -614,6 +613,11 @@ table.notes-index, table.pages-index
       :border 3px #0080FF solid
       :background #CCDFFF
 
+  table
+    :margin 2em
+    th
+      :border 0
+
 #linkPalette.enabled
   :z-index 1
   :position absolute
@@ -749,3 +753,10 @@ p.no-result
   :width 80%
   :margin 1em auto
   :text-align center
+
+.toolbar
+  :border-bottom silver 1px solid
+
+body#fckedit
+  :width 99%
+
