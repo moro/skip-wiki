@@ -4,7 +4,7 @@
 
     .query
       =link_to_function _("Apply filter.."), "$(this).next('form').toggle(); return false", :class=>"op"
-      - form_tag note_pages_path(current_note), :method => "GET", :style=>"display:none" do
+      - form_tag note_pages_path(current_note), query_form_options do
         %dl
           %dt= label_tag "query_keyword", h(_("Keyword in a page"))
           %dd= text_field_tag "keyword", params[:keyword], :id=>"query_keyword"

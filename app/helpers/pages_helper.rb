@@ -1,6 +1,11 @@
 require 'hikidoc'
 
 module PagesHelper
+  def query_form_options(keys = [:keyword, :authors, :label_index_id, :order])
+    {:method => "GET",
+     :style  => keys.all?{|k| params[k].blank? } ? "display:none" : ""}
+  end
+
   def group_by_date(pages, col=:updated_at, desc=true)
     ret = pages.group_by{|p| p[col].strftime("%F") }.sort_by{|d,_| d }
     desc ? ret.reverse : ret
