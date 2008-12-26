@@ -527,14 +527,16 @@ table.notes-index, table.pages-index
   th.published
     :width 12em
   td.published, td.notyet
-    :padding-left 16px
-    :background-repeat no-repeat
 
-  td.published
-    :background-image url("../images/icons/star.png")
-
-  th.updated_at, td.updated_at
-    :width 10em
+  td.publification
+    :text-align center
+    span
+      :font-size 10px
+      :background-repeat no-repeat
+      :padding 2px 0 2px 18px
+    span.published
+      :background-image url("../images/icons/star.png")
+    span.not_yet
 
 #wiki_action
   :clear left
@@ -732,7 +734,9 @@ table
       :font-size = !modern_page_font_size
       :border-bottom 1px solid #ddddff
       :height 1.8em
-    td.timestamp
+
+    th.timestamp, td.timestamp
       :font-size 10px
       :text-align center
+      :width 10em
 

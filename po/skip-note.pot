@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-12-25 14:59+0900\n"
+"POT-Creation-Date: 2008-12-26 12:17+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -120,23 +120,23 @@ msgstr ""
 msgid "Readable/Writable by everyone"
 msgstr ""
 
-#: app/helpers/pages_helper.rb:50
+#: app/helpers/pages_helper.rb:55
 msgid "Link Palette"
 msgstr ""
 
-#: app/helpers/pages_helper.rb:51
+#: app/helpers/pages_helper.rb:56
 msgid "toggle"
 msgstr ""
 
-#: app/helpers/pages_helper.rb:52
+#: app/helpers/pages_helper.rb:57
 msgid "Insert Link"
 msgstr ""
 
-#: app/helpers/pages_helper.rb:53 app/views/shared/_edit_navi.html.haml:21
+#: app/helpers/pages_helper.rb:58 app/views/shared/_edit_navi.html.haml:21
 msgid "note attachments"
 msgstr ""
 
-#: app/helpers/pages_helper.rb:54 app/views/shared/_edit_navi.html.haml:7
+#: app/helpers/pages_helper.rb:59 app/views/shared/_edit_navi.html.haml:7
 msgid "page attachments"
 msgstr ""
 
@@ -517,7 +517,7 @@ msgid "Page|Format type"
 msgstr ""
 
 #: app/models/page.rb:- app/views/pages/_page_form.html.haml:12
-#: app/views/pages/_pages.html.haml:7
+#: app/views/pages/_pages.html.haml:8
 msgid "Page|Published at"
 msgstr ""
 
@@ -533,15 +533,15 @@ msgstr ""
 msgid "Page|Created at"
 msgstr ""
 
-#: app/models/page.rb:- app/views/pages/_pages.html.haml:8
+#: app/models/page.rb:- app/views/pages/_pages.html.haml:9
 msgid "Page|Updated at"
 msgstr ""
 
-#: app/models/page.rb:111
+#: app/models/page.rb:98
 msgid "FrontPage"
 msgstr ""
 
-#: app/models/page.rb:198
+#: app/models/page.rb:185
 msgid "the name `%{n}' is reserved"
 msgstr ""
 
@@ -933,11 +933,23 @@ msgstr ""
 msgid "Page|Auther"
 msgstr ""
 
-#: app/views/pages/_pages.html.haml:9
+#: app/views/pages/_pages.html.haml:7
+msgid "Publification"
+msgstr ""
+
+#: app/views/pages/_pages.html.haml:10
 msgid "History"
 msgstr ""
 
-#: app/views/pages/_pages.html.haml:24
+#: app/views/pages/_pages.html.haml:25
+msgid "Published"
+msgstr ""
+
+#: app/views/pages/_pages.html.haml:27
+msgid "Not yet"
+msgstr ""
+
+#: app/views/pages/_pages.html.haml:30
 msgid "Show history"
 msgstr ""
 
@@ -953,7 +965,7 @@ msgstr ""
 msgid "Search pages in %{note}"
 msgstr ""
 
-#: app/views/pages/index.html.haml:5
+#: app/views/pages/index.html.haml:6
 msgid "Apply filter.."
 msgstr ""
 
@@ -983,6 +995,10 @@ msgstr ""
 
 #: app/views/pages/index.html.haml:29
 msgid "Filter"
+msgstr ""
+
+#: app/views/pages/index.html.haml:30
+msgid "Show all"
 msgstr ""
 
 #: app/views/pages/new.html.haml:7

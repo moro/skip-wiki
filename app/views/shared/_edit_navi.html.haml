@@ -9,14 +9,9 @@
         = navi_item(_("page histories"), note_page_histories_path(current_note, @page), current_path)
       .clear
 
-  %li.pages-navi
-    %ul.float
-      = navi_item(_("note pages"), note_pages_path(current_note), current_path)
-      = navi_item(_("new page"), new_note_page_path(current_note), current_path)
-    .clear
-
   %li.note-navi
     %ul.float
+      = navi_item(_("new page"), new_note_page_path(current_note), current_path)
       = navi_item(_("show note"), note_path(current_note), current_path)
       = navi_item(_("note attachments"), note_attachments_path(current_note), current_path)
     .clear
