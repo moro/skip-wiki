@@ -4,28 +4,30 @@
       %th.label&= _("LabelIndices")
       %th.display_name&= _("Page|Display name")
       %th.user&= _("Page|Auther")
-      %th.publification&= _("Publification")
-      %th.timestamp&= _("Page|Published at")
+      - if current_note.accessible?(current_user)
+        %th.publification&= _("Publification")
+        %th.timestamp&= _("Page|Published at")
       %th.timestamp&= _("Page|Updated at")
-      %th.history&= _("History")
-  - pages.each do |page|
-    %tr
-      - if page.label_index
+      - if current_note.accessible?(current_user)
+        %th.history&= _("History")
+  %tbody
+    - pages.each do |page|
+      %tr
         %td.label= labelize(page.label_index)
-      - else
-        %td{:style=>"border:1px solid gray"}= " "
-      %td.name
-        - url = note_page_url(current_note, page)
-        = link_to h(page.display_name), note_page_url(current_note, page)
-        %br
-        %span.url&= url
-      %td&= page.head.user.name
-      %td.publification
-        - if page.published?
-          %span.published&= _("Published")
-        - else
-          %span.not_yet&= _("Not yet")
-      %td.timestamp&= page.published_at.strftime("%Y-%m-%d %H:%M")
-      %td.timestamp&= page.updated_at.strftime("%Y-%m-%d %H:%M")
-      %td.history= link_to h(_"Show history"), note_page_histories_path(current_note, page)
+        %td.name
+          - url = note_page_url(current_note, page)
+          = link_to h(page.display_name), note_page_url(current_note, page)
+          %br
+          %span.url&= url
+        %td&= page.head.user.name
+        - if current_note.accessible?(current_user)
+          %td.publification
+            - if page.published?
+              %span.published&= _("Published")
+            - else
+              %span.not_yet&= _("Not yet")
+          %td.timestamp&= page.published_at.strftime("%Y-%m-%d %H:%M")
+        %td.timestamp&= page.updated_at.strftime("%Y-%m-%d %H:%M")
+        - if current_note.accessible?(current_user)
+          %td.history= link_to h(_"Show history"), note_page_histories_path(current_note, page)
 

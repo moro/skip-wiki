@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-12-26 12:17+0900\n"
+"POT-Creation-Date: 2008-12-26 15:17+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -132,7 +132,7 @@ msgstr ""
 msgid "Insert Link"
 msgstr ""
 
-#: app/helpers/pages_helper.rb:58 app/views/shared/_edit_navi.html.haml:21
+#: app/helpers/pages_helper.rb:58 app/views/shared/_edit_navi.html.haml:16
 msgid "note attachments"
 msgstr ""
 
@@ -378,7 +378,7 @@ msgstr ""
 msgid "LabelIndex|Default label"
 msgstr ""
 
-#: app/models/label_index.rb:29 app/views/pages/_labels.html.haml:17
+#: app/models/label_index.rb:31 app/views/pages/_labels.html.haml:17
 #: app/views/pages/_labels.html.haml:23
 msgid "No Labels"
 msgstr ""
@@ -517,7 +517,7 @@ msgid "Page|Format type"
 msgstr ""
 
 #: app/models/page.rb:- app/views/pages/_page_form.html.haml:12
-#: app/views/pages/_pages.html.haml:8
+#: app/views/pages/_pages.html.haml:9
 msgid "Page|Published at"
 msgstr ""
 
@@ -533,7 +533,7 @@ msgstr ""
 msgid "Page|Created at"
 msgstr ""
 
-#: app/models/page.rb:- app/views/pages/_pages.html.haml:9
+#: app/models/page.rb:- app/views/pages/_pages.html.haml:10
 msgid "Page|Updated at"
 msgstr ""
 
@@ -804,7 +804,7 @@ msgstr ""
 msgid "Search Note"
 msgstr ""
 
-#: app/views/notes/index.html.haml:9 app/views/pages/_user_bar.html.haml:28
+#: app/views/notes/index.html.haml:9 app/views/pages/_user_bar.html.haml:31
 #: app/views/shared/_common_body_header.html.haml:22
 msgid "Search"
 msgstr ""
@@ -933,23 +933,23 @@ msgstr ""
 msgid "Page|Auther"
 msgstr ""
 
-#: app/views/pages/_pages.html.haml:7
+#: app/views/pages/_pages.html.haml:8
 msgid "Publification"
 msgstr ""
 
-#: app/views/pages/_pages.html.haml:10
+#: app/views/pages/_pages.html.haml:12
 msgid "History"
 msgstr ""
 
-#: app/views/pages/_pages.html.haml:25
+#: app/views/pages/_pages.html.haml:26
 msgid "Published"
 msgstr ""
 
-#: app/views/pages/_pages.html.haml:27
+#: app/views/pages/_pages.html.haml:28
 msgid "Not yet"
 msgstr ""
 
-#: app/views/pages/_pages.html.haml:30
+#: app/views/pages/_pages.html.haml:32
 msgid "Show history"
 msgstr ""
 
@@ -961,7 +961,11 @@ msgstr ""
 msgid "close"
 msgstr ""
 
-#: app/views/pages/_user_bar.html.haml:25
+#: app/views/pages/_user_bar.html.haml:24
+msgid "note pages"
+msgstr ""
+
+#: app/views/pages/_user_bar.html.haml:28
 msgid "Search pages in %{note}"
 msgstr ""
 
@@ -999,6 +1003,10 @@ msgstr ""
 
 #: app/views/pages/index.html.haml:30
 msgid "Show all"
+msgstr ""
+
+#: app/views/pages/index.html.haml:36
+msgid "The query find no pages."
 msgstr ""
 
 #: app/views/pages/new.html.haml:7
@@ -1073,14 +1081,10 @@ msgid "page histories"
 msgstr ""
 
 #: app/views/shared/_edit_navi.html.haml:14
-msgid "note pages"
-msgstr ""
-
-#: app/views/shared/_edit_navi.html.haml:15
 msgid "new page"
 msgstr ""
 
-#: app/views/shared/_edit_navi.html.haml:20
+#: app/views/shared/_edit_navi.html.haml:15
 msgid "show note"
 msgstr ""
 

@@ -32,6 +32,9 @@
     .clear
 
     .pages
-      =render(:partial => "pages/pages")
+      - if @pages.empty?
+        %p.no-result&= _("The query find no pages.")
+      - else
+        =render(:partial => "pages/pages")
 
 
