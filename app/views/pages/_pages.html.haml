@@ -4,8 +4,9 @@
       %th.label&= _("LabelIndices")
       %th.display_name&= _("Page|Display name")
       %th.user&= _("Page|Auther")
-      %th.published.timestamp&= _("Page|Published at")
-      %th.updated_at.timestamp&= _("Page|Updated at")
+      %th.publification&= _("Publification")
+      %th.timestamp&= _("Page|Published at")
+      %th.timestamp&= _("Page|Updated at")
       %th.history&= _("History")
   - pages.each do |page|
     %tr
@@ -19,7 +20,12 @@
         %br
         %span.url&= url
       %td&= page.head.user.name
-      %td.timestamp{:class=>page.updated_at ? "published" : "notyet"}&= page.published_at.strftime("%Y-%m-%d %H:%M")
-      %td.updated_at.timestamp&= page.updated_at.strftime("%Y-%m-%d %H:%M")
+      %td.publification
+        - if page.published?
+          %span.published&= _("Published")
+        - else
+          %span.not_yet&= _("Not yet")
+      %td.timestamp&= page.published_at.strftime("%Y-%m-%d %H:%M")
+      %td.timestamp&= page.updated_at.strftime("%Y-%m-%d %H:%M")
       %td.history= link_to h(_"Show history"), note_page_histories_path(current_note, page)
 
