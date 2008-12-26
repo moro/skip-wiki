@@ -41,6 +41,7 @@ Rails::Initializer.run do |config|
     restful_authentication
     open_id_authentication
     attachment_fu
+    chained_scope
   ]
   config.plugins += %w[rails-footnotes] if Rails.env == "development"
   config.plugins += %w[webrat] if Rails.env == "test"

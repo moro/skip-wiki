@@ -1,0 +1,31 @@
+= ChainedScope
+
+== Prerequirements
+* ActiveRecord >= 2.1.2 or higher
+
+== Description
+make specified named_scope to method chain-able.
+
+== Example
+You can rewrite
+
+  models = Model.all
+  models = Model.an_scope(params[:key1]) unless params[:key1]
+  models = Model.another_scope(params[:key2]) unless params[:key2]
+  ...
+
+to
+
+ class Model < ActiveRecord::Base
+   named_scope :an_scope, ...
+   named_scope :another_scope, ...
+
+   chainable_scope :an_scope, :another_scope
+ end
+
+ models = Model.all.
+            an_scope(params[:key1]).
+            another_scope(params[:key2])
+ ...
+
+Copyright (c) 2008 MOROHASHI Kyosuke, released under the MIT license

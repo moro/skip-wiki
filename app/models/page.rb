@@ -43,21 +43,8 @@ class Page < ActiveRecord::Base
     {:include => :label_index, :conditions => ["#{LabelIndex.quoted_table_name}.id IN (?)", labels]}
   }
 
-  # TODO plugin-ize
-  def self.enable_scope_chain(*scope_names)
-    scope_names.each do |scope_name|
-      if defined_scope = scopes[scope_name]
-        scopes[scope_name] = proc{|parent_scope, *args|
-          args.flatten.any?{|x| !x.blank? } ?
-            defined_scope.call(parent_scope, *args) : Scope.new(parent_scope, {})
-        }
-      end
-    end
-  end
-
   # TODO 採用が決まったら回帰テスト書く
   named_scope :last_modified_per_notes, proc{|note_ids|
-
     {:conditions => [<<-SQL, note_ids] }
     #{quoted_table_name}.id IN (
       SELECT p0.id
@@ -100,7 +87,7 @@ SQL
       :order => order }
   }
 
-  enable_scope_chain :labeled, :authored, :fulltext
+  chainable_scope :labeled, :authored, :fulltext
 
   before_validation :assign_default_pubulification
   after_save :reset_history_caches, :update_label_index
