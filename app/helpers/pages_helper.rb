@@ -11,6 +11,17 @@ module PagesHelper
     desc ? ret.reverse : ret
   end
 
+  def each_with_histories(pages, &block)
+    finder_opt = {
+      :include => :user,
+      :conditions => ["#{History.quoted_table_name}.page_id IN (?)", pages.map(&:id)],
+    }
+    histories = History.heads.find(:all, finder_opt).inject({}) do |r, history|
+      r.update(history.page_id => history)
+    end
+    pages.each{|page| yield page, histories[page.id] }
+  end
+
   def render_page_content(page, rev=nil)
     case page.format_type
     when "hiki" then render_hiki(page.content(rev))

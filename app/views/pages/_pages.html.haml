@@ -11,7 +11,7 @@
       - if current_note.accessible?(current_user)
         %th.history&= _("History")
   %tbody
-    - pages.each do |page|
+    - each_with_histories(pages) do |page, history|
       %tr
         %td.label= labelize(page.label_index)
         %td.name
@@ -19,7 +19,7 @@
           = link_to h(page.display_name), note_page_url(current_note, page)
           %br
           %span.url&= url
-        %td&= page.head.user.name
+        %td&= history.user.name
         - if current_note.accessible?(current_user)
           %td.publification
             - if page.published?
