@@ -15,7 +15,7 @@ module ApplicationHelper
     if logged_in? && current_note && current_note.accessible?(current_user)
       ret << content_tag("div", render(:partial => "shared/edit_navi", :locals=>{:current_path => current_path}), :class=>"tab")
     end
-    return ret
+    return content_tag("div", ret, :class => "toolbar")
   end
 
   def render_flash(type)

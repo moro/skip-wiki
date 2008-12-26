@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  layout :select_layout
+  layout "application"
   before_filter :explicit_user_required, :except => %w[index new create]
 
   # GET /notes
@@ -95,13 +95,6 @@ class NotesController < ApplicationController
   end
 
   private
-  def select_layout
-    case params[:action]
-    when *%w[index new] then "application"
-    else "notes"
-    end
-  end
-
   def explicit_user_required
     self.current_note = current_user.accessible(Note).find(params[:id])
     unless current_note.accessible?(current_user)

@@ -19,9 +19,6 @@
 
         %table
           %tr
-            %th{:width=>"150px"}
-            %th &nbsp;
-          %tr
             %td
               =f.radio_button(:group_backend_type, "BuiltinGroup")
               =f.label :group_backend_type, h(_"個人用ノート"), :for=>"note_group_backend_type_builtingroup"
@@ -40,9 +37,6 @@
           続いてnoteのカテゴリを選択してください。<br/>
 
         %table
-          %tr
-            %th{:width=>"100px"}
-            %th
           - Category.lang("ja").each do |c|
             %tr
               %td
