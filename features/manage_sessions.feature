@@ -2,7 +2,7 @@
   ログイン状態や権限を管理するため、ユーザの登録とログインができるようにしたい。
 
   シナリオ: サインアップ
-    前提 I log in with OpenId "http://nimloth.local:3333/user/moro"
+    前提 I log in with OpenId "http://localhost:3200/user/moro"
 
     もし I fill in "Login" with "moro"
     かつ I fill in "Email" with "moro@example.com"
@@ -14,8 +14,8 @@
   シナリオ: ログイン
     前提   言語は"ja-JP"
     かつ   ユーザ"alice"を登録する
-    かつ   ユーザのIdentity URLを"http://nimloth.local:3333/user/alice"として登録する
-    もし   OpenId "http://nimloth.local:3333/user/alice"でログインする
+    かつ   ユーザのIdentity URLを"http://localhost:3200/user/alice"として登録する
+    もし   OpenId "http://localhost:3200/user/alice"でログインする
     ならば I should not see "Thanks for signing up!"
 
     もし    再読み込みする
@@ -30,7 +30,7 @@
 
   シナリオ: ログイン失敗
     前提   言語は"ja-JP"
-    もし   OpenId "http://nimloth.local:3333/user/alice"でログイン失敗する
+    もし   OpenId "http://localhost:3200/user/alice"でログイン失敗する
     かつ   "再読み込みする"
 
     ならば "OpenIDでログインできます"と表示されていること

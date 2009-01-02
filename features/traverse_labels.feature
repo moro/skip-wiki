@@ -4,8 +4,8 @@
   シナリオ: ラベルなしページを表示し、1つ進める
     前提 言語は"ja-JP"
     かつ ユーザ"alice"を登録する
-    かつ ユーザのIdentity URLを"http://nimloth.local:3333/user/alice"として登録する
-    かつ OpenId "http://nimloth.local:3333/user/alice"でログインする
+    かつ ユーザのIdentity URLを"http://localhost:3200/user/alice"として登録する
+    かつ OpenId "http://localhost:3200/user/alice"でログインする
     かつ ノート"a_note"が作成済みである
     かつ そのノートにはページ"page_0"が作成済みである
     かつ そのページの更新日時を"1"分進める

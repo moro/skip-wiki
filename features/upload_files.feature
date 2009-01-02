@@ -4,8 +4,8 @@
   シナリオ: ノートにファイルをアップロードする
     前提 言語は"ja-JP"
     かつ ユーザ"alice"を登録する
-    かつ ユーザのIdentity URLを"http://nimloth.local:3333/user/alice"として登録する
-    かつ OpenId "http://nimloth.local:3333/user/alice"でログインする
+    かつ ユーザのIdentity URLを"http://localhost:3200/user/alice"として登録する
+    かつ OpenId "http://localhost:3200/user/alice"でログインする
     かつ ノート"a_note"が作成済みである
 
     もし ノート"a_note"のページ"FrontPage"を表示している
@@ -21,8 +21,8 @@
   シナリオ: ページにファイルをアップロードする
     前提 言語は"ja-JP"
     かつ ユーザ"alice"を登録する
-    かつ ユーザのIdentity URLを"http://nimloth.local:3333/user/alice"として登録する
-    かつ OpenId "http://nimloth.local:3333/user/alice"でログインする
+    かつ ユーザのIdentity URLを"http://localhost:3200/user/alice"として登録する
+    かつ OpenId "http://localhost:3200/user/alice"でログインする
     かつ ノート"a_note"が作成済みである
 
     もし ノート"a_note"のページ"FrontPage"を表示している

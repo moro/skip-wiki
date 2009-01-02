@@ -149,6 +149,21 @@ describe User do
     end
   end
 
+  describe "#admin?" do
+    describe "管理者ではない場合" do
+      before { @user = create_user(:admin=>"0") }
+      it "falseが返却されること" do
+        @user.admin?.should be_false
+      end
+    end
+    describe "管理者の場合" do
+      before { @user = create_user(:admin=>"1") }
+      it "trueが返却されること" do
+        @user.admin?.should be_true
+      end
+    end
+  end
+
 protected
   def create_user(options = {})
     record = User.new({:name => "a_user", :display_name => "A User"}.merge(options))
