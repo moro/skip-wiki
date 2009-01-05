@@ -3,7 +3,6 @@
 
 #contents_container
   .caption
-    = link_to content_tag("span", h(_"new note")), new_note_path, :class=>"wii_button"
     %span{:style=>"vertical-align:middle;"}= _("Search Note")
     = text_field_tag('fulltext', params[:fulltext])
     = submit_tag _('Search')

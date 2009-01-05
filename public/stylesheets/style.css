@@ -35,9 +35,7 @@ div.contents_for_menu ul {
   padding-left: 15px;
   list-style-type: none;
 }
-* html div#top div#user_ctl {
-  margin-right: 20px;
-}
+
 span#wiki_nav a:hover {
   background-color:#DDFFFF;
 }

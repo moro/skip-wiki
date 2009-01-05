@@ -52,7 +52,7 @@ msgstr "ログインしました。"
 
 #: app/helpers/application_helper.rb:6
 msgid "Jump to Note"
-msgstr "ノートに移動"
+msgstr "ノートの移動"
 
 #: app/helpers/application_helper.rb:24
 msgid "[Click to hide]"
