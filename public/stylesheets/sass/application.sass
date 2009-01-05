@@ -503,9 +503,33 @@ div.caption
   a.wii_button
     :margin-bottom 5px
 
-table.notes-index, table.pages-index
+#portal
+  :width 49%
+  :margin 0
+  :float left
+
+  #updated-note table, #updated-page table
+    :width 90%
+    td.description, td.date, td.page
+      :font-size 10px
+
+#mypage
+  :width 49%
+  :margin-left 50%
+
+  ul.accessible-notes
+    :list-style none
+    :padding-left 2em
+    li
+      :margin-bottom 5px
+      :border-bottom 1px solid silver
+
+      span.display_name
+        :font-size = !modern_page_font_size
+
+table.page-index
   :width 90%
-  :margin-left 5%
+table.notes-index, table.pages-index
 
   td.history
     :font-size 10px

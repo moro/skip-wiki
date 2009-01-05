@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2008-12-26 15:17+0900\n"
+"POT-Creation-Date: 2009-01-05 18:25+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,7 +58,7 @@ msgstr ""
 msgid "[Click to hide]"
 msgstr ""
 
-#: app/helpers/application_helper.rb:52
+#: app/helpers/application_helper.rb:57
 msgid "Back to %{page}"
 msgstr ""
 
@@ -71,18 +71,18 @@ msgid "PREV"
 msgstr ""
 
 #: app/helpers/notes_helper.rb:4 app/models/note.rb:-
-#: app/views/notes/edit.html.haml:21 app/views/notes/new.html.haml:129
-#: app/views/notes/new.html.haml:137 app/views/notes/new.html.haml:207
+#: app/views/notes/edit.html.haml:21 app/views/notes/new.html.haml:123
+#: app/views/notes/new.html.haml:131 app/views/notes/new.html.haml:201
 msgid "Note|Name"
 msgstr ""
 
 #: app/helpers/notes_helper.rb:6 app/models/note.rb:-
-#: app/views/notes/edit.html.haml:36 app/views/notes/new.html.haml:201
+#: app/views/notes/edit.html.haml:36 app/views/notes/new.html.haml:195
 msgid "Note|Publicity"
 msgstr ""
 
 #: app/helpers/notes_helper.rb:8 app/models/note.rb:-
-#: app/views/notes/edit.html.haml:51 app/views/notes/new.html.haml:198
+#: app/views/notes/edit.html.haml:51 app/views/notes/new.html.haml:192
 msgid "Note|Category"
 msgstr ""
 
@@ -120,23 +120,23 @@ msgstr ""
 msgid "Readable/Writable by everyone"
 msgstr ""
 
-#: app/helpers/pages_helper.rb:55
+#: app/helpers/pages_helper.rb:66
 msgid "Link Palette"
 msgstr ""
 
-#: app/helpers/pages_helper.rb:56
+#: app/helpers/pages_helper.rb:67
 msgid "toggle"
 msgstr ""
 
-#: app/helpers/pages_helper.rb:57
+#: app/helpers/pages_helper.rb:68
 msgid "Insert Link"
 msgstr ""
 
-#: app/helpers/pages_helper.rb:58 app/views/shared/_edit_navi.html.haml:16
+#: app/helpers/pages_helper.rb:69 app/views/shared/_edit_navi.html.haml:16
 msgid "note attachments"
 msgstr ""
 
-#: app/helpers/pages_helper.rb:59 app/views/shared/_edit_navi.html.haml:7
+#: app/helpers/pages_helper.rb:70 app/views/shared/_edit_navi.html.haml:7
 msgid "page attachments"
 msgstr ""
 
@@ -220,7 +220,7 @@ msgstr ""
 msgid "Attachment|Filename"
 msgstr ""
 
-#: app/models/attachment.rb:- app/views/attachments/index.html.haml:26
+#: app/models/attachment.rb:- app/views/attachments/index.html.haml:25
 msgid "Attachment|Display name"
 msgstr ""
 
@@ -432,8 +432,8 @@ msgid "note"
 msgstr ""
 
 #: app/models/note.rb:- app/views/notes/edit.html.haml:26
-#: app/views/notes/index.html.haml:15 app/views/notes/new.html.haml:127
-#: app/views/notes/new.html.haml:134 app/views/notes/new.html.haml:204
+#: app/views/notes/index.html.haml:15 app/views/notes/new.html.haml:121
+#: app/views/notes/new.html.haml:128 app/views/notes/new.html.haml:198
 msgid "Note|Display name"
 msgstr ""
 
@@ -449,13 +449,13 @@ msgstr ""
 msgid "Note|Created at"
 msgstr ""
 
-#: app/models/note.rb:- app/views/notes/index.html.haml:18
+#: app/models/note.rb:- app/views/notes/index.html.haml:17
 msgid "Note|Updated at"
 msgstr ""
 
 #: app/models/note.rb:- app/views/notes/edit.html.haml:31
-#: app/views/notes/index.html.haml:16 app/views/notes/new.html.haml:158
-#: app/views/notes/new.html.haml:163 app/views/notes/new.html.haml:210
+#: app/views/notes/index.html.haml:16 app/views/notes/new.html.haml:152
+#: app/views/notes/new.html.haml:157 app/views/notes/new.html.haml:204
 msgid "Note|Description"
 msgstr ""
 
@@ -507,8 +507,8 @@ msgstr ""
 msgid "Page|Name"
 msgstr ""
 
-#: app/models/page.rb:- app/views/pages/_page_form.html.haml:4
-#: app/views/pages/_pages.html.haml:5
+#: app/models/page.rb:- app/views/notes/index.html.haml:29
+#: app/views/pages/_page_form.html.haml:4 app/views/pages/_pages.html.haml:5
 msgid "Page|Display name"
 msgstr ""
 
@@ -533,11 +533,12 @@ msgstr ""
 msgid "Page|Created at"
 msgstr ""
 
-#: app/models/page.rb:- app/views/pages/_pages.html.haml:10
+#: app/models/page.rb:- app/views/notes/index.html.haml:30
+#: app/views/pages/_pages.html.haml:10
 msgid "Page|Updated at"
 msgstr ""
 
-#: app/models/page.rb:98
+#: app/models/page.rb:98 app/views/notes/index.html.haml:50
 msgid "FrontPage"
 msgstr ""
 
@@ -610,33 +611,33 @@ msgstr ""
 msgid "User|Updated at"
 msgstr ""
 
-#: app/views/attachments/index.html.haml:8
+#: app/views/attachments/index.html.haml:7
 msgid "%{title}'s attachments"
 msgstr ""
 
-#: app/views/attachments/index.html.haml:10
+#: app/views/attachments/index.html.haml:9
 msgid "Attached files to %{target}"
 msgstr ""
 
-#: app/views/attachments/index.html.haml:19
+#: app/views/attachments/index.html.haml:18
 msgid "Download"
 msgstr ""
 
-#: app/views/attachments/index.html.haml:20
+#: app/views/attachments/index.html.haml:19
 #: app/views/label_indices/index.html.haml:13
 #: app/views/notes/show.html.haml:44
 msgid "Delete"
 msgstr ""
 
-#: app/views/attachments/index.html.haml:23
+#: app/views/attachments/index.html.haml:22
 msgid "Attach file(s) to %{target}"
 msgstr ""
 
-#: app/views/attachments/index.html.haml:29
+#: app/views/attachments/index.html.haml:28
 msgid "Attachment|Upload Data"
 msgstr ""
 
-#: app/views/attachments/index.html.haml:32
+#: app/views/attachments/index.html.haml:31
 msgid "Upload"
 msgstr ""
 
@@ -737,7 +738,7 @@ msgid "Label index for %{note}"
 msgstr ""
 
 #: app/views/label_indices/index.html.haml:19
-#: app/views/notes/new.html.haml:192 app/views/notes/show.html.haml:52
+#: app/views/notes/new.html.haml:186 app/views/notes/show.html.haml:52
 #: app/views/pages/new.html.haml:20
 msgid "Create"
 msgstr ""
@@ -784,7 +785,7 @@ msgstr ""
 msgid "edit note properties"
 msgstr ""
 
-#: app/views/notes/edit.html.haml:11 app/views/notes/new.html.haml:195
+#: app/views/notes/edit.html.haml:11 app/views/notes/new.html.haml:189
 msgid "Note|GroupBackendType"
 msgstr ""
 
@@ -797,97 +798,105 @@ msgid "SkipGroup note"
 msgstr ""
 
 #: app/views/notes/index.html.haml:6
-msgid "new note"
-msgstr ""
-
-#: app/views/notes/index.html.haml:7
 msgid "Search Note"
 msgstr ""
 
-#: app/views/notes/index.html.haml:9 app/views/pages/_user_bar.html.haml:31
+#: app/views/notes/index.html.haml:8 app/views/pages/_user_bar.html.haml:31
 #: app/views/shared/_common_body_header.html.haml:22
 msgid "Search"
 msgstr ""
 
-#: app/views/notes/index.html.haml:17
-msgid "Updated page"
+#: app/views/notes/index.html.haml:12
+msgid "Updated notes"
 msgstr ""
 
-#: app/views/notes/index.html.haml:29
-msgid "No page exists"
+#: app/views/notes/index.html.haml:26
+msgid "Updated pages"
 msgstr ""
 
-#: app/views/notes/new.html.haml:27
+#: app/views/notes/index.html.haml:43
+msgid "Dash boards"
+msgstr ""
+
+#: app/views/notes/index.html.haml:44
+msgid "Accessible Note"
+msgstr ""
+
+#: app/views/notes/index.html.haml:49 app/views/shared/_edit_navi.html.haml:15
+msgid "show note"
+msgstr ""
+
+#: app/views/notes/new.html.haml:24
 msgid "個人用ノート"
 msgstr ""
 
-#: app/views/notes/new.html.haml:32
+#: app/views/notes/new.html.haml:29
 msgid "SKIPグループ"
 msgstr ""
 
-#: app/views/notes/new.html.haml:56
+#: app/views/notes/new.html.haml:50
 msgid "Office"
 msgstr ""
 
-#: app/views/notes/new.html.haml:58
+#: app/views/notes/new.html.haml:52
 msgid "SWAT...TCが展開するシステム開発ツールとノウハウに関するWikiです"
 msgstr ""
 
-#: app/views/notes/new.html.haml:59
+#: app/views/notes/new.html.haml:53
 msgid "QMS...生産技術部が展開するQMSに関する資料公開用のWikiです"
 msgstr ""
 
-#: app/views/notes/new.html.haml:62
+#: app/views/notes/new.html.haml:56
 msgid "Business"
 msgstr ""
 
-#: app/views/notes/new.html.haml:64
+#: app/views/notes/new.html.haml:58
 msgid "SONICチーム情報共有Wiki...プロジェクトチーム内の情報共有用Wikiです"
 msgstr ""
 
-#: app/views/notes/new.html.haml:67
+#: app/views/notes/new.html.haml:61
 msgid "Life"
 msgstr ""
 
-#: app/views/notes/new.html.haml:69
+#: app/views/notes/new.html.haml:63
 msgid "ファシリテーションWG...社内の有志で運営している勉強会グループです"
 msgstr ""
 
-#: app/views/notes/new.html.haml:70
+#: app/views/notes/new.html.haml:64
 msgid "TC部門内運営ルール...休暇申請など、部門内のルールをまとめたWikiです"
 msgstr ""
 
-#: app/views/notes/new.html.haml:73
+#: app/views/notes/new.html.haml:67
 msgid "Off"
 msgstr ""
 
-#: app/views/notes/new.html.haml:75
+#: app/views/notes/new.html.haml:69
 msgid ""
 "ハムスターの飼育方法...その名の通り、ハムスターを元気に育てるためのノウハウ集"
 "です"
 msgstr ""
 
-#: app/views/notes/new.html.haml:76
+#: app/views/notes/new.html.haml:70
 msgid "FFIX...ゲームに関する情報をまとめたWikiです"
 msgstr ""
 
-#: app/views/notes/new.html.haml:87 app/views/notes/new.html.haml:103
+#: app/views/notes/new.html.haml:81 app/views/notes/new.html.haml:97
 msgid "グループメンバーのみ閲覧/書込できる"
 msgstr ""
 
-#: app/views/notes/new.html.haml:92 app/views/notes/new.html.haml:108
+#: app/views/notes/new.html.haml:86 app/views/notes/new.html.haml:102
 msgid "全員が閲覧できる"
 msgstr ""
 
-#: app/views/notes/new.html.haml:97 app/views/notes/new.html.haml:115
+#: app/views/notes/new.html.haml:91 app/views/notes/new.html.haml:109
 msgid "全員が閲覧/書込できる"
 msgstr ""
 
-#: app/views/notes/new.html.haml:113
+#: app/views/notes/new.html.haml:107
 msgid "そのグループからグループ外に情報を発信したい場合に選びます。"
 msgstr ""
 
-#: app/views/notes/new.html.haml:120
+#: app/views/notes/new.html.haml:114
 msgid ""
 "Wikipediaのようにみんなでコンテンツを作っていくWikiにしたい場合に選びます。"
 msgstr ""
@@ -1064,8 +1073,12 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: app/views/shared/_common_body_header.html.haml:29
+#: app/views/shared/_common_body_header.html.haml:30
 msgid "Your profile(%{name})"
+msgstr ""
+
+#: app/views/shared/_common_body_header.html.haml:31
+msgid "new note"
 msgstr ""
 
 #: app/views/shared/_edit_navi.html.haml:6
@@ -1082,10 +1095,6 @@ msgstr ""
 
 #: app/views/shared/_edit_navi.html.haml:14
 msgid "new page"
-msgstr ""
-
-#: app/views/shared/_edit_navi.html.haml:15
-msgid "show note"
 msgstr ""
 
 #: app/views/shared/not_found.html.haml:1
