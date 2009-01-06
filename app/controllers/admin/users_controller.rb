@@ -16,8 +16,7 @@ class Admin::UsersController < Admin::ApplicationController
   # PUT /admin/user/:id
   def update
     @user = User.find(params[:id])
-    # FIXME
-    @user.admin = params[:admin]
+
     if @user.update_attributes(params[:user])
       flash[:notice] = _("User update successfully.")
       redirect_to admin_root_path

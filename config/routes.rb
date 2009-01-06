@@ -29,6 +29,14 @@ ActionController::Routing::Routes.draw do |map|
                                                                                   :requirements=>{:open_id_complete=>/\d+/}
   map.resource :session
 
+  map.namespace 'admin' do |admin_map|
+    admin_map.root :controller=>'users', :action=>'index'
+    admin_map.resources :users
+    admin_map.resources :notes
+    admin_map.resources :pages
+    admin_map.resources :accounts
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

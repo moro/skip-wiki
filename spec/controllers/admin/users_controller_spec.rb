@@ -29,14 +29,32 @@ describe Admin::UsersController do
 
   # TODO
   describe "PUT /admin/users/1" do
-    describe "Userの更新が成功した場合" do
-      before do
-        controller.should_receive(:find).with("7").and_return(mock_user)
-        mock_user.account.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id=>"7", :account=>{:these => 'params'}
+    describe "User" do
+      it "User" do
+        User.should_receive(:find).with("7").and_return(mock_user)
+        mock_user.should_receive(:update_attributes).with({'these' => 'params'})
+        put :update, :id=>"7", :user=>{'these'=>'params'}
+      end
+
+      it "User" do
+        User.stub!(:find).and_return(mock_user(:update_attributes=>true))
+        put :update, :id=>"1"
+        assigns(:user).should == mock_user
+      end
+
+      it "User" do
+        User.stub!(:find).and_return(mock_user(:update_attributes=>true))
+        put :update, :id=>"1"
+        response.should redirect_to(admin_root_path)
       end
     end
-    describe "Userの更新が失敗した場合" do
+
+    describe "User" do
+      it "User" do
+        User.should_receive(:find).with("7").and_return(mock_user)
+        mock_user.should_receive(:update_attributes).with({'these'=>'params'})
+        put :update, :id=>"7", :user=>{'these'=>'params'}
+      end
     end
   end
 

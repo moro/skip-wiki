@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2009-01-01 02:25+0900\n"
+"POT-Creation-Date: 2009-01-06 19:30+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,6 +25,21 @@ msgid ""
 "We couldn't set up that account, sorry.  Please try again, or contact an "
 "admin (link is above)."
 msgstr ""
+
+#: app/controllers/admin/accounts_controller.rb:17
+#, fuzzy
+msgid "Account update successfully."
+msgstr "ログインしました。"
+
+#: app/controllers/admin/accounts_controller.rb:20
+#: app/controllers/admin/users_controller.rb:25
+msgid "validation error"
+msgstr ""
+
+#: app/controllers/admin/users_controller.rb:22
+#, fuzzy
+msgid "User update successfully."
+msgstr "ログインしました。"
 
 #: app/controllers/label_indices_controller.rb:36
 msgid "LabelIndex %{display_name} was successfully created."
@@ -166,19 +181,25 @@ msgstr ""
 msgid "account"
 msgstr "アカウント"
 
-#: app/models/account.rb:- app/views/users/show.html.haml:9
+#: app/models/account.rb:- app/views/admin/accounts/edit.html.haml:17
+#: app/views/admin/accounts/index.html.haml:13
+#: app/views/users/show.html.haml:9
 msgid "Account|Login"
 msgstr "ログイン名"
 
-#: app/models/account.rb:-
+#: app/models/account.rb:- app/views/admin/accounts/index.html.haml:14
 msgid "Account|Name"
 msgstr ""
 
-#: app/models/account.rb:- app/views/users/show.html.haml:12
+#: app/models/account.rb:- app/views/admin/accounts/edit.html.haml:22
+#: app/views/admin/accounts/index.html.haml:15
+#: app/views/users/show.html.haml:12
 msgid "Account|Email"
 msgstr "E-Mailアドレス"
 
-#: app/models/account.rb:- app/views/users/show.html.haml:15
+#: app/models/account.rb:- app/views/admin/accounts/edit.html.haml:27
+#: app/views/admin/accounts/index.html.haml:16
+#: app/views/users/show.html.haml:15
 msgid "Account|Identity url"
 msgstr "Identity URL"
 
@@ -596,12 +617,14 @@ msgstr ""
 msgid "user"
 msgstr ""
 
-#: app/models/user.rb:- app/views/histories/index.html.haml:13
-#: app/views/users/show.html.haml:6
+#: app/models/user.rb:- app/views/admin/users/edit.html.haml:17
+#: app/views/admin/users/index.html.haml:13
+#: app/views/histories/index.html.haml:13 app/views/users/show.html.haml:6
 msgid "User|Name"
 msgstr "ユーザ識別子"
 
-#: app/models/user.rb:-
+#: app/models/user.rb:- app/views/admin/users/edit.html.haml:22
+#: app/views/admin/users/index.html.haml:14
 msgid "User|Display name"
 msgstr "ユーザ名"
 
@@ -613,9 +636,40 @@ msgstr ""
 msgid "User|Updated at"
 msgstr ""
 
-#: app/models/user.rb:-
+#: app/models/user.rb:- app/views/admin/users/edit.html.haml:27
+#: app/views/admin/users/index.html.haml:15
 msgid "User|Admin"
-msgstr ""
+msgstr "管理者"
+
+#: app/views/admin/accounts/edit.html.haml:33
+#: app/views/admin/users/edit.html.haml:33 app/views/groups/show.html.haml:27
+#: app/views/histories/new.html.haml:31 app/views/notes/edit.html.haml:60
+#: app/views/notes/show.html.haml:39 app/views/pages/edit.html.haml:12
+msgid "Update"
+msgstr "更新"
+
+#: app/views/admin/accounts/index.html.haml:7
+msgid "Search Account"
+msgstr "アカウント検索"
+
+#: app/views/admin/accounts/index.html.haml:17
+#, fuzzy
+msgid "Account|Edit"
+msgstr "E-Mailアドレス"
+
+#: app/views/admin/users/edit.html.haml:30
+msgid "This user set admin"
+msgstr "このユーザを管理者に設定します"
+
+#: app/views/admin/users/index.html.haml:16
+#, fuzzy
+msgid "User|Edit"
+msgstr "管理者"
+
+#: app/views/admin/users/index.html.haml:21
+#, fuzzy
+msgid "AdminUser"
+msgstr "管理者メニュー"
 
 #: app/views/attachments/index.html.haml:8
 #, fuzzy
@@ -664,12 +718,6 @@ msgstr "このグループのユーザ一覧です。"
 #: app/views/notes/show.html.haml:8
 msgid "Note Properties"
 msgstr "ノートのプロパティ"
-
-#: app/views/groups/show.html.haml:27 app/views/histories/new.html.haml:31
-#: app/views/notes/edit.html.haml:60 app/views/notes/show.html.haml:39
-#: app/views/pages/edit.html.haml:12
-msgid "Update"
-msgstr "更新"
 
 #: app/views/histories/diff.html.haml:4
 msgid "%{page}'s diff from rev.%{from} to rev.%{to}."
@@ -814,6 +862,7 @@ msgstr "ノートを検索"
 
 #: app/views/notes/index.html.haml:9 app/views/pages/_user_bar.html.haml:31
 #: app/views/shared/_common_body_header.html.haml:22
+#: app/views/shared/admin/_user_body_header.html.haml:10
 msgid "Search"
 msgstr "検索"
 
@@ -1079,6 +1128,7 @@ msgid "Your profile(%{name})"
 msgstr "プロフィール(%{name}さん)"
 
 #: app/views/shared/_common_body_header.html.haml:30
+#: app/views/shared/admin/_user_body_header.html.haml:3
 msgid "Admin menu"
 msgstr "管理者メニュー"
 
@@ -1102,20 +1152,46 @@ msgstr "ページを追加"
 msgid "show note"
 msgstr "ノート情報"
 
-#: app/views/shared/not_found.html.haml:1
-msgid "404 Not Found"
-msgstr ""
+#: app/views/shared/admin/_user_body_header.html.haml:6
+msgid "Search User"
+msgstr "ユーザ検索"
 
+#: app/views/shared/admin/_user_body_header.html.haml:21
 #: app/views/users/_side_menu.html.haml:3
 msgid "User|Informations"
 msgstr ""
 
-#: app/views/users/_side_menu.html.haml:5
-msgid "User|Skip Account"
-msgstr ""
-
+#: app/views/shared/admin/_user_body_header.html.haml:22
 #: app/views/users/_side_menu.html.haml:6
 msgid "User|Memberships"
+msgstr ""
+
+#: app/views/shared/admin/_user_body_header.html.haml:24
+msgid "User|Index"
+msgstr "ユーザ一覧"
+
+#: app/views/shared/admin/_user_body_header.html.haml:25
+msgid "Account|Index"
+msgstr "アカウント一覧"
+
+#: app/views/shared/admin/_user_body_header.html.haml:29
+msgid "manage users"
+msgstr "ユーザ管理"
+
+#: app/views/shared/admin/_user_body_header.html.haml:30
+msgid "manage notes"
+msgstr "ノート管理"
+
+#: app/views/shared/admin/_user_body_header.html.haml:31
+msgid "manage common files"
+msgstr "共通ファイル管理"
+
+#: app/views/shared/not_found.html.haml:1
+msgid "404 Not Found"
+msgstr ""
+
+#: app/views/users/_side_menu.html.haml:5
+msgid "User|Skip Account"
 msgstr ""
 
 #: app/views/users/_side_menu.html.haml:7

@@ -26,7 +26,7 @@
           %dt
             =f.label :admin, _('User|Admin')
           %dd
-            =check_box_tag(:admin,1,@user.admin) 
+            =f.check_box(:admin) 
             =_("This user set admin")
 
         %div

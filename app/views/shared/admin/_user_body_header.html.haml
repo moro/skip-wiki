@@ -1,6 +1,6 @@
 #admin_header
   #admin_title
-    = _("Admin Menu")
+    = _("Admin menu")
   #user_search
     - form_tag(current_path, :method=>:get) do
       - search_label ||= _("Search User")
@@ -16,12 +16,7 @@
   %ul.navi-tab.float
     %li.page-navi
       %ul.float
-        - if @user && !@user.new_record?
-          = navi_item(_("User|Informations"), edit_admin_user_path(@user.id), current_path)
-          = navi_item(_("User|Memberships"), edit_admin_user_path(@user.id), current_path)
-        - else
-          = navi_item(_("User|Index"), admin_root_path, current_path)
-          = navi_item(_("Account|Index"), admin_accounts_path, current_path)
+        = navi_item(_("Account|Index"), admin_accounts_path, current_path)
       .clear
     %li.note-navi
       %ul.float
