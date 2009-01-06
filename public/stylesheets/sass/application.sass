@@ -1,6 +1,7 @@
 !side_width = 200px
 !content_margin = 210px
 !modern_page_font_size = 16px
+!small_font_size = 10px
 
 body
   :font-size 13px
@@ -190,31 +191,31 @@ table.diff
       :background #DDDDDD
       :border-bottom 1px solid gray
 
-    th.symbol
-      :width 10px
+    th.symbol, td.symbol, th.num, td.num
+      :font-family monospace
+      :font-size = !small_font_size
+
+    th.symbol, td.symbol
+      :width 1em
+      :text-align center
+
+    th.num, td.num
+      :width 30px
 
     th.num
       :text-align center
-      :font-family monospace
-      :font-size 11px
-      :width 30px
-    td.text
-      :width 350px
-    td.symbol
-      :text-align center
-      :font-family monospace
-      :width 1em
 
     td.num
       :text-align right
-      :font-family monospace
       :vertical-align top
-      :font-size 10px
-      :width 35px
       :padding 2px
       :color #555
       :border-right 1px solid #ccc
       :border-bottom 1px solid #ddd
+
+    td.text
+      :width 350px
+      :font-size 12px
 
 table.histories
   tr
@@ -222,7 +223,7 @@ table.histories
       :width 350px
     td.revision
       :width 10em
-      :font-size 10px
+      :font-size = !small_font_size
 
 ul.label-badges
   :list-style none
@@ -264,7 +265,7 @@ div.tab
 
       li
         :text-align center
-        :font-size 10px
+        :font-size = !small_font_size
         :height 1.5em
         :padding 1px 1em
         :margin 1px
@@ -327,14 +328,14 @@ div.app-layout
 
 div.note
   :position relative
-  :font-size 16px
+  :font-size = !modern_page_font_size
 
   h3
     :font-size 1.3em
     :text-decoration underline
 
     span
-      :font-size 10px
+      :font-size = !small_font_size
       :margin auto 2px
 
   .explain
@@ -364,7 +365,7 @@ div.note
 
   .query > a
     :float right
-    :font-size 10px
+    :font-size = !small_font_size
 
   .query > form
     :clear right
@@ -374,8 +375,8 @@ div.note
     div.commit
       :float right
 
-span.help
-  :font-size 10px
+span.help, span.operation
+  :font-size = !small_font_size
   :color #333366
 
 div.page, div.history
@@ -415,14 +416,14 @@ div.page, div.history
     :margin 1em
 
     li.bar-item
-      :font-size 10px
+      :font-size = !small_font_size
       :margin 2px 10px
       :border-bottom 1px solid gray
       :height 2em
 
     li.search-pages form
       :padding-bottom 0
-      :font-size 10px
+      :font-size = !small_font_size
 
     li.navigate-in-label
       span.label_badge
@@ -455,7 +456,7 @@ div.hint
   :margin 1em 1em
 
   p
-    :font-size small
+    :font-size = !small_font_size
     :margin 10px 1em
 
 .login
@@ -511,7 +512,7 @@ div.caption
   #updated-note table, #updated-page table
     :width 90%
     td.description, td.date, td.page
-      :font-size 10px
+      :font-size = !small_font_size
 
 #mypage
   :width 49%
@@ -532,7 +533,7 @@ table.page-index
 table.notes-index, table.pages-index
 
   td.history
-    :font-size 10px
+    :font-size = !small_font_size
     :text-align center
 
   td.name
@@ -540,7 +541,7 @@ table.notes-index, table.pages-index
       :font-size 18px
     span.url
       :color gray
-      :font-size 10px
+      :font-size = !small_font_size
       :margin-left 1em
       :padding-left 18px
       :background-image url("../images/icons/arrow_right.png")
@@ -552,7 +553,7 @@ table.notes-index, table.pages-index
 
     span
       :background #eee
-      :font-size 10px
+      :font-size = !small_font_size
 
   th.published
     :width 12em
@@ -561,7 +562,7 @@ table.notes-index, table.pages-index
   td.publification
     :text-align center
     span
-      :font-size 10px
+      :font-size = !small_font_size
       :background-repeat no-repeat
       :padding 2px 0 2px 18px
     span.published
@@ -656,7 +657,7 @@ table.notes-index, table.pages-index
   :border 2px solid #9999cc
 
   h3 span
-    :font-size 10px
+    :font-size = !small_font_size
     :margin-left 5em
 
   .palette
@@ -664,7 +665,7 @@ table.notes-index, table.pages-index
     :height 200px
 
   span.insertLink
-    :font-size 10px
+    :font-size = !small_font_size
     :color blue
 
 .note-info
@@ -709,7 +710,7 @@ ul.float
       :width 100%
       span
         :position static
-        :font-size 10px
+        :font-size = !small_font_size
         :margin-left 20px
         :right 15px
         :top 15px
@@ -728,7 +729,7 @@ table.group-users
   :margin 1em
 
   td.identity_url
-    :font-size 10px
+    :font-size = !small_font_size
     :color gray
 
 a.back
@@ -757,14 +758,14 @@ table.label-indices
         :font-size 12px
         :padding-left 0.5em
       input[type=submit]
-        :font-size 10px
+        :font-size = !small_font_size
 
 table
   :border-collapse collapse
   tr
     th
       :font-weight bold
-      :font-size   10px
+      :font-size   = !small_font_size
       :background  #cccccc
       :text-align  center
     td

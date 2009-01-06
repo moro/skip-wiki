@@ -33,7 +33,7 @@
             %tr.item_line
               %td.updated_title
                 =link_to h(page.display_name), note_page_path(page.note, page)
-                %span&= "on #{page.note.display_name}"
+                %span.help&= "on #{page.note.display_name}"
               %td.date&= page.updated_at.strftime("%m/%d %H:%M")
 
       -#.search
@@ -46,8 +46,8 @@
         - current_user.accessible(Note).each do |note|
           %li
             %span.display_name&= note.display_name
-            %span.op= link_to(_("show note"), note_path(note))
-            %span.op= link_to(_("FrontPage"), note_page_path(note, "FrontPage"))
+            %span.operation= link_to(_("show note"), note_path(note))
+            %span.operation= link_to(_("FrontPage"), note_page_path(note, "FrontPage"))
             .info
               %span&= note.description
 
