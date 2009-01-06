@@ -1,21 +1,32 @@
 class NotesController < ApplicationController
   layout "application"
-  before_filter :explicit_user_required, :except => %w[index new create]
+  before_filter :explicit_user_required, :except => %w[index new create dashboard]
 
+  def paginate_option(target = Note)
+    { :page => params[:page],
+      :order => "#{target.quoted_table_name}.updated_at DESC",
+      :per_page => params[:per_page] || 10,
+    }
+  end
+  private :paginate_option
   # GET /notes
   # GET /notes.xml
   def index
     accessible = logged_in? ? current_user.accessible(Note) : Note.public
-    @notes = accessible.fulltext(params[:fulltext]).recent(params[:max] || 10)
+    @notes = accessible.fulltext(params[:fulltext]).paginate(paginate_option)
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.xml  { render :xml => @notes }
       format.js{
         data = @notes.map{|n| {:display_name=>n.display_name, :url=>note_path(n)} }
         render :json => data
       }
     end
+  end
+
+  def dashboard
+    @notes = current_user.accessible(Note).recent(5)
   end
 
   # GET /notes/1

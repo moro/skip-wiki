@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2009-01-05 18:25+0900\n"
+"POT-Creation-Date: 2009-01-06 14:17+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgstr ""
 msgid "LabelIndex %{display_name} was successfully created."
 msgstr ""
 
-#: app/controllers/notes_controller.rb:58
+#: app/controllers/notes_controller.rb:69
 msgid "Note `%{note}' was successfully created."
 msgstr ""
 
@@ -431,9 +431,10 @@ msgstr ""
 msgid "note"
 msgstr ""
 
-#: app/models/note.rb:- app/views/notes/edit.html.haml:26
-#: app/views/notes/index.html.haml:15 app/views/notes/new.html.haml:121
-#: app/views/notes/new.html.haml:128 app/views/notes/new.html.haml:198
+#: app/models/note.rb:- app/views/notes/dashboard.html.haml:19
+#: app/views/notes/edit.html.haml:26 app/views/notes/index.html.haml:20
+#: app/views/notes/new.html.haml:121 app/views/notes/new.html.haml:128
+#: app/views/notes/new.html.haml:198
 msgid "Note|Display name"
 msgstr ""
 
@@ -449,13 +450,15 @@ msgstr ""
 msgid "Note|Created at"
 msgstr ""
 
-#: app/models/note.rb:- app/views/notes/index.html.haml:17
+#: app/models/note.rb:- app/views/notes/dashboard.html.haml:21
+#: app/views/notes/index.html.haml:23
 msgid "Note|Updated at"
 msgstr ""
 
-#: app/models/note.rb:- app/views/notes/edit.html.haml:31
-#: app/views/notes/index.html.haml:16 app/views/notes/new.html.haml:152
-#: app/views/notes/new.html.haml:157 app/views/notes/new.html.haml:204
+#: app/models/note.rb:- app/views/notes/dashboard.html.haml:20
+#: app/views/notes/edit.html.haml:31 app/views/notes/index.html.haml:21
+#: app/views/notes/new.html.haml:152 app/views/notes/new.html.haml:157
+#: app/views/notes/new.html.haml:204
 msgid "Note|Description"
 msgstr ""
 
@@ -507,7 +510,7 @@ msgstr ""
 msgid "Page|Name"
 msgstr ""
 
-#: app/models/page.rb:- app/views/notes/index.html.haml:29
+#: app/models/page.rb:- app/views/notes/dashboard.html.haml:33
 #: app/views/pages/_page_form.html.haml:4 app/views/pages/_pages.html.haml:5
 msgid "Page|Display name"
 msgstr ""
@@ -533,12 +536,12 @@ msgstr ""
 msgid "Page|Created at"
 msgstr ""
 
-#: app/models/page.rb:- app/views/notes/index.html.haml:30
+#: app/models/page.rb:- app/views/notes/dashboard.html.haml:34
 #: app/views/pages/_pages.html.haml:10
 msgid "Page|Updated at"
 msgstr ""
 
-#: app/models/page.rb:98 app/views/notes/index.html.haml:50
+#: app/models/page.rb:98 app/views/notes/dashboard.html.haml:54
 msgid "FrontPage"
 msgstr ""
 
@@ -781,6 +784,42 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
+#: app/views/notes/dashboard.html.haml:7 app/views/notes/index.html.haml:7
+msgid "Search Note"
+msgstr ""
+
+#: app/views/notes/dashboard.html.haml:9 app/views/notes/index.html.haml:9
+#: app/views/pages/_user_bar.html.haml:31
+#: app/views/shared/_common_body_header.html.haml:22
+msgid "Search"
+msgstr ""
+
+#: app/views/notes/dashboard.html.haml:15 app/views/notes/index.html.haml:14
+msgid "Updated notes"
+msgstr ""
+
+#: app/views/notes/dashboard.html.haml:16
+msgid "more..."
+msgstr ""
+
+#: app/views/notes/dashboard.html.haml:30
+msgid "Updated pages"
+msgstr ""
+
+#: app/views/notes/dashboard.html.haml:47
+#: app/views/shared/_common_body_header.html.haml:30
+msgid "Dashboard"
+msgstr ""
+
+#: app/views/notes/dashboard.html.haml:48
+msgid "Accessible Note"
+msgstr ""
+
+#: app/views/notes/dashboard.html.haml:53
+#: app/views/shared/_edit_navi.html.haml:15
+msgid "show note"
+msgstr ""
+
 #: app/views/notes/edit.html.haml:6 app/views/notes/show.html.haml:9
 msgid "edit note properties"
 msgstr ""
@@ -797,33 +836,20 @@ msgstr ""
 msgid "SkipGroup note"
 msgstr ""
 
-#: app/views/notes/index.html.haml:6
-msgid "Search Note"
+#: app/views/notes/index.html.haml:10 app/views/pages/index.html.haml:30
+msgid "Show all"
 msgstr ""
 
-#: app/views/notes/index.html.haml:8 app/views/pages/_user_bar.html.haml:31
-#: app/views/shared/_common_body_header.html.haml:22
-msgid "Search"
+#: app/views/notes/index.html.haml:16
+msgid "The query find no notes."
 msgstr ""
 
-#: app/views/notes/index.html.haml:12
-msgid "Updated notes"
+#: app/views/notes/index.html.haml:22
+msgid "Updated page"
 msgstr ""
 
-#: app/views/notes/index.html.haml:26
-msgid "Updated pages"
-msgstr ""
-
-#: app/views/notes/index.html.haml:43
-msgid "Dash boards"
-msgstr ""
-
-#: app/views/notes/index.html.haml:44
-msgid "Accessible Note"
-msgstr ""
-
-#: app/views/notes/index.html.haml:49 app/views/shared/_edit_navi.html.haml:15
-msgid "show note"
+#: app/views/notes/index.html.haml:34
+msgid "No page exists"
 msgstr ""
 
 #: app/views/notes/new.html.haml:24
@@ -1010,10 +1036,6 @@ msgstr ""
 msgid "Filter"
 msgstr ""
 
-#: app/views/pages/index.html.haml:30
-msgid "Show all"
-msgstr ""
-
 #: app/views/pages/index.html.haml:36
 msgid "The query find no pages."
 msgstr ""
@@ -1073,11 +1095,11 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: app/views/shared/_common_body_header.html.haml:30
+#: app/views/shared/_common_body_header.html.haml:31
 msgid "Your profile(%{name})"
 msgstr ""
 
-#: app/views/shared/_common_body_header.html.haml:31
+#: app/views/shared/_common_body_header.html.haml:32
 msgid "new note"
 msgstr ""
 

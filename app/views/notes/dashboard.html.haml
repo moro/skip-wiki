@@ -1,0 +1,59 @@
+- content_for :header do
+  =stylesheet_link_tag "mypage"
+
+#contents_container
+  .caption
+    -form_tag(notes_path, :method=>"GET") do
+      %span{:style=>"vertical-align:middle;"}= _("Search Note")
+      = text_field_tag('fulltext', params[:fulltext])
+      = submit_tag _('Search')
+
+  .contents
+    #portal
+      #updated-note
+        %h2
+          %span= icon_tag('folder_page', _("Updated notes"))
+          %span.operation= link_to(_("more..."), notes_path)
+        %table.notes-index
+          %tr
+            %th.updated_title&= _("Note|Display name")
+            %th.description&= _("Note|Description")
+            %th.updated_at&= _("Note|Updated at")
+
+          - @notes.each do |note|
+            %tr.item_line
+              %td.updated_title= link_to h(note.display_name), note_page_path(note, "FrontPage")
+              %td.description&= note.description
+              %td.date&= note.updated_at.strftime("%m/%d %H:%M")
+
+      #updated-page
+        %h2= icon_tag('folder_page', _("Updated pages"))
+        %table.pages-index
+          %tr
+            %th.updated_title&= _("Page|Display name")
+            %th.updated_at&= _("Page|Updated at")
+
+          - accessible_pages.recent(10).each do |page|
+            %tr.item_line
+              %td.updated_title
+                =link_to h(page.display_name), note_page_path(page.note, page)
+                %span.help&= "on #{page.note.display_name}"
+              %td.date&= page.updated_at.strftime("%m/%d %H:%M")
+
+      -#.search
+        = link_to h(_("View All")), :controller => "notes", :action => "search" , :sortto_sym => "updated_on"
+
+    #mypage
+      %h2&= _("Dashboard")
+      %h3&= _("Accessible Note")
+      %ul.accessible-notes
+        - current_user.accessible(Note).each do |note|
+          %li
+            %span.display_name&= note.display_name
+            %span.operation= link_to(_("show note"), note_path(note))
+            %span.operation= link_to(_("FrontPage"), note_page_path(note, "FrontPage"))
+            .info
+              %span&= note.description
+
+  .clear
+

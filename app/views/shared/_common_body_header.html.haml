@@ -27,6 +27,7 @@
 #top
   - if logged_in?
     %ul.float
+      %li= link_to _("Dashboard"), root_path
       %li= link_to _("Your profile(%{name})") % {:name=>current_user.name}, user_path(current_user)
       %li= link_to content_tag("span", h(_"new note")), new_note_path
       %li= select_tag("notes", notes_navi_on_header(current_user))
