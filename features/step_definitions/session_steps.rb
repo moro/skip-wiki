@@ -18,7 +18,16 @@ end
 
 Given(/ユーザ"(\w+)"を登録し、ログインする/) do |name|
   @account = Account.new(:login => name, :email => name+"@example.com")
-  @account.identity_url = "http://localhost:3333/user/#{name}"
+  @account.identity_url = "http://localhost:3200/user/#{name}"
+  @account.save!
+
+  authenticate_with_fake_open_id_server(@account.identity_url)
+end
+
+Given(/ユーザ"(\w+)"を管理者として登録し、ログインする/) do |name|
+  @account = Account.new(:login => name, :email => name+"@example.com")
+  @account.identity_url = "http://localhost:3200/user/#{name}"
+  @account.user = User.new(:name=>name,:display_name=>name,:admin=>true)
   @account.save!
 
   authenticate_with_fake_open_id_server(@account.identity_url)

@@ -35,7 +35,7 @@
     かつ   ユーザ"bob"を登録し、ログインする
     かつ   そのノートにはページ"SecondPage"が作成済みである
     かつ   そのページはラベル"Labelindice"と関連付けられている
-    かつ   OpenId "http://localhost:3333/user/alice"でログインする
+    かつ   OpenId "http://localhost:3200/user/alice"でログインする
     かつ   ノート"a_note"のページ"FrontPage"を表示している
 
     もし   "ページ一覧"リンクをクリックする

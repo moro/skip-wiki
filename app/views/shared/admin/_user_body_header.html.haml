@@ -1,0 +1,27 @@
+#admin_header
+  #admin_title
+    = _("Admin menu")
+  #user_search
+    - form_tag(current_path, :method=>:get) do
+      - search_label ||= _("Search User")
+      - val = params[:keyword].blank? ? search_label : params[:keyword]
+      %span{:style=>"vertical-align:middle;"}
+      = text_field_tag("keyword", val, :id=>"user_keyword", :class=>"labeled-field")
+      = submit_tag _('Search')
+      :javascript
+        jQuery(function(){
+          jQuery("input.labeled-field").labeledTextField(#{{:message => search_label}.to_json});
+        });
+.tab
+  %ul.navi-tab.float
+    %li.page-navi
+      %ul.float
+        = navi_item(_("Account|Index"), admin_accounts_path, current_path)
+      .clear
+    %li.note-navi
+      %ul.float
+        = navi_item(_("manage users"), admin_root_path, current_path)
+        = navi_item(_("manage notes"), admin_notes_path, current_path)
+        = navi_item(_("manage common files"), admin_notes_path, current_path)
+      .clear
+  .clear
