@@ -24,6 +24,7 @@ ActionController::Routing::Routes.draw do |map|
     end
     note.resources :attachments
   end
+  map.resources :pages
 
   map.open_id_complete 'session', :controller => "sessions", :action => "create", :conditions => {:method => :get },
                                                                                   :requirements=>{:open_id_complete=>/\d+/}

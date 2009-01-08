@@ -1,4 +1,8 @@
 module NotesHelper
+  def has_more?(arr, num = NotesController::DASHBOARD_ITEM_NUM)
+    !!arr[num]
+  end
+
   def explain_note(note)
     opts = {
       :name_key => content_tag("span", _("Note|Name") , :class=>"key"),

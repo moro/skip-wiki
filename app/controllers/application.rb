@@ -51,4 +51,11 @@ class ApplicationController < ActionController::Base
     @__current_note = @note || scope.find(params[:note_id]) || :none
     current_note
   end
+
+  def paginate_option(target = Note)
+    { :page => params[:page],
+      :order => "#{target.quoted_table_name}.updated_at DESC",
+      :per_page => params[:per_page] || 10,
+    }
+  end
 end

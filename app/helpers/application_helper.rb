@@ -26,11 +26,6 @@ module ApplicationHelper
     end
   end
 
-  def accessible_pages(user = current_user)
-    note_ids = user.accessible(Note).map(&:id)
-    Page.scoped(:conditions=>["note_id IN (?)", note_ids])
-  end
-
   def date_picker(selector)
     inclusion = javascript_include_tag "jquery/ui/i18n/ui.datepicker-#{locale}.js"
     date_picker_scripts = <<-JS

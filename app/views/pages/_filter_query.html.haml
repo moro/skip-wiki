@@ -1,0 +1,15 @@
+%dt= label_tag "query_keyword", h(_("Keyword in a page"))
+%dd= text_field_tag "keyword", params[:keyword], :id=>"query_keyword"
+
+%dt= label_tag "query_authors", h(_("Authors"))
+%dd
+  =text_field_tag "authors", params[:authors], :id=>"query_authors"
+  %span.help= _("Input author names ,separete by comma.")
+
+%dt&= _("Order")
+%dd
+  =radio_button_tag "order", "updated_at_DESC", params[:order] == "updated_at_DESC" || params[:order].blank?
+  %label{:for=>"order_updated_at_desc"}&= _("Newly updated")
+  =radio_button_tag "order", "updated_at_ASC", params[:order] == "updated_at_ASC"
+  %label{:for=>"order_updated_at_asc"}&= _("Oldly updated")
+

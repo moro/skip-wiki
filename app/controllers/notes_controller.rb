@@ -1,14 +1,8 @@
 class NotesController < ApplicationController
   layout "application"
   before_filter :explicit_user_required, :except => %w[index new create dashboard]
+  DASHBOARD_ITEM_NUM = 5
 
-  def paginate_option(target = Note)
-    { :page => params[:page],
-      :order => "#{target.quoted_table_name}.updated_at DESC",
-      :per_page => params[:per_page] || 10,
-    }
-  end
-  private :paginate_option
   # GET /notes
   # GET /notes.xml
   def index
@@ -26,7 +20,8 @@ class NotesController < ApplicationController
   end
 
   def dashboard
-    @notes = current_user.accessible(Note).recent(5)
+    @notes = current_user.accessible(Note).recent(DASHBOARD_ITEM_NUM + 1)
+    @pages = Page.scoped(:conditions=>["note_id IN (?)", @notes.map(&:id)]).recent(DASHBOARD_ITEM_NUM + 1)
   end
 
   # GET /notes/1
