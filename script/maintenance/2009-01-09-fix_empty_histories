@@ -1,0 +1,25 @@
+#!script/runner
+
+# vim:set ft=ruby:
+
+def log_and_puts_stderr(msg)
+  ActiveRecord::Base.logger.info("MAINTAIN(2009-01-09-fix_empty_histories):  #{msg}")
+  $stderr.puts(msg)
+end
+
+pages = Page.all.select{|page| page.histories.empty? }
+
+if pages.empty?
+  log_and_puts_stderr("All page has one or more histories. Nothing to do.")
+else
+  ActiveRecord::Base.transaction do
+    pages.each do |page|
+      front_page_author = Page.find(:first, :conditions => ["name = ? AND note_id = ?", "FrontPage", page.note_id]).head.user
+      page.edit("This is empty page inserted by maintenance script `fix_empty_histories'",  front_page_author)
+      page.save!
+
+      log_and_puts_stderr("fixed page[#{page.id},#{page.name},#{page.display_name}]")
+    end
+  end
+end
+
