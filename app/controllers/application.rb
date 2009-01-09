@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
     return nil if @__current_note == :none
     return @__current_note if @__current_note
 
-    scope = logged_in? ? current_user.accessible(Note) : Note.public
+    scope = logged_in? ? current_user.accessible_or_public_notes : Note.public
     @__current_note = @note || scope.find(params[:note_id]) || :none
     current_note
   end

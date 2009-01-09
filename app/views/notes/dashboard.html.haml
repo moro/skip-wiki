@@ -51,7 +51,7 @@
       %h2&= _("Dashboard")
       %h3&= _("Accessible Note")
       %ul.accessible-notes
-        - current_user.accessible(Note).each do |note|
+        - current_user.accessible_notes.each do |note|
           %li
             %span.display_name&= note.display_name
             %span.operation= link_to(_("show note"), note_path(note))

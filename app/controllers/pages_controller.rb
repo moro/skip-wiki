@@ -77,7 +77,7 @@ class PagesController < ApplicationController
     if params[:note_id] && note ||= current_note
       note.accessible?(user) ? note.pages : note.pages.published
     else
-      Page.scoped(:conditions => ["#{Page.quoted_table_name}.note_id IN (?)", user.accessible(Note).all.map(&:id)])
+      Page.scoped(:conditions => ["#{Page.quoted_table_name}.note_id IN (?)", user.accessible_or_public_notes.all.map(&:id)])
     end
   end
 

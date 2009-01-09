@@ -2,7 +2,7 @@
 module ApplicationHelper
   # XXX option_groups_from_collection_for_selectが使えないか検討する
   def notes_navi_on_header(user, selected="")
-    notes = user.accessible(Note)
+    notes = user.accessible_or_public_notes
     head = content_tag("option", _("Jump to Note"), :value=>"")
     notes.group_by(&:category_id).inject(head) do |out, (category_id, notes)|
       options = notes.inject(""){|r,n| r << content_tag("option", n.display_name, :value=>note_page_url(n, "FrontPage")) }
