@@ -9,14 +9,14 @@ body
   :width 100%
   :padding-bottom 1em
 
+  *
+    :margin auto auto
+
   div#top
     ul
       :float right
       li
         :margin auto 5px
-
-  *
-    :margin auto auto
 
   h1, h2, h3
     :margin 0.5em 10px
@@ -27,13 +27,27 @@ body
     :padding 10px
     :border 1px dashed gray
 
-.caption
-  a.wii_button
-    :margin-bottom 5px
+  #current-note
+    :float left
+
+#current-note .note-navi, .page-header .page-navi
+  :position absolute
+  :left 200px
+  :z-index 1
+
+  ul
+    :font-size = !small_font_size
+    :font-weight normal
+    :list-style none
+    :margin 0
+    :padding 0
 
 #logo
-  h1
+  :align top
+  :margin 3px 0 0 5px
+  p
     :margin auto 3px auto 3px
+    :font-size  20px
 
 #services
   :float right
@@ -104,6 +118,15 @@ body
 
   .memberships
     :margin-left = !content_margin
+
+  .page-header
+    h1, div.labels
+      :float left
+    div
+      span
+        :font-size 12px
+      span.label-border
+        :border 1px solid silver
 
 #footer
   :text-align center

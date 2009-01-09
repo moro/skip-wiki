@@ -1,0 +1,85 @@
+!!! XML
+!!!
+%html{html_attrs("ja")}
+  %head
+    = render :partial => 'shared/common_header'
+
+  %body
+    #header.page
+      #logo{:style=>"align: top; margin: 3px 0 0 5px;"}
+        %p= link_to _('SKIP Note'), root_path
+
+      #current-note= render :partial => 'shared/current_note_and_operation'
+
+      #services
+        %a{:href=>"http://www.openskip.org/", :target=>"_blank"}&= _("SKIP Official Site")
+        %a{:href=>"http://user.openskip.org/", :target=>"_blank"}&= _("SKIP User Commnity")
+        %a{:href=>"./help", :target=>"_blank"}
+          %span.ss_sprite.ss_help{:title=>_("Help")}&= _("Help")
+
+        - if logged_in?
+          =link_to _("Logout") % {:name=>current_user.name}, logout_path
+        - else
+          =link_to _("Login"), login_path
+
+      <br style="clear: right;" />
+
+      #search
+        - form_tag(notes_path, { :method => 'get'}) do
+          %span{:style=>"vertical-align:middle;"}
+          = text_field_tag('none', "NOT WORKS YET", :disabled => true)
+          = submit_tag _('Search'), :disabled => true
+          &nbsp;
+
+    #flash_message= render :partial=>"layouts/flash_message"
+
+    #top
+      - if logged_in?
+        %ul.float
+          %li= link_to _("Dashboard"), root_path
+          %li= link_to _("Your profile(%{name})") % {:name=>current_user.name}, user_path(current_user)
+          %li= link_to _("Admin menu"), admin_root_path if current_user.admin?
+          %li= link_to content_tag("span", h(_"new note")), new_note_path
+          %li= select_tag("notes", notes_navi_on_header(current_user))
+        .clear
+
+    :javascript
+      jQuery(document).ready(function(){
+        $("#top select").change(function(){
+          var url = jQuery(this).val();
+          if("" != url){ document.location = url; }
+        });
+        setTimeout(function(){ $("#flash_message div").fadeOut("slow"); }, 10*1000);
+      });
+
+    #main
+      #content_for_layout
+        #content
+          .page-header
+            %h1
+              %span&= @page.display_name
+              %span.operation&= "edit"
+              .page-navi
+                %ul
+                  %li= link_to(_("show page"), note_page_path(current_note, @page))
+                  %li= link_to(_("edit content"), new_note_page_history_path(current_note, @page))
+                  %li= link_to(_("page attachments"), note_page_attachments_path(current_note, @page))
+                  %li= link_to(_("edit page"), edit_note_page_path(current_note, @page))
+                  %li= link_to(_("page histories"), note_page_histories_path(current_note, @page))
+
+            .labels
+              - _next = @page.label_index.pages.next(@page.order_in_label)
+              - _prev = @page.label_index.pages.previous(@page.order_in_label)
+              %span.label-border= labelize(@page.label_index)
+              %span= link_to_function(_("all labels"), "$(this).parents('li.navigate-in-label').find('div.move-to-label').show()")
+              %span= link_to_if(_prev, h(_"Previous"), note_page_path(current_note, _prev))
+              %span= link_to_if(_next, h(_"Next"), note_page_path(current_note, _next))
+
+            .user-bar= render :partial => 'shared/user_navi'
+            .clear
+
+          = yield
+
+    #footer
+      = render :partial => 'shared/common_body_footer'
+

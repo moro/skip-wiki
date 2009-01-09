@@ -1,0 +1,10 @@
+%span&= current_note.display_name
+%span&= current_note.description
+- if current_note.accessible?(current_user)
+  %span.operation&= "edit"
+  .note-navi
+    %ul
+      %li= link_to(_("new page"), new_note_page_path(current_note))
+      %li= link_to(_("show note"), note_path(current_note))
+      %li= link_to(_("note attachments"), note_attachments_path(current_note))
+

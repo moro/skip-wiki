@@ -3,40 +3,6 @@
   %p
     %span&= current_note.description
 
-%ul.float
-  - if @page && !@page.new_record?
-    %li.bar-item.navigate-in-label
-      - _next = @page.label_index.pages.next(@page.order_in_label)
-      - _prev = @page.label_index.pages.previous(@page.order_in_label)
-      %ul.float
-        %li= labelize(@page.label_index)
-        %li= link_to_function(_("other.."), "$(this).parents('li.navigate-in-label').find('div.move-to-label').show()")
-        %li= link_to_if(_prev, h(_"Previous"), note_page_path(current_note, _prev))
-        %li= link_to_if(_next, h(_"Next"), note_page_path(current_note, _next))
-
-      .move-to-label{:style=>"display:none"}
-        =link_to_function(_("close"), "$(this).parents('div.move-to-label').hide()")
-        %ul
-          - current_note.label_indices.has_pages.each do |l|
-            %li= link_to labelize(l), note_pages_path(current_note, :label_index_id =>l)
-
-  %li.bar-item.page-index
-    = link_to(_("note pages"), note_pages_path(current_note))
-
-  %li.bar-item.search-pages
-    - form_tag(note_pages_path(current_note), :method=>:get) do
-      - search_label = _("Search pages in %{note}") % {:note => current_note.display_name}
-      - val = params[:keyword].blank? ? search_label : params[:keyword]
-      = text_field_tag("keyword", val, :id=>"pages_keyword", :class=>"labeled-field", :size=>32)
-      = submit_tag _("Search")
-
-      :javascript
-        jQuery(function(){
-          jQuery("input.labeled-field").labeledTextField(#{{:message => search_label}.to_json});
-        });
-
-  %li.bar_item
-    #system_contents= image_tag "skip/indicator.gif"
-
+%ul.float= render :partial => 'shared/user_navi'
 .clear
 
