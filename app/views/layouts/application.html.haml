@@ -5,7 +5,14 @@
     = render :partial => 'shared/common_header'
 
   %body
-    = render :partial => 'shared/common_body_header'
+    #header
+      #logo{:style=>"align: top; margin: 3px 0 0 5px;"}
+        %h1{:style=>"display:none"}= link_to 'SKIP Note', root_path
+        = link_to image_tag("logo.png", :alt=>"SKIP Note - Logo"), root_path
+      = render :partial => 'shared/common_body_header'
+
+    #flash_message= render :partial=>"layouts/flash_message"
+    #top= render :partial => 'layouts/top'
 
     #main
       #content_for_layout= yield
