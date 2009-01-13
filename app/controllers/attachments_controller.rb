@@ -4,7 +4,7 @@ class AttachmentsController < ApplicationController
   layout :select_layout
 
   def select_layout
-    current_target.is_a?(Page) ? "pages" : "application"
+    current_target.is_a?(Page) ? "pages" : "notes"
   end
   private :select_layout
 

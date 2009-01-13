@@ -1,0 +1,69 @@
+!!! XML
+!!!
+%html{html_attrs("ja")}
+  %head
+    = render :partial => 'shared/common_header'
+
+  %body
+    #header.page
+      #logo{:style=>"align: top; margin: 3px 0 0 5px;"}
+        = link_to image_tag("logo.png", :alt=>"SKIP Note - Logo", :width=>"100px"), root_path
+        %p{:style=>"display:none"}= link_to _('SKIP Note'), root_path
+
+      #current-note= render :partial => 'shared/current_note_and_operation'
+
+      #services
+        %a{:href=>"http://www.openskip.org/", :target=>"_blank"}&= _("SKIP Official Site")
+        %a{:href=>"http://user.openskip.org/", :target=>"_blank"}&= _("SKIP User Commnity")
+        %a{:href=>"./help", :target=>"_blank"}
+          %span.ss_sprite.ss_help{:title=>_("Help")}&= _("Help")
+
+        - if logged_in?
+          =link_to _("Logout") % {:name=>current_user.name}, logout_path
+        - else
+          =link_to _("Login"), login_path
+
+      <br style="clear: right;" />
+
+      #search
+        - form_tag(notes_path, { :method => 'get'}) do
+          %span{:style=>"vertical-align:middle;"}
+          = text_field_tag('none', "NOT WORKS YET", :disabled => true)
+          = submit_tag _('Search'), :disabled => true
+          &nbsp;
+
+    #flash_message= render :partial=>"layouts/flash_message"
+
+    #top
+      - if logged_in?
+        %ul.float
+          %li= link_to _("Dashboard"), root_path
+          %li= link_to _("Your profile(%{name})") % {:name=>current_user.name}, user_path(current_user)
+          %li= link_to _("Admin menu"), admin_root_path if current_user.admin?
+          %li= link_to content_tag("span", h(_"new note")), new_note_path
+          %li= select_tag("notes", notes_navi_on_header(current_user))
+        .clear
+
+    :javascript
+      jQuery(document).ready(function(){
+        $("#top select").change(function(){
+          var url = jQuery(this).val();
+          if("" != url){ document.location = url; }
+        });
+        setTimeout(function(){ $("#flash_message div").fadeOut("slow"); }, 10*1000);
+        $("div#current-note span.operation").click(function(){jQuery(this).nextAll("div.note-navi").toggle()});
+        $("div.page-header span.operation").click(function(){jQuery(this).nextAll("div.page-navi").toggle()});
+      });
+
+    #main
+      #content_for_layout
+        #content
+          .page-header
+            .user-bar= render :partial => 'shared/user_navi'
+            .clear
+
+          = yield
+
+    #footer
+      = render :partial => 'shared/common_body_footer'
+

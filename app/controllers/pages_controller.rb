@@ -1,4 +1,12 @@
 class PagesController < ApplicationController
+  layout :select_layout
+  def select_layout
+    if %w[index new].include? params[:action]
+      "notes"
+    else
+      "pages"
+    end
+  end
   def index
     @pages = accessible_pages.fulltext(params[:keyword]).
                               labeled(params[:label_index_id]).

@@ -1,5 +1,4 @@
 class NotesController < ApplicationController
-  layout "application"
   before_filter :explicit_user_required, :except => %w[index new create dashboard]
   DASHBOARD_ITEM_NUM = 5
 
