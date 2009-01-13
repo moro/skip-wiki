@@ -16,7 +16,11 @@
   %ul.navi-tab.float
     %li.page-navi
       %ul.float
-        = navi_item(_("Account|Index"), admin_accounts_path, current_path)
+        - if @users or (@user and !@user.new_record?) or @accounts or @account
+          = navi_item(_("Account|Index"), admin_accounts_path, current_path)
+        - if @note and !@note.new_record?
+          = navi_item(_("manage pages"), admin_note_pages_path(@note), current_path)
+          = navi_item(_("manage attachments"), admin_accounts_path, current_path)
       .clear
     %li.note-navi
       %ul.float

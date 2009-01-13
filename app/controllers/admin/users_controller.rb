@@ -18,7 +18,7 @@ class Admin::UsersController < Admin::ApplicationController
     @user = User.find(params[:id])
 
     if @user.update_attributes(params[:user])
-      flash[:notice] = _("User update successfully.")
+      flash[:notice] = _("User was successfully updated.")
       redirect_to admin_root_path
     else 
       flash[:error] = _("validation error")

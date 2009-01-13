@@ -18,7 +18,7 @@
           %tr.item_line
             %td.name&= user.name
             %td.login&= user.display_name
-            %td.admin&= _("AdminUser") if user.admin?
+            %td.admin&= _('User|Admin') if user.admin?
             %td.edit= link_to "編集する", edit_admin_user_path(user.id)
 
 
