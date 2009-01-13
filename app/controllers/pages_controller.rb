@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   layout :select_layout
   def select_layout
-    if %w[new].include? params[:action]
+    if %w[new create].include? params[:action]
       "notes"
     else
       "pages"
