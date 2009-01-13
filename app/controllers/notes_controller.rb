@@ -1,7 +1,15 @@
 class NotesController < ApplicationController
-  layout "application"
   before_filter :explicit_user_required, :except => %w[index new create dashboard]
   DASHBOARD_ITEM_NUM = 5
+  layout :select_layout
+
+  def select_layout
+    case params[:action]
+    when *%w[index new dashboard] then "application"
+    else "notes"
+    end
+  end
+  private :select_layout
 
   # GET /notes
   # GET /notes.xml

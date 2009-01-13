@@ -9,14 +9,14 @@ body
   :width 100%
   :padding-bottom 1em
 
+  *
+    :margin auto auto
+
   div#top
     ul
       :float right
       li
         :margin auto 5px
-
-  *
-    :margin auto auto
 
   h1, h2, h3
     :margin 0.5em 10px
@@ -27,13 +27,41 @@ body
     :padding 10px
     :border 1px dashed gray
 
-.caption
-  a.wii_button
-    :margin-bottom 5px
+  #current-note
+    :float left
+    :margin-left 20px
+    span
+      :font-size 0.8em
+    span.title
+      :font-size 24px
+
+#current-note .note-navi, .page-header .page-navi
+  :position absolute
+  :left 200px
+  :z-index 1
+  :background white
+  :border 2px solid gray
+  :display none
+
+  ul
+    :font-size = !small_font_size
+    :font-weight normal
+    :list-style none
+    :margin 0
+    :padding 0
+
+    li
+      :margin 3px
+      :border-bottom 1px solid silver
+    li:last-child
+      :border-bottom 0
 
 #logo
-  h1
+  :align top
+  :margin 3px 0 0 5px
+  p
     :margin auto 3px auto 3px
+    :font-size  20px
 
 #services
   :float right
@@ -104,6 +132,18 @@ body
 
   .memberships
     :margin-left = !content_margin
+
+  .page-header
+    :border-bottom 1px solid silver
+    :margin-bottom 3px
+
+    h1, div.labels
+      :float left
+    div
+      span
+        :font-size 12px
+      span.label-border
+        :border 1px solid silver
 
 #footer
   :text-align center
@@ -339,14 +379,6 @@ div.note
       :font-size = !small_font_size
       :margin auto 2px
 
-  .explain
-    :color gray
-    span
-      :margin 0
-    span.key
-      :color brack
-    span.val
-      :color #00cccc
   dl
     dt
       :font-size 1.1em
@@ -387,6 +419,9 @@ div.page, div.history
   div.rendered
     :color #555555
     :font-size 13px
+
+  h1, h2, h3
+    :margin auto 10px
 
   form
     :padding-bottom 1em
@@ -669,17 +704,6 @@ table.notes-index, table.pages-index
     :font-size = !small_font_size
     :color blue
 
-.note-info
-  :margin-left 20px
-  :float left
-  p
-    :margin 0 auto
-    :padding 0
-  a
-    :font-size 2em
-  span
-    :font-size 0.8em
-
 .labeled-field
   :border 1px solid silver
   :color rgb(153, 153, 153)
@@ -798,3 +822,19 @@ div.pagination
   :text-align center
   :font-size = !modern_page_font_size
 
+p.history-info
+  :border 1px solid #ccccff
+  :background #eeeeff
+  :padding 5px
+  :border 1px solid blue
+  :margin 5px auto
+  :width 95%
+
+.explain
+  :color gray
+  span
+    :margin 0
+  span.key
+    :color brack
+  span.val
+    :color #00cccc

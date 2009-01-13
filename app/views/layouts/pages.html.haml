@@ -1,0 +1,48 @@
+!!! XML
+!!!
+%html{html_attrs("ja")}
+  %head
+    = render :partial => 'shared/common_header'
+
+  %body
+    #header.page
+      #logo{:style=>"align: top; margin: 3px 0 0 5px;"}
+        = link_to image_tag("logo.png", :alt=>"SKIP Note - Logo", :width=>"100px"), root_path
+        %p{:style=>"display:none"}= link_to _('SKIP Note'), root_path
+
+      #current-note= render :partial => 'shared/current_note_and_operation'
+      = render :partial => 'shared/common_body_header'
+
+    #flash_message= render :partial=>"layouts/flash_message"
+    #top= render :partial => 'layouts/top'
+
+    #main
+      #content_for_layout
+        #content
+          .page-header
+            %h1
+              %span&= @page.display_name
+              %span.operation&= "edit"
+              .page-navi{:style=>"display:none"}
+                %ul
+                  %li= link_to(_("show page"), note_page_path(current_note, @page))
+                  %li= link_to(_("edit content"), new_note_page_history_path(current_note, @page))
+                  %li= link_to(_("page attachments"), note_page_attachments_path(current_note, @page))
+                  %li= link_to(_("edit page"), edit_note_page_path(current_note, @page))
+                  %li= link_to(_("page histories"), note_page_histories_path(current_note, @page))
+            .labels
+              - _next = @page.label_index.pages.next(@page.order_in_label)
+              - _prev = @page.label_index.pages.previous(@page.order_in_label)
+              %span.label-border= labelize(@page.label_index)
+              %span= link_to_function(_("all labels"), "$(this).parents('li.navigate-in-label').find('div.move-to-label').show()")
+              %span= link_to_if(_prev, h(_"Previous"), note_page_path(current_note, _prev))
+              %span= link_to_if(_next, h(_"Next"), note_page_path(current_note, _next))
+
+            .user-bar= render :partial => 'shared/user_navi'
+            .clear
+
+          = yield
+
+    #footer
+      = render :partial => 'shared/common_body_footer'
+

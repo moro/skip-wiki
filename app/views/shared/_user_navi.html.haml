@@ -1,16 +1,10 @@
-%div.note-info
-  %p= link_to h(current_note.display_name), note_page_path(current_note, "FrontPage")
-  %p
-    %span&= current_note.description
-
 %ul.float
   - if @page && !@page.new_record?
     %li.bar-item.navigate-in-label
       - _next = @page.label_index.pages.next(@page.order_in_label)
       - _prev = @page.label_index.pages.previous(@page.order_in_label)
       %ul.float
-        %li= labelize(@page.label_index)
-        %li= link_to_function(_("other.."), "$(this).parents('li.navigate-in-label').find('div.move-to-label').show()")
+        %li= link_to_function(_("all labels"), "$(this).parents('li.navigate-in-label').find('div.move-to-label').show()")
         %li= link_to_if(_prev, h(_"Previous"), note_page_path(current_note, _prev))
         %li= link_to_if(_next, h(_"Next"), note_page_path(current_note, _next))
 
@@ -37,6 +31,4 @@
 
   %li.bar_item
     #system_contents= image_tag "skip/indicator.gif"
-
-.clear
 

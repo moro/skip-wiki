@@ -1,9 +1,7 @@
 #content
-  = render_toolbar(edit_note_path(current_note))
-
   .app-layout
     - div_for(@note) do
-      %p&= _("edit note properties")
+      %h2&= _("edit note properties")
       - form_for(@note) do |f|
         =f.error_messages
 

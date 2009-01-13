@@ -1,8 +1,6 @@
 #content
-  = render_toolbar(note_page_histories_path(current_note, @page))
-
   .history.app-layout
-    %h1&= _("%{page}'s histories") % {:page=>@page.display_name}
+    %h1&= _("page histories")
 
     // FIXME
     %table.histories

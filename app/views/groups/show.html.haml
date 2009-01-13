@@ -1,6 +1,4 @@
 #content
-  = render_toolbar(note_path(current_note))
-
   .app-layout
     %h2&= _("Group|Users")
     - if @group.backend_type == "BuiltinGroup"

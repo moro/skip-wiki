@@ -1,0 +1,30 @@
+!!! XML
+!!!
+%html{html_attrs("ja")}
+  %head
+    = render :partial => 'shared/common_header'
+
+  %body
+    #header.page
+      #logo{:style=>"align: top; margin: 3px 0 0 5px;"}
+        = link_to image_tag("logo.png", :alt=>"SKIP Note - Logo", :width=>"100px"), root_path
+        %p{:style=>"display:none"}= link_to _('SKIP Note'), root_path
+
+      #current-note= render :partial => 'shared/current_note_and_operation'
+      = render :partial => 'shared/common_body_header'
+
+    #flash_message= render :partial=>"layouts/flash_message"
+    #top= render :partial => 'layouts/top'
+
+    #main
+      #content_for_layout
+        #content
+          .page-header
+            .user-bar= render :partial => 'shared/user_navi'
+            .clear
+
+          = yield
+
+    #footer
+      = render :partial => 'shared/common_body_footer'
+

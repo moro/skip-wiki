@@ -13,7 +13,7 @@ describe Admin::NotesController do
   end
 
   describe "GET /admin/notes/index" do
-    it "全てのノートが取得できていること" do
+    it "Noteが全て取得できていること" do
       Note.should_receive(:find).with(:all).and_return([mock_note])
       get :index
       assigns(:notes).should == [mock_note]

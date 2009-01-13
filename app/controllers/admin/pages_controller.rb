@@ -42,11 +42,4 @@ private
     @note = Note.find(params[:note_id])
   end
 
-  def memo str
-    logger = Logger.new("#{RAILS_ROOT}/log/development.log")
-    logger.info("--------------------")
-    logger.info(str)
-    logger.info("--------------------")
-  end
-
 end

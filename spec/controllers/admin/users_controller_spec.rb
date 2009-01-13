@@ -12,7 +12,7 @@ describe Admin::UsersController do
   end
 
   describe "GET /admin/users/index" do
-    it "Userを全て取得していること" do
+    it "User繧貞�縺ｦ蜿門ｾ励＠縺ｦ縺�ｋ縺薙→" do
       User.should_receive(:find).with(:all).and_return([mock_user])
       get :index
       assigns(:users).should == [mock_user]
@@ -20,7 +20,7 @@ describe Admin::UsersController do
   end
 
   describe "GET /admin/users/1/edit" do
-    it "Userが１件取得できていること" do
+    it "User縺鯉ｼ台ｻｶ蜿門ｾ励〒縺阪※縺�ｋ縺薙→" do
       User.should_receive(:find).with("7").and_return(mock_user)
       get :edit, :id => "7"
       assigns(:user).should == mock_user
