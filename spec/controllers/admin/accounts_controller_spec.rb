@@ -65,7 +65,7 @@ describe Admin::AccountsController do
         assigns(:account).should == mock_account
       end
 
-      it "editテンプレートが再読み込みされること" do
+      it "編集画面にリダイレクトされること" do
         Account.stub!(:find).and_return(mock_account(:update_attributes=>false))
         put :update, :id=>"1"
         response.should redirect_to(edit_admin_account_path("1"))

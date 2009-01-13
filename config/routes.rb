@@ -33,8 +33,18 @@ ActionController::Routing::Routes.draw do |map|
   map.namespace 'admin' do |admin_map|
     admin_map.root :controller=>'users', :action=>'index'
     admin_map.resources :users
-    admin_map.resources :notes
-    admin_map.resources :pages
+
+    admin_map.resources :notes do |note|
+      note.resources :pages, :new => {:preview => :post} do |page|
+        page.resources :histories, :collection=>{:diff=>:get}
+        page.resources :attachments
+      end
+    end
+
+    admin_map.resources :groups do |group|
+      group.resources :memberships
+    end
+
     admin_map.resources :accounts
   end
 

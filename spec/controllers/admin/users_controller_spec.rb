@@ -12,7 +12,7 @@ describe Admin::UsersController do
   end
 
   describe "GET /admin/users/index" do
-    it "Userを全て取得していること" do
+    it "User繧貞�縺ｦ蜿門ｾ励＠縺ｦ縺�ｋ縺薙→" do
       User.should_receive(:find).with(:all).and_return([mock_user])
       get :index
       assigns(:users).should == [mock_user]
@@ -20,40 +20,51 @@ describe Admin::UsersController do
   end
 
   describe "GET /admin/users/1/edit" do
-    it "Userが１件取得できていること" do
+    it "User縺鯉ｼ台ｻｶ蜿門ｾ励〒縺阪※縺�ｋ縺薙→" do
       User.should_receive(:find).with("7").and_return(mock_user)
       get :edit, :id => "7"
       assigns(:user).should == mock_user
     end 
   end
 
-  # TODO
   describe "PUT /admin/users/1" do
-    describe "User" do
-      it "User" do
+    describe "Userの更新に成功する場合" do
+      it "User更新のリクエストが飛んでいること" do
         User.should_receive(:find).with("7").and_return(mock_user)
         mock_user.should_receive(:update_attributes).with({'these' => 'params'})
         put :update, :id=>"7", :user=>{'these'=>'params'}
       end
 
-      it "User" do
+      it "Userの更新ができていること" do
         User.stub!(:find).and_return(mock_user(:update_attributes=>true))
         put :update, :id=>"1"
         assigns(:user).should == mock_user
       end
 
-      it "User" do
+      it "更新後、ユーザ一覧にリダイレクトされること" do
         User.stub!(:find).and_return(mock_user(:update_attributes=>true))
         put :update, :id=>"1"
         response.should redirect_to(admin_root_path)
       end
     end
 
-    describe "User" do
-      it "User" do
+    describe "Userの更新に失敗した場合" do
+      it "updateにUser更新のリクエストが飛んでいること" do
         User.should_receive(:find).with("7").and_return(mock_user)
         mock_user.should_receive(:update_attributes).with({'these'=>'params'})
         put :update, :id=>"7", :user=>{'these'=>'params'}
+      end
+
+      it "更新処理が失敗していること" do
+        User.stub!(:find).and_return(mock_user(:update_attributes => false))
+        put :update, :id => "7"
+        assigns(:user).should equal(mock_user)
+      end
+
+      it "編集画面にリダイレクトされること" do
+        User.stub!(:find).and_return(mock_user(:update_attributes => false))
+        put :update, :id => "7"
+        response.should redirect_to(edit_admin_user_path("7"))
       end
     end
   end

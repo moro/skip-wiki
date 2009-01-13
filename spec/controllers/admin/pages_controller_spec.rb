@@ -2,9 +2,9 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe Admin::PagesController do
 
-  #Delete this example and add some real ones
-  it "should use Admin::PagesController" do
-    controller.should be_an_instance_of(Admin::PagesController)
+  describe "GET /notes/a_note/pages" do
+    it "a_noteに関連するページが取得できていること" do
+    end
   end
 
 end
