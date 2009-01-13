@@ -10,14 +10,6 @@ module ApplicationHelper
     end
   end
 
-  def render_toolbar(current_path)
-    ret = content_tag("div", render(:partial => 'pages/user_bar'), :class=>"user-bar")
-    if logged_in? && current_note && current_note.accessible?(current_user)
-      ret << content_tag("div", render(:partial => "shared/edit_navi", :locals=>{:current_path => current_path}), :class=>"tab")
-    end
-    return content_tag("div", ret, :class => "toolbar")
-  end
-
   def render_flash(type)
     if message = flash[type]
       content_tag("div", :onclick => "$(this).fadeOut('fast')", :class => type.to_s) do

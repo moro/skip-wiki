@@ -1,8 +1,0 @@
-%div.note-info
-  %p= link_to h(current_note.display_name), note_page_path(current_note, "FrontPage")
-  %p
-    %span&= current_note.description
-
-%ul.float= render :partial => 'shared/user_navi'
-.clear
-

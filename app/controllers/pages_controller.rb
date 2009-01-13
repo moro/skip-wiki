@@ -1,12 +1,13 @@
 class PagesController < ApplicationController
   layout :select_layout
   def select_layout
-    if %w[index new].include? params[:action]
+    if %w[new].include? params[:action]
       "notes"
     else
       "pages"
     end
   end
+
   def index
     @pages = accessible_pages.fulltext(params[:keyword]).
                               labeled(params[:label_index_id]).
@@ -14,8 +15,11 @@ class PagesController < ApplicationController
                               scoped(page_order_white_list(params[:order])).
                               paginate(paginate_option(Page))
 
-    render(:layout => "application",
-           :template => params[:note_id].blank? ? "pages/index" : "pages/notes_index")
+    if params[:note_id].blank?
+      render(:template => "pages/index", :layout => "application")
+    else
+      render(:template => "pages/notes_index", :layout => "notes")
+    end
   end
 
   def show
