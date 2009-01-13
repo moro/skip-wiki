@@ -34,6 +34,15 @@ module HistoriesHelper
     string.gsub(/&nbsp;/, nbsp).gsub(/&gt;/, ">").gsub(/&lt;/, "<")
   end
 
+  def explain_history(history)
+    hist = {
+      :rev =>  content_tag("span", @history.revision, :class => "val"),
+      :user=>  content_tag("span", @history.user.name, :class => "val"),
+      :date => content_tag("span", @history.updated_at.strftime("%Y/%m/%d %H:%M"), :class => "val"),
+    }
+    sanitize( _("Showing revision %{rev}, edited by %{user} on %{date}.") % hist)
+  end
+
   private
   def diff_url(page, from, to)
     diff_note_page_histories_path(current_note, page,

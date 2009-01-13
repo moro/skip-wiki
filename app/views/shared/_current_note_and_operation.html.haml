@@ -1,4 +1,4 @@
-%span&= current_note.display_name
+%span.title= link_to(current_note.display_name, note_page_path(current_note, "FrontPage"))
 %span&= current_note.description
 - if current_note.accessible?(current_user)
   %span.operation&= "edit"

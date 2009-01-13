@@ -6,7 +6,8 @@ class PagesController < ApplicationController
                               scoped(page_order_white_list(params[:order])).
                               paginate(paginate_option(Page))
 
-    render(:template => params[:note_id].blank? ? "pages/index" : "pages/notes_index")
+    render(:layout => "application",
+           :template => params[:note_id].blank? ? "pages/index" : "pages/notes_index")
   end
 
   def show

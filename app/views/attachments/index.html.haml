@@ -1,12 +1,11 @@
 #content
   - if current_target.is_a?(Page)
     - @page = current_target
-  =render_toolbar(target_attachments_path)
 
   - div_for(current_target, :class=>"app-layout") do
-    %h1&= _("%{title}'s attachments") % {:title => current_target.display_name }
+    %h2&= _("%{title}'s attachments") % {:title => current_target.display_name }
     .attachments
-      %h2&= _("Attached files to %{target}") % {:target => _(current_target.class.name.downcase) }
+      %h3&= _("Attached files to %{target}") % {:target => _(current_target.class.name.downcase) }
       %table
         - @attachments.each do |at|
           %tr
@@ -19,7 +18,7 @@
             %td= link_to _("Delete"), target_attachment_url(at), :method => :delete
 
     .attachment.upload
-      %h2&= _("Attach file(s) to %{target}") % {:target => _(current_target.class.name.downcase) }
+      %h3&= _("Attach file(s) to %{target}") % {:target => _(current_target.class.name.downcase) }
       - form_for(:attachment, :url=> target_attachments_url, :html=>{:multipart=>true}) do |f|
         %dl
           %dt= f.label :display_name, h(_"Attachment|Display name")

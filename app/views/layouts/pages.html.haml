@@ -7,7 +7,8 @@
   %body
     #header.page
       #logo{:style=>"align: top; margin: 3px 0 0 5px;"}
-        %p= link_to _('SKIP Note'), root_path
+        = link_to image_tag("logo.png", :alt=>"SKIP Note - Logo", :width=>"100px"), root_path
+        %p{:style=>"display:none"}= link_to _('SKIP Note'), root_path
 
       #current-note= render :partial => 'shared/current_note_and_operation'
 
@@ -50,6 +51,8 @@
           if("" != url){ document.location = url; }
         });
         setTimeout(function(){ $("#flash_message div").fadeOut("slow"); }, 10*1000);
+        $("div#current-note span.operation").click(function(){jQuery(this).nextAll("div.note-navi").toggle()});
+        $("div.page-header span.operation").click(function(){jQuery(this).nextAll("div.page-navi").toggle()});
       });
 
     #main
@@ -59,14 +62,13 @@
             %h1
               %span&= @page.display_name
               %span.operation&= "edit"
-              .page-navi
+              .page-navi{:style=>"display:none"}
                 %ul
                   %li= link_to(_("show page"), note_page_path(current_note, @page))
                   %li= link_to(_("edit content"), new_note_page_history_path(current_note, @page))
                   %li= link_to(_("page attachments"), note_page_attachments_path(current_note, @page))
                   %li= link_to(_("edit page"), edit_note_page_path(current_note, @page))
                   %li= link_to(_("page histories"), note_page_histories_path(current_note, @page))
-
             .labels
               - _next = @page.label_index.pages.next(@page.order_in_label)
               - _prev = @page.label_index.pages.previous(@page.order_in_label)
