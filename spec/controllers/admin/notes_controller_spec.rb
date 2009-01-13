@@ -13,7 +13,7 @@ describe Admin::NotesController do
   end
 
   describe "GET /admin/notes/index" do
-    it "Noteが全て取得できていること" do
+    it "全てのノートが取得できていること" do
       Note.should_receive(:find).with(:all).and_return([mock_note])
       get :index
       assigns(:notes).should == [mock_note]
@@ -52,7 +52,7 @@ describe Admin::NotesController do
 
   describe "PUT /admin/notes/1" do
     describe "Noteの更新に成功する場合" do
-      it "Note更新のリクエストが飛んでいること" do
+      it "Note更新のリクエストが送られていること" do
         Note.should_receive(:find).with("7").and_return(mock_note)
         mock_note.should_receive(:update_attributes).with({'these' => 'params'})
         put :update, :id=>"7", :note=>{'these'=>'params'}
@@ -91,4 +91,5 @@ describe Admin::NotesController do
       end
     end
   end
+
 end

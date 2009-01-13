@@ -1,11 +1,12 @@
 class PagesController < ApplicationController
   def index
-    pages = accessible_pages.fulltext(params[:keyword]).
-                             labeled(params[:label_index_id]).
-                             authored(*safe_split(params[:authors])).
-                             scoped(page_order_white_list(params[:order]))
+    @pages = accessible_pages.fulltext(params[:keyword]).
+                              labeled(params[:label_index_id]).
+                              authored(*safe_split(params[:authors])).
+                              scoped(page_order_white_list(params[:order])).
+                              paginate(paginate_option(Page))
 
-    @pages = pages.find(:all)
+    render(:template => params[:note_id].blank? ? "pages/index" : "pages/notes_index")
   end
 
   def show
@@ -72,8 +73,12 @@ class PagesController < ApplicationController
   end
 
   private
-  def accessible_pages(note = current_note, user = current_user)
-    note.accessible?(user) ? note.pages : note.pages.published
+  def accessible_pages(user = current_user, note = nil)
+    if params[:note_id] && note ||= current_note
+      note.accessible?(user) ? note.pages : note.pages.published
+    else
+      Page.scoped(:conditions => ["#{Page.quoted_table_name}.note_id IN (?)", user.accessible_or_public_notes.all.map(&:id)])
+    end
   end
 
   def safe_split(str, separator = /\s*,\s*/)

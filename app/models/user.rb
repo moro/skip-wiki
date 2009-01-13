@@ -14,6 +14,18 @@ class User < ActiveRecord::Base
   has_one :account
   has_one :skip_account
 
+  named_scope :fulltext, proc{|word|
+    return {} if word.blank?
+    # TODO
+    # quoted_table_nameの概要を諸橋さんに聞く
+    # [ActiveRecord]
+    # def self.quoted_table_name
+    #   self.connection.quote_table_name(self.table_name)
+    # end
+    w = "%#{word}%"
+    {:conditions => ["name LIKE ? OR display_name LIKE ?", w, w]}
+  }
+
   def skip_uid
     skip_account ? skip_account.skip_uid : SkipAccount.skip_uid(account.identity_url)
   end
@@ -33,18 +45,23 @@ class User < ActiveRecord::Base
     NoteBuilder.new(self, note_params).note
   end
 
-  def accessible(klass)
-    pub_cond, pub_param = klass.const_get("PUBLIC_CONDITION")
+  def accessible_or_public_notes(parent = Note)
+    pub_cond, pub_param = Note.const_get("PUBLIC_CONDITION")
+    parent.scoped(:conditions=>["#{pub_cond} OR #{parent.table_name}.id IN (#{accessible_query})",
+                                pub_param.merge(:accessable_id => self.id)])
+  end
 
-    klass.scoped(:conditions=>[<<-COND, pub_param.merge(:accessable_id => self.id)])
-    #{pub_cond}
- OR #{klass.table_name}.id IN (
+  def accessible_notes(parent = Note)
+    parent.scoped(:conditions=>["#{parent.table_name}.id IN (#{accessible_query})",{:accessable_id => id}])
+  end
+
+  private
+  def accessible_query
+    <<EOS
     SELECT a.note_id FROM accessibilities AS a
     JOIN   memberships AS m ON m.group_id = a.group_id
     WHERE  m.user_id = :accessable_id
- )
-COND
+EOS
   end
-
 end
 

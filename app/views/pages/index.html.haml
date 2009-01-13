@@ -1,33 +1,12 @@
 #content
-  = render_toolbar(note_pages_path(current_note))
-  - div_for(current_note, :class=>"app-layout") do
-
+  .index.app-layout
+    .h3&= _("%{name}'s accessible pages.") % {:name => current_user.name}
     .query
       =link_to_function _("Apply filter.."), "$(this).next('form').toggle(); return false", :class=>"op"
-      - form_tag note_pages_path(current_note), query_form_options do
-        %dl
-          %dt= label_tag "query_keyword", h(_("Keyword in a page"))
-          %dd= text_field_tag "keyword", params[:keyword], :id=>"query_keyword"
-
-          %dt= label_tag "query_authors", h(_("Authors"))
-          %dd
-            =text_field_tag "authors", params[:authors], :id=>"query_authors"
-            %span.help= _("Input author names ,separete by comma.")
-
-          %dt&= _("Order")
-          %dd
-            =radio_button_tag "order", "updated_at_DESC", params[:order] == "updated_at_DESC" || params[:order].blank?
-            %label{:for=>"order_updated_at_desc"}&= _("Newly updated")
-            =radio_button_tag "order", "updated_at_ASC", params[:order] == "updated_at_ASC"
-            %label{:for=>"order_updated_at_asc"}&= _("Oldly updated")
-
-          %dt= label_tag "query_label_index_id", h(_("LabelIndices"))
-          %dd
-            - label_opts = options_from_collection_for_select(current_note.label_indices.has_pages, :id, :display_name, params[:label_index_id].to_i)
-            =select_tag("label_index_id", content_tag("option", "&nbsp;",:value=>"") + label_opts, :id=>"query_label_index_id")
-
-          =submit_tag _("Filter")
-          =link_to _("Show all"), note_pages_path(current_note), :class => "back"
+      - form_tag pages_path, query_form_options do
+        %dl= render :partial => 'filter_query'
+        =submit_tag _("Filter")
+        =link_to _("Show all"), pages_path, :class => "back"
 
     .clear
 
@@ -35,6 +14,27 @@
       - if @pages.empty?
         %p.no-result&= _("The query find no pages.")
       - else
-        =render(:partial => "pages/pages")
+        - #FIXME クエリ最適化
+        %table.pages-index
+          %thead
+            %tr
+              %th.label&= _("LabelIndices")
+              %th.display_name&= _("Page|Display name")
+              %th.user&= _("Page|Auther")
+              %th.timestamp&= _("Page|Updated at")
+          %tbody
+            - each_with_histories(@pages) do |page, history|
+              - note = page.note
+              %tr
+                %td.label= labelize(page.label_index)
+                %td.name
+                  - url = note_page_url(note, page)
+                  = link_to h(page.display_name), url
+                  %span.note&= "on #{note.display_name}"
+                  %br
+                  %span.url&= url
+                %td&= history.user.name
+                %td.timestamp&= page.updated_at.strftime("%Y-%m-%d %H:%M")
 
+        = will_paginate(@pages)
 

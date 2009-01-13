@@ -3,34 +3,37 @@
 
 #contents_container
   .caption
-    = link_to content_tag("span", h(_"new note")), new_note_path, :class=>"wii_button"
-    %span{:style=>"vertical-align:middle;"}= _("Search Note")
-    = text_field_tag('fulltext', params[:fulltext])
-    = submit_tag _('Search')
+    -form_tag(notes_path, :method=>"GET") do
+      %span{:style=>"vertical-align:middle;"}= _("Search Note")
+      = text_field_tag('fulltext', params[:fulltext])
+      = submit_tag _('Search')
+      = link_to(_("Show all"), notes_path)
+
   .contents
-    #updated-note
-      %h2= icon_tag('folder_page', "活発に更新されているNote")
-      %table.notes-index
-        %tr
-          %th.updated_title&= _("Note|Display name")
-          %th.description&= _("Note|Description")
-          %th.page&= _("Updated page")
-          %th.updated_at&= _("Note|Updated at")
+    #updated-notes
+      %h2= icon_tag('folder_page', _("Updated notes"))
+      - if @notes.empty?
+        %p.no-result&= _("The query find no notes.")
+      - else
+        %table.notes-index
+          %tr
+            %th.updated_title&= _("Note|Display name")
+            %th.description&= _("Note|Description")
+            %th.page&= _("Updated page")
+            %th.updated_at&= _("Note|Updated at")
 
-        - with_last_modified_page(@notes) do |note, page|
-          %tr.item_line
-            %td.updated_title
-              =link_to h(note.display_name), note_page_path(note, "FrontPage")
-            %td.description&= note.description
-            %td.page
-              - if page
-                = link_to _(page.display_name), note_page_path(note, page)
-              - else
-                %span.not-exist&= _("No page exists")
+          - with_last_modified_page(@notes) do |note, page|
+            %tr.item_line
+              %td.updated_title
+                =link_to h(note.display_name), note_page_path(note, "FrontPage")
+              %td.description&= note.description
+              %td.page
+                - if page
+                  = link_to _(page.display_name), note_page_path(note, page)
+                - else
+                  %span.not-exist&= _("No page exists")
 
-            %td.date&= note.updated_at.strftime("%m/%d %H:%M")
+              %td.date&= note.updated_at.strftime("%m/%d %H:%M")
 
-      -#.search
-        = link_to h(_("View All")), :controller => "notes", :action => "search" ,"sort".to_sym => "updated_on"
-
+        = will_paginate @notes
 

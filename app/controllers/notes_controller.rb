@@ -1,21 +1,27 @@
 class NotesController < ApplicationController
   layout "application"
-  before_filter :explicit_user_required, :except => %w[index new create]
+  before_filter :explicit_user_required, :except => %w[index new create dashboard]
+  DASHBOARD_ITEM_NUM = 5
 
   # GET /notes
   # GET /notes.xml
   def index
-    accessible = logged_in? ? current_user.accessible(Note) : Note.public
-    @notes = accessible.fulltext(params[:fulltext]).recent(params[:max] || 10)
+    accessible = logged_in? ? current_user.accessible_or_public_notes : Note.public
+    @notes = accessible.fulltext(params[:fulltext]).paginate(paginate_option)
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.xml  { render :xml => @notes }
       format.js{
         data = @notes.map{|n| {:display_name=>n.display_name, :url=>note_path(n)} }
         render :json => data
       }
     end
+  end
+
+  def dashboard
+    @notes = current_user.accessible_or_public_notes.recent(DASHBOARD_ITEM_NUM + 1)
+    @pages = Page.scoped(:conditions=>["note_id IN (?)", @notes.map(&:id)]).recent(DASHBOARD_ITEM_NUM + 1)
   end
 
   # GET /notes/1
@@ -96,7 +102,7 @@ class NotesController < ApplicationController
 
   private
   def explicit_user_required
-    self.current_note = current_user.accessible(Note).find(params[:id])
+    self.current_note = current_user.accessible_or_public_notes.find(params[:id])
     unless current_note.accessible?(current_user)
       render_not_found
     end

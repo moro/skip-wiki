@@ -1,0 +1,64 @@
+- content_for :header do
+  =stylesheet_link_tag "mypage"
+
+#contents_container
+  .caption
+    -form_tag(notes_path, :method=>"GET") do
+      %span{:style=>"vertical-align:middle;"}= _("Search Note")
+      = text_field_tag('fulltext', params[:fulltext])
+      = submit_tag _('Search')
+
+  .contents
+    #portal
+      #updated-note
+        %h2
+          %span= icon_tag('folder_page', _("Updated notes"))
+          - if has_more?(@notes)
+            %span.operation= link_to(_("more..."), notes_path)
+        %table.notes-index
+          %tr
+            %th.updated_title&= _("Note|Display name")
+            %th.description&= _("Note|Description")
+            %th.updated_at&= _("Note|Updated at")
+
+          - @notes[0, NotesController::DASHBOARD_ITEM_NUM].each do |note|
+            %tr.item_line
+              %td.updated_title= link_to h(note.display_name), note_page_path(note, "FrontPage")
+              %td.description&= note.description
+              %td.date&= note.updated_at.strftime("%m/%d %H:%M")
+
+      #updated-page
+        %h2
+          %span= icon_tag('folder_page', _("Updated pages"))
+          - if has_more?(@pages)
+            %span.operation= link_to(_("more..."), pages_path)
+        %table.pages-index
+          %tr
+            %th.updated_title&= _("Page|Display name")
+            %th.updated_at&= _("Page|Updated at")
+
+          - @pages[0, NotesController::DASHBOARD_ITEM_NUM].each do |page|
+            %tr.item_line
+              %td.updated_title
+                =link_to h(page.display_name), note_page_path(page.note, page)
+                %span.help&= "on #{page.note.display_name}"
+              %td.date&= page.updated_at.strftime("%m/%d %H:%M")
+
+      -#.search
+        = link_to h(_("View All")), :controller => "notes", :action => "search" , :sortto_sym => "updated_on"
+
+    #mypage
+      %h2&= _("Dashboard")
+      %h3&= _("Accessible Note")
+      %ul.accessible-notes
+        - current_user.accessible_notes.each do |note|
+          %li
+            %span.display_name&= note.display_name
+            %span.operation= link_to(_("show note"), note_path(note))
+            %span.operation= link_to(_("note pages"), note_pages_path(note))
+            %span.operation= link_to(_("FrontPage"), note_page_path(note, "FrontPage"))
+            .info
+              %span&= note.description
+
+  .clear
+

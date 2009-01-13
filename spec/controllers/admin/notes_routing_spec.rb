@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
-describe NotesController do
+describe Admin::NotesController do
   describe "route generation" do
     it "should map #index" do
       route_for(:controller => 'admin/notes', :action => 'index').should == "/admin/notes"

@@ -162,6 +162,24 @@ describe Account do
     accounts(:quentin).remember_token_expires_at.between?(before, after).should be_true
   end
 
+  describe ".fulltext" do
+    it "'quen'で検索すると1件該当すること" do
+      Account.fulltext("quen").should have(1).items
+    end
+
+    it "'example'で検索すると3件該当すること" do
+      Account.fulltext("example").should have(3).items
+    end
+
+    it "'--none--'で検索すると0件該当すること" do
+      Account.fulltext("--none--").should have(0).items
+    end
+
+    it "(nil)で検索すると3件該当すること" do
+      Account.fulltext(nil).should have(3).items
+    end
+  end
+
 protected
   def create_account(options = {})
     record = Account.new({ :login => 'quire', :email => 'quire@example.com'}.merge(options))

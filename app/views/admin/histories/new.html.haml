@@ -1,0 +1,56 @@
+- content_for :header do
+  =stylesheet_link_tag "mypage"
+  =stylesheet_link_tag "admin/admin"
+  =javascript_include_tag("fckeditor/fckeditor.js")
+
+#contents_container
+  .caption
+    = render :partial => 'shared/admin/user_body_header', :locals=>{:current_path=>new_admin_note_page_history_path(@note,@page), :search_label=>_('Search Note')}
+  .contents
+    - div_for(@page) do
+      %h1&= @page.display_name
+
+      #linkPalette
+        %span.trigger= _("Show link palette")
+
+      - form_for(:history, @history, :url=>note_page_histories_path(current_note, @page)) do |f|
+        %dl
+          %dt
+            %label{:for=>"history_content"}&= h(_("Page|Content"))
+          %dd.content
+            .previewable
+              %ul
+                %li.show
+                  %a.wii_button.show
+                    %span&= _("Preview")
+
+                %li.hide
+                  %a.wii_button
+                    %span&= _("Hide")
+
+              .rendered
+              .clear
+            = text_area_tag("history[content]", @page.content, :id=>"history_content", :size=>"80x70")
+
+        = submit_tag(_("Update"))
+        = link_to(h(_("show page")), admin_note_page_path(current_note, @page), :class=>"back")
+        %span.notice{:style=>"display:none"}&= _("Modified, need to save.")
+
+
+:javascript
+  $(document).ready(function(){
+    // jQuery(".previewable").preview({"url":"#{preview_new_note_page_path(current_note.id)}"});
+    jQuery("#history_content").editor(#{editor_opt(@page).to_json});
+    jQuery("#linkPalette").linkPalette(#{palette_opt(@page).to_json})
+  });
+
+  function FCKeditor_OnComplete( editorInstance ){
+    editorInstance.Events.AttachEvent( 'OnSelectionChange', function (editorInstance){
+      if(editorInstance.IsDirty()){
+        jQuery(".page form").find("input[type=submit]").enable().end().find("span.notice").show();
+      }else{
+        jQuery(".page form").find("input[type=submit]").disable().end().find("span.notice").hide();
+      }
+    });
+  }
+

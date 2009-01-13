@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2009-01-06 19:30+0900\n"
+"POT-Creation-Date: 2009-01-13 19:18+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,32 +26,58 @@ msgid ""
 "admin (link is above)."
 msgstr ""
 
-#: app/controllers/admin/accounts_controller.rb:17
+#: app/controllers/admin/accounts_controller.rb:13
 msgid "Account update successfully."
 msgstr ""
 
-#: app/controllers/admin/accounts_controller.rb:20
-#: app/controllers/admin/users_controller.rb:25
+#: app/controllers/admin/accounts_controller.rb:16
+#: app/controllers/admin/notes_controller.rb:22
+#: app/controllers/admin/pages_controller.rb:24
+#: app/controllers/admin/users_controller.rb:20
 msgid "validation error"
 msgstr ""
 
-#: app/controllers/admin/users_controller.rb:22
-msgid "User update successfully."
+#: app/controllers/admin/memberships_controller.rb:13
+msgid "Memberships was successfully updated"
+msgstr ""
+
+#: app/controllers/admin/notes_controller.rb:19
+msgid "Note was successfully updated."
+msgstr ""
+
+#: app/controllers/admin/notes_controller.rb:32
+msgid "Note was deleted successfully"
+msgstr ""
+
+#: app/controllers/admin/pages_controller.rb:21
+msgid "Page was successfully updated."
+msgstr ""
+
+#: app/controllers/admin/pages_controller.rb:33
+msgid "Page was deleted successfully"
+msgstr ""
+
+#: app/controllers/admin/pages_controller.rb:36
+msgid "Failed to delete a page"
+msgstr ""
+
+#: app/controllers/admin/users_controller.rb:17
+msgid "User was successfully updated."
 msgstr ""
 
 #: app/controllers/label_indices_controller.rb:36
 msgid "LabelIndex %{display_name} was successfully created."
 msgstr ""
 
-#: app/controllers/notes_controller.rb:58
+#: app/controllers/notes_controller.rb:64
 msgid "Note `%{note}' was successfully created."
 msgstr ""
 
-#: app/controllers/pages_controller.rb:29
+#: app/controllers/pages_controller.rb:30
 msgid "The page %{page} is successfully created"
 msgstr ""
 
-#: app/controllers/pages_controller.rb:63
+#: app/controllers/pages_controller.rb:64
 msgid "The page %{page} is successfully updated"
 msgstr ""
 
@@ -83,53 +109,56 @@ msgstr ""
 msgid "PREV"
 msgstr ""
 
-#: app/helpers/notes_helper.rb:4 app/models/note.rb:-
-#: app/views/notes/edit.html.haml:21 app/views/notes/new.html.haml:123
-#: app/views/notes/new.html.haml:131 app/views/notes/new.html.haml:201
+#: app/helpers/notes_helper.rb:8 app/models/note.rb:-
+#: app/views/admin/notes/edit.html.haml:25 app/views/notes/edit.html.haml:21
+#: app/views/notes/new.html.haml:123 app/views/notes/new.html.haml:131
+#: app/views/notes/new.html.haml:201
 msgid "Note|Name"
 msgstr ""
 
-#: app/helpers/notes_helper.rb:6 app/models/note.rb:-
-#: app/views/notes/edit.html.haml:36 app/views/notes/new.html.haml:195
+#: app/helpers/notes_helper.rb:10 app/models/note.rb:-
+#: app/views/admin/notes/edit.html.haml:40 app/views/notes/edit.html.haml:36
+#: app/views/notes/new.html.haml:195
 msgid "Note|Publicity"
 msgstr ""
 
-#: app/helpers/notes_helper.rb:8 app/models/note.rb:-
-#: app/views/notes/edit.html.haml:51 app/views/notes/new.html.haml:192
+#: app/helpers/notes_helper.rb:12 app/models/note.rb:-
+#: app/views/admin/notes/edit.html.haml:55 app/views/notes/edit.html.haml:51
+#: app/views/notes/new.html.haml:192
 msgid "Note|Category"
 msgstr ""
 
-#: app/helpers/notes_helper.rb:11
+#: app/helpers/notes_helper.rb:15
 msgid ""
 "This note's %{name_key} is `%{name_val}', %{publicity_key} is `%"
 "{publicity_val}', and %{category_key} is `%{category_val}'."
 msgstr ""
 
-#: app/helpers/notes_helper.rb:16 app/helpers/notes_helper.rb:22
+#: app/helpers/notes_helper.rb:20 app/helpers/notes_helper.rb:26
 msgid ", "
 msgstr ""
 
-#: app/helpers/notes_helper.rb:16 app/helpers/notes_helper.rb:22
+#: app/helpers/notes_helper.rb:20 app/helpers/notes_helper.rb:26
 msgid " and "
 msgstr ""
 
-#: app/helpers/notes_helper.rb:17
+#: app/helpers/notes_helper.rb:21
 msgid "%{user_str} are accessible to the note"
 msgstr ""
 
-#: app/helpers/notes_helper.rb:23
+#: app/helpers/notes_helper.rb:27
 msgid "%{group_str}'s members are accessible to the note"
 msgstr ""
 
-#: app/helpers/notes_helper.rb:39
+#: app/helpers/notes_helper.rb:43
 msgid "Access by member only"
 msgstr ""
 
-#: app/helpers/notes_helper.rb:40
+#: app/helpers/notes_helper.rb:44
 msgid "Readable by everyone"
 msgstr ""
 
-#: app/helpers/notes_helper.rb:41
+#: app/helpers/notes_helper.rb:45
 msgid "Readable/Writable by everyone"
 msgstr ""
 
@@ -239,7 +268,7 @@ msgstr ""
 msgid "Attachment|Filename"
 msgstr ""
 
-#: app/models/attachment.rb:- app/views/attachments/index.html.haml:26
+#: app/models/attachment.rb:- app/views/attachments/index.html.haml:25
 msgid "Attachment|Display name"
 msgstr ""
 
@@ -376,8 +405,8 @@ msgstr ""
 msgid "History|Description"
 msgstr ""
 
-#: app/models/label_index.rb:- app/views/label_indices/index.html.haml:5
-#: app/views/notes/show.html.haml:25
+#: app/models/label_index.rb:- app/views/admin/notes/show.html.haml:30
+#: app/views/label_indices/index.html.haml:5 app/views/notes/show.html.haml:25
 msgid "label index"
 msgstr ""
 
@@ -450,8 +479,10 @@ msgstr ""
 msgid "note"
 msgstr ""
 
-#: app/models/note.rb:- app/views/notes/edit.html.haml:26
-#: app/views/notes/index.html.haml:15 app/views/notes/new.html.haml:121
+#: app/models/note.rb:- app/views/admin/notes/edit.html.haml:30
+#: app/views/admin/notes/index.html.haml:13
+#: app/views/notes/dashboard.html.haml:20 app/views/notes/edit.html.haml:26
+#: app/views/notes/index.html.haml:20 app/views/notes/new.html.haml:121
 #: app/views/notes/new.html.haml:128 app/views/notes/new.html.haml:198
 msgid "Note|Display name"
 msgstr ""
@@ -468,12 +499,14 @@ msgstr ""
 msgid "Note|Created at"
 msgstr ""
 
-#: app/models/note.rb:- app/views/notes/index.html.haml:18
+#: app/models/note.rb:- app/views/admin/notes/index.html.haml:15
+#: app/views/notes/dashboard.html.haml:22 app/views/notes/index.html.haml:23
 msgid "Note|Updated at"
 msgstr ""
 
-#: app/models/note.rb:- app/views/notes/edit.html.haml:31
-#: app/views/notes/index.html.haml:16 app/views/notes/new.html.haml:152
+#: app/models/note.rb:- app/views/admin/notes/edit.html.haml:35
+#: app/views/notes/dashboard.html.haml:21 app/views/notes/edit.html.haml:31
+#: app/views/notes/index.html.haml:21 app/views/notes/new.html.haml:152
 #: app/views/notes/new.html.haml:157 app/views/notes/new.html.haml:204
 msgid "Note|Description"
 msgstr ""
@@ -526,8 +559,10 @@ msgstr ""
 msgid "Page|Name"
 msgstr ""
 
-#: app/models/page.rb:- app/views/pages/_page_form.html.haml:4
-#: app/views/pages/_pages.html.haml:5
+#: app/models/page.rb:- app/views/notes/dashboard.html.haml:37
+#: app/views/pages/_page_form.html.haml:4 app/views/pages/_pages.html.haml:5
+#: app/views/pages/index.html.haml:22
+#: app/views/shared/admin/pages/_pages.html.haml:5
 msgid "Page|Display name"
 msgstr ""
 
@@ -537,6 +572,7 @@ msgstr ""
 
 #: app/models/page.rb:- app/views/pages/_page_form.html.haml:12
 #: app/views/pages/_pages.html.haml:9
+#: app/views/shared/admin/pages/_pages.html.haml:8
 msgid "Page|Published at"
 msgstr ""
 
@@ -552,11 +588,13 @@ msgstr ""
 msgid "Page|Created at"
 msgstr ""
 
-#: app/models/page.rb:- app/views/pages/_pages.html.haml:10
+#: app/models/page.rb:- app/views/notes/dashboard.html.haml:38
+#: app/views/pages/_pages.html.haml:10 app/views/pages/index.html.haml:24
+#: app/views/shared/admin/pages/_pages.html.haml:9
 msgid "Page|Updated at"
 msgstr ""
 
-#: app/models/page.rb:98
+#: app/models/page.rb:98 app/views/notes/dashboard.html.haml:59
 msgid "FrontPage"
 msgstr ""
 
@@ -633,10 +671,15 @@ msgstr ""
 
 #: app/models/user.rb:- app/views/admin/users/edit.html.haml:27
 #: app/views/admin/users/index.html.haml:15
+#: app/views/admin/users/index.html.haml:21
 msgid "User|Admin"
 msgstr ""
 
 #: app/views/admin/accounts/edit.html.haml:33
+#: app/views/admin/groups/show.html.haml:31
+#: app/views/admin/notes/edit.html.haml:64
+#: app/views/admin/notes/show.html.haml:44
+#: app/views/admin/pages/edit.html.haml:18
 #: app/views/admin/users/edit.html.haml:33 app/views/groups/show.html.haml:27
 #: app/views/histories/new.html.haml:31 app/views/notes/edit.html.haml:60
 #: app/views/notes/show.html.haml:39 app/views/pages/edit.html.haml:12
@@ -651,6 +694,148 @@ msgstr ""
 msgid "Account|Edit"
 msgstr ""
 
+#: app/views/admin/groups/show.html.haml:7
+#: app/views/admin/notes/edit.html.haml:7
+#: app/views/admin/notes/index.html.haml:7
+#: app/views/admin/notes/show.html.haml:7
+#: app/views/notes/dashboard.html.haml:7 app/views/notes/index.html.haml:7
+msgid "Search Note"
+msgstr ""
+
+#: app/views/admin/groups/show.html.haml:9 app/views/groups/show.html.haml:5
+msgid "Group|Users"
+msgstr ""
+
+#: app/views/admin/groups/show.html.haml:11 app/views/groups/show.html.haml:7
+msgid "Users who can access to this note."
+msgstr ""
+
+#: app/views/admin/groups/show.html.haml:13 app/views/groups/show.html.haml:9
+msgid "Users who belongs to this note."
+msgstr ""
+
+#: app/views/admin/groups/show.html.haml:30
+#: app/views/admin/notes/edit.html.haml:63
+#: app/views/admin/notes/show.html.haml:12 app/views/groups/show.html.haml:26
+#: app/views/notes/edit.html.haml:59 app/views/notes/show.html.haml:8
+msgid "Note Properties"
+msgstr ""
+
+#: app/views/admin/notes/edit.html.haml:10
+#: app/views/admin/notes/show.html.haml:14 app/views/notes/edit.html.haml:6
+#: app/views/notes/show.html.haml:9
+msgid "edit note properties"
+msgstr ""
+
+#: app/views/admin/notes/edit.html.haml:15 app/views/notes/edit.html.haml:11
+#: app/views/notes/new.html.haml:189
+msgid "Note|GroupBackendType"
+msgstr ""
+
+#: app/views/admin/notes/edit.html.haml:19 app/views/notes/edit.html.haml:15
+msgid "BuiltinGroup note"
+msgstr ""
+
+#: app/views/admin/notes/edit.html.haml:22 app/views/notes/edit.html.haml:18
+msgid "SkipGroup note"
+msgstr ""
+
+#: app/views/admin/notes/index.html.haml:14
+msgid "Note|Discription"
+msgstr ""
+
+#: app/views/admin/notes/index.html.haml:16
+#: app/views/admin/notes/index.html.haml:23
+#: app/views/admin/users/index.html.haml:22
+#: app/views/shared/admin/pages/_pages.html.haml:10
+#: app/views/shared/admin/pages/_pages.html.haml:29
+msgid "Edit"
+msgstr ""
+
+#: app/views/admin/notes/index.html.haml:17
+#: app/views/admin/notes/index.html.haml:24
+#: app/views/admin/notes/show.html.haml:49
+#: app/views/attachments/index.html.haml:19
+#: app/views/label_indices/index.html.haml:13
+#: app/views/notes/show.html.haml:44
+#: app/views/shared/admin/pages/_pages.html.haml:11
+#: app/views/shared/admin/pages/_pages.html.haml:30
+msgid "Delete"
+msgstr ""
+
+#: app/views/admin/notes/index.html.haml:24
+#: app/views/shared/admin/pages/_pages.html.haml:30
+msgid "Are you sure?"
+msgstr ""
+
+#: app/views/admin/notes/show.html.haml:20 app/views/notes/show.html.haml:15
+msgid "Users and Groups"
+msgstr ""
+
+#: app/views/admin/notes/show.html.haml:21 app/views/notes/show.html.haml:16
+msgid "edit users permission"
+msgstr ""
+
+#: app/views/admin/notes/show.html.haml:22 app/views/notes/show.html.haml:17
+msgid "add groups"
+msgstr ""
+
+#: app/views/admin/notes/show.html.haml:39 app/views/notes/show.html.haml:34
+msgid "Click to edit"
+msgstr ""
+
+#: app/views/admin/notes/show.html.haml:45 app/views/notes/show.html.haml:40
+msgid "Cancel"
+msgstr ""
+
+#: app/views/admin/notes/show.html.haml:53 app/views/notes/show.html.haml:48
+msgid "add labels"
+msgstr ""
+
+#: app/views/admin/notes/show.html.haml:57
+#: app/views/label_indices/index.html.haml:19
+#: app/views/notes/new.html.haml:186 app/views/notes/show.html.haml:52
+#: app/views/pages/new.html.haml:20
+msgid "Create"
+msgstr ""
+
+#: app/views/admin/pages/edit.html.haml:9
+#: app/views/notes/dashboard.html.haml:15 app/views/notes/index.html.haml:14
+msgid "Updated notes"
+msgstr ""
+
+#: app/views/admin/pages/index.html.haml:7
+#: app/views/pages/_user_bar.html.haml:28
+msgid "Search pages in %{note}"
+msgstr ""
+
+#: app/views/admin/pages/index.html.haml:11 app/views/pages/index.html.haml:5
+#: app/views/pages/notes_index.html.haml:5
+msgid "Apply filter.."
+msgstr ""
+
+#: app/views/admin/pages/index.html.haml:15
+#: app/views/pages/_labels.html.haml:1 app/views/pages/_pages.html.haml:4
+#: app/views/pages/index.html.haml:21 app/views/pages/notes_index.html.haml:9
+#: app/views/shared/admin/pages/_pages.html.haml:4
+msgid "LabelIndices"
+msgstr ""
+
+#: app/views/admin/pages/index.html.haml:20 app/views/pages/index.html.haml:8
+#: app/views/pages/notes_index.html.haml:14
+msgid "Filter"
+msgstr ""
+
+#: app/views/admin/pages/index.html.haml:21 app/views/notes/index.html.haml:10
+#: app/views/pages/index.html.haml:9 app/views/pages/notes_index.html.haml:15
+msgid "Show all"
+msgstr ""
+
+#: app/views/admin/pages/index.html.haml:27 app/views/pages/index.html.haml:15
+#: app/views/pages/notes_index.html.haml:21
+msgid "The query find no pages."
+msgstr ""
+
 #: app/views/admin/users/edit.html.haml:30
 msgid "This user set admin"
 msgstr ""
@@ -659,55 +844,28 @@ msgstr ""
 msgid "User|Edit"
 msgstr ""
 
-#: app/views/admin/users/index.html.haml:21
-msgid "AdminUser"
-msgstr ""
-
-#: app/views/attachments/index.html.haml:8
+#: app/views/attachments/index.html.haml:7
 msgid "%{title}'s attachments"
 msgstr ""
 
-#: app/views/attachments/index.html.haml:10
+#: app/views/attachments/index.html.haml:9
 msgid "Attached files to %{target}"
 msgstr ""
 
-#: app/views/attachments/index.html.haml:19
+#: app/views/attachments/index.html.haml:18
 msgid "Download"
 msgstr ""
 
-#: app/views/attachments/index.html.haml:20
-#: app/views/label_indices/index.html.haml:13
-#: app/views/notes/show.html.haml:44
-msgid "Delete"
-msgstr ""
-
-#: app/views/attachments/index.html.haml:23
+#: app/views/attachments/index.html.haml:22
 msgid "Attach file(s) to %{target}"
 msgstr ""
 
-#: app/views/attachments/index.html.haml:29
+#: app/views/attachments/index.html.haml:28
 msgid "Attachment|Upload Data"
 msgstr ""
 
-#: app/views/attachments/index.html.haml:32
+#: app/views/attachments/index.html.haml:31
 msgid "Upload"
-msgstr ""
-
-#: app/views/groups/show.html.haml:5
-msgid "Group|Users"
-msgstr ""
-
-#: app/views/groups/show.html.haml:7
-msgid "Users who can access to this note."
-msgstr ""
-
-#: app/views/groups/show.html.haml:9
-msgid "Users who belongs to this note."
-msgstr ""
-
-#: app/views/groups/show.html.haml:26 app/views/notes/edit.html.haml:59
-#: app/views/notes/show.html.haml:8
-msgid "Note Properties"
 msgstr ""
 
 #: app/views/histories/diff.html.haml:4
@@ -783,12 +941,6 @@ msgstr ""
 msgid "Label index for %{note}"
 msgstr ""
 
-#: app/views/label_indices/index.html.haml:19
-#: app/views/notes/new.html.haml:186 app/views/notes/show.html.haml:52
-#: app/views/pages/new.html.haml:20
-msgid "Create"
-msgstr ""
-
 #: app/views/label_indices/show.html.haml:3
 msgid "Pages related to %{label}"
 msgstr ""
@@ -827,41 +979,50 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: app/views/notes/edit.html.haml:6 app/views/notes/show.html.haml:9
-msgid "edit note properties"
-msgstr ""
-
-#: app/views/notes/edit.html.haml:11 app/views/notes/new.html.haml:189
-msgid "Note|GroupBackendType"
-msgstr ""
-
-#: app/views/notes/edit.html.haml:15
-msgid "BuiltinGroup note"
-msgstr ""
-
-#: app/views/notes/edit.html.haml:18
-msgid "SkipGroup note"
-msgstr ""
-
-#: app/views/notes/index.html.haml:6
-msgid "new note"
-msgstr ""
-
-#: app/views/notes/index.html.haml:7
-msgid "Search Note"
-msgstr ""
-
-#: app/views/notes/index.html.haml:9 app/views/pages/_user_bar.html.haml:31
+#: app/views/notes/dashboard.html.haml:9 app/views/notes/index.html.haml:9
+#: app/views/pages/_user_bar.html.haml:31
 #: app/views/shared/_common_body_header.html.haml:22
 #: app/views/shared/admin/_user_body_header.html.haml:10
 msgid "Search"
 msgstr ""
 
-#: app/views/notes/index.html.haml:17
+#: app/views/notes/dashboard.html.haml:17
+#: app/views/notes/dashboard.html.haml:34
+msgid "more..."
+msgstr ""
+
+#: app/views/notes/dashboard.html.haml:32
+msgid "Updated pages"
+msgstr ""
+
+#: app/views/notes/dashboard.html.haml:51
+#: app/views/shared/_common_body_header.html.haml:30
+msgid "Dashboard"
+msgstr ""
+
+#: app/views/notes/dashboard.html.haml:52
+msgid "Accessible Note"
+msgstr ""
+
+#: app/views/notes/dashboard.html.haml:57
+#: app/views/shared/_edit_navi.html.haml:15
+msgid "show note"
+msgstr ""
+
+#: app/views/notes/dashboard.html.haml:58
+#: app/views/pages/_user_bar.html.haml:24
+msgid "note pages"
+msgstr ""
+
+#: app/views/notes/index.html.haml:16
+msgid "The query find no notes."
+msgstr ""
+
+#: app/views/notes/index.html.haml:22
 msgid "Updated page"
 msgstr ""
 
-#: app/views/notes/index.html.haml:29
+#: app/views/notes/index.html.haml:34
 msgid "No page exists"
 msgstr ""
 
@@ -940,33 +1101,28 @@ msgid ""
 "Wikipediaのようにみんなでコンテンツを作っていくWikiにしたい場合に選びます。"
 msgstr ""
 
-#: app/views/notes/show.html.haml:15
-msgid "Users and Groups"
+#: app/views/pages/_filter_query.html.haml:1
+msgid "Keyword in a page"
 msgstr ""
 
-#: app/views/notes/show.html.haml:16
-msgid "edit users permission"
+#: app/views/pages/_filter_query.html.haml:4
+msgid "Authors"
 msgstr ""
 
-#: app/views/notes/show.html.haml:17
-msgid "add groups"
+#: app/views/pages/_filter_query.html.haml:7
+msgid "Input author names ,separete by comma."
 msgstr ""
 
-#: app/views/notes/show.html.haml:34
-msgid "Click to edit"
+#: app/views/pages/_filter_query.html.haml:9
+msgid "Order"
 msgstr ""
 
-#: app/views/notes/show.html.haml:40
-msgid "Cancel"
+#: app/views/pages/_filter_query.html.haml:12
+msgid "Newly updated"
 msgstr ""
 
-#: app/views/notes/show.html.haml:48
-msgid "add labels"
-msgstr ""
-
-#: app/views/pages/_labels.html.haml:1 app/views/pages/_pages.html.haml:4
-#: app/views/pages/index.html.haml:24
-msgid "LabelIndices"
+#: app/views/pages/_filter_query.html.haml:14
+msgid "Oldly updated"
 msgstr ""
 
 #: app/views/pages/_page_form.html.haml:17
@@ -977,11 +1133,13 @@ msgstr ""
 msgid "Add label"
 msgstr ""
 
-#: app/views/pages/_pages.html.haml:6
+#: app/views/pages/_pages.html.haml:6 app/views/pages/index.html.haml:23
+#: app/views/shared/admin/pages/_pages.html.haml:6
 msgid "Page|Auther"
 msgstr ""
 
 #: app/views/pages/_pages.html.haml:8
+#: app/views/shared/admin/pages/_pages.html.haml:7
 msgid "Publification"
 msgstr ""
 
@@ -990,10 +1148,12 @@ msgid "History"
 msgstr ""
 
 #: app/views/pages/_pages.html.haml:26
+#: app/views/shared/admin/pages/_pages.html.haml:24
 msgid "Published"
 msgstr ""
 
 #: app/views/pages/_pages.html.haml:28
+#: app/views/shared/admin/pages/_pages.html.haml:26
 msgid "Not yet"
 msgstr ""
 
@@ -1009,52 +1169,8 @@ msgstr ""
 msgid "close"
 msgstr ""
 
-#: app/views/pages/_user_bar.html.haml:24
-msgid "note pages"
-msgstr ""
-
-#: app/views/pages/_user_bar.html.haml:28
-msgid "Search pages in %{note}"
-msgstr ""
-
-#: app/views/pages/index.html.haml:6
-msgid "Apply filter.."
-msgstr ""
-
-#: app/views/pages/index.html.haml:9
-msgid "Keyword in a page"
-msgstr ""
-
-#: app/views/pages/index.html.haml:12
-msgid "Authors"
-msgstr ""
-
-#: app/views/pages/index.html.haml:15
-msgid "Input author names ,separete by comma."
-msgstr ""
-
-#: app/views/pages/index.html.haml:17
-msgid "Order"
-msgstr ""
-
-#: app/views/pages/index.html.haml:20
-msgid "Newly updated"
-msgstr ""
-
-#: app/views/pages/index.html.haml:22
-msgid "Oldly updated"
-msgstr ""
-
-#: app/views/pages/index.html.haml:29
-msgid "Filter"
-msgstr ""
-
-#: app/views/pages/index.html.haml:30
-msgid "Show all"
-msgstr ""
-
-#: app/views/pages/index.html.haml:36
-msgid "The query find no pages."
+#: app/views/pages/index.html.haml:3
+msgid "%{name}'s accessible pages."
 msgstr ""
 
 #: app/views/pages/new.html.haml:7
@@ -1112,13 +1228,17 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: app/views/shared/_common_body_header.html.haml:29
+#: app/views/shared/_common_body_header.html.haml:31
 msgid "Your profile(%{name})"
 msgstr ""
 
-#: app/views/shared/_common_body_header.html.haml:30
+#: app/views/shared/_common_body_header.html.haml:32
 #: app/views/shared/admin/_user_body_header.html.haml:3
 msgid "Admin menu"
+msgstr ""
+
+#: app/views/shared/_common_body_header.html.haml:33
+msgid "new note"
 msgstr ""
 
 #: app/views/shared/_edit_navi.html.haml:6
@@ -1137,41 +1257,39 @@ msgstr ""
 msgid "new page"
 msgstr ""
 
-#: app/views/shared/_edit_navi.html.haml:15
-msgid "show note"
-msgstr ""
-
 #: app/views/shared/admin/_user_body_header.html.haml:6
 msgid "Search User"
 msgstr ""
 
 #: app/views/shared/admin/_user_body_header.html.haml:21
-#: app/views/users/_side_menu.html.haml:3
-msgid "User|Informations"
-msgstr ""
-
-#: app/views/shared/admin/_user_body_header.html.haml:22
-#: app/views/users/_side_menu.html.haml:6
-msgid "User|Memberships"
-msgstr ""
-
-#: app/views/shared/admin/_user_body_header.html.haml:24
-msgid "User|Index"
-msgstr ""
-
-#: app/views/shared/admin/_user_body_header.html.haml:25
 msgid "Account|Index"
 msgstr ""
 
-#: app/views/shared/admin/_user_body_header.html.haml:29
-msgid "manage users"
+#: app/views/shared/admin/_user_body_header.html.haml:23
+msgid "manage pages"
 msgstr ""
 
-#: app/views/shared/admin/_user_body_header.html.haml:30
-msgid "manage notes"
+#: app/views/shared/admin/_user_body_header.html.haml:24
+msgid "manage attachments"
+msgstr ""
+
+#: app/views/shared/admin/_user_body_header.html.haml:26
+msgid "manage property"
+msgstr ""
+
+#: app/views/shared/admin/_user_body_header.html.haml:27
+msgid "manage page"
 msgstr ""
 
 #: app/views/shared/admin/_user_body_header.html.haml:31
+msgid "manage users"
+msgstr ""
+
+#: app/views/shared/admin/_user_body_header.html.haml:32
+msgid "manage notes"
+msgstr ""
+
+#: app/views/shared/admin/_user_body_header.html.haml:33
 msgid "manage common files"
 msgstr ""
 
@@ -1179,8 +1297,16 @@ msgstr ""
 msgid "404 Not Found"
 msgstr ""
 
+#: app/views/users/_side_menu.html.haml:3
+msgid "User|Informations"
+msgstr ""
+
 #: app/views/users/_side_menu.html.haml:5
 msgid "User|Skip Account"
+msgstr ""
+
+#: app/views/users/_side_menu.html.haml:6
+msgid "User|Memberships"
 msgstr ""
 
 #: app/views/users/_side_menu.html.haml:7
