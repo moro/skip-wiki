@@ -2,3 +2,8 @@
 <%= render_flash(:warn) %>
 <%= render_flash(:notice) %>
 
+<%- javascript_tag do %>
+  jQuery(document).ready(function(){
+    setTimeout(function(){ $("#flash_message div").fadeOut("slow"); }, 10*1000);
+  });
+<% end %>

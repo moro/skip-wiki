@@ -1,9 +1,3 @@
-#content
-  = render_toolbar(note_page_path(current_note, @page))
-
-  - div_for(@page) do
-    %h1&= @page.display_name
-    .rendered~ render_page_content(@page)
-
-    .clear
+- div_for(@page) do
+  .rendered~ render_page_content(@page)
 

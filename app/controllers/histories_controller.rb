@@ -4,7 +4,7 @@ class HistoriesController < ApplicationController
   layout lambda{|c|
     case c.params[:action]
     when *%w[dummy] then "notes"
-    else "application"
+    else "pages"
     end
   }
 

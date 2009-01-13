@@ -1,6 +1,12 @@
 class AttachmentsController < ApplicationController
   helper_method :current_target, :target_attachments_url, :target_attachment_url,
                                  :target_attachments_path, :target_attachments_path
+  layout :select_layout
+
+  def select_layout
+    current_target.is_a?(Page) ? "pages" : "notes"
+  end
+  private :select_layout
 
   def index
     @attachments = current_target.attachments.find(:all)

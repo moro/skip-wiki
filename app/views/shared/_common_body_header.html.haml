@@ -1,45 +1,20 @@
-#header
-  #logo{:style=>"align: top; margin: 3px 0 0 5px;"}
-    %h1= link_to 'SKIP Note', root_path
+#services
+  %a{:href=>"http://www.openskip.org/", :target=>"_blank"}&= _("SKIP Official Site")
+  %a{:href=>"http://user.openskip.org/", :target=>"_blank"}&= _("SKIP User Commnity")
+  %a{:href=>"./help", :target=>"_blank"}
+    %span.ss_sprite.ss_help{:title=>_("Help")}&= _("Help")
 
-  #services
-    %a{:href=>"http://www.openskip.org/", :target=>"_blank"}&= _("SKIP Official Site")
-    %a{:href=>"http://user.openskip.org/", :target=>"_blank"}&= _("SKIP User Commnity")
-    %a{:href=>"./help", :target=>"_blank"}
-      %span.ss_sprite.ss_help{:title=>_("Help")}&= _("Help")
-
-    - if logged_in?
-      =link_to _("Logout") % {:name=>current_user.name}, logout_path
-    - else
-      =link_to _("Login"), login_path
-
-  <br style="clear: right;" />
-
-  #search
-    - form_tag(notes_path, { :method => 'get'}) do
-      %span{:style=>"vertical-align:middle;"}
-      = text_field_tag('none', "NOT WORKS YET", :disabled => true)
-      = submit_tag _('Search'), :disabled => true
-      &nbsp;
-
-#flash_message= render :partial=>"layouts/flash_message"
-
-#top
   - if logged_in?
-    %ul.float
-      %li= link_to _("Dashboard"), root_path
-      %li= link_to _("Your profile(%{name})") % {:name=>current_user.name}, user_path(current_user)
-      %li= link_to _("Admin menu"), admin_root_path if current_user.admin?
-      %li= link_to content_tag("span", h(_"new note")), new_note_path
-      %li= select_tag("notes", notes_navi_on_header(current_user))
-    .clear
+    =link_to _("Logout") % {:name=>current_user.name}, logout_path
+  - else
+    =link_to _("Login"), login_path
 
-:javascript
-  jQuery(document).ready(function(){
-    $("#top select").change(function(){
-      var url = jQuery(this).val();
-      if("" != url){ document.location = url; }
-    });
-    setTimeout(function(){ $("#flash_message div").fadeOut("slow"); }, 10*1000);
-  });
+<br style="clear: right;" />
+
+#search
+  - form_tag(notes_path, { :method => 'get'}) do
+    %span{:style=>"vertical-align:middle;"}
+    = text_field_tag('none', "NOT WORKS YET", :disabled => true)
+    = submit_tag _('Search'), :disabled => true
+    &nbsp;
 
