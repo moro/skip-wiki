@@ -30,6 +30,10 @@
                   %li= link_to(_("page attachments"), note_page_attachments_path(current_note, @page))
                   %li= link_to(_("edit page"), edit_note_page_path(current_note, @page))
                   %li= link_to(_("page histories"), note_page_histories_path(current_note, @page))
+            :javascript
+              jQuery(document).ready(function(){
+               $("div.page-header span.operation").click(function(){jQuery(this).nextAll("div.page-navi").toggle()});
+              });
             .labels
               - _next = @page.label_index.pages.next(@page.order_in_label)
               - _prev = @page.label_index.pages.previous(@page.order_in_label)
