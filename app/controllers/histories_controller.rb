@@ -1,12 +1,7 @@
 require 'diff/lcs'
 
 class HistoriesController < ApplicationController
-  layout lambda{|c|
-    case c.params[:action]
-    when *%w[dummy] then "notes"
-    else "pages"
-    end
-  }
+  layout "pages"
 
   def index
     @page = current_note.pages.find(params[:page_id])

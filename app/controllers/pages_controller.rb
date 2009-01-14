@@ -1,12 +1,6 @@
 class PagesController < ApplicationController
+
   layout :select_layout
-  def select_layout
-    if %w[new create].include? params[:action]
-      "notes"
-    else
-      "pages"
-    end
-  end
 
   def index
     @pages = accessible_pages.fulltext(params[:keyword]).
@@ -105,5 +99,12 @@ class PagesController < ApplicationController
       when "updated_at_ASC"  then "#{Page.quoted_table_name}.updated_at ASC"
       else default
       end }
+  end
+
+  def select_layout
+    case params[:action]
+    when *%w[new create] then "notes"
+    else "pages"
+    end
   end
 end
