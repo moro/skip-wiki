@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2009-01-14 16:02+0900\n"
+"POT-Creation-Date: 2009-01-15 13:38+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,21 +27,48 @@ msgid ""
 msgstr ""
 
 #: app/controllers/admin/accounts_controller.rb:13
+#, fuzzy
 msgid "Account update successfully."
 msgstr "ログインしました。"
 
-#: app/controllers/admin/accounts_controller.rb:20
-#: app/controllers/admin/notes_controller.rb:27
-#: app/controllers/admin/users_controller.rb:24
+#: app/controllers/admin/accounts_controller.rb:16
+#: app/controllers/admin/notes_controller.rb:22
+#: app/controllers/admin/pages_controller.rb:24
+#: app/controllers/admin/users_controller.rb:20
 msgid "validation error"
 msgstr ""
 
-#: app/controllers/admin/notes_controller.rb:24
+#: app/controllers/admin/memberships_controller.rb:13
+#, fuzzy
+msgid "Memberships was successfully updated"
+msgstr "ログインしました。"
+
+#: app/controllers/admin/notes_controller.rb:19
+#, fuzzy
 msgid "Note was successfully updated."
 msgstr "ノート「%{note}」を作成しました。"
 
+#: app/controllers/admin/notes_controller.rb:32
+#, fuzzy
+msgid "Note was deleted successfully"
+msgstr "ノート「%{note}」を作成しました。"
 
-#: app/controllers/admin/users_controller.rb:21
+#: app/controllers/admin/pages_controller.rb:21
+#, fuzzy
+msgid "Page was successfully updated."
+msgstr "ノート「%{note}」を作成しました。"
+
+#: app/controllers/admin/pages_controller.rb:33
+#, fuzzy
+msgid "Page was deleted successfully"
+msgstr "ログインしました。"
+
+#: app/controllers/admin/pages_controller.rb:36
+msgid "Failed to delete a page"
+msgstr ""
+
+#: app/controllers/admin/users_controller.rb:17
+#, fuzzy
 msgid "User was successfully updated."
 msgstr "ログインしました。"
 
@@ -574,7 +601,7 @@ msgid "Page|Format type"
 msgstr ""
 
 #: app/models/page.rb:- app/views/pages/_page_form.html.haml:12
-#: app/views/pages/_pages.html.haml:9
+#: app/views/pages/_pages.html.haml:10
 #: app/views/shared/admin/pages/_pages.html.haml:8
 msgid "Page|Published at"
 msgstr "公開日時"
@@ -592,7 +619,8 @@ msgid "Page|Created at"
 msgstr ""
 
 #: app/models/page.rb:- app/views/notes/dashboard.html.haml:38
-#: app/views/pages/_pages.html.haml:10 app/views/pages/index.html.haml:25
+#: app/views/pages/_pages.html.haml:11 app/views/pages/index.html.haml:25
+#: app/views/shared/admin/pages/_pages.html.haml:9
 msgid "Page|Updated at"
 msgstr "更新日時"
 
@@ -800,7 +828,7 @@ msgstr "削除"
 #: app/views/admin/notes/index.html.haml:24
 #: app/views/shared/admin/pages/_pages.html.haml:30
 msgid "Are you sure?"
-msgstr "削除してもよろしいですか？"
+msgstr ""
 
 #: app/views/admin/notes/show.html.haml:20 app/views/notes/show.html.haml:13
 msgid "Users and Groups"
@@ -871,7 +899,7 @@ msgstr "このユーザを管理者に設定します"
 
 #: app/views/admin/users/index.html.haml:16
 msgid "User|Edit"
-msgstr "ノート一覧"
+msgstr "編集"
 
 #: app/views/attachments/index.html.haml:6
 msgid "%{title}'s attachments"
@@ -940,30 +968,6 @@ msgstr "から"
 #: app/views/histories/new.html.haml:6 app/views/layouts/pages.html.haml:29
 msgid "edit content"
 msgstr "ページを編集"
-
-#: app/views/histories/new.html.haml:9 app/views/pages/new.html.haml:10
-msgid "Show link palette"
-msgstr ""
-
-#: app/views/histories/new.html.haml:14 app/views/pages/new.html.haml:15
-msgid "Page|Content"
-msgstr "内容"
-
-#: app/views/histories/new.html.haml:20
-msgid "Preview"
-msgstr "プレビュー"
-
-#: app/views/histories/new.html.haml:24
-msgid "Hide"
-msgstr "プレビューを隠す"
-
-#: app/views/histories/new.html.haml:31 app/views/layouts/pages.html.haml:28
-msgid "show page"
-msgstr "ページを表示"
-
-#: app/views/histories/new.html.haml:32
-msgid "Modified, need to save."
-msgstr "未保存の編集があります。更新ボタンをおして保存してください。"
 
 #: app/views/histories/show.html.haml:6
 msgid "Back to Hisotries"
@@ -1042,13 +1046,6 @@ msgstr ""
 #: app/views/notes/_menu.html.haml:2
 msgid "Updated"
 msgstr "更新されたページ"
-
-#: app/views/notes/dashboard.html.haml:9 app/views/notes/index.html.haml:9
-#: app/views/shared/_common_body_header.html.haml:18
-#: app/views/shared/_user_navi.html.haml:25
-#: app/views/shared/admin/_user_body_header.html.haml:10
-msgid "Search"
-msgstr "検索"
 
 #: app/views/notes/dashboard.html.haml:9 app/views/notes/index.html.haml:9
 #: app/views/shared/_common_body_header.html.haml:18
@@ -1192,9 +1189,8 @@ msgid "Newly updated"
 msgstr "更新日時が新しい順"
 
 #: app/views/pages/_filter_query.html.haml:14
-#, fuzzy
 msgid "Oldly updated"
-msgstr "更新日時が新しい順"
+msgstr "更新日時が古い順"
 
 #: app/views/pages/_page_form.html.haml:17
 msgid "Page|Label indices"
@@ -1204,52 +1200,41 @@ msgstr "ラベル識別子"
 msgid "Add label"
 msgstr "ラベルを追加"
 
-#: app/views/pages/_pages.html.haml:6 app/views/pages/index.html.haml:24
+#: app/views/pages/_pages.html.haml:6 app/views/pages/index.html.haml:23
+msgid "Notify Mail"
+msgstr "メールで知らせる"
+
+#: app/views/pages/_pages.html.haml:7 app/views/pages/index.html.haml:24
+#: app/views/shared/admin/pages/_pages.html.haml:6
 msgid "Page|Auther"
 msgstr "編集者"
 
-#: app/views/pages/_pages.html.haml:8
+#: app/views/pages/_pages.html.haml:9
 #: app/views/shared/admin/pages/_pages.html.haml:7
 msgid "Publification"
 msgstr "公開"
 
-#: app/views/pages/_pages.html.haml:12
+#: app/views/pages/_pages.html.haml:13
 msgid "History"
 msgstr "履歴"
 
-#: app/views/pages/_pages.html.haml:26
+#: app/views/pages/_pages.html.haml:24
 #: app/views/shared/admin/pages/_pages.html.haml:24
 msgid "Published"
 msgstr "公開中"
 
-#: app/views/pages/_pages.html.haml:28
+#: app/views/pages/_pages.html.haml:26
 #: app/views/shared/admin/pages/_pages.html.haml:26
 msgid "Not yet"
 msgstr "未公開"
 
-#: app/views/pages/_pages.html.haml:32
+#: app/views/pages/_pages.html.haml:30
 msgid "Show history"
 msgstr "履歴を表示"
 
 #: app/views/pages/index.html.haml:3
 msgid "%{name}'s accessible pages."
 msgstr ""
-
-#: app/views/pages/index.html.haml:5 app/views/pages/notes_index.html.haml:5
-msgid "Apply filter.."
-msgstr "ページ一覧を絞り込み..."
-
-#: app/views/pages/index.html.haml:8 app/views/pages/notes_index.html.haml:14
-msgid "Filter"
-msgstr "絞り込み"
-
-#: app/views/pages/index.html.haml:15 app/views/pages/notes_index.html.haml:21
-msgid "The query find no pages."
-msgstr "検索条件にヒットするページがありません。"
-
-#: app/views/pages/index.html.haml:23
-msgid "Notify Mail"
-msgstr "メールで知らせる"
 
 #: app/views/pages/new.html.haml:6
 msgid "New Page"
@@ -1331,21 +1316,31 @@ msgstr "アカウント一覧"
 
 #: app/views/shared/admin/_user_body_header.html.haml:23
 msgid "manage pages"
-msgstr "ユーザ管理"
+msgstr "ページ管理"
 
 #: app/views/shared/admin/_user_body_header.html.haml:24
 msgid "manage attachments"
-msgstr "ページの添付ファイル"
+msgstr "ページの添付ファイル管理"
 
-#: app/views/shared/admin/_user_body_header.html.haml:28
+#: app/views/shared/admin/_user_body_header.html.haml:26
+#, fuzzy
+msgid "manage property"
+msgstr "ユーザ管理"
+
+#: app/views/shared/admin/_user_body_header.html.haml:27
+#, fuzzy
+msgid "manage page"
+msgstr "ユーザ管理"
+
+#: app/views/shared/admin/_user_body_header.html.haml:31
 msgid "manage users"
 msgstr "ユーザ管理"
 
-#: app/views/shared/admin/_user_body_header.html.haml:29
+#: app/views/shared/admin/_user_body_header.html.haml:32
 msgid "manage notes"
 msgstr "ノート管理"
 
-#: app/views/shared/admin/_user_body_header.html.haml:30
+#: app/views/shared/admin/_user_body_header.html.haml:33
 msgid "manage common files"
 msgstr "共通ファイル管理"
 
@@ -1375,11 +1370,5 @@ msgstr "ノート一覧"
 #~ msgid "%{page}'s histories"
 #~ msgstr "「%{page}」の編集履歴"
 
-#~ msgid "Note|Delete"
-#~ msgstr "削除"
-
-#~ msgid "AdminUser"
-#~ msgstr "管理者メニュー"
-
-#~ msgid "User|Index"
-#~ msgstr "ユーザ一覧"
+#~ msgid "other.."
+#~ msgstr "その他"
