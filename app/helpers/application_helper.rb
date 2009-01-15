@@ -10,6 +10,10 @@ module ApplicationHelper
     end
   end
 
+  def val_tag(content, options = {})
+    content_tag("span", h(content), {:class=>"val"}.merge(options))
+  end
+
   def render_flash(type)
     if message = flash[type]
       content_tag("div", :onclick => "$(this).fadeOut('fast')", :class => type.to_s) do

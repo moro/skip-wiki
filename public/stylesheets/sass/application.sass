@@ -37,7 +37,7 @@ body
 
 #current-note .note-navi, .page-header .page-navi
   :position absolute
-  :left 200px
+  :left 300px
   :z-index 1
   :background white
   :border 2px solid gray
@@ -134,16 +134,17 @@ body
     :margin-left = !content_margin
 
   .page-header
-    :border-bottom 1px solid silver
-    :margin-bottom 3px
+    :border-style solid
+    :border-width 5px 2px 1px 20px
 
     h1, div.labels
       :float left
+    h1 span.labeled
+      :font-size = !small_font_size
+      :margin auto 3px
     div
       span
         :font-size 12px
-      span.label-border
-        :border 1px solid silver
 
 #footer
   :text-align center
@@ -415,6 +416,7 @@ span.help, span.operation
 
 div.page, div.history
   :position relative
+  :border-top 1px solid silver
 
   div.rendered
     :color #555555
@@ -445,6 +447,47 @@ div.page, div.history
     h2
       :font-size 1.5em
       :margin-bottom 1em
+
+div.label-navigation > div
+  :zindex 1
+  :position absolute
+  :top 0
+  :height 100%
+  :width  150px
+
+  .handler
+    :height 100%
+    :width  30px
+    :position absolute
+
+  .navigation
+    :zindex 2
+    :top 5%
+    :display none
+    :height 90%
+    :background #ccccff
+    :width 100%
+    :background white
+    :position absolute
+    :border-style solid
+
+    p
+      :margin 5px 10%
+
+div.label-navigation
+  .previous
+    :left 0
+    div
+      :left 0
+    div.navigation
+      :border-width 10px 10px 3px 3px
+
+  .next
+    :right 0
+    div
+      :right 0
+    div.navigation
+      :border-width 10px 3px 3px 10px
 
 .user-bar
   > ul

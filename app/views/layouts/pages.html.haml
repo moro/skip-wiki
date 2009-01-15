@@ -5,8 +5,8 @@
     = render :partial => 'shared/common_header'
 
   %body
-    #header.page
-      #logo{:style=>"align: top; margin: 3px 0 0 5px;"}
+    #header.page-layout
+      #logo
         = link_to image_tag("logo.png", :alt=>"SKIP Note - Logo", :width=>"100px"), root_path
         %p{:style=>"display:none"}= link_to _('SKIP Note'), root_path
 
@@ -19,10 +19,11 @@
     #main
       #content_for_layout
         #content
-          .page-header
+          .page-header{:style=>"border-color:#{@page.label_index.color}"}
             %h1
               %span&= @page.display_name
-              %span.operation&= "edit"
+              %span.labeled= sanitize _("Labeled as %{label}") % {:label=>val_tag(@page.label_index.display_name)}
+              %span.operation&= _("menu")
               .page-navi{:style=>"display:none"}
                 %ul
                   %li= link_to(_("show page"), note_page_path(current_note, @page))
@@ -34,18 +35,12 @@
               jQuery(document).ready(function(){
                $("div.page-header span.operation").click(function(){jQuery(this).nextAll("div.page-navi").toggle()});
               });
-            .labels
-              - _next = @page.label_index.pages.next(@page.order_in_label)
-              - _prev = @page.label_index.pages.previous(@page.order_in_label)
-              %span.label-border= labelize(@page.label_index)
-              %span= link_to_function(_("all labels"), "$(this).parents('li.navigate-in-label').find('div.move-to-label').show()")
-              %span= link_to_if(_prev, h(_"Previous"), note_page_path(current_note, _prev))
-              %span= link_to_if(_next, h(_"Next"), note_page_path(current_note, _next))
 
             .user-bar= render :partial => 'shared/user_navi'
             .clear
 
           = yield
+          = render :partial => 'pages/label_traverse'
 
     #footer
       = render :partial => 'shared/common_body_footer'
