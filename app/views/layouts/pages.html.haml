@@ -23,18 +23,19 @@
             %h1
               %span&= @page.display_name
               %span.labeled= sanitize _("Labeled as %{label}") % {:label=>val_tag(@page.label_index.display_name)}
-              %span.operation&= _("menu")
-              .page-navi{:style=>"display:none"}
-                %ul
-                  %li= link_to(_("show page"), note_page_path(current_note, @page))
-                  %li= link_to(_("edit content"), new_note_page_history_path(current_note, @page))
-                  %li= link_to(_("page attachments"), note_page_attachments_path(current_note, @page))
-                  %li= link_to(_("edit page"), edit_note_page_path(current_note, @page))
-                  %li= link_to(_("page histories"), note_page_histories_path(current_note, @page))
-            :javascript
-              jQuery(document).ready(function(){
-               $("div.page-header span.operation").click(function(){jQuery(this).nextAll("div.page-navi").toggle()});
-              });
+              - if current_note.accessible?(current_user)
+                %span.operation&= _("menu")
+                .page-navi{:style=>"display:none"}
+                  %ul
+                    %li= link_to(_("show page"), note_page_path(current_note, @page))
+                    %li= link_to(_("edit content"), new_note_page_history_path(current_note, @page))
+                    %li= link_to(_("page attachments"), note_page_attachments_path(current_note, @page))
+                    %li= link_to(_("edit page"), edit_note_page_path(current_note, @page))
+                    %li= link_to(_("page histories"), note_page_histories_path(current_note, @page))
+              :javascript
+                jQuery(document).ready(function(){
+                 $("div.page-header span.operation").click(function(){jQuery(this).nextAll("div.page-navi").toggle()});
+                });
 
             .user-bar= render :partial => 'shared/user_navi'
             .clear
