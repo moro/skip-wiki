@@ -20,6 +20,7 @@
             %tr
               %th.label&= _("LabelIndices")
               %th.display_name&= _("Page|Display name")
+              %th.mail= _("Notify Mail")
               %th.user&= _("Page|Auther")
               %th.timestamp&= _("Page|Updated at")
           %tbody
@@ -28,11 +29,9 @@
               %tr
                 %td.label= labelize(page.label_index)
                 %td.name
-                  - url = note_page_url(note, page)
-                  = link_to h(page.display_name), url
+                  = link_to h(page.display_name), note_page_path(note, page)
                   %span.note&= "on #{note.display_name}"
-                  %br
-                  %span.url&= url
+                %td.mail= mail_notification(note,page)
                 %td&= history.user.name
                 %td.timestamp&= page.updated_at.strftime("%Y-%m-%d %H:%M")
 

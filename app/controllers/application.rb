@@ -21,9 +21,15 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActiveRecord::RecordNotFound, :with => :render_not_found
 
+  layout :select_layout
+
   private
-  def render_not_found(e)
-    e.backtrace.each{|m| logger.debug m }
+  def select_layout
+    "application"
+  end
+
+  def render_not_found(e = nil)
+    e.backtrace.each{|m| logger.debug m } if e
     render :template => "shared/not_found", :status => :not_found, :layout => false
   end
 
