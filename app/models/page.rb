@@ -15,7 +15,7 @@ class Page < ActiveRecord::Base
   has_many :attachments, :as => :attachable
 
   validates_associated :new_history, :if => :new_history
-  validates_presence_of  :name, :published_at
+  validates_presence_of  :name, :published_at, :content
   validates_inclusion_of :format_type, :in => %w[hiki html]
 
   validate_on_update :frontpage_cant_rename

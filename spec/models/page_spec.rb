@@ -158,6 +158,17 @@ describe Page do
     end
   end
 
+  describe "edit(content, user) FAIL" do
+    before do
+      @page = Page.new(@valid_attributes)
+      @page.edit("", mock_model(User))
+    end
+
+    it "should not be valid" do
+      @page.should_not be_valid
+    end
+  end
+
   describe ".fulltext('keyword')" do
     before do
       History.should_receive(:find_all_by_head_content).
