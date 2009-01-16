@@ -29,7 +29,6 @@
                   %ul
                     %li= link_to(_("show page"), note_page_path(current_note, @page))
                     %li= link_to(_("edit content"), new_note_page_history_path(current_note, @page))
-                    %li= link_to(_("page attachments"), note_page_attachments_path(current_note, @page))
                     %li= link_to(_("edit page"), edit_note_page_path(current_note, @page))
                     %li= link_to(_("page histories"), note_page_histories_path(current_note, @page))
               :javascript

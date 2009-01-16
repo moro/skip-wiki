@@ -49,14 +49,12 @@ class AttachmentsController < ApplicationController
 
   def target_attachments_path;   URI(target_attachments_url).request_uri end
   def target_attachments_url
-    params[:page_id] ? note_page_attachments_url(current_note, current_target) \
-                     : note_attachments_url(current_target)
+    note_attachments_url(current_target)
   end
 
   def target_attachment_path(a, opts = {}); URI(target_attachment_url(a, opts)).request_uri end
   def target_attachment_url(at, opts = {})
-    at.attachable_type == "Page" ? note_page_attachment_url(current_note, current_target, at, opts) \
-                                 : note_attachment_url(current_target, at, opts)
+    note_attachment_url(current_target, at, opts)
   end
 
   def select_layout

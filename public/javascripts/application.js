@@ -167,19 +167,24 @@
       });
     }
 
+    function hidePalette(){
+      root.hide();
+      jQuery("span.trigger.operation").one("click", onLoad);
+    }
+
     function onLoad(){
       root.empty().attr("class", "enabled").draggable().
         append(
           jQuery("<div>").append(
             jQuery("<h3>").text(message["title"]).append(
-              jQuery("<span>").text(message["toggle"]).click(function(){ root.find(".palette").toggle() })
+              jQuery("<span>").text(message["close"]).click(hidePalette)
             )).append(
             jQuery("<div class='palette' />")
-          ));
+          )).
+        show();
       loadAttachments(root.find(".palette"), config["note_attachments"], message["note_attachments"]);
-      loadAttachments(root.find(".palette"), config["page_attachments"], message["page_attachments"]);
     }
-    root.find("span.trigger").one("click", onLoad);
+    jQuery("span.trigger.operation").one("click", onLoad);
   },
 
   jQuery.fn.labeledTextField = function(config){

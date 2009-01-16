@@ -73,12 +73,10 @@ module PagesHelper
     {
       :editor => "history_content",
       :note_attachments => note_attachments_path(current_note),
-      :page_attachments => note_page_attachments_path(current_note, page),
       :message => {:title => _("Link Palette"),
-                   :toggle=> _("toggle"),
+                   :close=> _("close"),
                    :insert_link_label => _("Insert Link"),
-                   :note_attachments => _("note attachments"),
-                   :page_attachments => _("page attachments") }
+                   :note_attachments => _("note attachments"), }
     }
   end
 end

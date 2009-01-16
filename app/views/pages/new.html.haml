@@ -21,7 +21,6 @@
 :ruby
   e_opt = editor_opt(@page).merge(:submit_to_save => true)
   p_opt = palette_opt(@page).merge(:editor => "page_content")
-  p_opt.delete(:page_attachments)
 
 :javascript
   $(document).ready(function(){
