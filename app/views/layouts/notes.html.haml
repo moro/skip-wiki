@@ -5,13 +5,13 @@
     = render :partial => 'shared/common_header'
 
   %body
-    #header.page
-      #logo{:style=>"align: top; margin: 3px 0 0 5px;"}
-        = link_to image_tag("logo.png", :alt=>"SKIP Note - Logo", :width=>"100px"), root_path
+    #header.note-layout
+      #logo
+        = link_to image_tag("logo.png", :alt=>"SKIP Note - Logo", :height=>"15px"), root_path
         %p{:style=>"display:none"}= link_to _('SKIP Note'), root_path
 
-      #current-note= render :partial => 'shared/current_note_and_operation'
       = render :partial => 'shared/common_body_header'
+      #current-note= render :partial => 'shared/current_note_and_operation'
 
     #flash_message= render :partial=>"layouts/flash_message"
     #top= render :partial => 'layouts/top'
