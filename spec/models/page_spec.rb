@@ -20,16 +20,6 @@ describe Page do
     }
   end
 
-  it "should create a new instance given valid attributes" do
-    Page.create!(@valid_attributes)
-  end
-
-  it "should raise error if :format_type is'nt hiki nor html" do
-    lambda{
-      Page.create!(@valid_attributes.merge(:format_type=>"hoge"))
-    }.should raise_error(ActiveRecord::RecordInvalid)
-  end
-
   describe "#label_index_id = an_label.id" do
     before do
       @note = mock_model(Note)
@@ -50,6 +40,7 @@ describe Page do
     describe "save!" do
       before do
         @note.stub!(:label_indices).and_return(LabelIndex)
+        @page.edit("content", mock_model(User))
         @page.save!
       end
 
@@ -73,6 +64,7 @@ describe Page do
             page.name = "another"
             page.label_index_id = @label.id
           end
+          @another.edit("content", mock_model(User))
           @another.save!
         end
 
@@ -184,11 +176,9 @@ describe Page do
 
   describe "fulltext()で実際に検索する場合" do
     before do
-      @page = Page.create!(@valid_attributes)
-      History.create(:content => Content.new(:data => "the keyword"),
-                     :page => @page,
-                     :user => mock_model(User),
-                     :revision => History.count.succ)
+      @page = Page.new(@valid_attributes)
+      @page.edit("the keyword", mock_model(User))
+      @page.save!
     end
 
     it "結果は[@page]であること" do
@@ -205,6 +195,7 @@ describe Page do
 
     describe "は削除や識別子の変更ができないこと" do
       before do
+        @page.edit("content", mock_model(User))
         @page.save!
       end
 
@@ -281,11 +272,13 @@ describe Page do
 
       @page = pages(:our_note_page_1)
       @page.label_index_id = @label.id
+      @page.edit("content", mock_model(User))
       @page.save!
 
       another_label = LabelIndex.create(:note=>notes(:our_note), :display_name=>"piyo")
       @another = pages(:our_note_page_2)
       @another.label_index_id = another_label.id
+      @another.edit("another content", mock_model(User))
       @another.save!
     end
 

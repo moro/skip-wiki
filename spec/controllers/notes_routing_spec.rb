@@ -3,9 +3,13 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe NotesController do
   describe "route generation" do
     it "should map #index" do
-      route_for(:controller => "notes", :action => "index").should == "/"
+      route_for(:controller => "notes", :action => "index").should == "/notes"
     end
   
+    it "should map #dashboard" do
+      route_for(:controller => "notes", :action => "dashboard").should == "/"
+    end
+
     it "should map #new" do
       route_for(:controller => "notes", :action => "new").should == "/notes/new"
     end

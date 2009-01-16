@@ -11,15 +11,15 @@ describe History do
     }
   end
 
-  it "should create a new instance given valid attributes" do
-    History.create!(@valid_attributes)
-  end
-
   it "pageのtimestampを更新すること" do
     @page = pages(:our_note_page_1)
+    @page.edit("hoge", mock_model(User))
     @page.save!
     Time.should_receive(:now).at_least(:once).and_return(mock_t = Time.local(2007,12,31, 00, 00, 00))
-    History.create!(@valid_attributes)
+    History.create!(@valid_attributes) do |h|
+      h.page.reload
+      h.content = Content.new(:data => "hogehoge")
+    end
     @page.reload.updated_at.should == mock_t
   end
 
