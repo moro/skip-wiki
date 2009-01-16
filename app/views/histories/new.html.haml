@@ -1,7 +1,6 @@
 - content_for(:header) do
   =javascript_include_tag("fckeditor/fckeditor.js")
 
-#linkPalette
 #content
   - div_for(@page) do
     %h1&= _("edit content")
@@ -11,6 +10,7 @@
           %label{:for=>"history_content"}&= h(_("Page|Content"))
           %span.operation.trigger= _("Link Palette")
         %dd.content
+          #linkPalette
           .previewable
             %ul
               %li.show
