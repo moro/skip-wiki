@@ -447,17 +447,16 @@ div.page, div.history
       :font-size 1.5em
       :margin-bottom 1em
 
-div.label-navigation > div
-  :zindex 1
-  :position absolute
-  :top 0
-  :height 100%
-  :width  150px
+div.label-navigation
+  div
+    :zindex 1
+    :height 100%
+    :position absolute
 
   .handler
+    :top 0
     :height 100%
     :width  30px
-    :position absolute
 
   .navigation
     :zindex 2
@@ -465,28 +464,23 @@ div.label-navigation > div
     :display none
     :height 90%
     :background #ccccff
-    :width 100%
+    :width 150pxl
     :background white
-    :position absolute
     :border-style solid
 
     p
       :margin 5px 10%
 
 div.label-navigation
-  .previous
+  div.previous
     :left 0
-    div
-      :left 0
-    div.navigation
-      :border-width 10px 10px 3px 3px
+  div.navigation.previous
+    :border-width 10px 10px 3px 3px
 
-  .next
+  div.next
     :right 0
-    div
-      :right 0
-    div.navigation
-      :border-width 10px 3px 3px 10px
+  div.navigation.next
+    :border-width 10px 3px 3px 10px
 
 .user-bar
   > ul
