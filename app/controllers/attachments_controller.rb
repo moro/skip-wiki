@@ -1,11 +1,16 @@
 class AttachmentsController < ApplicationController
-  layout "notes"
+  AJAX_UPLOAD_KEY = "ajax_upload"
+  helper_method :ajax_upload?, :ajax_upload_option
+
+  include ActionView::Helpers::NumberHelper
+
   def index
     @attachments = current_note.attachments.find(:all)
-    @attachment = current_note.attachments.build
 
     respond_to do |format|
-      format.html
+      format.html do
+        ajax_upload? ? render(:text => "") : render
+      end
       format.js do
         render :json => @attachments.map{|a| {:attachment=>attachment_to_json(a)} }
       end
@@ -14,17 +19,20 @@ class AttachmentsController < ApplicationController
 
   def show
     @attachment = current_note.attachments.find(params[:id])
-    opts = {:filename => @attachment.filename,
-            :type => @attachment.content_type }
+    opts = {:filename => @attachment.filename, :type => @attachment.content_type }
     opts[:disposition] = "inline" if params[:position] == "inline"
 
     send_file(@attachment.full_filename, opts)
   end
 
+  def new
+    @attachment = current_note.attachments.build
+  end
+
   def create
     @attachment = current_note.attachments.build(params[:attachment])
     if @attachment.save
-      redirect_to note_attachments_url(current_note)
+      redirect_to note_attachments_url(current_note, ajax_upload? ? ajax_upload_option : {})
     else
       render :action => "new"
     end
@@ -35,9 +43,25 @@ class AttachmentsController < ApplicationController
 
   private
   def attachment_to_json(atmt)
-    returning(atmt.attributes.slice("filename", "display_name", "created_at", "updated_at")) do |json|
+    returning(atmt.attributes.slice("content_type", "filename", "display_name")) do |json|
       json[:path] = note_attachment_path(current_note, atmt)
       json[:inline] = note_attachment_path(current_note, atmt, :position=>"inline") if atmt.image?
+      json[:size] = number_to_human_size(atmt.size)
+
+      json[:updated_at] = atmt.updated_at.strftime("%Y/%m/%d %H:%M")
+      json[:created_at] = atmt.created_at.strftime("%Y/%m/%d %H:%M")
     end
+  end
+
+  def ajax_upload?
+    !!params[AJAX_UPLOAD_KEY]
+  end
+
+  def ajax_upload_option(base = {})
+    base.merge(AJAX_UPLOAD_KEY.to_sym => "1")
+  end
+
+  def select_layout
+    ajax_upload? ? nil : "notes"
   end
 end
