@@ -8,4 +8,7 @@ class Admin::ApplicationController < ApplicationController
     end
   end
 
+  def requested_note
+    @note = Note.find(params[:note_id])
+  end
 end

@@ -37,9 +37,4 @@ class Admin::PagesController < Admin::ApplicationController
     end
   end
 
-private
-  def requested_note
-    @note = Note.find(params[:note_id])
-  end
-
 end
