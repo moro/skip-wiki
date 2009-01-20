@@ -39,6 +39,13 @@ class AttachmentsController < ApplicationController
   end
 
   def destroy
+    @attachment = current_note.attachments.find(params[:id])
+    @attachment.destroy
+
+    flash[:notice]= _("Deleted %{name}") %
+          {:name => "#{_("Attachment")} #{@attachment.display_name}"}
+
+    redirect_to(note_attachments_path(current_note))
   end
 
   private

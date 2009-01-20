@@ -42,5 +42,22 @@ describe AttachmentsController do
       end
     end
   end
+
+  describe "DELETE /destroy" do
+    before do
+      @attachment = @note.attachments.create!(:uploaded_data => fixture_file_upload("data/at_small.png", "image/png", true),
+                                              :display_name  => "user iconとかの画像です")
+      delete :destroy, :note_id=>notes(:our_note), :id => @attachment.id
+    end
+
+    it do
+      lambda{ Attachment.find(@attachment) }.should raise_error(ActiveRecord::RecordNotFound)
+    end
+
+    it do
+      flash[:notice].should_not be_blank
+    end
+  end
+
 end
 
