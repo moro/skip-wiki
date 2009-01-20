@@ -1,6 +1,7 @@
 - content_for(:header) do
   =javascript_include_tag("fckeditor/fckeditor.js")
 
+=javascript_include_tag("iframe_upload")
 #content
   - div_for(@page) do
     %h1&= _("edit content")
@@ -25,9 +26,11 @@
             .clear
           = text_area_tag("history[content]", @page.content, :id=>"history_content", :size=>"80x70")
 
-      = submit_tag(_("Update"))
-      = link_to(h(_("show page")), note_page_path(current_note, @page), :class=>"back")
-      %span.notice{:style=>"display:none"}&= _("Modified, need to save.")
+      .submit
+        = submit_tag(_("Update"))
+        = link_to(h(_("show page")), note_page_path(current_note, @page), :class=>"back")
+        %span.notice{:style=>"display:none"}&= _("Modified, need to save.")
+      .clear
 
 
 :javascript

@@ -1,0 +1,29 @@
+%style{:type => "text/css"}
+  :sass
+    .upload-form
+      :width 80%
+      :margin 0 auto
+    label, input
+      :font-size 16px
+    .palette label, .palette input
+      :font-size 10px
+    #footnotes_debug
+      :display none
+    .name
+      :width 50%
+      :float left
+    .file
+      :marin-left 50%
+    .clear
+      :width 0
+      :height 0
+      :clear both
+
+%div.upload-form{:class => (ajax_upload? && params[:ajax_upload] == "2") ? "palette" : ""}
+  %div.name
+    = f.label :display_name, _("Attachment|Display name")
+    = f.text_field :display_name, :size => 20
+  %div.file
+    = f.label :uploaded_data, _("Attachment|Upload Data")
+    = f.file_field :uploaded_data, :size => 20
+.clear

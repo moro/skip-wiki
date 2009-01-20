@@ -17,13 +17,16 @@
     }
 
     var root = jQuery(this);
+    var callback = config["callback"];
+    if(!jQuery.isFunction(callback)){ callback = jQuery.fn.iframeUploader.callbacks[callback] } ;
+
     jQuery("<div>").addClass("form").append(
       jQuery("<iframe>").attr("src", config["src"]["form"]).load(attachAutoUploaderToInput)
     ).appendTo(root);
 
     jQuery("<div>").addClass("target").append(
       jQuery("<iframe>").attr("src", config["src"]["target"]).attr("name", config["target"]).
-        one("load", function(){ jQuery(this).load(jQuery.fn.iframeUploader.callbacks[config["callback"]]) })
+        one("load", function(){ jQuery(this).load(callback) })
     ).appendTo(root);
   }
 

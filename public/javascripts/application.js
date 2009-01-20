@@ -172,6 +172,19 @@
       jQuery("span.trigger.operation").one("click", onLoad);
     }
 
+    function uploaderButtontton(){
+      var config = {src:{form: "/skip_note/notes/hoge1/attachments/new?ajax_upload=2",
+                         target:  "/skip_note/notes/hoge1/attachments?ajax_upload=2"},
+                    target: "ajax_upload",
+                    callback : onLoad}
+
+      return jQuery("<div class='attachment upload' />").append(
+          jQuery("<span class='operation'>").
+            text("Upload Attachment").
+            one("click", function(){ jQuery(this).hide().parent().iframeUploader(config) })
+      )
+    }
+
     function onLoad(){
       root.empty().attr("class", "enabled").draggable().
         append(
@@ -179,7 +192,9 @@
             jQuery("<h3>").text(message["title"]).append(
               jQuery("<span>").text(message["close"]).click(hidePalette)
             )).append(
-            jQuery("<div class='palette' />")
+              uploaderButtontton()
+            ).append(
+              jQuery("<div class='palette' />")
           )).
         show();
       loadAttachments(root.find(".palette"), config["note_attachments"], message["note_attachments"]);
