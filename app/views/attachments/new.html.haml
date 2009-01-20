@@ -2,29 +2,12 @@
 - if ajax_upload?
   - url = note_attachments_url(current_note, ajax_upload_option)
   - html_options[:target] = AttachmentsController::AJAX_UPLOAD_KEY
-  = javascript_include_tag("jquery")
-  :javascript
-
-    $(document).ready(function(){
-      $("form input[type=file]").change(function(){
-        var f = $(this).parents("form");
-        f.submit();
-        f.get(0).reset();
-      });
-    });
 
 - else
   %h2&= _("Attach file(s)")
 
 - form_for(:attachment, :url=> url, :html=>html_options) do |f|
-  %table
-    %tr.name
-      %th= f.label :display_name
-      %td= f.text_field :display_name
-    %tr.file
-      %th= f.label :uploaded_data, _("Attachment|Upload Data")
-      %td= f.file_field :uploaded_data
-
+  = render :partial => 'form', :locals => {:f => f}
   - unless ajax_upload?
     = submit_tag h(_"Upload")
 

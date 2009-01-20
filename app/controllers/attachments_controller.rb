@@ -5,7 +5,8 @@ class AttachmentsController < ApplicationController
   include ActionView::Helpers::NumberHelper
 
   def index
-    @attachments = current_note.attachments.find(:all)
+    @attachments = current_note.attachments.
+      find(:all, :order =>"#{Attachment.quoted_table_name}.updated_at DESC")
 
     respond_to do |format|
       format.html do

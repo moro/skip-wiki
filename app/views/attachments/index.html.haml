@@ -1,6 +1,15 @@
+= javascript_include_tag %w[iframe_upload.js]
+
 #content
   - div_for(current_note, :class=>"app-layout") do
     %h2&= _("%{title}'s attachments") % {:title => current_note.display_name }
+    .attachment.upload
+      %h3&= _("Attach file(s)")
+      %div.sync-upload
+        - form_for(:attachment, :url=> note_attachments_path(current_note), :html=>{:multipart => true}) do |f|
+          = render :partial => 'form', :locals => {:f => f}
+          = submit_tag h(_"Upload")
+
     .attachments
       %h3&= _("Attached files")
       %table
@@ -14,45 +23,10 @@
             %td.operation= link_to content_tag("span", _("Download"), :class=>"operation"), note_attachment_path(current_note, at)
             %td.operation= link_to content_tag("span", _("Delete"), :class=>"operation"), note_attachment_path(current_note, at), :method => :delete
 
-    .attachment.upload
-      %h3&= _("Attach file(s)")
-      %div.form
-        %iframe{:src => new_note_attachment_path(current_note, ajax_upload_option)}
-          - form_for(:attachment, :url=> note_attachments_url, :html=>{:multipart=>true}) do |f|
-            %dl
-              %dt= f.label :display_name, h(_"Attachment|Display name")
-              %dd= f.text_field :display_name
-              %dt= f.label :uploaded_data, h(_"Attachment|Upload Data")
-              %dd= f.file_field :uploaded_data
-            = submit_tag h(_"Upload")
-
-      %div.target
-        %iframe{:src => note_attachments_path(current_note, ajax_upload_option), :name => AttachmentsController::AJAX_UPLOAD_KEY}
-
 :javascript
-  function refreshAttachments(){
-    var url = this.contentWindow.document.location.href;
-    jQuery.getJSON(url, null, function(data, status){
-      var tbody = $("div.attachments table tbody");
-      var tr = tbody.find("tr:nth-child(1)").clone();
-      tbody.empty();
-      var row = null;
-      jQuery.each(data, function(num, json){
-        var atmt = json["attachment"];
-        row = tr.clone();
-        row.find("td.content_type").text(atmt["content_type"]).end().
-            find("td.name").text(atmt["filename"]).end().
-            find("td.display_name").text(atmt["display_name"]).end().
-            find("td.size").text(atmt["size"]).end().
-            find("td.updated_at").text(atmt["updated_at"]).end().
-            find("td.operation a").attr("href", atmt["path"]).end().
-        appendTo(tbody);
-      });
-      row.effect("highlight", {}, 2*1000);
-    });
-  }
 
   $(document).ready(function(){
-    $("div.target iframe").one("load", function(){ $(this).load(refreshAttachments); });
+    $("div.attachment div.sync-upload").remove();
+    $("div.attachment.upload").iframeUploader(#{iframe_uploader_opt("refreshAttachments").to_json})
   });
 
