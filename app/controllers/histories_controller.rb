@@ -1,7 +1,6 @@
-require 'diff/lcs'
-
 class HistoriesController < ApplicationController
   layout "pages"
+  include IframeUploader
 
   def index
     @page = current_note.pages.find(params[:page_id])

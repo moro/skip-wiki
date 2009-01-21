@@ -19,7 +19,8 @@
       :height 0
       :clear both
 
-%div.upload-form{:class => (ajax_upload? && params[:ajax_upload] == "2") ? "palette" : ""}
+- from_palette = ajax_upload? && params[:ajax_upload] == IframeUploader::FROM_PALETTE
+%div.upload-form{:class => (from_palette ? "palette" : "")}
   %div.name
     = f.label :display_name, _("Attachment|Display name")
     = f.text_field :display_name, :size => 20

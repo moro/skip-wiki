@@ -1,7 +1,7 @@
 - html_options = {:multipart => true}
 - if ajax_upload?
-  - url = note_attachments_url(current_note, ajax_upload_option)
-  - html_options[:target] = AttachmentsController::AJAX_UPLOAD_KEY
+  - url = note_attachments_url(current_note, params.slice(IframeUploader::UPLOAD_KEY))
+  - html_options[:target] = IframeUploader::UPLOAD_KEY
 
 - else
   %h2&= _("Attach file(s)")

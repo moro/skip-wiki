@@ -1,8 +1,10 @@
 module AttachmentsHelper
-  def iframe_uploader_opt(callback_name)
-    {:target => AttachmentsController::AJAX_UPLOAD_KEY,
-     :src => {:form =>   new_note_attachment_path(current_note, ajax_upload_option),
-              :target => note_attachments_path(ajax_upload_option) },
-     :callback => callback_name}
+  def uploader_js_option
+    with_options(IframeUploader.index_opt) do |opt|
+      {:target => IframeUploader::UPLOAD_KEY,
+       :src => {:form =>   opt.new_note_attachment_path(current_note),
+                :target => opt.note_attachments_path },
+       :callback => "refreshAttachments" }
+    end
   end
 end

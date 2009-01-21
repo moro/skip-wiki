@@ -172,16 +172,13 @@
       jQuery("span.trigger.operation").one("click", onLoad);
     }
 
-    function uploaderButtontton(){
-      var config = {src:{form: "/skip_note/notes/hoge1/attachments/new?ajax_upload=2",
-                         target:  "/skip_note/notes/hoge1/attachments?ajax_upload=2"},
-                    target: "ajax_upload",
-                    callback : onLoad}
+    function uploaderButtontton(conf){
+      conf["callback"] = onLoad;
 
       return jQuery("<div class='attachment upload' />").append(
           jQuery("<span class='operation'>").
             text("Upload Attachment").
-            one("click", function(){ jQuery(this).hide().parent().iframeUploader(config) })
+            one("click", function(){ jQuery(this).hide().parent().iframeUploader(conf) })
       )
     }
 
@@ -192,7 +189,7 @@
             jQuery("<h3>").text(message["title"]).append(
               jQuery("<span>").text(message["close"]).click(hidePalette)
             )).append(
-              uploaderButtontton()
+              uploaderButtontton(config["uploader"])
             ).append(
               jQuery("<div class='palette' />")
           )).

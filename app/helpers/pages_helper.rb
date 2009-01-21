@@ -76,7 +76,11 @@ module PagesHelper
       :message => {:title => _("Link Palette"),
                    :close=> _("close"),
                    :insert_link_label => _("Insert Link"),
-                   :note_attachments => _("note attachments"), }
+                   :note_attachments => _("note attachments"), },
+      :uploader => {:target => IframeUploader::UPLOAD_KEY,
+                    :src => {:form =>   new_note_attachment_path(current_note, IframeUploader.palette_opt),
+                             :target => note_attachments_path(IframeUploader.palette_opt) },
+                    :callback => nil }
     }
   end
 end

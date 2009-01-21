@@ -1,8 +1,6 @@
 class AttachmentsController < ApplicationController
-  AJAX_UPLOAD_KEY = "ajax_upload"
-  helper_method :ajax_upload?, :ajax_upload_option
-
-  include ActionView::Helpers::NumberHelper
+  include IframeUploader
+  include ActionView::Helpers::NumberHelper # to format file size on JSON
 
   def index
     @attachments = current_note.attachments.
@@ -33,7 +31,8 @@ class AttachmentsController < ApplicationController
   def create
     @attachment = current_note.attachments.build(params[:attachment])
     if @attachment.save
-      redirect_to note_attachments_url(current_note, ajax_upload? ? ajax_upload_option : {})
+      opt = ajax_upload? ? IframeUploader.index_opt : {}
+      redirect_to note_attachments_url(current_note, opt)
     else
       render :action => "new"
     end
@@ -59,14 +58,6 @@ class AttachmentsController < ApplicationController
       json[:updated_at] = atmt.updated_at.strftime("%Y/%m/%d %H:%M")
       json[:created_at] = atmt.created_at.strftime("%Y/%m/%d %H:%M")
     end
-  end
-
-  def ajax_upload?
-    !!params[AJAX_UPLOAD_KEY]
-  end
-
-  def ajax_upload_option(base = {})
-    base.merge(AJAX_UPLOAD_KEY.to_sym => "1")
   end
 
   def select_layout
