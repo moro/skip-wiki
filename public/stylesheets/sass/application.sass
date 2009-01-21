@@ -746,11 +746,21 @@ table.notes-index, table.pages-index
 
   .palette
     :overflow auto
-    :height 200px
+    :height 300px
 
   span.insertLink
     :font-size = !small_font_size
     :color blue
+
+  div.palette table
+    :width 95%
+    :margin 0 auto
+    td.name, td.insert
+      :text-align center
+    td.name
+      :width 200px
+    td.insert
+      :width 6em
 
 .labeled-field
   :border 1px solid silver

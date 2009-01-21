@@ -136,8 +136,7 @@
     function insertImage(label, src, filename){
       if(src){
         var img = jQuery("<img />").attr("src", src).attr("alt", label);
-        return img.clone().attr("width", 80).attr("height", 60).
-                 click(function(){ insertToEditor(img); });
+        return img.clone().attr("width", 200).click(function(){ insertToEditor(img); });
       }else{
         return jQuery("<span>").text(filename.substr(0,16));
       }
@@ -145,9 +144,9 @@
 
     function attachmentToTableRow(data){
       var tr = jQuery("<tr>");
-      tr.append(jQuery("<td>").append(insertImage(data["display_name"], data["inline"], data["filename"]))).
-         append(jQuery("<td>").text(data["display_name"])).
-         append(jQuery("<td>").append(insertLink(data["display_name"], data["path"])));
+      tr.append(jQuery("<td class='name'>").append(insertImage(data["display_name"], data["inline"], data["filename"]))).
+         append(jQuery("<td class='display_name'>").text(data["display_name"])).
+         append(jQuery("<td class='insert'>").append(insertLink(data["display_name"], data["path"])));
 
       return tr;
     }
@@ -173,11 +172,14 @@
     }
 
     function uploaderButtontton(conf){
-      conf["callback"] = onLoad;
+      conf["callback"] = function(){
+        root.find("table").remove();
+        loadAttachments(root.find(".palette"), config["note_attachments"], message["note_attachments"]);
+      };
 
       return jQuery("<div class='attachment upload' />").append(
           jQuery("<span class='operation'>").
-            text("Upload Attachment").
+            text(message["upload_attachment"]).
             one("click", function(){ jQuery(this).hide().parent().iframeUploader(conf) })
       )
     }
