@@ -12,18 +12,6 @@
           %span.operation.trigger= _("Link Palette")
         %dd.content
           #linkPalette
-          .previewable
-            %ul
-              %li.show
-                %a.wii_button.show
-                  %span&= _("Preview")
-
-              %li.hide
-                %a.wii_button
-                  %span&= _("Hide")
-
-            .rendered
-            .clear
           = text_area_tag("history[content]", @page.content, :id=>"history_content", :size=>"80x70")
 
       .submit

@@ -1,12 +1,11 @@
 - content_for(:header) do
   =javascript_include_tag("fckeditor/fckeditor.js")
 
-#linkPalette
+=javascript_include_tag("iframe_upload")
 #content
   - div_for(@page) do
     %h1&= _("New Page")
     = error_messages_for :page
-
 
     - form_for(:page, :url=>note_pages_path(current_note)) do |f|
       %dl
@@ -15,6 +14,7 @@
           =f.label(:content, h(_("Page|Content")))
           %span.operation.trigger= _("Link Palette")
         %dd.content
+          #linkPalette
           = f.text_area(:content, :id=>"page_content", :size=>"80x70")
 
       = submit_tag _("Create")
