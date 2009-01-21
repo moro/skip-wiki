@@ -2,7 +2,7 @@
   jQuery.fn.wizard = function(config){
     var root = this;
     function updateConfirmation(klass, value){
-      root.find("dl.confirmation dd."+klass).text(value);
+      root.find("table.confirmation tr."+klass+" td").text(value);
     };
     function getSelectionLabel(name){
       var checked = root.find("input:radio:checked[name='"+name+"']");
@@ -69,13 +69,13 @@
           }).
           find("button.next").click(function(){
             try{
-              jQuery(this).parent().trigger("onForward");
+              jQuery(this).parents("div.step").trigger("onForward");
             }catch(e){ alert(e) }
             return false;
           }).end().
           find("button.previous").click(function(){
             try{
-              jQuery(this).parent().trigger("onBack");
+              jQuery(this).parents("div.step").trigger("onBack");
             }catch(e){ alert(e) }
             return false;
           }).end() ;

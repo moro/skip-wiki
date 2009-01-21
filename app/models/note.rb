@@ -6,8 +6,8 @@ class Note < ActiveRecord::Base
   PUBLIC_CONDITION = ["#{table_name}.publicity IN (:publicity)",
                       {:publicity => [PUBLICITY_READABLE, PUBLICITY_WRITABLE]} ].freeze
 
-  WIZARD_STEPS = [ N_("管理対象の選択"), N_("カテゴリの選択"), N_("公開範囲の選択"),
-                   N_("名前の入力"), N_("説明の入力"), N_("デザインの選択"), N_("確認") ].freeze
+  WIZARD_STEPS = [ N_("Select gruop"), N_("Select category"), N_("Select publicity"),
+                   N_("Input name"), N_("Input description"), N_("Confirm") ].freeze
 
   has_friendly_id :name
 

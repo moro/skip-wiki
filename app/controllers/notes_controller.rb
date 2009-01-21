@@ -39,7 +39,7 @@ class NotesController < ApplicationController
   # GET /notes/new
   # GET /notes/new.xml
   def new
-    @note = Note.new(:group_backend_type=>"BuiltinGroup")
+    @note = Note.new(:group_backend_type=>"BuiltinGroup", :category=>Category.first)
 
     respond_to do |format|
       format.html # new.html.erb

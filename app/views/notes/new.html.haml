@@ -164,45 +164,30 @@
             - Note.recent.each do |note|
               %li= note.description
 
-    - render_wizard(5, :select_css) do
-      .wizard_content
-        .topic
-          新規作成時のデザインを選択します。<br/>
-        %table
-          - Dir.glob(File.expand_path("public/images/css_designs/*.png", Rails.root)).each_slice(2) do |images|
-            %tr
-            - images.each do |img|
-              %td{:width=>"250px"}
-                - next unless img
-                - name = File.basename(img, ".png")
-                =radio_button_tag "css", name
-                %label{:for=>"css_#{name}"}&= name
-                %br
-                =image_tag "css_designs/#{name}.png", :width=>240
-
-    - render_wizard(6, :confirm) do
+    - render_wizard(5, :confirm) do
       %p
         この内容でよろしいですか?
         =f.submit _("Create")
 
-        %dl.confirmation
-          %dt.group_backend_type&= _("Note|GroupBackendType")
-          %dd.group_backend_type&= ""
-
-          %dt.category_id&= _("Note|Category")
-          %dd.category_id&= ""
-
-          %dt.publicity&= _("Note|Publicity")
-          %dd.publicity&= ""
-
-          %dt.display_name&= _("Note|Display name")
-          %dd.display_name&= ""
-
-          %dt.name&= _("Note|Name")
-          %dd.name&= ""
-
-          %dt.description&= _("Note|Description")
-          %dd.description&= ""
+        %table.confirmation.input
+          %tr.group_backend_type
+            %th&= _("Note|GroupBackendType")
+            %td&= ""
+          %tr.category_id
+            %th&= _("Note|Category")
+            %td&= ""
+          %tr.publicity
+            %th&= _("Note|Publicity")
+            %td&= ""
+          %tr.display_name
+            %th&= _("Note|Display name")
+            %td&= ""
+          %tr.name
+            %th&= _("Note|Name")
+            %td&= ""
+          %tr.description
+            %th&= _("Note|Description")
+            %td&= ""
 
 = link_to 'Back', notes_path
 

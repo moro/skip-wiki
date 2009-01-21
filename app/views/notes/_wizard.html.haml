@@ -11,6 +11,7 @@
   .wizard_content
     =yield key
 
-  %button.previous{:disabled=>step.zero?}&= _"Previous"
-  %button.next{:disabled=>(step + 1 >= Note::WIZARD_STEPS.size)}&= _"Next"
+  .navigation
+    %button.previous{:disabled=>step.zero?}&= _"Previous"
+    %button.next{:disabled=>(step + 1 >= Note::WIZARD_STEPS.size)}&= _"Next"
 

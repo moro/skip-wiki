@@ -655,10 +655,17 @@ table.notes-index, table.pages-index
 
 #wiki_action
   :clear left
-  :margin 5px 10px
-  :margin-left 10%
+  :margin 5px auto
   //:height: 1%;
   :width 80%
+
+  .navigation
+    :text-align center
+    :margin-top 1em
+
+    button
+      :font-size = !modern_page_font_size
+      :margin 0 10px
 
   h3
     :font-size x-large
@@ -675,6 +682,17 @@ table.notes-index, table.pages-index
 
   div.input_form
     :margin-top 10px
+
+  div.confirm
+    input[type=submit]
+      :font-size = !modern_page_font_size
+
+    table.confirmation
+      :width  60%
+      th
+        :width 30%
+      td
+        :width 70%
 
   div.example
     :font-size 12px
@@ -711,14 +729,17 @@ table.notes-index, table.pages-index
   ul.wizard-nav
     :list-style none
     :padding 0
+    :margin 0 auto
 
     li
       :float left
       :padding 0.5em
-      :width  8em
-      :height 2em
+      :width  120px
+      :height 35px
       :border 3px #999999 solid
       :margin auto 1px
+      :font-size = !modern_page_font_size
+      :text-align center
 
     li.current
       :border 3px #0080FF solid
@@ -860,6 +881,18 @@ table
       :font-size 10px
       :text-align center
       :width 10em
+
+table.input
+  :margin 1em auto
+  :border-collapse separate
+  tr
+    :margin-bottom 1px
+  th, td
+    :font-size = !modern_page_font_size
+  th
+    :text-align center
+  td
+    :padding-left 1em
 
 p.no-result
   :font-size = !modern_page_font_size
