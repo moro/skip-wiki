@@ -14,7 +14,7 @@ describe NotesController do
   describe "responding to GET index" do
 
     it "should expose all notes as @notes" do
-      Note.should_receive(:find).with(:all, {:order=>"`notes`.updated_at DESC", :offset=>0, :limit=>10}).and_return([mock_note])
+      Note.should_receive(:paginate).and_return([mock_note])
       get :index
       assigns[:notes].should == [mock_note]
     end
@@ -23,7 +23,7 @@ describe NotesController do
 
       it "should render all notes as xml" do
         request.env["HTTP_ACCEPT"] = "application/xml"
-        Note.should_receive(:find).with(:all, {:order=>"`notes`.updated_at DESC", :limit=>10, :offset=>0}).and_return(notes = mock("Array of Notes"))
+        Note.should_receive(:paginate).with(anything).and_return(notes = mock("Array of Notes"))
         notes.should_receive(:to_xml).and_return("generated XML")
         get :index
         response.body.should == "generated XML"

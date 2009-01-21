@@ -38,7 +38,7 @@ describe Admin::NotesController do
     it "note一覧画面にリダイレクトされること" do
       Note.should_receive(:find).and_return(mock_note(:destroy=>true))
       delete :destroy, :id=>"1"
-      response.should redirect_to(admin_notes_path)
+      response.should redirect_to(admin_notes_url)
     end
   end
 

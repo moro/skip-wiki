@@ -25,12 +25,12 @@ class Admin::NotesController < Admin::ApplicationController
   end
 
   def destroy
-    # TODO 髢｢騾｣繝��繝悶Ν縺ｯdestroy縺ｧ蜑企勁縺励※縺上ｌ縺ｪ縺九▲縺溘°縺ｩ縺�°隲ｸ讖九＆繧薙↓閨槭￥
+    # TODO 現在ノートのみ物理削除
     begin
       @note = Note.find(params[:id])
       @note.destroy
       flash[:notice] = _("Note was deleted successfully")
-      redirect_to admin_notes_path
+      redirect_to admin_notes_url
     rescue => ex
       flash[:error] = "Failed to delete a note"
     end

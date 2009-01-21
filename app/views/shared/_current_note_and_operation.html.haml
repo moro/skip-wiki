@@ -1,7 +1,7 @@
 %span.title= link_to(current_note.display_name, note_page_path(current_note, "FrontPage"))
 %span&= current_note.description
 - if current_note.accessible?(current_user)
-  %span.operation&= "edit"
+  %span.operation&= _("menu")
   .note-navi
     %ul
       %li= link_to(_("new page"), new_note_page_path(current_note))

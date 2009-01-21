@@ -1,0 +1,18 @@
+#!script/runner
+
+# vim:set ft=ruby:
+
+def log_and_puts_stderr(msg)
+  ActiveRecord::Base.logger.info("MAINTAIN(2009-01-15-move-page-attachments-to-note):  #{msg}")
+  $stderr.puts(msg)
+end
+
+page_attachments = Attachment.all.select{|at| at.attachable_type == "Page"}
+
+ActiveRecord::Base.transaction do
+  page_attachments.each do |attachment|
+    page = Page.find(attachment.attachable_id)
+    attachment.attachable = page.note
+  end
+end
+

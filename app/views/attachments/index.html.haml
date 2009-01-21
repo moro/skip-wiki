@@ -1,11 +1,8 @@
 #content
-  - if current_target.is_a?(Page)
-    - @page = current_target
-
-  - div_for(current_target, :class=>"app-layout") do
-    %h2&= _("%{title}'s attachments") % {:title => current_target.display_name }
+  - div_for(current_note, :class=>"app-layout") do
+    %h2&= _("%{title}'s attachments") % {:title => current_note.display_name }
     .attachments
-      %h3&= _("Attached files to %{target}") % {:target => _(current_target.class.name.downcase) }
+      %h3&= _("Attached files")
       %table
         - @attachments.each do |at|
           %tr
@@ -14,12 +11,12 @@
             %td&= at.display_name
             %td&= number_to_human_size(at.size)
             %td&= at.updated_at.to_s
-            %td= link_to _("Download"), target_attachment_url(at)
-            %td= link_to _("Delete"), target_attachment_url(at), :method => :delete
+            %td= link_to _("Download"), note_attachment_path(current_note, at)
+            %td= link_to _("Delete"), note_attachment_path(current_note, at), :method => :delete
 
     .attachment.upload
-      %h3&= _("Attach file(s) to %{target}") % {:target => _(current_target.class.name.downcase) }
-      - form_for(:attachment, :url=> target_attachments_url, :html=>{:multipart=>true}) do |f|
+      %h3&= _("Attach file(s)")
+      - form_for(:attachment, :url=> note_attachments_url, :html=>{:multipart=>true}) do |f|
         %dl
           %dt= f.label :display_name, h(_"Attachment|Display name")
           %dd= f.text_field :display_name

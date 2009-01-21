@@ -1,18 +1,19 @@
 - content_for(:header) do
   =javascript_include_tag("fckeditor/fckeditor.js")
 
+#linkPalette
 #content
   - div_for(@page) do
     %h1&= _("New Page")
     = error_messages_for :page
 
-    #linkPalette
-      %span.trigger= _("Show link palette")
 
     - form_for(:page, :url=>note_pages_path(current_note)) do |f|
       %dl
         = render :partial => 'page_form', :locals =>{:form =>f }
-        %dt= f.label(:content, h(_("Page|Content")))
+        %dt
+          =f.label(:content, h(_("Page|Content")))
+          %span.operation.trigger= _("Link Palette")
         %dd.content
           = f.text_area(:content, :id=>"page_content", :size=>"80x70")
 
@@ -21,7 +22,6 @@
 :ruby
   e_opt = editor_opt(@page).merge(:submit_to_save => true)
   p_opt = palette_opt(@page).merge(:editor => "page_content")
-  p_opt.delete(:page_attachments)
 
 :javascript
   $(document).ready(function(){

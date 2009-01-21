@@ -4,15 +4,13 @@
 #content
   - div_for(@page) do
     %h1&= _("edit content")
-
-    #linkPalette
-      %span.trigger= _("Show link palette")
-
     - form_for(:history, @history, :url=>note_page_histories_path(current_note, @page)) do |f|
       %dl
         %dt
           %label{:for=>"history_content"}&= h(_("Page|Content"))
+          %span.operation.trigger= _("Link Palette")
         %dd.content
+          #linkPalette
           .previewable
             %ul
               %li.show
