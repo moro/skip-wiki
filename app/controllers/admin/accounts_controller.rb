@@ -1,10 +1,6 @@
 class Admin::AccountsController < Admin::ApplicationController
   def index
-    if params[:keyword].blank?
-      @accounts = Account.find(:all)
-    else 
-      @accounts = Account.find(:all, :conditions=>['login like ?', '%'+params[:keyword]+'%'])
-    end
+    @accounts = Account.fulltext(params[:keyword])
   end
 
   def edit

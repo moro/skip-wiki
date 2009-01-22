@@ -1,0 +1,31 @@
+%table.pages-index
+  %thead
+    %tr
+      %th.label&= _("LabelIndices")
+      %th.display_name&= _("Page|Display name")
+      %th.user&= _("Page|Auther")
+      %th.publification&= _("Publification")
+      %th.timestamp&= _("Page|Published at")
+      %th.timestamp&= _("Page|Updated at")
+      %th.edit&= _("Edit")
+      %th.delete&= _("Delete")
+  %tbody
+    - each_with_histories(pages) do |page, history|
+      %tr
+        %td.label= labelize(page.label_index)
+        %td.name
+          - url = note_page_url(@note, page)
+          = link_to h(page.display_name), admin_note_page_url(@note, page)
+          %br
+          %span.url&= url
+        %td&= history.user.name
+        %td.publification
+          - if page.published?
+            %span.published&= _("Published")
+          - else
+            %span.not_yet&= _("Not yet")
+        %td.timestamp&= page.published_at.strftime("%Y-%m-%d %H:%M")
+        %td.timestamp&= page.updated_at.strftime("%Y-%m-%d %H:%M")
+        %td.edit= link_to _("Edit"), edit_admin_note_page_path(@note,page)
+        %td.delete= link_to _("Delete"), {:controller=>'admin/pages', :action=>'destroy', :id=>page.id}, :confirm=>_("Are you sure?"), :method=>:delete
+

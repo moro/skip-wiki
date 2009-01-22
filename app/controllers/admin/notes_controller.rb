@@ -1,12 +1,7 @@
 class Admin::NotesController < Admin::ApplicationController
-
   # GET 
   def index
-    if params[:keyword].blank?
-      @notes = Note.find(:all)
-    else
-      @notes = Note.find(:all, :conditions=>['display_name like ?', '%'+params[:keyword]+'%'])
-    end
+    @notes = Note.fulltext(params[:keyword])
   end
 
   def show
@@ -30,23 +25,15 @@ class Admin::NotesController < Admin::ApplicationController
   end
 
   def destroy
-    # TODO 髢｢騾｣繝��繝悶Ν縺ｯdestroy縺ｧ蜑企勁縺励※縺上ｌ縺ｪ縺九▲縺溘°縺ｩ縺�°隲ｸ讖九＆繧薙↓閨槭￥
+    # TODO 現在ノートのみ物理削除
     begin
-      ActiveRecord::Base.transaction do
-        @note = Note.find(params[:id])
-        @note.destroy
-        flash[:notice] = "Success to delete a note"
-        redirect_to admin_notes_path
-      end
+      @note = Note.find(params[:id])
+      @note.destroy
+      flash[:notice] = _("Note was deleted successfully")
+      redirect_to admin_notes_url
     rescue => ex
       flash[:error] = "Failed to delete a note"
     end
   end
-
-private
-  def memo str
-    logger = Logger.new("#{RAILS_ROOT}/log/development.log")
-    logger.info str
-  end 
 
 end

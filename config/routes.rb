@@ -38,6 +38,7 @@ ActionController::Routing::Routes.draw do |map|
         page.resources :histories, :collection=>{:diff=>:get}
         page.resources :attachments
       end
+      note.resources :attachments
     end
 
     admin_map.resources :groups do |group|

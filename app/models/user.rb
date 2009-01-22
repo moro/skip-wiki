@@ -14,6 +14,18 @@ class User < ActiveRecord::Base
   has_one :account
   has_one :skip_account
 
+  named_scope :fulltext, proc{|word|
+    return {} if word.blank?
+    # TODO
+    # quoted_table_nameの概要を諸橋さんに聞く
+    # [ActiveRecord]
+    # def self.quoted_table_name
+    #   self.connection.quote_table_name(self.table_name)
+    # end
+    w = "%#{word}%"
+    {:conditions => ["name LIKE ? OR display_name LIKE ?", w, w]}
+  }
+
   def skip_uid
     skip_account ? skip_account.skip_uid : SkipAccount.skip_uid(account.identity_url)
   end

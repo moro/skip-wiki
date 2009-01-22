@@ -1,0 +1,14 @@
+- content_for :header do
+  =stylesheet_link_tag "mypage"
+  =stylesheet_link_tag "admin/admin"
+
+#contents_container
+  .caption
+    = render :partial => 'shared/admin/user_body_header', :locals=>{:current_path=>admin_root_path}
+  .contents
+    - div_for(@page) do
+      %h1&= @page.display_name
+      .rendered~ render_page_content(@page)
+
+      .clear
+

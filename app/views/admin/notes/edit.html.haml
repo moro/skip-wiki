@@ -1,0 +1,65 @@
+- content_for :header do
+  =stylesheet_link_tag "mypage"
+  =stylesheet_link_tag "admin/admin"
+
+#contents_container
+  .caption
+    = render :partial => 'shared/admin/user_body_header', :locals=>{:current_path=>admin_notes_path, :search_label=>_('Search Note')}
+  .contents
+    - div_for(@note) do
+      %p&= _("edit note properties")
+      - form_for(@note, :url=>{:controller=>'admin/notes',:action=>'update'}) do |f|
+        =f.error_messages
+
+        %div
+          %label&= _("Note|GroupBackendType")
+          %ul.radios
+            %li
+              =f.radio_button(:group_backend_type, "BuiltinGroup", :disabled=>!@note.new_record?)
+              =f.label :group_backend_type, h(_"BuiltinGroup note"), :for=>"note_group_backend_type_builtingroup"
+            %li
+              =f.radio_button(:group_backend_type, "SkipGroup", :disabled=>!@note.new_record?)
+              =f.label :group_backend_type, h(_"SkipGroup note"), :for=>"note_group_backend_type_skipgroup"
+
+        %div
+          =f.label :name, h(_("Note|Name"))
+          %br
+          =f.text_field :name
+
+        %div
+          =f.label :display_name, h(_("Note|Display name"))
+          %br
+          =f.text_field :display_name
+
+        %div
+          =f.label :description, h(_("Note|Description"))
+          %br
+          =f.text_field :description, :size=>"60"
+
+        %div
+          %label&= _("Note|Publicity")
+          %br
+          %ul.radios
+            %li
+              =f.radio_button(:publicity, Note::PUBLICITY_MEMBER_ONLY)
+              =f.label "publicity_#{Note::PUBLICITY_MEMBER_ONLY}", h(publicity_label(Note::PUBLICITY_MEMBER_ONLY))
+
+            %li
+              =f.radio_button(:publicity, Note::PUBLICITY_READABLE)
+              =f.label "publicity_#{Note::PUBLICITY_READABLE}", h(_(publicity_label(Note::PUBLICITY_READABLE)))
+
+            %li
+              =f.radio_button(:publicity, Note::PUBLICITY_WRITABLE)
+              =f.label "publicity_#{Note::PUBLICITY_WRITABLE}", h(publicity_label(Note::PUBLICITY_WRITABLE))
+
+          %label&= _("Note|Category")
+          %br
+          %ul.radios
+            - Category.lang("ja").each do |c|
+              %li
+                =f.radio_button :category_id, c.id
+                =f.label h("category_id_#{c.id}"), h(c.display_name)
+        %div
+          = back_link_to(_("Note Properties"), admin_note_path(@note.id))
+          = f.submit _("Update")
+

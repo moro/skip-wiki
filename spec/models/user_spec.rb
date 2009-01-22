@@ -164,6 +164,20 @@ describe User do
     end
   end
 
+  describe ".fulltext" do
+    it "'quen'で検索すると1件該当すること" do
+      User.fulltext("quen").should have(1).items
+    end
+
+    it "'--none--'で検索すると0件該当すること" do
+      User.fulltext("--none--").should have(0).items
+    end
+
+    it "(nil)で検索すると3件該当すること" do
+      User.fulltext(nil).should have(3).items
+    end
+  end
+
 protected
   def create_user(options = {})
     record = User.new({:name => "a_user", :display_name => "A User"}.merge(options))

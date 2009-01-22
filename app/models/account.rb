@@ -23,6 +23,12 @@ class Account < ActiveRecord::Base
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :name
 
+  named_scope :fulltext, proc{|word|
+    return {} if word.blank?
+    w = "%#{word}%"
+    {:conditions => ["login LIKE ? OR name LIKE ? OR email LIKE ?", w, w, w]}
+  }
+
   def login=(value)
     write_attribute :login, (value ? value.downcase : nil)
   end

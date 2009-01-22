@@ -18,9 +18,12 @@
       %ul.float
         - if @users or (@user and !@user.new_record?) or @accounts or @account
           = navi_item(_("Account|Index"), admin_accounts_path, current_path)
-        - if @note and !@note.new_record?
+        - if @note and !@note.new_record? and !@page
           = navi_item(_("manage pages"), admin_note_pages_path(@note), current_path)
-          = navi_item(_("manage attachments"), admin_accounts_path, current_path)
+          = navi_item(_("manage attachments"), admin_note_attachments_path(@note), current_path)
+        - if @page
+          = navi_item(_("manage property"), edit_admin_note_page_path(@note,@page), current_path)
+          = navi_item(_("manage page"), new_admin_note_page_history_path(@note,@page), current_path)
       .clear
     %li.note-navi
       %ul.float
