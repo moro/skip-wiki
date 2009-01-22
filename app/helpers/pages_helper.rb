@@ -1,6 +1,11 @@
 require 'hikidoc'
 
 module PagesHelper
+  def label_traverse
+    return "" if %w[new edit].include?(params[:action])
+    render :partial => 'pages/label_traverse'
+  end
+
   def mail_notification(note, page)
     subject = _("\"%{name}\"'s url") % {:name => page.display_name}
     body    = [
