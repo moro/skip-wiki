@@ -429,8 +429,12 @@ div.page, div.history
     :font-size 13px
     :padding-bottom 1em
 
-    dd.content
+    table.input
+      :width 90%
+
+    div.content
       :width 99%
+
     dt
       :font-size 1.3em
       :font-weight bold
@@ -892,6 +896,8 @@ table.input
     :text-align center
   td
     :padding-left 1em
+    .fieldWithErrors
+      :display inline
 
 p.no-result
   :font-size = !modern_page_font_size

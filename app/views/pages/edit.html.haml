@@ -4,7 +4,7 @@
     - form_for(:page, :url=>note_page_path(current_note, @page)) do |f|
       =f.error_messages
       = hidden_field_tag "_method", "PUT"
-      %dl
+      %table.input
         = render :partial => 'page_form', :locals =>{:form =>f }
 
       = submit_tag _("Update")

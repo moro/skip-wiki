@@ -8,16 +8,17 @@
     = error_messages_for :page
 
     - form_for(:page, :url=>note_pages_path(current_note)) do |f|
-      %dl
+      %table.input
         = render :partial => 'page_form', :locals =>{:form =>f }
-        %dt
-          =f.label(:content, h(_("Page|Content")))
-          %span.operation.trigger= _("Link Palette")
-        %dd.content
-          #linkPalette
-          = f.text_area(:content, :id=>"page_content", :size=>"80x70")
+      %h2
+        =f.label(:content, h(_("Page|Content")))
+        %span.operation.trigger= _("Link Palette")
+      %div.content
+        #linkPalette
+        = f.text_area(:content, :id=>"page_content", :size=>"80x70")
 
-      = submit_tag _("Create")
+      .submit
+        = submit_tag _("Create")
 
 :ruby
   e_opt = editor_opt(@page).merge(:submit_to_save => true)
