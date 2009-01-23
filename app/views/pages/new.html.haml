@@ -1,6 +1,11 @@
 - content_for(:header) do
   =javascript_include_tag("fckeditor/fckeditor.js")
 
+- content_for :floating do
+  .labels-form
+    = render :partial => 'label_indices/new'
+    %span.operation&= _("close")
+
 =javascript_include_tag("iframe_upload")
 #content
   - div_for(@page) do
@@ -18,7 +23,7 @@
         = f.text_area(:content, :id=>"page_content", :size=>"80x70")
 
       .submit
-        = submit_tag _("Create")
+        = submit_tag _("Create %{entity}") % {:entity => _("page")}
 
 :ruby
   e_opt = editor_opt(@page).merge(:submit_to_save => true)
@@ -28,5 +33,13 @@
   $(document).ready(function(){
     jQuery("#page_content").editor(#{e_opt.to_json});
     jQuery("#linkPalette").linkPalette(#{p_opt.to_json})
+
+    var label_form = $("div.labels-form");
+    label_form.manageLabel();
+    $("table.input th .operation").click(function(){ label_form.show() });
+    $("div.labels-form .operation").click(function(){
+      label_form.hide();
+      $("ul.label_indices").reloadLabelRadios(#{{:url=>note_label_indices_path(current_note)}.to_json});
+    });
   });
 
