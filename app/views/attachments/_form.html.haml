@@ -2,6 +2,7 @@
   :sass
     .upload-form
       :width 80%
+      :color gray
       :margin 0 auto
     label, input
       :font-size 16px
@@ -9,22 +10,23 @@
       :font-size 10px
     #footnotes_debug
       :display none
-    .name
-      :width 50%
-      :float left
-    .file
-      :marin-left 50%
+    th
+      :text-align left
+    td.indicator
+      :width 20px
     .clear
       :width 0
       :height 0
       :clear both
 
 - from_palette = ajax_upload? && params[:ajax_upload] == IframeUploader::FROM_PALETTE
-%div.upload-form{:class => (from_palette ? "palette" : "")}
-  %div.name
-    = f.label :display_name, _("Attachment|Display name")
-    = f.text_field :display_name, :size => 20
-  %div.file
-    = f.label :uploaded_data, _("Attachment|Upload Data")
-    = f.file_field :uploaded_data, :size => 20
+%table.upload-form.input{:class => (from_palette ? "palette" : "")}
+  %tr
+    %th.name= f.label :display_name, _("Attachment|Display name")
+    %th.file= f.label :uploaded_data, _("Attachment|Upload Data")
+    %th.indicator= "&nbsp;"
+  %tr
+    %td.name= f.text_field :display_name, :size => 20
+    %td.file= f.file_field :uploaded_data, :size => 20
+    %td.indicator= image_tag("skip/indicator.gif", {:style=>"display:none"})
 .clear
