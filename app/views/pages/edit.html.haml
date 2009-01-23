@@ -1,16 +1,25 @@
+- content_for :floating do
+  .labels-form
+    = render :partial => 'label_indices/new'
+    %span.operation&= _("close")
+
 #content
   - div_for(@page, :class => "app-layout") do
     %h2&= _("edit page")
-    .labels-form
-      = render :partial => 'label_indices/new'
-      = link_to_function( _("close"), "$(this).parent().hide()")
-
     - form_for(:page, :url=>note_page_path(current_note, @page)) do |f|
       =f.error_messages
       = hidden_field_tag "_method", "PUT"
       %table.input= render :partial => 'page_form', :locals =>{:form =>f }
-      = submit_tag _("Update")
+      = submit_tag _("Update %{entity}") % {:entity => _("page")}
 
 :javascript
-  jQuery(function(){ $("div.labels-form").manageLabel() });
+  jQuery(function(){
+    var label_form = $("div.labels-form");
+    label_form.manageLabel();
+    $("table.input th .operation").click(function(){ label_form.show() });
+    $("div.labels-form .operation").click(function(){
+      label_form.hide();
+      $("ul.label_indices").reloadLabelRadios(#{{:url=>note_label_indices_path(current_note)}.to_json});
+    });
+  });
 

@@ -15,7 +15,7 @@
 
       .submit
         %span.notice{:style=>"display:none"}&= _("Modified, need to save.")
-        = submit_tag(_("Update"))
+        = submit_tag(_("Update %{entity}") % {:entity => _("page")})
         = link_to(h(_("show page")), note_page_path(current_note, @page), :class=>"back")
       .clear
 

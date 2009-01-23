@@ -446,18 +446,20 @@ div.page, div.history
       :float right
       :margin-right 10%
 
-  div.labels-form
-    :position absolute
-    :display none
-    :left 20%
-    :width 400px
-    :background white
-    :border 2px solid silver
-    table.label-indices
-      :width 90%
-      :margin auto
-      td span, td form input[type=submit]
-        :font-size 10px
+div.labels-form
+  :position absolute
+  :display none
+  :left 20%
+  :width 400px
+  :background white
+  :border 2px solid silver
+  :z-index 1
+  :padding 5px
+  table.label-indices
+    :width 90%
+    :margin auto
+    td span, td form input[type=submit]
+      :font-size 10px
 
 div.labels-form, div.labels
   ul.errors

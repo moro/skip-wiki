@@ -221,6 +221,25 @@
       });
   },
 
+  jQuery.fn.reloadLabelRadios = function(config){
+    var self = jQuery(this);
+    var proto = self.find("li:first").clone().find("input").attr("checked", null).end();
+    jQuery.getJSON(config["url"], function(data, status){
+      if(status != "success"){ return ; }
+      self.empty();
+      jQuery.each(data, function(num, l){
+        var label = l["label_index"];
+        var li = proto.clone()
+        var ident = "page_label_index_id_" + label.id;
+        li.find("input[type=radio]").attr("id", ident).attr("value", label.id).end().
+           find("label").attr("for", ident).
+             find("span").attr("style", "border-color:"+label.color).
+             text(label.display_name);
+        self.append(li);
+      });
+    });
+  }
+
   jQuery.fn.manageLabel = function(config){
     var table = jQuery(this).find("table");
 

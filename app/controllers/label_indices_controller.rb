@@ -10,6 +10,7 @@ class LabelIndicesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @label_indices }
+      format.js   { render :json => @label_indices }
     end
   end
 

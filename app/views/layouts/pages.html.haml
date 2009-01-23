@@ -16,6 +16,7 @@
     #flash_message= render :partial=>"layouts/flash_message"
     #top= render :partial => 'layouts/top'
 
+    #floating{:style=>"z-index:1"}= yield :floating
     #main
       #content_for_layout
         #content
