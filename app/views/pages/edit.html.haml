@@ -1,11 +1,16 @@
 #content
   - div_for(@page, :class => "app-layout") do
     %h2&= _("edit page")
+    .labels-form
+      = render :partial => 'label_indices/new'
+      = link_to_function( _("close"), "$(this).parent().hide()")
+
     - form_for(:page, :url=>note_page_path(current_note, @page)) do |f|
       =f.error_messages
       = hidden_field_tag "_method", "PUT"
-      %table.input
-        = render :partial => 'page_form', :locals =>{:form =>f }
-
+      %table.input= render :partial => 'page_form', :locals =>{:form =>f }
       = submit_tag _("Update")
+
+:javascript
+  jQuery(function(){ $("div.labels-form").manageLabel() });
 

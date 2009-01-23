@@ -234,11 +234,18 @@
 
     function create(){
       var f = jQuery(this);
+      f.nextAll("ul.errors").remove();
       jQuery.ajax({url: f.attr("action") + ".js",
         type: "POST",
         data: f.serializeArray(),
         dataType: "json",
-        complete: function(req, stat){ if(stat == "success"){ f.get(0).reset(); appendLabel(req);} }
+        complete: function(req, stat){
+          if(stat == "success"){
+            f.get(0).reset(); appendLabel(req);
+          } else if(stat == "error" && req.status == "422"){
+            showValidationError(req);
+          }
+        }
       });
       return false;
     }
@@ -249,6 +256,13 @@
       post(f, function(){f.parents("tr").fadeOut().remove()});
 
       return false;
+    }
+
+    function showValidationError(xhr){
+      var errors = jQuery.httpData( xhr, "json");
+      var ul = jQuery("<ul class='errors'>");
+      ul.appendTo( jQuery("div.new") );
+      jQuery.each(errors, function(){ jQuery("<li>").text(this.toString()).appendTo(ul) });
     }
 
     function update(){
