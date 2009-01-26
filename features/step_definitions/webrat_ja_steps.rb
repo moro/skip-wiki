@@ -3,6 +3,10 @@
 
 sel = %q|"([^"]*)"|
 
+def response_body_text(source = response.body)
+  Nokogiri::HTML(source).text
+end
+
 When /言語は"(.*)"/ do |lang|
   header("ACCEPT_LANGUAGE", lang)
 end
@@ -55,11 +59,11 @@ When /^"(.*)"としてファイル"(.*)"を添付する$/ do |field, path|
 end
 
 Then /^"(.*)"と表示されていること$/ do |text|
-  Nokogiri(response.body).text.should =~ /#{Regexp.escape(text)}/m
+  response_body_text.should =~ /#{Regexp.escape(text)}/m
 end
 
 Then /^"(.*)"と表示されていないこと$/ do |text|
-  Nokogiri(response.body).text.should_not =~ /#{Regexp.escape(text)}/m
+  response_body_text.should_not =~ /#{Regexp.escape(text)}/m
 end
 
 Then /^"(.*)"がチェックされていること$/ do |label|
@@ -67,7 +71,7 @@ Then /^"(.*)"がチェックされていること$/ do |label|
 end
 
 Then /^"(.*?)"がリンクになっていないこと$/ do |label|
-  Nokogiri(response.body).search("a").select{|a| a.text == label }.should be_empty
-  response.body.should =~ /#{Regexp.escape(label)}/m
+  Nokogiri::HTML(response.body).search("a").select{|a| a.text == label }.should be_empty
+  response_body_text.should =~ /#{Regexp.escape(label)}/m
 end
 
