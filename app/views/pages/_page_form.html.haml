@@ -21,7 +21,7 @@
     %br
     %span.operation&= _("Add label")
   %td
-    %ul.label_indices
+    %ul.label-indices
       - current_note.label_indices.each do |index|
         %li
           = form.radio_button :label_index_id, index.id

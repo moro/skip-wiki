@@ -39,7 +39,7 @@
     $("table.input th .operation").click(function(){ label_form.show() });
     $("div.labels-form .operation").click(function(){
       label_form.hide();
-      $("ul.label_indices").reloadLabelRadios(#{{:url=>note_label_indices_path(current_note)}.to_json});
+      $("ul.label-indices").reloadLabelRadios(#{{:url=>note_label_indices_path(current_note)}.to_json});
     });
   });
 
