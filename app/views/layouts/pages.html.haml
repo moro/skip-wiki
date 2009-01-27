@@ -23,7 +23,7 @@
           .page-header{:style=>"border-color:#{@page.label_index.color}"}
             %h1.page-name
               .show
-                %span.title.ipe-trigger&= h(@page.display_name)
+                %span.title.ipe-trigger&= @page.display_name
                 %span.labeled= sanitize _("Labeled as %{label}") % {:label=>val_tag(@page.label_index.display_name)}
                 - if current_note.accessible?(current_user)
                   %span.operation&= _("menu")

@@ -7,13 +7,14 @@
         %td.inplace-edit
           .show
             = labelize(l_idx, false, current_note)
-            %span.op&= _("Click to edit")
+            %span.op.ipe-trigger&= _("Click to edit")
           .edit{:style=>"display:none"}
             - form_for :label_index, l_idx, form_opt.merge(:html=>{:method=>"PUT",:style=>"display:visible"}) do |f|
               = f.text_field :display_name, :size=>12, :id=>"#{l_idx.id}_display_name"
               = f.text_field :color, :maxlength=>7, :id=>"#{l_idx.id}_display_color"
               = f.submit _("Update")
-              %span.op&= _("Cancel")
+              %span.indicator{:style=>"display:none"}= image_tag("skip/indicator.gif")
+              %span.op.ipe-cancel&= _("Cancel")
 
         %td.delete
           - form_for :label_index, l_idx, form_opt.merge(:html =>{:method=>"DELETE"}) do |f|

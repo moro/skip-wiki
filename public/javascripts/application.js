@@ -260,7 +260,7 @@
         dataType: "json",
         complete: function(req, stat){
           if(stat == "success"){
-            f.get(0).reset(); appendLabel(req);
+            f.reset(); appendLabel(req);
           } else if(stat == "error" && req.status == "422"){
             showValidationError(req);
           }
@@ -284,31 +284,13 @@
       jQuery.each(errors, function(){ jQuery("<li>").text(this.toString()).appendTo(ul) });
     }
 
-    function update(){
-      var f = jQuery(this);
-      post(jQuery(this), function(){
-        var name = f.find("[name='label_index[display_name]']").val();
-        var color = f.find("[name='label_index[color]']").val();
+    function update(td, _req, _stat){
+      var name  = td.find("[name='label_index[display_name]']").val();
+      var color = td.find("[name='label_index[color]']").val();
 
-        f.parents("tr").find("span.label_badge").
-                          attr("style", "border-color:"+color).
-                          text(name).end();
-        hideOPE(f);
-      });
-      return false;
-    }
-
-    function showOPE(child){
-      jQuery(child).parents("td.inplace-edit").
-        find("div.show").hide().end().
-        find("div.edit").show().end ;
-      return false;
-    }
-
-    function hideOPE(child){
-      jQuery(child).parents("td.inplace-edit").
-        find("div.show").show().end().
-        find("div.edit").hide().end ;
+      td.find("span.label_badge").
+        attr("style", "border-color:"+color).
+        text(name);
       return false;
     }
 
@@ -318,27 +300,28 @@
       var color = data["color"];
       var url = xhr.getResponseHeader("Location");
 
-      jQuery.each(table.find("tr div.show"), function(){ hideOPE(this) });
-
-      var row = table.find("tr:first").clone(true).
+      var row = table.find("tr:first").clone().
                   find("span.label_badge").
                     attr("style", "border-color:"+color).
                     text(display_name).end().
-                  find("td.inplace-edit form").attr("action", url).
-                    find("[name='label_index[display_name]']").val(display_name).end().
-                    find("[name='label_index[color]']").val(color).end().end().
-                  find("td.delete form").attr("action", url).end();
+                  find("td.inplace-edit").
+                    find("form").attr("action", url).
+                      find("[name='label_index[display_name]']").val(display_name).end().
+                      find("[name='label_index[color]']").val(color).end().
+                    end().
+                  end().
+                  find("td.delete form").attr("action", url).submit(destroy).end();
 
-      table.find("tbody").append(row);
+      row.find("td.inplace-edit").aresInplaceEditor({callback:update});
+
+      table.
+        find("tr.inplace-edit span.ipe-cancel").trigger("click").end().
+        find("tbody").append(row);
     }
 
     jQuery(this).find("div.new form").submit(create);
-    table.find("td.inplace-edit").
-      find("div.show span.op").click(function(){return showOPE(this)}).end().
-      find("div.edit span.op").click(function(){return hideOPE(this)}).end().
-      find("form").submit(update);
+    jQuery.each(table.find("td.inplace-edit"), function(){jQuery(this).aresInplaceEditor({callback:update}) });
     table.find("td.delete form").submit(destroy);
-
   }
 
   jQuery.fn.aresInplaceEditor = function(config){
@@ -365,10 +348,12 @@
           dataType: "json",
           beforeSend: function(){
             self.find(".indicator").show();
+            self.find("span.ipe-cancel").hide();
             if(messages["sending"]){ form.find("input[type=submit]").val( messages["sending"]) };
           },
           complete: function(req, status){
             self.find(".indicator").hide();
+            self.find("span.ipe-cancel").show();
             if(messages["sending"]){ form.find("input[type=submit]").val( submitLabel ) };
             hideIPE();
             return config["callback"](self, req, status);
@@ -382,12 +367,12 @@
 
     self.
       find("div.show").
-        find(".ipe-trigger").click(showIPE).end().
-      end().
+        find(".ipe-trigger").click(showIPE).end().end().
       find("div.edit").
         find("form").submit(submitIPE).
-          find(".ipe-cancel").click(hideIPE).end().
-      end();
+          find(".ipe-cancel").click(hideIPE).end().end();
+
+    return self;
   }
 })(jQuery);
 
