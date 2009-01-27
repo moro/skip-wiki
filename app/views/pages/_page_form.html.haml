@@ -2,9 +2,6 @@
   =stylesheet_link_tag "jquery/ui.datepicker.css"
 
 %tr
-  %th= form.label(:display_name, h(_("Page|Display name")))
-  %td= form.text_field(:display_name)
-%tr
   %th= form.label(:name, h(_("Page|Name")))
   %td
     = h(note_pages_url(current_note) + "/")

@@ -36,9 +36,9 @@
               .edit{:style=>"display:none"}
                 - form_for(:page, :url=>note_page_path(current_note, @page), :style=>"display:none") do |f|
                   = f.text_field :display_name, :id => "ipe-page_display_name", :size => 20
-                  %span.operation.ipe-cancel&= _("Cancel")
                   = submit_tag _("Update page")
                   %span.indicator{:style=>"display:none"}= image_tag "skip/indicator.gif"
+                  %span.operation.ipe-cancel&= _("Cancel")
               :javascript
                 jQuery(document).ready(function(){
                   $("div.page-header span.operation").click(function(){jQuery(this).nextAll("div.page-navi").toggle()});
