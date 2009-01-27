@@ -340,5 +340,66 @@
     table.find("td.delete form").submit(destroy);
 
   }
+
+  jQuery.fn.aresInplaceEditor = function(config){
+    var self = jQuery(this);
+    var form = self.find("div.edit form");
+    var messages = config["messages"] || ({});
+
+    function showIPE(){
+      self.find("div.edit").show().siblings("div.show").hide();
+    }
+
+    function hideIPE(){
+      self.find("div.show").show().siblings("div.edit").hide();
+    }
+
+    messages["sending"] = "Sending....";
+    function submitIPE(){
+      try{
+        var submitLabel = form.find("input[type=submit]").val();
+        jQuery.ajax({url: form.attr("action") + ".js",
+          type: "PUT",
+          data: form.serializeArray(),
+          dataType: "json",
+          beforeSend: function(){
+            self.find(".indicator").show();
+            if(messages["sending"]){ form.find("input[type=submit]").val( messages["sending"]) };
+          },
+          complete: function(req, status){
+            self.find(".indicator").hide();
+            if(messages["sending"]){ form.find("input[type=submit]").val( submitLabel ) };
+            hideIPE();
+            return config["callback"](self, req, status);
+          }
+        });
+      }catch(e){
+        alert(e);
+      }
+      return false;
+    }
+
+    self.
+      find("div.show").
+        find(".ipe-trigger").click(showIPE).end().
+      end().
+      find("div.edit").
+        find("form").submit(submitIPE).
+          find(".ipe-cancel").click(hideIPE).end().
+      end();
+  }
 })(jQuery);
+
+application = function(){}
+application.callbacks = {
+  pageDisplaynameEditor : function(root, req, stat){
+    var data = jQuery.httpData( req, "json")["page"];
+    if(stat == "success"){
+      root.find("span.title").text(data["display_name"]).effect("highlight", {}, 2*1000);
+      root.find("form input[type=text]").val(data["display_name"]);
+    } else if(stat == "error" && req.status == "422"){
+      alert(req.responseText);
+    }
+  }
+};
 

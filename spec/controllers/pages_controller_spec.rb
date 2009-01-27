@@ -89,6 +89,19 @@ describe PagesController do
       put :update, :note_id => @current_note.name, :id =>@page.to_param, :page => {:name => "page_01", :content => "new"}
       assigns(:page).content.should == "<p>foobar</p>"
     end
+
+    describe "via XHR" do
+      before do
+        xhr :put, :update, :note_id => @current_note.name, :id =>@page.to_param, :page => {:display_name => "page_01", :content => "new"}
+      end
+      it "ページ名が更新されること" do
+        assigns(:page).display_name.should == "page_01"
+      end
+
+      it "flashが空であること" do
+        flash[:notice].should be_blank
+      end
+    end
   end
 
   describe "GET /notes/hoge/new" do

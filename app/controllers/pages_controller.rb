@@ -68,9 +68,12 @@ class PagesController < ApplicationController
         @page.attributes = params[:page].except(:content)
         @page.save!
       end
-      flash[:notice] = _("The page %{page} is successfully updated") % {:page=>@page.display_name}
       respond_to do |format|
-        format.html{ redirect_to note_page_path(@note, @page) }
+        format.html{
+          flash[:notice] = _("The page %{page} is successfully updated") % {:page=>@page.display_name}
+          redirect_to note_page_path(@note, @page)
+        }
+        format.js{ render :json => @page }
       end
     rescue ActiveRecord::RecordInvalid
       respond_to do |format|

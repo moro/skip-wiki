@@ -137,9 +137,14 @@ body
     :border-width 5px 2px 1px 20px
     h1
       :float left
-    h1 span.labeled
-      :font-size = !small_font_size
-      :margin auto 3px
+      span.title
+        :font-size = !modern_page_font_size
+      span.labeled
+        :font-size = !small_font_size
+        :margin auto 3px
+      .edit
+        input[type=text]
+          :font-size = !modern_page_font_size
     div
       span
         :font-size 12px

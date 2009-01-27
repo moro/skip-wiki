@@ -21,20 +21,28 @@
       #content_for_layout
         #content
           .page-header{:style=>"border-color:#{@page.label_index.color}"}
-            %h1
-              %span&= @page.display_name
-              %span.labeled= sanitize _("Labeled as %{label}") % {:label=>val_tag(@page.label_index.display_name)}
-              - if current_note.accessible?(current_user)
-                %span.operation&= _("menu")
-                .page-navi{:style=>"display:none"}
-                  %ul
-                    %li= link_to(_("show page"), note_page_path(current_note, @page))
-                    %li= link_to(_("edit content"), new_note_page_history_path(current_note, @page))
-                    %li= link_to(_("edit page"), edit_note_page_path(current_note, @page))
-                    %li= link_to(_("page histories"), note_page_histories_path(current_note, @page))
+            %h1.page-name
+              .show
+                %span.title.ipe-trigger&= h(@page.display_name)
+                %span.labeled= sanitize _("Labeled as %{label}") % {:label=>val_tag(@page.label_index.display_name)}
+                - if current_note.accessible?(current_user)
+                  %span.operation&= _("menu")
+                  .page-navi{:style=>"display:none"}
+                    %ul
+                      %li= link_to(_("show page"), note_page_path(current_note, @page))
+                      %li= link_to(_("edit content"), new_note_page_history_path(current_note, @page))
+                      %li= link_to(_("edit page"), edit_note_page_path(current_note, @page))
+                      %li= link_to(_("page histories"), note_page_histories_path(current_note, @page))
+              .edit{:style=>"display:none"}
+                - form_for(:page, :url=>note_page_path(current_note, @page), :style=>"display:none") do |f|
+                  = f.text_field :display_name, :id => "ipe-page_display_name", :size => 20
+                  %span.operation.ipe-cancel&= _("Cancel")
+                  = submit_tag _("Update page")
+                  %span.indicator{:style=>"display:none"}= image_tag "skip/indicator.gif"
               :javascript
                 jQuery(document).ready(function(){
                  $("div.page-header span.operation").click(function(){jQuery(this).nextAll("div.page-navi").toggle()});
+                 $("h1").aresInplaceEditor({callback:application.callbacks.pageDisplaynameEditor});
                 });
 
             .user-bar= render :partial => 'shared/user_navi'
