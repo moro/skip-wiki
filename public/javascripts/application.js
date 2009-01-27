@@ -344,7 +344,9 @@
   jQuery.fn.aresInplaceEditor = function(config){
     var self = jQuery(this);
     var form = self.find("div.edit form");
-    var messages = config["messages"] || ({});
+    var messages = jQuery.extend({
+                     sending: "Sending..."
+                   },config["messages"])
 
     function showIPE(){
       self.find("div.edit").show().siblings("div.show").hide();
@@ -354,7 +356,6 @@
       self.find("div.show").show().siblings("div.edit").hide();
     }
 
-    messages["sending"] = "Sending....";
     function submitIPE(){
       try{
         var submitLabel = form.find("input[type=submit]").val();

@@ -41,8 +41,11 @@
                   %span.indicator{:style=>"display:none"}= image_tag "skip/indicator.gif"
               :javascript
                 jQuery(document).ready(function(){
-                 $("div.page-header span.operation").click(function(){jQuery(this).nextAll("div.page-navi").toggle()});
-                 $("h1").aresInplaceEditor({callback:application.callbacks.pageDisplaynameEditor});
+                  $("div.page-header span.operation").click(function(){jQuery(this).nextAll("div.page-navi").toggle()});
+                  $("h1").aresInplaceEditor(jQuery.extend({
+                      callback:application.callbacks.pageDisplaynameEditor
+                    }, #{page_display_name_ipe_option.to_json})
+                  );
                 });
 
             .user-bar= render :partial => 'shared/user_navi'

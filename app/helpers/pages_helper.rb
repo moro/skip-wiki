@@ -6,6 +6,10 @@ module PagesHelper
     render :partial => 'pages/label_traverse'
   end
 
+  def page_display_name_ipe_option(base={})
+    {:messages => {:sending => _("Sending...")}}.merge(base)
+  end
+
   def mail_notification(note, page)
     subject = _("\"%{name}\"'s url") % {:name => page.display_name}
     body    = [
