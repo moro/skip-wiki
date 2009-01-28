@@ -27,6 +27,24 @@ describe LabelIndex do
     end
   end
 
+  describe "#destroy (ページあり)" do
+    fixtures :notes, :pages
+    before do
+      @label = LabelIndex.create!(@valid_attributes)
+      (@p1 = pages(:our_note_page_1)).label_index = @label
+    end
+
+    it "削除できないこと" do
+      @label.destroy.should be_false
+      @label.destroy.should_not be_frozen
+    end
+
+    it "エラーが一つあること" do
+      @label.destroy
+      @label.should have(1).errors
+    end
+  end
+
   describe "#pages" do
     fixtures :notes, :pages
     before do

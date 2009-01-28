@@ -69,12 +69,20 @@ class LabelIndicesController < ApplicationController
   # DELETE /label_indices/1.xml
   def destroy
     @label_index = current_note.label_indices.find(params[:id])
-    @label_index.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(note_label_indices_url(current_note)) }
-      format.xml  { head :ok }
-      format.js   { head :ok }
+    if @label_index.destroy
+      respond_to do |format|
+        format.html { redirect_to(note_label_indices_url(current_note)) }
+        format.xml  { head :ok }
+        format.js   { head :ok }
+      end
+    else
+      respond_to do |format|
+        format.html {
+          flash[:error] = @label_index.errors
+          redirect_to(note_label_indices_url(current_note))
+        }
+        format.js { render :json => @label_index.errors.full_messages, :status => :conflict}
+      end
     end
   end
 end

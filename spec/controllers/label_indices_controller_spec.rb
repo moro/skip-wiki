@@ -163,5 +163,30 @@ describe LabelIndicesController do
       response.should redirect_to(note_label_indices_url(@note))
     end
   end
+
+  describe "responding to DELETE destroy but fail" do
+    before do
+      @note.should_receive(:label_indices).and_return(proxy = mock("proxy"))
+      proxy.should_receive(:find).with("37").and_return(mock_label_index)
+      mock_label_index.should_receive(:destroy).and_return(false)
+
+      mock_full_message = mock("full_messages")
+      mock_full_message.should_receive(:to_json).and_return "---JSON---"
+
+      mock_erros = mock("errors")
+      mock_erros.should_receive(:full_messages).and_return mock_full_message
+      mock_label_index.should_receive(:errors).and_return(mock_erros)
+
+      xhr :delete, :destroy, :id => "37"
+    end
+
+    it "should return 409(Conflict)" do
+      response.code.should == "409"
+    end
+
+    it "should redirect to the label_indices list" do
+      response.body.should == "---JSON---"
+    end
+  end
 end
 

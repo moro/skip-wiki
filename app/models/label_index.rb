@@ -32,8 +32,12 @@ class LabelIndex < ActiveRecord::Base
   end
 
   private
+  # TODO deleteのエラーメッセージの伝達にerrorsを使う是非を検討する
   def deletable?
-    !default_label
+    errors.clear
+    errors.add :base, _("Can not delete default label") if default_label
+    errors.add :base, _("Move or delete related pages before delete the label") unless pages.empty?
+    errors.empty?
   end
 end
 

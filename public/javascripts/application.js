@@ -243,14 +243,6 @@
   jQuery.fn.manageLabel = function(config){
     var table = jQuery(this).find("table");
 
-    function post(f, callback){
-      jQuery.ajax({url: f.attr("action") + ".js",
-        type: "POST",
-        data: f.serializeArray(),
-        success: callback
-      });
-    }
-
     function create(){
       var f = jQuery(this);
       f.nextAll("ul.errors").remove();
@@ -272,15 +264,27 @@
     function destroy(){
       if(!confirm("削除しますか?")) return false ;
       var f = jQuery(this);
-      post(f, function(){f.parents("tr").fadeOut().remove()});
+      jQuery.ajax({url: f.attr("action") + ".js",
+        type: "POST",
+        data: f.serializeArray(),
+        complete: function(req, stat){
+          if(stat == "success" || application.headOK(req)){ f.parents("tr").fadeOut().remove() }
+          else if(stat == "error") showValidationError(req)
+        }
+      });
 
       return false;
     }
 
     function showValidationError(xhr){
       var errors = jQuery.httpData( xhr, "json");
-      var ul = jQuery("<ul class='errors'>");
-      ul.appendTo( jQuery("div.new") );
+      var ul = jQuery("div.new ul.errors");
+      if( (ul.length == 0) ){
+        ul = jQuery("<ul class='errors'>");
+        ul.appendTo( jQuery("div.new") );
+      }
+      ul.empty();
+
       jQuery.each(errors, function(){ jQuery("<li>").text(this.toString()).appendTo(ul) });
     }
 
@@ -377,6 +381,12 @@
 })(jQuery);
 
 application = function(){}
+application.headOK = function(xhr) {
+  return xhr.responseText.match(/\s*/) &&
+         xhr.status >= 200 &&
+         xhr.status <  300
+}
+
 application.callbacks = {
   pageDisplaynameEditor : function(root, req, stat){
     if(stat == "success"){
