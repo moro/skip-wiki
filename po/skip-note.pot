@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2009-01-28 12:06+0900\n"
+"POT-Creation-Date: 2009-01-28 16:33+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -110,10 +110,18 @@ msgid "Jump to Note"
 msgstr ""
 
 #: app/helpers/application_helper.rb:20
+msgid "Hour"
+msgstr ""
+
+#: app/helpers/application_helper.rb:23
+msgid "Min"
+msgstr ""
+
+#: app/helpers/application_helper.rb:34
 msgid "[Click to hide]"
 msgstr ""
 
-#: app/helpers/application_helper.rb:48
+#: app/helpers/application_helper.rb:62
 msgid "Back to %{page}"
 msgstr ""
 
@@ -611,7 +619,7 @@ msgstr ""
 msgid "Page|Name"
 msgstr ""
 
-#: app/models/page.rb:- app/views/layouts/pages.html.haml:39
+#: app/models/page.rb:- app/views/layouts/pages.html.haml:40
 #: app/views/notes/dashboard.html.haml:37 app/views/pages/_pages.html.haml:5
 #: app/views/pages/index.html.haml:22 app/views/pages/new.html.haml:18
 #: app/views/shared/admin/pages/_pages.html.haml:5
@@ -650,7 +658,7 @@ msgstr ""
 msgid "FrontPage"
 msgstr ""
 
-#: app/models/page.rb:183
+#: app/models/page.rb:192
 msgid "the name `%{n}' is reserved"
 msgstr ""
 
@@ -895,7 +903,7 @@ msgstr ""
 
 #: app/views/admin/notes/show.html.haml:45
 #: app/views/label_indices/_new.html.haml:17
-#: app/views/layouts/pages.html.haml:41
+#: app/views/layouts/pages.html.haml:42
 msgid "Cancel"
 msgstr ""
 
@@ -995,7 +1003,7 @@ msgstr ""
 msgid "edit content"
 msgstr ""
 
-#: app/views/histories/new.html.haml:18 app/views/layouts/pages.html.haml:39
+#: app/views/histories/new.html.haml:18 app/views/layouts/pages.html.haml:40
 #: app/views/pages/edit.html.haml:13
 msgid "Update %{entity}"
 msgstr ""
@@ -1243,11 +1251,11 @@ msgstr ""
 msgid "Last in the label."
 msgstr ""
 
-#: app/views/pages/_page_form.html.haml:17
+#: app/views/pages/_page_form.html.haml:16
 msgid "Page|Label indices"
 msgstr ""
 
-#: app/views/pages/_page_form.html.haml:19
+#: app/views/pages/_page_form.html.haml:18
 msgid "Add label"
 msgstr ""
 
