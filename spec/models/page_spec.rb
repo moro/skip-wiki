@@ -20,6 +20,31 @@ describe Page do
     }
   end
 
+  describe "#published_at=()" do
+    before do
+      Time.zone = "Asia/Tokyo"
+
+      @page = Page.new
+      @expect = Time.zone.local(2009, 1, 30, 14, 30)
+      @timy = {:date => "2009-01-30", :hour => "14", :min => "30"}
+      @page.published_at = @timy
+    end
+
+    it "は2009-01-30 14:30:00であること" do
+      @page.published_at.should == @expect
+    end
+
+    it "mass assignmentも動作すること" do
+      Page.new(:published_at => @timy).published_at.should == @expect
+    end
+
+    it "従来のUTC文字列指定タイプやDateTime指定も動くこと" do
+      ["2009-01-30 05:30:00", "2009/01/30 05:30:00", @expect].each do |str|
+        Page.new(:published_at => str).published_at.should == @expect
+      end
+    end
+  end
+
   describe "#label_index_id = an_label.id" do
     before do
       @note = mock_model(Note)

@@ -113,6 +113,15 @@ SQL
     end
   end
 
+  def published_at=(timy_or_hash)
+    if timy_or_hash.is_a?(Hash) && [:date, :hour, :min].all?{|k| timy_or_hash.has_key?(k) }
+      d = Date.parse(timy_or_hash[:date])
+      timy_or_hash =
+        Time.zone.local(d.year, d.month, d.day, Integer(timy_or_hash[:hour]), Integer(timy_or_hash[:min]))
+    end
+    write_attribute(:published_at, timy_or_hash)
+  end
+
   def published?(pivot = Time.now)
     published_at <= pivot
   end
