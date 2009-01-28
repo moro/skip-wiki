@@ -13,6 +13,7 @@ valid_attributes = {
   :page => {
       :name => "value for name",
       :display_name => "value for display_name",
+      :published_at => 1.days.ago,
       :format_type => "html",
   }.freeze,
   :label => {
