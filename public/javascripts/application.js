@@ -246,9 +246,7 @@
     function create(){
       var f = jQuery(this);
       f.nextAll("ul.errors").remove();
-      jQuery.ajax({url: f.attr("action") + ".js",
-        type: "POST",
-        data: f.serializeArray(),
+      application.post(f, {
         dataType: "json",
         complete: function(req, stat){
           if(stat == "success"){
@@ -264,9 +262,7 @@
     function destroy(){
       if(!confirm("削除しますか?")) return false ;
       var f = jQuery(this);
-      jQuery.ajax({url: f.attr("action") + ".js",
-        type: "POST",
-        data: f.serializeArray(),
+      application.post(f, {
         complete: function(req, stat){
           if(stat == "success" || application.headOK(req)){ f.parents("tr").fadeOut().remove() }
           else if(stat == "error") showValidationError(req)
@@ -385,6 +381,15 @@ application.headOK = function(xhr) {
   return xhr.responseText.match(/\s*/) &&
          xhr.status >= 200 &&
          xhr.status <  300
+}
+
+application.post = function(form, parameters) {
+  var paramFromForm = {
+    url  : form.attr("action") + ".js",
+    type : "POST",
+    data : form.serializeArray(),
+  }
+  jQuery.ajax(jQuery.extend(paramFromForm, parameters));
 }
 
 application.callbacks = {
