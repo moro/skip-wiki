@@ -51,13 +51,12 @@ describe NotesController do
       end
 
     end
-    
   end
 
   describe "responding to GET new" do
 
     it "should expose a new note as @note" do
-      Note.should_receive(:new).with(:group_backend_type=>"BuiltinGroup").and_return(mock_note)
+      Note.should_receive(:new).with(:group_backend_type=>"BuiltinGroup", :category => Category.first).and_return(mock_note)
       get :new
       assigns[:note].should equal(mock_note)
     end
