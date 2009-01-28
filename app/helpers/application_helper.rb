@@ -10,6 +10,20 @@ module ApplicationHelper
     end
   end
 
+  def datepicker_with_time(object, field, options = {})
+    name = ActionController::RecordIdentifier.singular_class_name(object)
+    date = object.send(field)
+    [
+      text_field_tag("#{name}[#{field}][date]", date.strftime("%Y-%m-%d"),
+                                                :id => "#{name}_#{field}", :class => "datepicker", :size => 10),
+      select_hour(date, {}, :name => "#{name}[#{field}][hour]", :id=>"#{name}_#{field}_hour"),
+      content_tag("label", _("Hour"), :for => "#{name}_#{field}_hour"),
+
+      select_minute(date, {}, :name => "#{name}[#{field}][min]", :id=>"#{name}_#{field}_min"),
+      content_tag("label", _("Min"), :for => "#{name}_#{field}_min"),
+    ].join("\n")
+  end
+
   def val_tag(content, options = {})
     content_tag("span", h(content), {:class=>"val"}.merge(options))
   end

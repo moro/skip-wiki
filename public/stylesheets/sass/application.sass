@@ -928,6 +928,11 @@ table.input
     :padding-left 1em
     .fieldWithErrors
       :display inline
+    input[type=text], select
+      :font-size = !modern_page_font_size
+
+input[type=text].datepicker
+  :text-align right
 
 p.no-result
   :font-size = !modern_page_font_size
