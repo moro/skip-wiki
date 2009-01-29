@@ -12,8 +12,10 @@ class Page < ActiveRecord::Base
   has_many :label_indexings
   has_one  :label_index, :through => :label_indexings
 
-  validates_associated :new_history, :if => :new_history
-  validates_presence_of  :name, :published_at, :content
+  validates_associated :new_history, :if => :new_history, :on => :create
+  validates_presence_of :content, :on => :create
+
+  validates_presence_of :name, :published_at
   validates_inclusion_of :format_type, :in => %w[hiki html]
 
   validate_on_update :frontpage_cant_rename
@@ -182,7 +184,7 @@ SQL
   end
 
   def update_label_index
-    if label_index_id
+    if(new_record? && label_index_id) || @label_index_id
       self.label_index = note.label_indices.find(label_index_id)
     end
   end
