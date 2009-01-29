@@ -4,6 +4,8 @@
 
 <%- javascript_tag do %>
   jQuery(document).ready(function(){
-    setTimeout(function(){ $("#flash_message div").fadeOut("slow"); }, 10*1000);
+    $("#flash_message div").click(function(){$(this).fadeOut("slow")});
+    setTimeout(function(){ $("#flash_message div.notice").trigger("click"); }, 2*1000);
+    setTimeout(function(){ $("#flash_message div.warn").trigger("click"); }, 5*1000);
   });
 <% end %>

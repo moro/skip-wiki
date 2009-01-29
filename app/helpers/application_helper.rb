@@ -30,7 +30,7 @@ module ApplicationHelper
 
   def render_flash(type)
     if message = flash[type]
-      content_tag("div", :onclick => "$(this).fadeOut('fast')", :class => type.to_s) do
+      content_tag("div", :class => type.to_s) do
         content_tag("h3", h(message) + content_tag("span", _("[Click to hide]")))
       end
     end
