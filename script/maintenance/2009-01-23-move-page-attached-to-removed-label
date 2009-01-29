@@ -1,0 +1,14 @@
+#!script/runner
+
+# vim:set ft=ruby:
+
+def log_and_puts_stderr(msg)
+  ActiveRecord::Base.logger.info("MAINTAIN(2009-01-23-move-page-attached-to-removed-label):  #{msg}")
+  $stderr.puts(msg)
+end
+
+pages = Page.all.select{|page| page.label_index.blank? }
+
+ActiveRecord::Base.transaction do
+  pages.each{|page| page.label_index =  page.note.default_label }
+end
