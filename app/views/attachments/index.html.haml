@@ -27,6 +27,7 @@
 
   $(document).ready(function(){
     $("div.attachment div.sync-upload").remove();
-    $("div.attachment.upload").iframeUploader(#{uploader_js_option.to_json})
+    $("div.attachment.upload").
+      iframeUploader($.extend({callback:application.callbacks.refreshAttachments}, #{uploader_js_option.to_json}))
   });
 
