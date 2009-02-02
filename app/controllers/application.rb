@@ -34,9 +34,9 @@ class ApplicationController < ActionController::Base
   end
 
   def access_denied_with_open_id_sso
-    if defined? SSO_OPENID_PROVIDER_URL
+    if op = FixedOp.sso_openid_provider_url
       store_location
-      authenticate_with_open_id(SSO_OPENID_PROVIDER_URL, :return_to=>session_url) do
+      authenticate_with_open_id(op, :return_to=>session_url) do
         access_denied_without_open_id_sso
       end
     else

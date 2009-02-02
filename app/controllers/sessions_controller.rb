@@ -19,14 +19,14 @@ class SessionsController < ApplicationController
 
   protected
   # Track failed login attempts
-  def note_failed_signin
-    flash[:error] = _("Couldn't log you in as '#{params[:login]}'")
-    logger.warn "Failed login for '#{params[:login]}' from #{request.remote_ip} at #{Time.now.utc}"
+  def note_failed_signin(openid_url)
+    flash[:error] = _("Couldn't log you in as '#{openid_url}'")
+    logger.warn "Failed login for '#{openid_url}' from #{request.remote_ip} at #{Time.now.utc}"
   end
 
   def login_with_openid(openid_url)
     authenticate_with_open_id(openid_url) do |result, identity_url, sreg|
-      if result.successful?
+      if FixedOp.accept?(identity_url) && result.successful?
         # TODO クエリ最適化
         if account = Account.find_by_identity_url(identity_url)
           logged_in_successful(account.user, session[:return_to] || root_path)
@@ -52,11 +52,11 @@ class SessionsController < ApplicationController
   end
 
   # log login faulure. and re-render sessions/new
-  def login_failed(assing_params=params)
-    note_failed_signin
-    @login       = assing_params[:login]
-    @openid_url  = assing_params[:openid_url]
-    @remember_me = assing_params[:remember_me]
+  def login_failed(assigns=params)
+    note_failed_signin(assigns[:openid_url])
+    @login       = assigns[:login]
+    @openid_url  = assigns[:openid_url]
+    @remember_me = assigns[:remember_me]
 
     render :action => 'new'
   end
