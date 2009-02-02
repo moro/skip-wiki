@@ -8,7 +8,12 @@ class SessionsController < ApplicationController
 
   def create
     logout_keeping_session!
-    login_with_openid(params[:openid_url])
+
+    if params[:openid_url] && !FixedOp.accept?(params[:openid_url])
+      login_failed(params.merge(:openid_url=>openid_url))
+    else
+      login_with_openid(params[:openid_url])
+    end
   end
 
   def destroy
@@ -26,7 +31,7 @@ class SessionsController < ApplicationController
 
   def login_with_openid(openid_url)
     authenticate_with_open_id(openid_url) do |result, identity_url, sreg|
-      if FixedOp.accept?(identity_url) && result.successful?
+      if  result.successful?
         # TODO クエリ最適化
         if account = Account.find_by_identity_url(identity_url)
           logged_in_successful(account.user, session[:return_to] || root_path)
