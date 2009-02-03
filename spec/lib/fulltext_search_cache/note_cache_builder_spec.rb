@@ -8,6 +8,8 @@ describe FulltextSearchCache::NoteCacheBuilder, :type => :model do
     @builder = FulltextSearchCache::NoteCacheBuilder.new(@note, "http://example.com/skip-knowledge/")
   end
 
+  it { @builder.filename.should == "note/#{@note.id}.html" }
+
   it "#to_cacheで作られるHTMLのBody部分は@note.descriptionを含むこと" do
     Nokogiri.HTML(@builder.to_cache).search("body").text.should =~ /#{@note.description}/m
   end

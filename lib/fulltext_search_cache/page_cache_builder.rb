@@ -8,6 +8,10 @@ class FulltextSearchCache
       @url_prefix = url_prefix
     end
 
+    def filename
+      "page/#{@note.id}.html"
+    end
+
     def title; @page.display_name ; end
     def body; @page.content ; end
 
