@@ -1,8 +1,10 @@
 require 'erb'
+require 'yaml'
 
 class FulltextSearchCache
   class PageCacheBuilder
     include EntityContentCache
+    include MetaWriter
     def initialize(page, url_prefix)
       @page = page
       @url_prefix = url_prefix

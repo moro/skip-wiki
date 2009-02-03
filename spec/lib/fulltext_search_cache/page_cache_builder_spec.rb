@@ -25,4 +25,30 @@ describe FulltextSearchCache::PageCacheBuilder, :type => :model do
   it "#to_metaのurlは'http://example.com/skip-knowledge/notes/\#{@page.note.name}/pages/\#{@page.name}'であること" do
     @builder.to_meta[:url].should == "http://example.com/skip-knowledge/notes/#{@page.note.name}/pages/#{@page.name}"
   end
+
+  describe "#write_meta" do
+    before do
+      fp = mock("file")
+      fp.should_receive(:write).with(@builder.to_meta.to_yaml)
+      File.should_receive(:open).with("path", "wb").and_yield fp
+
+      @mediator = mock("mediator")
+      @mediator.should_receive(:meta_path).with(@builder).and_return("path")
+    end
+
+    it{ @builder.write_meta(@mediator) }
+  end
+
+  describe "#write_cache" do
+    before do
+      fp = mock("file")
+      fp.should_receive(:write).with(@builder.to_cache)
+      File.should_receive(:open).with("path", "wb").and_yield fp
+
+      @mediator = mock("mediator")
+      @mediator.should_receive(:cache_path).with(@builder).and_return("path")
+    end
+
+    it{ @builder.write_cache(@mediator) }
+  end
 end

@@ -3,6 +3,7 @@ require 'erb'
 class FulltextSearchCache
   class NoteCacheBuilder
     include EntityContentCache
+    include MetaWriter
     def initialize(note, url_prefix)
       @note = note
       @url_prefix = url_prefix

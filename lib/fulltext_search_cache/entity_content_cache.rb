@@ -2,6 +2,10 @@ require 'erb'
 
 class FulltextSearchCache
   module EntityContentCache
+    def write_cache(mediator)
+      File.open(mediator.cache_path(self), "wb"){|f| f.write to_cache }
+    end
+
     def to_cache
       ERB.new(<<-HTML).result(binding)
 <html>
