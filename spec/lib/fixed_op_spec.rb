@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-describe FixedOp, "http://openid.example.comで擬似SSOをする場合" do
+describe FixedOp, "http://openid.example.comで擬似SSOをする場合", :type => :model do
   before() do
     FixedOp.sso_openid_provider_url = "http://openid.example.com/"
   end
@@ -14,7 +14,7 @@ describe FixedOp, "http://openid.example.comで擬似SSOをする場合" do
   end
 end
 
-describe FixedOp, "[http://openid.example.com]を受け付ける場合" do
+describe FixedOp, "[http://openid.example.com]を受け付ける場合", :type => :model do
   before(:all) do
     @server_endpoint_url = "http://openid.example.com/server"
     FixedOp.servers = @server_endpoint_url
@@ -45,7 +45,7 @@ describe FixedOp, "[http://openid.example.com]を受け付ける場合" do
   end
 end
 
-describe FixedOp, "serversを指定しない場合" do
+describe FixedOp, "serversを指定しない場合", :type => :model do
   before(:all) do
     FixedOp.servers = []
   end
