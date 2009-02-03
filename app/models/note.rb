@@ -70,6 +70,10 @@ class Note < ActiveRecord::Base
     )
   end
 
+  def public_readable?
+    [Note::PUBLICITY_READABLE, Note::PUBLICITY_WRITABLE].include?(publicity)
+  end
+
   def to_param
     name_changed? ? name_was : name
   end
