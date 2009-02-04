@@ -2,6 +2,17 @@ namespace :skip_note do
   desc "execute some setup tasks / gems:install db:create db:migrate makemo"
   task :setup => %w[gems:install db:create db:migrate makemo]
 
+  desc "build fulltext search cache DIR=[cache_root] SINCE=[sec target updated]"
+  task :fulltext_cache do
+    require 'fulltext_search_cache'
+    options = {}
+    options[:cache_dir] = ENV["DIR"] unless ENV["DIR"].blank?
+    options[:since] = ENV["SINCE"] unless ENV["SINCE"].blank?
+    options[:url_prefix] = ENV["URL"] unless ENV["URL"].blank?
+
+    FulltextSearchCache.build(options)
+  end
+
   desc "create release .zip archive."
   task :release do
     raise "This directory is not Git repository." unless File.directory?(".git")

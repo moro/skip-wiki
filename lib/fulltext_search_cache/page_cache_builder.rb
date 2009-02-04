@@ -11,7 +11,7 @@ class FulltextSearchCache
     end
 
     def filename
-      "page/#{@note.id}.html"
+      "page/#{@page.id}.html"
     end
 
     def title; @page.display_name ; end
