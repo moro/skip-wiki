@@ -7,7 +7,7 @@ class Page < ActiveRecord::Base
   attr_writer :label_index_id
   attr_writer :order_in_label
 
-  belongs_to :note
+  belongs_to :note, :dependent => :destroy
   has_many :histories, :order => "histories.revision DESC"
   has_many :label_indexings
   has_one  :label_index, :through => :label_indexings
@@ -197,6 +197,7 @@ SQL
   end
 
   def frontpage_cant_destroy
+    return true if note.nil?
     !(name_was == FRONTPAGE_NAME || name == FRONTPAGE_NAME)
   end
 end

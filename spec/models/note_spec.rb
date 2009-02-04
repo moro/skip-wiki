@@ -94,6 +94,14 @@ describe Note do
       page = @note.reload.pages.first
       page.content.should == "---FrontPage---"
     end
+
+    describe "#destroy" do
+      before do
+        @note.destroy
+      end
+
+      it{ Page.find_all_by_note_id(@note).should be_empty }
+    end
   end
 
   describe "accessible?" do
@@ -118,6 +126,7 @@ describe Note do
       @note.should_not be_accessible(users(:aaron))
     end
   end
+
   describe "before_create :add_no_label" do
     before do
       @note = build_note

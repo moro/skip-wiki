@@ -20,7 +20,7 @@ class Note < ActiveRecord::Base
 
   has_many :accessibilities
   has_many :label_indices
-  has_many :pages do
+  has_many :pages, :dependent => :delete_all do
     def add(attrs, user)
       returning(build) do |page|
         page.edit(attrs[:content], user)
