@@ -12,12 +12,17 @@ class FixedOp
     servers.empty? || new(*servers).accept?(claimed_url)
   end
 
+  @@sso_openid_provider_url = (defined? FIXED_OPENID_SERVER_URL) ? FIXED_OPENID_SERVER_URL : nil
   def self.sso_openid_provider_url
-    @sso_openid_provider_url ||= (defined? FIXED_OPENID_SERVER_URL) ? FIXED_OPENID_SERVER_URL : nil
+    @@sso_openid_provider_url
+  end
+
+  def self.sso_openid_logout_url
+    URI.join(sso_openid_provider_url + "logout").to_s if sso_openid_provider_url
   end
 
   def self.sso_openid_provider_url=(url)
-    @sso_openid_provider_url = url
+    @@sso_openid_provider_url = url
   end
 
   def initialize(*allowed)

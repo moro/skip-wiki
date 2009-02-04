@@ -1,14 +1,23 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-describe FixedOp, "[http://openid.example.com]を受け付ける場合" do
-  before(:all) do
-    @server_endpoint_url = "http://openid.example.com/server"
-    FixedOp.servers = @server_endpoint_url
+describe FixedOp, "http://openid.example.comで擬似SSOをする場合" do
+  before() do
     FixedOp.sso_openid_provider_url = "http://openid.example.com/"
   end
 
   it "sso_openid_provider_urlは@server_endpoint_urlであること" do
     FixedOp.sso_openid_provider_url.should == "http://openid.example.com/"
+  end
+
+  it "sso_openid_logout_urlは@server_endpoint_url + '/logout'であること" do
+    FixedOp.sso_openid_logout_url.should == "http://openid.example.com/logout"
+  end
+end
+
+describe FixedOp, "[http://openid.example.com]を受け付ける場合" do
+  before(:all) do
+    @server_endpoint_url = "http://openid.example.com/server"
+    FixedOp.servers = @server_endpoint_url
   end
 
   describe "OpenID.discoverのOP endpoint URLがhttp://openid.example.comの場合" do
@@ -36,8 +45,7 @@ describe FixedOp, "[http://openid.example.com]を受け付ける場合" do
   end
 end
 
-
-describe FixedOp, "を指定しない場合" do
+describe FixedOp, "serversを指定しない場合" do
   before(:all) do
     FixedOp.servers = []
   end
