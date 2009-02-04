@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
     logout_keeping_session!
 
     if params[:openid_url] && !FixedOp.accept?(params[:openid_url])
+      logger.debug("login refused since #{params[:openid_url]} is not member #{FixedOp.servers.inspect}")
       login_failed(params.merge(:openid_url=>openid_url))
     else
       login_with_openid(params[:openid_url])
@@ -31,13 +32,17 @@ class SessionsController < ApplicationController
   end
 
   def login_with_openid(openid_url)
-    authenticate_with_open_id(openid_url) do |result, identity_url, sreg|
+    options = {
+      :optional => self.class.ax_attributes.values.flatten,
+      :method   => "get",
+    }
+    authenticate_with_open_id(openid_url, options) do |result, identity_url, personal_data|
       if  result.successful?
         # TODO クエリ最適化
         if account = Account.find_by_identity_url(identity_url)
           logged_in_successful(account.user, session[:return_to] || root_path)
         else
-          signup_with_openid(identity_url, sreg)
+          signup_with_openid(identity_url, personal_data)
         end
       else
         login_failed(params.merge(:openid_url=>identity_url))
@@ -55,6 +60,15 @@ class SessionsController < ApplicationController
     handle_remember_cookie! new_cookie_flag
     flash[:notice] = _("Logged in successfully")
     redirect_back_or_default(redirect)
+  end
+
+  def self.ax_attributes
+    namespace = ["http://axschema.org", "http://schema.openid.net"]
+    attributes = %w[/contact/email /namePerson /namePerson/friendly]
+    { :email => namespace.map{|ns| ns + "/contact/email" },
+      :name  => namespace.map{|ns| ns + "/namePerson" },
+      :display_name  => namespace.map{|ns| ns + "/namePerson/friendly" },
+    }
   end
 
   # log login faulure. and re-render sessions/new
