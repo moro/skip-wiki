@@ -19,7 +19,8 @@ class SessionsController < ApplicationController
   def destroy
     logout_killing_session!
     flash[:notice] = _("You have been logged out.")
-    redirect_back_or_default(login_path)
+
+    redirect_back_or_default(FixedOp.sso_openid_logout_url || login_path)
   end
 
   protected
