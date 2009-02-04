@@ -43,8 +43,13 @@ def prepare_default_category
   end
 end
 
+def disable_sso
+  FixedOp.sso_openid_provider_url = nil
+end
+
 Before do
   prepare_default_category
+  disable_sso
 end
 
 Given(/^ノート"(.*)"が作成済みである/) do |note_name|
