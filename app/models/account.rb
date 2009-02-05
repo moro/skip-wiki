@@ -39,8 +39,8 @@ class Account < ActiveRecord::Base
 
   private
   def create_user
-    User.create!(:name => name.blank? ? login : name,
-                 :account => self)
+    return nil if user
+    User.create!(:name => name.blank? ? login : name, :account => self)
   end
 end
 

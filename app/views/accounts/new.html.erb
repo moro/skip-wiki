@@ -1,16 +1,21 @@
 <h1>Sign up as a new user</h1>
 
 <%= error_messages_for :account %>
+
 <% form_for :account, :url => accounts_path do |f| -%>
-<p><%= f.label 'login' %><br/>
-<%= f.text_field :login %></p>
+  <% fields_for :user, @account.user do |user| %>
+    <p><%= user.label :name, 'User|Name' %><br />
+    <%= user.text_field :name %></p>
+    <p><%= user.label :display_name, 'User|Display name' %><br />
+    <%= user.text_field :display_name %></p>
+  <% end %>
 
-<p><%= f.label 'email' %><br/>
-<%= f.text_field :email %></p>
+  <p><%= f.label 'email' %><br/>
+  <%= f.text_field :email %></p>
 
-<p><%= label_tag 'OpenID URL' %><br/>
-<%=h session[:identity_url] %></p>
+  <p><%= label_tag 'OpenID URL' %><br/>
+  <%=h session[:identity_url] %></p>
 
-<p><%= submit_tag 'Sign up' %></p>
+  <p><%= submit_tag 'Sign up' %></p>
 <% end -%>
 
