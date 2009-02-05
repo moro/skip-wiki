@@ -2,31 +2,28 @@
   =stylesheet_link_tag "mypage"
   =stylesheet_link_tag "admin/admin"
 
-#contents_container
-  .caption
-    = render :partial => 'shared/admin/user_body_header', :locals=>{:current_path=>admin_notes_path, :search_label=>_('Search Note')}
-  .contents
-    %h2&= _("Group|Users")
-    - if @group.backend_type == "BuiltinGroup"
-      %p&= _("Users who can access to this note.")
-    - else
-      %p&= _("Users who belongs to this note.")
+#contents
+  %h2&= _("Group|Users")
+  - if @group.backend_type == "BuiltinGroup"
+    %p&= _("Users who can access to this note.")
+  - else
+    %p&= _("Users who belongs to this note.")
 
-    - form_tag(admin_group_memberships_path(@group)) do |f|
-      %table.group-users
-        - User.find(:all, :include=>"account").each do |user|
-          - id_attr = dom_id(user, "memberships")
-          - prefix = "memberships[#{h(user.id)}]"
-          %tr{:class=>cycle("odd","even")}
-            %td
-              =check_box_tag "#{prefix}[enabled]", "1", @group.users.include?(user), :id=> id_attr
-              =hidden_field_tag "#{prefix}[user_id]", user.id
-              =hidden_field_tag "#{prefix}[group_id]", @group.id
-            %td
-              %label{:for=>id_attr}&= user.name
-            %td&= user.display_name
-            %td.identity_url&= user.account.identity_url
+  - form_tag(admin_group_memberships_path(@group)) do |f|
+    %table.group-users
+      - User.find(:all, :include=>"account").each do |user|
+        - id_attr = dom_id(user, "memberships")
+        - prefix = "memberships[#{h(user.id)}]"
+        %tr{:class=>cycle("odd","even")}
+          %td
+            =check_box_tag "#{prefix}[enabled]", "1", @group.users.include?(user), :id=> id_attr
+            =hidden_field_tag "#{prefix}[user_id]", user.id
+            =hidden_field_tag "#{prefix}[group_id]", @group.id
+          %td
+            %label{:for=>id_attr}&= user.name
+          %td&= user.display_name
+          %td.identity_url&= user.account.identity_url
 
-      =back_link_to(_("Note Properties"), admin_note_path(@note.id))
-      =submit_tag(_("Update"))
+    =back_link_to(_("Note Properties"), admin_note_path(@note.id))
+    =submit_tag(_("Update"))
 

@@ -2,17 +2,13 @@
   =stylesheet_link_tag "mypage"
   =stylesheet_link_tag "admin/admin"
 
-#contents_container
-  .caption
-    = render :partial => 'shared/admin/user_body_header', :locals=>{:current_path=>edit_admin_note_page_path(@note,@page)}
-  .contents
-    - div_for(@page, :class => "app-layout") do
-      %h1&= @page.display_name
-      - form_for(:page, :url=>admin_note_page_path(@note, @page)) do |f|
-        =f.error_messages
-        = hidden_field_tag "_method", "PUT"
-        %dl
-          = render :partial => 'pages/page_form', :locals =>{:form =>f }
+#contents
+  - div_for(@page, :class => "app-layout") do
+    - form_for(:page, :url=>admin_note_page_path(@note, @page)) do |f|
+      =f.error_messages
+      = hidden_field_tag "_method", "PUT"
+      %dl
+        = render :partial => 'pages/page_form', :locals =>{:form =>f }
 
-        = submit_tag _("Update")
+      = submit_tag _("Update")
 

@@ -1,4 +1,6 @@
 class Admin::AccountsController < Admin::ApplicationController
+  layout "admin_users"
+
   def index
     @accounts = Account.fulltext(params[:keyword])
   end

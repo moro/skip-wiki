@@ -2,24 +2,20 @@
   =stylesheet_link_tag "mypage"
   =stylesheet_link_tag "admin/admin"
 
-#contents_container
-  .caption
-    = render :partial => 'shared/admin/user_body_header', :locals=>{:current_path=>admin_notes_path, :search_label=>_('Search Note')}
-  .contents
-    #updated-note
-      %h2= icon_tag('folder_page', "ノート一覧")
-      %table.notes-index
-        %tr
-          %th.updated_title&= _('Note|Display name')
-          %th.description&= _('Note|Discription')
-          %th.updated_at&= _('Note|Updated at')
-          %th.edit&= _('Edit')
-          %th.delete&= _('Delete')
-        - for note in @notes
-          %tr.item_line
-            %td.updated_title&= note.display_name
-            %td.description&= note.description
-            %td.updated_at= note.updated_at.strftime("%m/%d %H:%M")
-            %td.edit= link_to _("Edit"), admin_note_path(note.id)
-            %td.delete= link_to _("Delete"), {:controller=>'admin/notes',:action=>'destroy',:id=>note.id}, :confirm=>_("Are you sure?"), :method=>:delete
+#contents
+  #updated-note
+    %table.notes-index
+      %tr
+        %th.updated_title&= _('Note|Display name')
+        %th.description&= _('Note|Discription')
+        %th.updated_at&= _('Note|Updated at')
+        %th.edit&= _('Edit')
+        %th.delete&= _('Delete')
+      - for note in @notes
+        %tr.item_line
+          %td.updated_title&= note.display_name
+          %td.description&= note.description
+          %td.updated_at= note.updated_at.strftime("%m/%d %H:%M")
+          %td.edit= link_to _("Edit"), admin_note_path(note.id)
+          %td.delete= link_to _("Delete"), {:controller=>'admin/notes',:action=>'destroy',:id=>note.id}, :confirm=>_("Are you sure?"), :method=>:delete
 

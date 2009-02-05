@@ -1,0 +1,34 @@
+#admin_title
+  - if @users
+    - path,search_label = admin_root_path,_("Search User")
+    %h2= icon_tag('user', _("manage users")+" < "+_("User|Index"))
+  - elsif @user
+    - path,search_label = admin_root_path,_("Search User")
+    %h2= icon_tag('user', _("manage users")+" < "+_("User|Index")+" < "+_("User|Edit(%{user})") % {:user => @user.name})
+  - elsif @accounts
+    - path,search_label = admin_accounts_path,_("Search Account")
+    %h2= icon_tag('user', _("manage users")+" < "+_("Account|Index"))
+  - elsif @account
+    - path,search_label = admin_accounts_path,_("Search Account")
+    %h2= icon_tag('user', _("manage users")+" < "+_("Account|Index")+" < "+_("Account|Edit(%{user})") % {:user => @account.user.name})
+#user_menu
+  %span.operation&= _("menu")
+  .user-navi
+    %ul
+      %li= link_to(_("manage users"), admin_root_path)
+      %li= link_to(_("Account|Index"), admin_accounts_path)
+:javascript
+  jQuery(document).ready(function(){
+    $("span.operation").click(function(){jQuery(this).nextAll("div.user-navi").toggle()});
+  });
+#user_search
+  - form_tag(path, :method=>:get) do
+    - search_label ||= _("Search User")
+    - val = params[:keyword].blank? ? search_label : params[:keyword]
+    %span{:style=>"vertical-align:middle;"}
+    = text_field_tag("keyword", val, :id=>"user_keyword", :class=>"labeled-field")
+    = submit_tag _('Search')
+    :javascript
+      jQuery(function(){
+        jQuery("input.labeled-field").labeledTextField(#{{:message => search_label}.to_json});
+      });

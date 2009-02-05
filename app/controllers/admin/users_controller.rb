@@ -1,4 +1,6 @@
 class Admin::UsersController < Admin::ApplicationController
+  layout "admin_users"
+
   # GET /admin
   def index
     @users = User.fulltext(params[:keyword])

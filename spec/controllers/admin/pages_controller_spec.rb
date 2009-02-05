@@ -22,9 +22,11 @@ describe Admin::PagesController do
     @mock_note ||= mock_model(Note, stubs)
   end
 
+  # TODO 絞り込み一覧を追加したためテスト書くのが難しくなった
   describe "GET /notes/our_note/pages" do
     it "our_noteのページ一覧が全て取得できていること" do
-      Page.should_receive(:find_all_by_note_id).with(@current_note.id).and_return([mock_page])
+      pending
+      Page.should_receive(:admin).with(@current_note.id).and_return([mock_page])
       get :index, :note_id=>@current_note.name
       assigns(:pages).should == [mock_page]
     end

@@ -1,8 +1,14 @@
 class Admin::PagesController < Admin::ApplicationController
+  include PagesModule::PagesUtil
+  layout "admin_notes"
 
   # GET /admin/notes/a_note/pages  
   def index
-    @pages = Page.find_all_by_note_id(requested_note.id)
+    @pages = Page.admin(requested_note.id).
+                  fulltext(params[:keyword]).
+                  authored(*safe_split(params[:authors])).                  
+                  scoped(page_order_white_list(params[:order])).
+                  paginate(paginate_option(Page))
   end
 
   def show
@@ -36,5 +42,6 @@ class Admin::PagesController < Admin::ApplicationController
       flash[:error] = _("Failed to delete a page")
     end
   end
-
 end
+
+

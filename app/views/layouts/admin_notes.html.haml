@@ -1,0 +1,28 @@
+!!! XML
+!!!
+%html{html_attrs("ja")}
+  %head
+    = render :partial => 'shared/common_header'
+  
+  %body
+    #header.note-layout
+      #logo
+        = link_to image_tag("logo.png", :alt=>"SKIP Note - logo", :height=>"15px"), root_path
+
+      = render :partial => 'shared/common_body_header'
+      #current-note= render :partial => 'shared/admin/main_operation'
+
+    #flash_message= render :partial=>"layouts/flash_message"
+    #top= render :partial => 'layouts/top'
+
+    #main
+      #content_for_layout
+        #content
+          .admin-header
+            .user-bar= render :partial => 'shared/admin/note_navi'
+            .clear
+
+          = yield
+
+    #footer
+      = render :partial => 'shared/common_body_footer'

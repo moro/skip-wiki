@@ -2,23 +2,19 @@
   =stylesheet_link_tag "mypage"
   =stylesheet_link_tag "admin/admin"
 
-#contents_container
-  .caption
-    = render :partial => 'shared/admin/user_body_header', :locals=>{:current_path=>admin_root_path}
-  .contents
-    #updated-note
-      %h2= icon_tag('user', "ユーザ一覧")
-      %table.notes-index
-        %tr
-          %th.login&= _('User|Name')
-          %th.login&= _('User|Display name')
-          %th.admin&= _('User|Admin')
-          %th.edit&= _('User|Edit')
-        - for user in @users
-          %tr.item_line
-            %td.name&= user.name
-            %td.login&= user.display_name
-            %td.admin&= _('User|Admin') if user.admin?
-            %td.edit= link_to _("Edit"), edit_admin_user_path(user.id)
+#contents
+  #updated-note
+    %table.notes-index
+      %tr
+        %th.login&= _('User|Name')
+        %th.login&= _('User|Display name')
+        %th.admin&= _('User|Admin')
+        %th.edit&= _('User|Edit')
+      - for user in @users
+        %tr.item_line
+          %td.name&= user.name
+          %td.login&= user.display_name
+          %td.admin&= _('User|Admin') if user.admin?
+          %td.edit= link_to _("Edit"), edit_admin_user_path(user.id)
 
 

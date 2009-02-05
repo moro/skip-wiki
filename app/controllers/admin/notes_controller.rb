@@ -1,4 +1,6 @@
 class Admin::NotesController < Admin::ApplicationController
+  layout "admin_notes"
+
   # GET 
   def index
     @notes = Note.fulltext(params[:keyword])
@@ -32,7 +34,7 @@ class Admin::NotesController < Admin::ApplicationController
       flash[:notice] = _("Note was deleted successfully")
       redirect_to admin_notes_url
     rescue => ex
-      flash[:error] = "Failed to delete a note"
+      flash[:error] = _("Note can't deleted.")
     end
   end
 

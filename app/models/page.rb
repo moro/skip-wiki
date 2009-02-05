@@ -43,6 +43,10 @@ class Page < ActiveRecord::Base
     {:include => :label_index, :conditions => ["#{LabelIndex.quoted_table_name}.id IN (?)", labels]}
   }
 
+  named_scope :admin, proc{|*note_id|
+    {:conditions => ["#{quoted_table_name}.note_id IN (?)", note_id]}
+  }
+
   # TODO 採用が決まったら回帰テスト書く
   named_scope :last_modified_per_notes, proc{|note_ids|
     {:conditions => [<<-SQL, note_ids] }

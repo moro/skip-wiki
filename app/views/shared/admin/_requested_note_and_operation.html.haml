@@ -1,0 +1,12 @@
+%span.title= link_to(@note.display_name, admin_note_page_path(@note, "FrontPage"))
+%span&= @note.description
+%span.operation&= _("menu")
+.note-navi
+  %ul
+    %li= link_to(_("new page"), new_admin_note_page_path(@note))
+    %li= link_to(_("show note"), admin_note_path(@note))
+    %li= link_to(_("note attachments"), admin_note_attachments_path(@note))
+:javascript
+  jQuery(document).ready(function(){
+    $("div#current-note span.operation").click(function(){jQuery(this).nextAll("div.note-navi").toggle()});
+  });

@@ -1,0 +1,11 @@
+%span.title= _("Admin menu")
+%span.operation&= _("menu")
+.note-navi
+  %ul
+    %li= link_to(_("manage users"), admin_root_path)
+    %li= link_to(_("manage notes"), admin_notes_path)
+    %li= link_to(_("manage common files"), admin_notes_path)
+:javascript
+  jQuery(document).ready(function(){
+    $("div#current-note span.operation").click(function(){jQuery(this).nextAll("div.note-navi").toggle()});
+  });

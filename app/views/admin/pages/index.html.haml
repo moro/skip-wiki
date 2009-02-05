@@ -2,31 +2,30 @@
   =stylesheet_link_tag "mypage"
   =stylesheet_link_tag "admin/admin"
 
-#contents_container
-  .caption
-    = render :partial => 'shared/admin/user_body_header', :locals=>{:current_path=>admin_note_pages_path(@note), :search_label=>_('Search pages in %{note}')%{:note=>@note.display_name}}
-  .contents
-    - div_for(current_note, :class=>"app-layout") do
-      .query
-        =link_to_function _("Apply filter.."), "$(this).next('form').toggle(); return false", :class=>"op"
-        - form_tag note_pages_path(@note), query_form_options do
-          %dl
-            = render :partial => 'pages/filter_query'
-            %dt= label_tag "query_label_index_id", h(_("LabelIndices"))
-            %dd
-              - label_opts = options_from_collection_for_select(current_note.label_indices.has_pages, :id, :display_name, params[:label_index_id].to_i)
-              =select_tag("label_index_id", content_tag("option", "&nbsp;",:value=>"") + label_opts, :id=>"query_label_index_id")
+#contents
+  - div_for(@note, :class=>"app-layout") do
+    .query
+      =link_to_function _("Apply filter.."), "$(this).next('form').toggle(); return false", :class=>"op"
+      - form_tag admin_note_pages_path(@note), query_form_options do
+        %dl
+          = render :partial => 'pages/filter_query'
+          %dt= label_tag "query_label_index_id", h(_("LabelIndices"))
+          %dd
+            - label_opts = options_from_collection_for_select(current_note.label_indices.has_pages, :id, :display_name, params[:label_index_id].to_i)
+            =select_tag("label_index_id", content_tag("option", "&nbsp;",:value=>"") + label_opts, :id=>"query_label_index_id")
 
-            =submit_tag _("Filter")
-            =link_to _("Show all"), note_pages_path(current_note), :class => "back"
+          =submit_tag _("Filter")
+          =link_to _("Show all"), admin_note_pages_path(@note), :class => "back"
 
-      .clear
+    .clear
 
-      .pages
-        - if @pages.empty?
-          %p.no-result&= _("The query find no pages.")
-        - else
-          = render(:partial => "shared/admin/pages/pages")
+    .pages
+      - if @pages.empty?
+        %p.no-result&= _("The query find no pages.")
+      - else
+        = render(:partial => "admin/pages/pages")
+        = will_paginate(@pages)
+
 
 
 

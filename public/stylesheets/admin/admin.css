@@ -1,20 +1,74 @@
-div#contents_container .caption div#admin_header {
-  height: 30px;}
-div#contents_container .caption div#admin_header div#admin_title {
-  font-size: 21px;
+html body {
+  background-color: #fafdd2; }
+
+div#main #content_for_layout {
+  background-color: #fafdd2; }
+
+
+div#content .admin-header .user-bar div#admin_title {
+  font-size: 12px;
   float: left; }
-div#contents_container .caption div#admin_header div#user_search {
+
+div#content .admin-header .user-bar div#user_menu {
+  padding-top: 2px;
+  float: left; }
+
+div#content .admin-header {
+  border-bottom: 1px solid silver; }
+
+div#content #contents {
+  margin-top: 10px; }
+
+div#content .admin-header .user-bar div#user_search {
   float: right; 
   padding-top: 5px; }
 
-div#contents_container .caption .tab {
-  height: 1.5em; }
+div#content .admin-header {
+  margin-top: 3px; }
 
-#contents_container .contents .note dl dt{
-  border-bottom: 1px solid gray;
-  width: 40%;
-  margin-left: 30px;
-}
+div#content .admin-header .user-bar div#user_menu {
+  float: left; 
+  margin-top: 15px;}
+
+div#content .admin-header .user-bar div#user_menu .user-navi {
+  position: absolute;
+  left: 300px;
+  z-index: 1;
+  background: white;
+  border: 2px solid gray;
+  display: none; }
+  div#content .admin-header .user-bar div#user_menu .user-navi ul {
+    font-size: 10px;
+    font-weight: normal;
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+    div#content .admin-header .user-bar div#user_menu .user-navi ul li {
+      margin: 3px;
+      border-bottom: 1px solid silver; }
+    div#content .admin-header .user-bar div#user_menu .user-navi ul li:last-child, div#content .admin-header .user-bar div#user_menu .user-navi ul li:last-child {
+      border-bottom: 0; }
+
+div#content #contents .note {
+  position: relative;
+  font-size: 16px; }
+
+div#content #contents .note .query {
+  margin: 2em auto;
+  width: 70%;
+  background: #eeeeee; }
+div#content #contents .query > a {
+  float: right;
+  font-size: 10px; }
+div#content #contents .query > form {
+  clear: right; }
+  .index .query > form dt, .index .query > form input[type=text] {
+    font-size: 13px; }
+  .index .query > form div.commit {
+    float: right; }
+
+div#content #contents div.page {
+  border-top: 0px;}
 
 
 

@@ -2,59 +2,56 @@
   =stylesheet_link_tag "mypage"
   =stylesheet_link_tag "admin/admin"
 
-#contents_container
-  .caption
-    = render :partial => 'shared/admin/user_body_header', :locals=>{:current_path=>admin_notes_path, :search_label=>_('Search Note')}
-  .contents
-    - div_for(@note) do
-      .property
-        %h3
-          =h _("Note Properties") 
-          ="("+@note.display_name+")"
-          %span= link_to(h(_"edit note properties"), edit_admin_note_path(@note.id))
-        %p.explain
-          =sanitize explain_note(@note), :tags => %w[span]
+#contents
+  - div_for(@note) do
+    .property
+      %h3
+        =h _("Note Properties") 
+        ="("+@note.display_name+")"
+        %span= link_to(h(_"edit note properties"), edit_admin_note_path(@note.id))
+      %p.explain
+        =sanitize explain_note(@note), :tags => %w[span]
 
-      .users
-        %h3
-          =h _("Users and Groups")
-          %span= link_to(h(_"edit users permission"), admin_group_path(@note.owner_group))
-          %span= link_to_if false, h(_"add groups"), group_path(current_note.owner_group) # TODO グループ追加
-        %ul
-          - unless (us = @note.owner_group.users).empty?
-            %li.explain= explain_users(us)
-          - unless (gs = @note.groups - [@note.owner_group]).empty?
-            %li.explain= explain_groups(gs)
+    .users
+      %h3
+        =h _("Users and Groups")
+        %span= link_to(h(_"edit users permission"), admin_group_path(@note.owner_group))
+        %span= link_to_if false, h(_"add groups"), group_path(current_note.owner_group) # TODO グループ追加
+      %ul
+        - unless (us = @note.owner_group.users).empty?
+          %li.explain= explain_users(us)
+        - unless (gs = @note.groups - [@note.owner_group]).empty?
+          %li.explain= explain_groups(gs)
 
-      .labels
-        %h3&= _("label index")
-        %table.label-indices
-          %tbody
-            - current_note.label_indices.each do |l_idx|
-              %tr
-                - form_opt = {:url=>note_label_index_path(@note, l_idx)}
-                %td.inplace-edit
-                  .show
-                    = labelize(l_idx, false, @note)
-                    %span.op&= _("Click to edit")
-                  .edit{:style=>"display:none"}
-                    - form_for :label_index, l_idx, form_opt.merge(:html=>{:method=>"PUT",:style=>"display:visible"}) do |f|
-                      = f.text_field :display_name, :size=>12, :id=>"#{l_idx.id}_display_name"
-                      = f.text_field :color, :maxlength=>7, :id=>"#{l_idx.id}_display_color"
-                      = f.submit _("Update")
-                      %span.op&= _("Cancel")
+    .labels
+      %h3&= _("label index")
+      %table.label-indices
+        %tbody
+          - current_note.label_indices.each do |l_idx|
+            %tr
+              - form_opt = {:url=>note_label_index_path(@note, l_idx)}
+              %td.inplace-edit
+                .show
+                  = labelize(l_idx, false, @note)
+                  %span.op&= _("Click to edit")
+                .edit{:style=>"display:none"}
+                  - form_for :label_index, l_idx, form_opt.merge(:html=>{:method=>"PUT",:style=>"display:visible"}) do |f|
+                    = f.text_field :display_name, :size=>12, :id=>"#{l_idx.id}_display_name"
+                    = f.text_field :color, :maxlength=>7, :id=>"#{l_idx.id}_display_color"
+                    = f.submit _("Update")
+                    %span.op&= _("Cancel")
 
-                %td.delete
-                  - form_for :label_index, l_idx, form_opt.merge(:html =>{:method=>"DELETE"}) do |f|
-                    = f.submit _("Delete")
+              %td.delete
+                - form_for :label_index, l_idx, form_opt.merge(:html =>{:method=>"DELETE"}) do |f|
+                  = f.submit _("Delete")
 
-        .new
-          - form_for(LabelIndex.new, :url=>note_label_indices_path(current_note)) do |f|
-            = f.label(:display_name, _("add labels"))
-            %br
-            = f.text_field :display_name, :size=>16
-            = f.text_field :color, :size=>7
-            = f.submit _("Create")
+      .new
+        - form_for(LabelIndex.new, :url=>note_label_indices_path(current_note)) do |f|
+          = f.label(:display_name, _("add labels"))
+          %br
+          = f.text_field :display_name, :size=>16
+          = f.text_field :color, :size=>7
+          = f.submit _("Create")
 
 :javascript
   jQuery(function(){ $("div.labels").manageLabel() });

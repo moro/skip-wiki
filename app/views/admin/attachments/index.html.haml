@@ -2,34 +2,30 @@
   =stylesheet_link_tag "mypage"
   =stylesheet_link_tag "admin/admin"
 
-#contents_container
-  .caption
-    = render :partial => 'shared/admin/user_body_header', :locals=>{:current_path=>admin_notes_path, :search_label=>_('Search Note')}
-  .content
-    - div_for(current_note, :class=>"app-layout") do
-      %h2&= _("%{title}'s attachments") % {:title => current_note.display_name }
-      .attachments
-        %h3&= _("Attached files")
-        %table
-          - @attachments.each do |at|
-            %tr
-              %td&= at.content_type
-              %td&= at.filename
-              %td&= at.display_name
-              %td&= number_to_human_size(at.size)
-              %td&= at.updated_at.to_s
-              %td= link_to _("Download"), note_attachment_path(@note, at)
-              %td= link_to _("Delete"), admin_note_attachment_path(@note, at), :method => :delete
+#contents
+  - div_for(current_note, :class=>"app-layout") do
+    .attachments
+      %h3&= _("Attached files")
+      %table
+        - @attachments.each do |at|
+          %tr
+            %td&= at.content_type
+            %td&= at.filename
+            %td&= at.display_name
+            %td&= number_to_human_size(at.size)
+            %td&= at.updated_at.to_s
+            %td= link_to _("Download"), note_attachment_path(@note, at)
+            %td= link_to _("Delete"), admin_note_attachment_path(@note, at), :method => :delete
 
-      .attachment.upload
-        %h3&= _("Attach file(s)")
-        - form_for(:attachment, :url=> admin_note_attachments_url(@note),:html=>{:multipart=>true}) do |f|
-          %dl
-            %dt= f.label :display_name, h(_"Attachment|Display name")
-            %dd= f.text_field :display_name
+    .attachment.upload
+      %h3&= _("Attach file(s)")
+      - form_for(:attachment, :url=> admin_note_attachments_url(@note),:html=>{:multipart=>true}) do |f|
+        %dl
+          %dt= f.label :display_name, h(_"Attachment|Display name")
+          %dd= f.text_field :display_name
 
-          %dt= f.label :uploaded_data, h(_"Attachment|Upload Data")
-          %dd= f.file_field :uploaded_data
+        %dt= f.label :uploaded_data, h(_"Attachment|Upload Data")
+        %dd= f.file_field :uploaded_data
 
-          = submit_tag h(_"Upload")
+        = submit_tag h(_"Upload")
 

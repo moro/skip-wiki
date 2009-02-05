@@ -320,5 +320,18 @@ describe Page do
       Page.authored("quentin").fulltext("foobar").should == []
     end
   end
+
+  describe ".admin" do
+    fixtures :notes
+    before do
+      @page = Page.new(@valid_attributes)
+      @page.edit("hogehogehoge", mock_model(User))
+      @page.save!
+    end
+ 
+    it "note_id=1に関連するページが取得できること" do
+      Page.admin(1).should == [@page]
+    end
+  end
 end
 

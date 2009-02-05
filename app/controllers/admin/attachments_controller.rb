@@ -1,5 +1,5 @@
 class Admin::AttachmentsController < Admin::ApplicationController
-
+  layout "admin_notes"
   def index
     @attachments = requested_note.attachments
   end

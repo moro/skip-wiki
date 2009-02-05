@@ -2,23 +2,19 @@
   =stylesheet_link_tag "mypage"
   =stylesheet_link_tag "admin/admin"
 
-#contents_container
-  .caption
-    = render :partial => 'shared/admin/user_body_header', :locals=>{:current_path=>admin_accounts_path, :search_label=>_('Search Account')}
-  .contents
-    #updated-note
-      %h2= icon_tag('user', "アカウント一覧")
-      %table.notes-index
-        %tr
-          %th.login&= _('Account|Login')
-          %th.name&= _('Account|Name')
-          %th.email&= _('Account|Email')
-          %th.identity&= _('Account|Identity url')
-          %th.edit&= _('Account|Edit')
-        - for account in @accounts
-          %tr.item_line
-            %td.login&= account.login
-            %td.name&= account.name
-            %td.email&= account.email
-            %td.identity&= account.identity_url
-            %td.edit= link_to "編集する", edit_admin_account_path(account.id)
+#contents
+  #updated-note
+    %table.notes-index
+      %tr
+        %th.login&= _('Account|Login')
+        %th.name&= _('Account|Name')
+        %th.email&= _('Account|Email')
+        %th.identity&= _('Account|Identity url')
+        %th.edit&= _('Account|Edit')
+      - for account in @accounts
+        %tr.item_line
+          %td.login&= account.login
+          %td.name&= account.name
+          %td.email&= account.email
+          %td.identity&= account.identity_url
+          %td.edit= link_to _("Edit"), edit_admin_account_path(account.id)
