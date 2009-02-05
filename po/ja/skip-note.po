@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2009-01-28 22:42+0900\n"
+"POT-Creation-Date: 2009-02-05 10:59+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -101,11 +101,11 @@ msgstr "「%{page}」を作成しました。"
 msgid "The page %{page} is successfully updated"
 msgstr "「%{page}」を更新しました。"
 
-#: app/controllers/sessions_controller.rb:16
+#: app/controllers/sessions_controller.rb:21
 msgid "You have been logged out."
 msgstr "ログアウトしました。"
 
-#: app/controllers/sessions_controller.rb:50
+#: app/controllers/sessions_controller.rb:56
 msgid "Logged in successfully"
 msgstr "ログインしました。"
 
@@ -114,10 +114,18 @@ msgid "Jump to Note"
 msgstr "ノートに移動"
 
 #: app/helpers/application_helper.rb:20
+msgid "Hour"
+msgstr "時"
+
+#: app/helpers/application_helper.rb:23
+msgid "Min"
+msgstr "分"
+
+#: app/helpers/application_helper.rb:34
 msgid "[Click to hide]"
 msgstr "[クリックして消去]"
 
-#: app/helpers/application_helper.rb:48
+#: app/helpers/application_helper.rb:62
 msgid "Back to %{page}"
 msgstr "%{page}に戻る"
 
@@ -620,7 +628,7 @@ msgid "Page|Name"
 msgstr "ページ識別子"
 
 #: app/models/page.rb:- app/views/admin/pages/_pages.html.haml:5
-#: app/views/layouts/pages.html.haml:39 app/views/notes/dashboard.html.haml:37
+#: app/views/layouts/pages.html.haml:40 app/views/notes/dashboard.html.haml:37
 #: app/views/pages/_pages.html.haml:5 app/views/pages/index.html.haml:22
 #: app/views/pages/new.html.haml:18
 msgid "Page|Display name"
@@ -653,11 +661,11 @@ msgstr ""
 msgid "Page|Updated at"
 msgstr "更新日時"
 
-#: app/models/page.rb:100 app/views/notes/dashboard.html.haml:59
+#: app/models/page.rb:102 app/views/notes/dashboard.html.haml:59
 msgid "FrontPage"
 msgstr "表紙"
 
-#: app/models/page.rb:187
+#: app/models/page.rb:198
 msgid "the name `%{n}' is reserved"
 msgstr "ページ識別子は「%{n}」意外にしてください。"
 
@@ -882,7 +890,7 @@ msgstr "[クリックして編集]"
 
 #: app/views/admin/notes/show.html.haml:42
 #: app/views/label_indices/_new.html.haml:17
-#: app/views/layouts/pages.html.haml:41
+#: app/views/layouts/pages.html.haml:42
 msgid "Cancel"
 msgstr "取消"
 
@@ -1013,7 +1021,7 @@ msgstr "から"
 msgid "edit content"
 msgstr "ページを編集"
 
-#: app/views/histories/new.html.haml:18 app/views/layouts/pages.html.haml:39
+#: app/views/histories/new.html.haml:18 app/views/layouts/pages.html.haml:40
 #: app/views/pages/edit.html.haml:13
 msgid "Update %{entity}"
 msgstr "%{entity}を更新"
@@ -1273,11 +1281,11 @@ msgstr "%{label}ラベルの次のページ"
 msgid "Last in the label."
 msgstr "このラベルでの最後のページです"
 
-#: app/views/pages/_page_form.html.haml:17
+#: app/views/pages/_page_form.html.haml:16
 msgid "Page|Label indices"
 msgstr "ラベル識別子"
 
-#: app/views/pages/_page_form.html.haml:19
+#: app/views/pages/_page_form.html.haml:18
 msgid "Add label"
 msgstr "ラベルを追加"
 
