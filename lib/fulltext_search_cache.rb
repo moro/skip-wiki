@@ -5,7 +5,7 @@ class FulltextSearchCache
   DEFAULT_OPTIONS = {
     :cache_dir => File.expand_path("fts_cache", Rails.root),
     :cache_type_dirs => %w[app_cache app_cache_meta],
-    :entity_dirs => %w[note page],
+    :entity_dirs => %w[note page attachment],
     :logger    => Rails.logger,
     :limit => 1_000,
     :url_prefix => "http://test.openskip.org/skip-knowledge",
@@ -17,6 +17,7 @@ class FulltextSearchCache
     [
       [Note, NoteCacheBuilder],
       [Page.scoped(:include => [:note, :histories]), PageCacheBuilder],
+      [Attachment, AttachmentCacheBuilder],
     ].each{|m, b| mediator.build(m, b) }
     mediator.finish
   end

@@ -22,10 +22,10 @@ class FulltextSearchCache
       publicities << "public" if @page.published? && @page.note.public_readable?
       {
         :title => @page.display_name,
-        :contents_type => "knowledge-note",
+        :contents_type => "knowledge-page",
         :publification_symbols => publicities.join(" "),
         :url => URI.join(@url_prefix, "notes/#{ERB::Util.u(@page.note.name)}/pages/#{ERB::Util.u(@page.name)}").to_s,
-        :icon_url => URI.join(@url_prefix, "icons/page.gif").to_s,
+        :icon_url => URI.join(@url_prefix, "/icons/page.gif").to_s,
       }
     end
   end
