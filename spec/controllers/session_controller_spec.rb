@@ -21,4 +21,35 @@ describe SessionsController do
     end
     it{ response.should redirect_to "http://openid.example.com/logout" }
   end
+
+  describe ".translate_ax_response w/ axschema.org" do
+    before do
+      data = {
+        "http://axschema.org/contact/email" => ["email@example.com"],
+        "http://axschema.org/namePerson"   => ["Human Name"],
+        "http://axschema.org/namePerson/friendly" => ["asciiname"],
+      }
+      @translated = SessionsController.translate_ax_response(data)
+    end
+    it{ @translated[:name].should == "asciiname" }
+    it{ @translated[:display_name].should == "Human Name" }
+    it{ @translated[:email].should == "email@example.com" }
+  end
+
+  describe ".translate_ax_response w/ both axschema.org and schema.openid.net" do
+    before do
+      data = {
+        "http://schema.openid.net/namePerson"=>["Human Name"],
+        "http://schema.openid.net/contact/email"=>["email@example.com"],
+        "http://schema.openid.net/namePerson/friendly"=>["asciiname"],
+        "http://axschema.org/namePerson"=>[],
+        "http://axschema.org/contact/email"=>[],
+        "http://axschema.org/namePerson/friendly"=>[],
+      }
+      @translated = SessionsController.translate_ax_response(data)
+    end
+    it{ @translated[:name].should == "asciiname" }
+    it{ @translated[:display_name].should == "Human Name" }
+    it{ @translated[:email].should == "email@example.com" }
+  end
 end

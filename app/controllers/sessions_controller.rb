@@ -2,6 +2,26 @@
 class SessionsController < ApplicationController
   before_filter :login_required, :except=>%w[new create]
 
+  module AxHandler
+    def ax_attributes
+      namespace = ["http://axschema.org", "http://schema.openid.net"]
+      attributes = %w[/contact/email /namePerson /namePerson/friendly]
+      { :email => namespace.map{|ns| ns + "/contact/email" },
+        :display_name  => namespace.map{|ns| ns + "/namePerson" },
+        :name  => namespace.map{|ns| ns + "/namePerson/friendly" },
+      }
+    end
+
+    def translate_ax_response(fetched)
+      returning({}) do |res|
+        ax_attributes.each do |k, vs|
+          fetched.each{|fk, (fv,_)| res[k] = fv if !fv.blank? && vs.include?(fk) }
+        end
+      end
+    end
+  end
+  extend AxHandler
+
   # render new.rhtml
   def new
   end
@@ -49,7 +69,7 @@ class SessionsController < ApplicationController
       end
     end
   rescue StandardError => ex
-    logger.debug(ex)
+    logger.debug{ [ex.message, ex.backtrace].flatten.join("\n") }
     login_failed(params.merge(:openid_url=>openid_url))
   end
 
@@ -62,15 +82,6 @@ class SessionsController < ApplicationController
     redirect_back_or_default(redirect)
   end
 
-  def self.ax_attributes
-    namespace = ["http://axschema.org", "http://schema.openid.net"]
-    attributes = %w[/contact/email /namePerson /namePerson/friendly]
-    { :email => namespace.map{|ns| ns + "/contact/email" },
-      :name  => namespace.map{|ns| ns + "/namePerson" },
-      :display_name  => namespace.map{|ns| ns + "/namePerson/friendly" },
-    }
-  end
-
   # log login faulure. and re-render sessions/new
   def login_failed(assigns=params)
     note_failed_signin(assigns[:openid_url])
@@ -81,8 +92,13 @@ class SessionsController < ApplicationController
     render :action => 'new'
   end
 
-  def signup_with_openid(identity_url, sreg=nil)
-    @account = Account.new(:identity_url => session[:identity_url] = identity_url)
+  def signup_with_openid(identity_url, ax_attributes = {})
+    session[:identity_url] = identity_url
+    data = self.class.translate_ax_response(ax_attributes)
+    @account = Account.new(:email => data[:email])
+    @account.build_user(data.slice(:name, :display_name))
+    @account.valid?
+
     render :template=>"accounts/new"
   end
 end
