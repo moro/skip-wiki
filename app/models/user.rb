@@ -1,6 +1,11 @@
 class User < ActiveRecord::Base
   has_friendly_id :name
 
+  validates_presence_of     :name
+  validates_length_of       :name, :within => 3..40
+  validates_uniqueness_of   :name
+  validates_format_of       :name, :with => Authentication.login_regex, :message => Authentication.bad_login_message
+
   has_many :memberships, :dependent => :destroy do
     def replace_by_type(klass, *groups)
       remains = find(:all, :include=>:group).select{|m| m.group.backend_type != klass.name }
@@ -25,6 +30,10 @@ class User < ActiveRecord::Base
     w = "%#{word}%"
     {:conditions => ["name LIKE ? OR display_name LIKE ?", w, w]}
   }
+
+  def name=(value)
+    write_attribute :name, (value ? value.downcase : nil)
+  end
 
   def skip_uid
     skip_account ? skip_account.skip_uid : SkipAccount.skip_uid(account.identity_url)
