@@ -82,3 +82,14 @@ Rails::Initializer.run do |config|
   # config.active_record.observers = :cacher, :garbage_collector
 end
 
+def load_initial_settings(name = "config/initial_settings.yml")
+  if File.readable?(path = File.expand_path(name, Rails.root))
+    conf = YAML.load_file(path)
+    conf[Rails.env] || {}
+  else
+    {}
+  end
+end
+
+INITIAL_SETTINGS = load_initial_settings.with_indifferent_access.freeze
+

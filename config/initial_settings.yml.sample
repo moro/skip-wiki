@@ -1,0 +1,15 @@
+production:
+  skip_collabolation:
+    fulltext_search:
+      endpoint:  "http://product.skip.local/search/full_text_search"
+      query_name: "full_text_query"
+
+development:
+  skip_collabolation:
+    fulltext_search:
+      endpoint:  "http://localhost:3002/search/full_text_search"
+      query_name: "full_text_query"
+
+test:
+  &development
+
