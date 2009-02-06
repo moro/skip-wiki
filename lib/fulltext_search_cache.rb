@@ -3,8 +3,7 @@ require "fileutils"
 
 class FulltextSearchCache
   DEFAULT_OPTIONS = {
-    :cache_dir => File.expand_path("fts_cache", Rails.root),
-    :cache_type_dirs => %w[app_cache app_cache_meta],
+    :cache_dir => File.expand_path("fts_cache/app_cache", Rails.root),
     :entity_dirs => %w[note page attachment],
     :logger    => Rails.logger,
     :limit => 1_000,
@@ -59,15 +58,20 @@ class FulltextSearchCache
   end
 
   def cache_path(builder)
-    File.expand_path(builder.filename, cache_dir + "/app_cache/")
+    File.expand_path(builder.filename, cache_dir)
   end
 
   def meta_path(builder)
-    File.expand_path(builder.filename, cache_dir + "/app_cache_meta/")
+    File.expand_path(builder.filename, meta_dir)
+  end
+
+  def meta_dir
+    dir, base = File.split(cache_dir)
+    File.expand_path(base + "_meta", dir)
   end
 
   def prepare_dir
-    @options[:cache_type_dirs].each do |dir|
+    [cache_dir, meta_dir].each do |dir|
       @options[:entity_dirs].each do |e|
         d = File.expand_path(File.join(dir, e), cache_dir)
         FileUtils.mkdir_p(d) unless File.directory?(d)

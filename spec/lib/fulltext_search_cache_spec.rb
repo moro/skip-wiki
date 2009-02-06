@@ -2,10 +2,10 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe FulltextSearchCache, "new('path/to/cache/root', :since => 15.seconds.ago)", :type => :model do
   before do
-    @fts_cache = FulltextSearchCache.new(:cache_dir => 'path/to/cache/root', :url_prefix => "http://example.com", :since => 15.seconds.ago)
+    @fts_cache = FulltextSearchCache.new(:cache_dir => 'path/to/cache/root/app_cache', :url_prefix => "http://example.com", :since => 15.seconds.ago)
   end
 
-  it{ @fts_cache.cache_dir.should == 'path/to/cache/root' }
+  it{ @fts_cache.cache_dir.should == 'path/to/cache/root/app_cache' }
 
   describe "出力先パスの算出" do
     before do
