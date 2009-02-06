@@ -53,7 +53,7 @@ Before do
 end
 
 Given(/^ノート"(.*)"が作成済みである/) do |note_name|
-  builder = NoteBuilder.new(@account.user, valid_attributes[:note].merge(name_options(note_name)))
+  builder = NoteBuilder.new(@user, valid_attributes[:note].merge(name_options(note_name)))
   builder.note.save!
   builder.front_page.save!
   @note = builder.note
@@ -62,7 +62,7 @@ end
 Given( /^そのノートにはページ"(.*)"が作成済みである$/)  do |page_name|
   attrs = valid_attributes[:page].merge(name_options(page_name))
   attrs[:content] = "Content for the page `#{page_name}'"
-  @page = @note.pages.add(attrs, @account.user)
+  @page = @note.pages.add(attrs, @user)
   @page.save!
 end
 

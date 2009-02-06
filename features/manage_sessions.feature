@@ -1,11 +1,12 @@
 フィーチャ: セッション管理
-  ログイン状態や権限を管理するため、ユーザの登録とログインができるようにしたい。
+  利用者として
+  ユーザ登録とログインをしたい
 
   シナリオ: サインアップ
     前提 I log in with OpenId "http://localhost:3200/user/moro"
 
-    もし I fill in "Login" with "moro"
-    かつ I fill in "Email" with "moro@example.com"
+    もし I fill in "User|Name" with "moro"
+    かつ I fill in "User|Display Name" with "A User Human Name"
     かつ I press "Sign up"
 
     ならば I should see "Thanks for signing up!"
