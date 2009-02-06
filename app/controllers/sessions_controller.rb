@@ -5,9 +5,8 @@ class SessionsController < ApplicationController
   module AxHandler
     def ax_attributes
       namespace = ["http://axschema.org", "http://schema.openid.net"]
-      attributes = %w[/contact/email /namePerson /namePerson/friendly]
-      { :email => namespace.map{|ns| ns + "/contact/email" },
-        :display_name  => namespace.map{|ns| ns + "/namePerson" },
+      attributes = %w[/namePerson /namePerson/friendly]
+      { :display_name  => namespace.map{|ns| ns + "/namePerson" },
         :name  => namespace.map{|ns| ns + "/namePerson/friendly" },
       }
     end
@@ -95,11 +94,9 @@ class SessionsController < ApplicationController
   def signup_with_openid(identity_url, ax_attributes = {})
     session[:identity_url] = identity_url
     data = self.class.translate_ax_response(ax_attributes)
-    @account = Account.new(:email => data[:email])
-    @account.build_user(data.slice(:name, :display_name))
-    @account.valid?
+    @user = User.new(data)
 
-    render :template=>"accounts/new"
+    render :template=>"users/new"
   end
 end
 
