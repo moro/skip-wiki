@@ -34,6 +34,20 @@ describe SessionsController do
       it{ session[:identity_url].should == "http://example.com/alice" }
       it{ response.should render_template( "users/new") }
     end
+
+    describe "with FixedOp.sso_enabled? => true/ update User's display name" do
+      fixtures :users
+      before do
+        FixedOp.should_receive(:sso_enabled?).and_return true
+        Account.should_receive(:find_by_identity_url).with("http://example.com/alice").
+          and_return(account = mock_model(Account))
+        account.should_receive(:user).and_return(users(:quentin))
+
+        post :create
+      end
+      it{ User.find(session[:user_id]).display_name.should == "fullname" }
+      it{ flash[:notice].should_not be_blank }
+    end
   end
 
   describe "GET destroy #SSOでない場合" do

@@ -62,7 +62,7 @@ class SessionsController < ApplicationController
       if  result.successful?
         # TODO クエリ最適化
         if account = Account.find_by_identity_url(identity_url)
-          logged_in_successful(account.user, session[:return_to] || root_path)
+          logged_in_successful(account.user, personal_data, session[:return_to] || root_path)
         else
           signup_with_openid(identity_url, personal_data)
         end
@@ -75,12 +75,17 @@ class SessionsController < ApplicationController
     login_failed(params.merge(:openid_url=>openid_url))
   end
 
-  def logged_in_successful(user, redirect=root_path)
+  def logged_in_successful(user, personal_data, redirect=root_path)
+    if FixedOp.sso_enabled?
+      data = self.class.translate_ax_response(personal_data)
+      user.update_attributes!(data.slice(:display_name))
+      flash[:notice] = _("Successfully synchronized your display name with OP's")
+    end
     reset_session
     self.current_user = user
     new_cookie_flag = (params[:remember_me] == "1")
     handle_remember_cookie! new_cookie_flag
-    flash[:notice] = _("Logged in successfully")
+    flash[:notice] ||= _("Logged in successfully")
     redirect_back_or_default(redirect)
   end
 
