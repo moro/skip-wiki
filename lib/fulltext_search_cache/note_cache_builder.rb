@@ -22,8 +22,8 @@ class FulltextSearchCache
       {
         :title => @note.display_name,
         :contents_type => "knowledge-note",
-        :publification_symbols => publicities.join(" "),
-        :url => URI.join(@url_prefix, "notes/#{ERB::Util.u(@note.name)}").to_s,
+        :publication_symbols => publicities.join(" "),
+        :link_url => URI.join(@url_prefix, "notes/#{ERB::Util.u(@note.name)}").to_s,
         :icon_url => URI.join(@url_prefix, "icons/note.gif").to_s,
       }
     end

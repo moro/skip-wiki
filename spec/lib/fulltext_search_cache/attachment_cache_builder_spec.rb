@@ -19,12 +19,12 @@ describe FulltextSearchCache::AttachmentCacheBuilder, :type => :model do
   end
 
   describe "メタデータ" do
-    it "#to_metaのpublification_symbolsは'note:{@attachment.note_id} public'であること" do
-      @builder.to_meta[:publification_symbols].should == "note:#{@attachment.attachable_id} public"
+    it "#to_metaのpublication_symbolsは'note:{@attachment.note_id} public'であること" do
+      @builder.to_meta[:publication_symbols].should == "note:#{@attachment.attachable_id} public"
     end
 
     it {
-      @builder.to_meta[:url].should == "http://example.com/skip-knowledge/notes/our_note/attachments/#{@attachment.id}"
+      @builder.to_meta[:link_url].should == "http://example.com/skip-knowledge/notes/our_note/attachments/#{@attachment.id}"
     }
   end
 

@@ -18,11 +18,11 @@ describe FulltextSearchCache::NoteCacheBuilder, :type => :model do
     Nokogiri.HTML(@builder.to_cache).search("title").text.should == @note.display_name
   end
 
-  it "#to_metaのpublification_symbolsは'note:{@note.id} public'であること" do
-    @builder.to_meta[:publification_symbols].should == "note:#{@note.id} public"
+  it "#to_metaのpublication_symbolsは'note:{@note.id} public'であること" do
+    @builder.to_meta[:publication_symbols].should == "note:#{@note.id} public"
   end
 
-  it "#to_metaのurlは'http://example.com/skip-knowledge/notes/\#{@note.name}'であること" do
-    @builder.to_meta[:url].should == "http://example.com/skip-knowledge/notes/#{@note.name}"
+  it "#to_metaのlink_urlは'http://example.com/skip-knowledge/notes/\#{@note.name}'であること" do
+    @builder.to_meta[:link_url].should == "http://example.com/skip-knowledge/notes/#{@note.name}"
   end
 end

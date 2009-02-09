@@ -18,12 +18,12 @@ describe FulltextSearchCache::PageCacheBuilder, :type => :model do
     Nokogiri.HTML(@builder.to_cache).search("title").text.should == @page.display_name
   end
 
-  it "#to_metaのpublification_symbolsは'note:{@page.id} public'であること" do
-    @builder.to_meta[:publification_symbols].should == "note:#{@page.id} public"
+  it "#to_metaのpublication_symbolsは'note:{@page.id} public'であること" do
+    @builder.to_meta[:publication_symbols].should == "note:#{@page.id} public"
   end
 
-  it "#to_metaのurlは'http://example.com/skip-knowledge/notes/\#{@page.note.name}/pages/\#{@page.name}'であること" do
-    @builder.to_meta[:url].should == "http://example.com/skip-knowledge/notes/#{@page.note.name}/pages/#{@page.name}"
+  it "#to_metaのlink_urlは'http://example.com/skip-knowledge/notes/\#{@page.note.name}/pages/\#{@page.name}'であること" do
+    @builder.to_meta[:link_url].should == "http://example.com/skip-knowledge/notes/#{@page.note.name}/pages/#{@page.name}"
   end
 
   describe "#write_meta" do

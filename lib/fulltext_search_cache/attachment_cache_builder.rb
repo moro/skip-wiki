@@ -28,8 +28,8 @@ class FulltextSearchCache
       {
         :title => @attachment.display_name,
         :contents_type => "knowledge-attachment",
-        :publification_symbols => publicities.join(" "),
-        :url => URI.join(@url_prefix, "notes/#{ERB::Util.u(@attachment.attachable.name)}/attachments/#{ERB::Util.u(@attachment.id)}").to_s,
+        :publication_symbols => publicities.join(" "),
+        :link_url => URI.join(@url_prefix, "notes/#{ERB::Util.u(@attachment.attachable.name)}/attachments/#{ERB::Util.u(@attachment.id)}").to_s,
         :icon_url => URI.join(@url_prefix, "/icons/attachment.gif").to_s,
       }
     end
