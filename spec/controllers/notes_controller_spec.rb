@@ -40,6 +40,8 @@ describe NotesController do
         and_return(users(:quentin))
 
       Note.should_receive(:find).and_return([@target])
+
+      request.env["HTTP_X_SECRET_KEY"] = INITIAL_SETTINGS['secret_key']
       xhr :get, :index, :user => "--IDENTITY--"
     end
 
@@ -49,6 +51,22 @@ describe NotesController do
 
     it "should expose all notes as @notes" do
       assigns[:notes].should == [@target]
+    end
+  end
+
+  describe "responding to GET index with :user without secret_key" do
+    it do
+      request.env["HTTP_X_SECRET_KEY"] = "invalid"
+      xhr :get, :index, :user => "--IDENTITY--"
+
+      response.code.should == "403"
+    end
+
+    it do
+      request.env["HTTP_X_SECRET_KEY"] = nil
+      xhr :get, :index, :user => "--IDENTITY--"
+
+      response.code.should == "403"
     end
   end
 

@@ -1,21 +1,21 @@
 production:
-  api_remote_ip:
-    - "127.0.0.1"
-    - "172.16.23.0/24"
   skip_collabolation:
     fulltext_search:
       endpoint:  "http://product.skip.local/search/full_text_search"
       query_name: "full_text_query"
+  secret_key: "---FIXME----BEFORE---DEPLOYMENT---"
 
 development:
-  api_remote_ip:
-    - "127.0.0.1"
-    - "192.168.0.0/24"
   skip_collabolation:
     fulltext_search:
       endpoint:  "http://localhost:3002/search/full_text_search"
       query_name: "full_text_query"
+  secret_key: "1f3c30382d9f2060baf14f0cdb102fe2"
 
 test:
-  &development
+  skip_collabolation:
+    fulltext_search:
+      endpoint:  "http://localhost:3002/search/full_text_search"
+      query_name: "full_text_query"
+  secret_key: "1f3c30382d9f2060baf14f0cdb102fe2"
 

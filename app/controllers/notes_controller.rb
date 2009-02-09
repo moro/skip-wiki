@@ -1,10 +1,11 @@
-require 'ipaddr'
+require 'web_service_util'
 
 class NotesController < ApplicationController
   before_filter :login_required, :except => %w[index]
   before_filter :authenticate_with_api_or_login_required, :only => %w[index]
   before_filter :explicit_user_required, :except => %w[index new create dashboard]
   DASHBOARD_ITEM_NUM = 5
+  include ForServicesModule
 
   layout :select_layout
 
@@ -103,12 +104,7 @@ class NotesController < ApplicationController
 
   private
   def authenticate_with_api_or_login_required
-    # TODO fixup api condition/
-    if params[:user] && INITIAL_SETTINGS[:api_remote_ip].any?{|addr| IPAddr.new(addr).include?(request.remote_ip) }
-      true
-    else
-      login_required
-    end
+    params[:user].blank? ? login_required : check_secret_key
   end
 
   def note_to_json(note)
