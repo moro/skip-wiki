@@ -13,6 +13,10 @@ class FixedOp
   end
 
   @@sso_openid_provider_url = (defined? FIXED_OPENID_SERVER_URL) ? FIXED_OPENID_SERVER_URL : nil
+  def self.sso_enabled?
+    !!sso_openid_provider_url
+  end
+
   def self.sso_openid_provider_url
     @@sso_openid_provider_url
   end
