@@ -60,4 +60,49 @@ describe UsersController do
     it{ assigns(:user).name.should == "" }
     it{ assigns(:user).display_name.should == "Human Name" }
   end
+
+  describe "Edit and Update" do
+    before do
+      controller.stub!(:login_required).and_return(true)
+      controller.stub!(:current_user).and_return(@user = mock_model(User))
+    end
+
+    describe "get :edit when sso_enabled" do
+      before do
+        FixedOp.should_receive(:sso_enabled?).and_return true
+        get :edit
+      end
+
+      it{ response.should be_redirect }
+      it{ flash[:warn].should_not be_blank }
+    end
+
+    describe "get :edit when disabled" do
+      before do
+        FixedOp.should_receive(:sso_enabled?).and_return false
+        get :edit, :id => "others"
+      end
+
+      it{ response.code.should == "403" }
+    end
+
+    describe "get :edit when disabled and valid user" do
+      before do
+        FixedOp.should_receive(:sso_enabled?).and_return false
+        get :edit, :id => @user.to_param
+      end
+
+      it{ response.code.should == "200" }
+    end
+
+    describe "post :update when sso_enabled" do
+      before do
+        FixedOp.should_receive(:sso_enabled?).and_return true
+        post :update
+      end
+
+      it{ response.should be_redirect }
+      it{ flash[:warn].should_not be_blank }
+    end
+  end
 end

@@ -1,16 +1,5 @@
-%h1= _("Sign up as a new user")
-= error_messages_for :account
+#content
+  %h1= _("Sign up as a new user")
+  = error_messages_for :user
 
-- form_for @user  do |f|
-  %table.input
-    %tr.user_name
-      %th= f.label :name, _("User|Name")
-      %td= FixedOp.sso_enabled? ? @user.name : f.text_field(:name)
-    %tr.user_display_name
-      %th= f.label :display_name, _("User|Display name")
-      %td= FixedOp.sso_enabled? ? @user.display_name : f.text_field(:display_name)
-    %tr.identity-url
-      %th&= _("OpenID URL")
-      %td&= session[:identity_url]
-  = submit_tag _("Sign up")
-
+  .app-layout= render :partial => 'users/form'

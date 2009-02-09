@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :login_required, :except=>%w[new create]
+  before_filter :cant_modify_under_sso, :only => %w[edit update]
 
   def create
     logout_keeping_session!
@@ -20,5 +21,20 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+  end
+
+  def edit
+    @user = current_user
+    head(:forbidden) unless @user.to_param == params[:id]
+  end
+
+  private
+  def cant_modify_under_sso
+    if FixedOp.sso_enabled?
+      flash[:warn] = _("Cannot modify user information manually. Logout and login again to update.")
+      redirect_to(:back) rescue redirect_to(root_path)
+    else
+      true
+    end
   end
 end

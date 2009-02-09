@@ -1,0 +1,8 @@
+= render :partial => 'users/side_menu'
+
+#content
+  %h1= _("Edit user information")
+  = error_messages_for :user
+
+  .app-layout= render :partial => 'form'
+
