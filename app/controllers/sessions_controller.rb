@@ -3,6 +3,9 @@ class SessionsController < ApplicationController
   before_filter :login_required, :except=>%w[new create]
 
   module AxHandler
+    def self.included(base)
+      base.hide_action :ax_attributes, :translate_ax_response
+    end
     def ax_attributes
       namespace = ["http://axschema.org", "http://schema.openid.net"]
       attributes = %w[/namePerson /namePerson/friendly]
@@ -94,6 +97,7 @@ class SessionsController < ApplicationController
   def signup_with_openid(identity_url, ax_attributes = {})
     session[:identity_url] = identity_url
     data = self.class.translate_ax_response(ax_attributes)
+    session[:user] = data if FixedOp.sso_enabled?
     @user = User.new(data)
 
     render :template=>"users/new"

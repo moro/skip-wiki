@@ -6,6 +6,36 @@ describe SessionsController do
     controller.session[:user_id] = users(:quentin).id
   end
 
+  describe "POST create" do
+    before do
+      controller.should_receive(:authenticate_with_open_id).
+        and_yield( mock("response", :successful? => true),
+                  "http://example.com/alice",
+                  {"http://axschema.org/namePerson" => "fullname",
+                   "http://axschema.org/namePerson/friendly" => "nick"})
+    end
+
+    describe "with FixedOp.sso_enabled? => false" do
+      before do
+        FixedOp.should_receive(:sso_enabled?).and_return false
+        post :create
+      end
+      it{ session[:user].should be_blank }
+      it{ session[:identity_url].should == "http://example.com/alice" }
+      it{ response.should render_template( "users/new") }
+    end
+
+    describe "with FixedOp.sso_enabled? => true" do
+      before do
+        FixedOp.should_receive(:sso_enabled?).and_return true
+        post :create
+      end
+      it{ session[:user].should == {:name => "nick", :display_name => "fullname"} }
+      it{ session[:identity_url].should == "http://example.com/alice" }
+      it{ response.should render_template( "users/new") }
+    end
+  end
+
   describe "GET destroy #SSOでない場合" do
     before do
       FixedOp.sso_openid_provider_url = nil
