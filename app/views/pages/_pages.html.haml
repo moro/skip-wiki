@@ -6,7 +6,7 @@
       %th.mail= _("Notify Mail")
       %th.user&= _("Page|Auther")
       - if current_note.accessible?(current_user)
-        %th.publification&= _("Publification")
+        %th.publication&= _("Publication")
         %th.timestamp&= _("Page|Published at")
       %th.timestamp&= _("Page|Updated at")
       - if current_note.accessible?(current_user)
@@ -19,7 +19,7 @@
         %td.mail= mail_notification(current_note, page)
         %td&= history.user.name
         - if current_note.accessible?(current_user)
-          %td.publification
+          %td.publication
             - if page.published?
               %span.published&= _("Published")
             - else

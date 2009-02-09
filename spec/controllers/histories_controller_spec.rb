@@ -78,9 +78,10 @@ describe HistoriesController do
 
   describe "xhr PUT update" do
     before do
-      controller.should_receive(:current_user).at_least(:once).and_return(@user)
       @user = mock_model(User)
       @page = pages(:our_note_page_1)
+      controller.should_receive(:current_user).at_least(:once).and_return(@user)
+
       @history = @page.edit("hogehoge", @user)
       @history.save
       @rev = @page.revision

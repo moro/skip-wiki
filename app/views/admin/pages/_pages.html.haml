@@ -5,7 +5,7 @@
       %th.display_name&= _("Page|Display name")
       %th.mail= _("Notify Mail")
       %th.user&= _("Page|Auther")
-      %th.publification&= _("Publification")
+      %th.publication&= _("Publication")
       %th.timestamp&= _("Page|Published at")
       %th.timestamp&= _("Page|Updated at")
       %th.edit&= _('Page|Edit')
@@ -17,7 +17,7 @@
         %td.name= link_to h(page.display_name), note_page_url(@note, page)
         %td.mail= mail_notification(@note, page)
         %td&= history.user.name
-        %td.publification
+        %td.publication
           - if page.published?
             %span.published&= _("Published")
           - else

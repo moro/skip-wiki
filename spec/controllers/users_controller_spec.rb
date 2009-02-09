@@ -3,6 +3,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe UsersController do
+  fixtures :users
   describe "post :create" do
     before do
       params = {"user"=>{"name"=>"ascii", "display_name"=>"Human Name"}}

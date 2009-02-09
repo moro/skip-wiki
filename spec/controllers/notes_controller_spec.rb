@@ -23,7 +23,7 @@ describe NotesController do
 
       it "should render all notes as xml" do
         request.env["HTTP_ACCEPT"] = "application/xml"
-        Note.should_receive(:paginate).with(anything).and_return(notes = mock("Array of Notes"))
+        Note.should_receive(:find).with(anything).and_return(notes = mock("Array of Notes"))
         notes.should_receive(:to_xml).and_return("generated XML")
         get :index
         response.body.should == "generated XML"

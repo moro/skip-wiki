@@ -212,6 +212,7 @@ describe Page do
   end
 
   describe ".front_page" do
+    fixtures :notes
     before do
       @page = Page.front_page
     end
@@ -221,6 +222,7 @@ describe Page do
     describe "は削除や識別子の変更ができないこと" do
       before do
         @page.edit("content", mock_model(User))
+        @page.note = notes(:our_note)
         @page.save!
       end
 

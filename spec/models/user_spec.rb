@@ -39,10 +39,9 @@ describe User do
 
   describe "#skip_uid" do
     before do
-      account = Account.new(:login=>"alice", :email=>"alice@example.com")
-      account.identity_url = "http://foo.bar/user/alice"
-      account.save!
-      @user = account.user
+      @user = User.create(:name => "alice", :display_name => "alice")
+      @user.create_account
+      @user.account.identity_url = "http://foo.bar/user/alice"
     end
 
     it "#skip_uid.should == 'alice'" do
@@ -118,13 +117,13 @@ describe User do
         end
       end
     end
+
     describe "#build_skip_membership" do
       # FIXME フィクスチャのセットアップまとめる
       before do
-        account = Account.new(:login=>"alice", :email=>"alice@example.com")
-        account.identity_url = "http://foo.bar/user/alice"
-        account.save!
-        @user = account.user
+        @user = User.create(:name => "alice", :display_name => "alice")
+        @user.create_account
+        @user.account.identity_url = "http://foo.bar/user/alice"
 
         SkipGroup.should_receive(:fetch_and_store).with("alice").and_return([
           @a_group = SkipGroup.create!(:name=>"a_group", :display_name=>"display_name", :gid=>"a_group"),
