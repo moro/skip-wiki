@@ -29,7 +29,27 @@ describe NotesController do
         response.body.should == "generated XML"
       end
     end
+  end
 
+  describe "responding to GET index with :user" do
+    fixtures :users, :notes
+    before do
+      @target =  notes(:our_note)
+      User.should_receive(:find).
+        with(:first, :conditions => ["#{Account.quoted_table_name}.identity_url = ?", "--IDENTITY--"], :include => :account).
+        and_return(users(:quentin))
+
+      Note.should_receive(:find).and_return([@target])
+      xhr :get, :index, :user => "--IDENTITY--"
+    end
+
+    it "response.should be success" do
+      response.should be_success
+    end
+
+    it "should expose all notes as @notes" do
+      assigns[:notes].should == [@target]
+    end
   end
 
   describe "responding to GET show" do

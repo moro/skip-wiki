@@ -1,4 +1,8 @@
+require 'ipaddr'
+
 class NotesController < ApplicationController
+  before_filter :login_required, :except => %w[index]
+  before_filter :authenticate_with_api_or_login_required, :only => %w[index]
   before_filter :explicit_user_required, :except => %w[index new create dashboard]
   DASHBOARD_ITEM_NUM = 5
 
@@ -7,16 +11,12 @@ class NotesController < ApplicationController
   # GET /notes
   # GET /notes.xml
   def index
-    accessible = logged_in? ? current_user.accessible_or_public_notes : Note.public
-    @notes = accessible.fulltext(params[:fulltext]).paginate(paginate_option)
+    @notes = accessible.fulltext(params[:fulltext])
 
     respond_to do |format|
-      format.html
-      format.xml  { render :xml => @notes }
-      format.js{
-        data = @notes.map{|n| {:display_name=>n.display_name, :url=>note_path(n)} }
-        render :json => data
-      }
+      format.html { @notes = @notes.paginate(paginate_option) }
+      format.xml { render :xml => @notes }
+      format.js { render :json => @notes.map{|n| note_to_json(n) } }
     end
   end
 
@@ -102,6 +102,32 @@ class NotesController < ApplicationController
   end
 
   private
+  def authenticate_with_api_or_login_required
+    # TODO fixup api condition/
+    if params[:user] && INITIAL_SETTINGS[:api_remote_ip].any?{|addr| IPAddr.new(addr).include?(request.remote_ip) }
+      true
+    else
+      login_required
+    end
+  end
+
+  def note_to_json(note)
+    { :display_name=>note.display_name,
+      :url=>note_path(note),
+      :publification_symbols => "note:#{note.id}" }
+  end
+
+  def accessible
+    if params[:user]
+      user = User.find(:first, :include => :account,
+                                :conditions => ["#{Account.quoted_table_name}.identity_url = ?", params[:user]])
+    else
+      user =current_user
+    end
+    raise ActiveRecord::RecordNotFound unless user
+    user.accessible_or_public_notes
+  end
+
   def explicit_user_required
     self.current_note = current_user.accessible_or_public_notes.find(params[:id])
     unless current_note.accessible?(current_user)
