@@ -123,7 +123,7 @@ SQL
     if timy_or_hash.is_a?(Hash) && [:date, :hour, :min].all?{|k| timy_or_hash.has_key?(k) }
       d = Date.parse(timy_or_hash[:date])
       timy_or_hash =
-        Time.zone.local(d.year, d.month, d.day, Integer(timy_or_hash[:hour]), Integer(timy_or_hash[:min]))
+        Time.zone.local(d.year, d.month, d.day, timy_or_hash[:hour].to_i, timy_or_hash[:min].to_i)
     end
     write_attribute(:published_at, timy_or_hash)
   end
