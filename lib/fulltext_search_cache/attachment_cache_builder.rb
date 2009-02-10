@@ -24,7 +24,10 @@ class FulltextSearchCache
 
     def to_meta
       publicities = ["note:#{@attachment.attachable_id}"]
-      publicities << "public" if @attachment.attachable.public_readable?
+      attachable = @attachment.attachable
+      attachable = attachable.is_a?(Page) ? attachable.note : attachable
+
+      publicities << "public" if attachable.public_readable?
       {
         :title => @attachment.display_name,
         :contents_type => "knowledge-attachment",

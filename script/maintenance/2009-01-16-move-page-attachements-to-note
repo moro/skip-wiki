@@ -13,6 +13,9 @@ ActiveRecord::Base.transaction do
   page_attachments.each do |attachment|
     page = Page.find(attachment.attachable_id)
     attachment.attachable = page.note
+    attachment.save!
+
+    log_and_puts_stderr("fixed attachments[#{attachments.id}]")
   end
 end
 
