@@ -19,6 +19,7 @@
 require 'net/http'
 require "net/https"
 require 'uri'
+require 'erb'
 
 class WebServiceUtil
 
@@ -42,7 +43,7 @@ class WebServiceUtil
 
   def self.open_service_with_url url, params = {}, app_ca_file = nil
     url = "#{url}?" +
-      params.map{|key, val| "#{URI.encode(key.to_s)}=#{URI.encode(val.to_s)}"}.join('&')
+      params.map{|key, val| "#{ERB::Util.u(key.to_s)}=#{ERB::Util.u(val.to_s)}"}.join('&')
     self.get_json(url, app_ca_file)
   end
 
