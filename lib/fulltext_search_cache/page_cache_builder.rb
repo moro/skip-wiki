@@ -5,9 +5,8 @@ class FulltextSearchCache
   class PageCacheBuilder
     include EntityContentCache
     include MetaWriter
-    def initialize(page, url_prefix)
+    def initialize(page)
       @page = page
-      @url_prefix = url_prefix
     end
 
     def filename
@@ -24,8 +23,8 @@ class FulltextSearchCache
         :title => @page.display_name,
         :contents_type => "knowledge-page",
         :publication_symbols => publicities.join(" "),
-        :link_url => URI.join(@url_prefix, "notes/#{ERB::Util.u(@page.note.name)}/pages/#{ERB::Util.u(@page.name)}").to_s,
-        :icon_url => URI.join(@url_prefix, "/icons/page.gif").to_s,
+        :link_url => url_for(:controller => "pages", :action => "show", :id => @page, :note_id => @page.note),
+        :icon_url => icon_url("page.gif"),
       }
     end
   end

@@ -7,10 +7,15 @@ class FulltextSearchCache
     :entity_dirs => %w[note page attachment],
     :logger    => Rails.logger,
     :limit => 1_000,
-    :url_prefix => "http://test.openskip.org/skip-knowledge",
   }.freeze
 
   def self.build(options = {})
+    u = URI("http://test.openskip.org/skip-knowledge")
+    url_opt = { :host => u.host, :protocol => u.scheme }
+    url_opt[:port] = u.port unless (u.scheme == "http" && u.port == 80) || (u.scheme == "https" && u.port == 443)
+
+    ActionController::UrlWriter.default_url_options = url_opt
+
     mediator = new(options)
     mediator.prepare_dir
     [
@@ -46,7 +51,7 @@ class FulltextSearchCache
     end
 
     loader(model).each do |obj|
-      b = builder.new(obj, @options[:url_prefix])
+      b = builder.new(obj)
       b.write_cache(self)
       b.write_meta(self)
       built << "#{obj.class.name}:#{obj.id}"

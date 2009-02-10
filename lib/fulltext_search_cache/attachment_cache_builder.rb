@@ -9,9 +9,8 @@ class FulltextSearchCache
   class AttachmentCacheBuilder
     include MetaWriter
 
-    def initialize(attachment, url_prefix)
+    def initialize(attachment)
       @attachment = attachment
-      @url_prefix = url_prefix
     end
 
     def filename
@@ -32,8 +31,8 @@ class FulltextSearchCache
         :title => @attachment.display_name,
         :contents_type => "knowledge-attachment",
         :publication_symbols => publicities.join(" "),
-        :link_url => URI.join(@url_prefix, "notes/#{ERB::Util.u(@attachment.attachable.name)}/attachments/#{ERB::Util.u(@attachment.id)}").to_s,
-        :icon_url => URI.join(@url_prefix, "/icons/attachment.gif").to_s,
+        :link_url => url_for(:controller => "attachments", :action => "show", :id => @attachment, :note_id => attachable),
+        :icon_url => icon_url("attachment.gif"),
       }
     end
   end

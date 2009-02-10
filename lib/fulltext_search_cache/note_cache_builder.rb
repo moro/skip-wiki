@@ -4,9 +4,9 @@ class FulltextSearchCache
   class NoteCacheBuilder
     include EntityContentCache
     include MetaWriter
-    def initialize(note, url_prefix)
+
+    def initialize(note)
       @note = note
-      @url_prefix = url_prefix
     end
 
     def filename
@@ -23,10 +23,9 @@ class FulltextSearchCache
         :title => @note.display_name,
         :contents_type => "knowledge-note",
         :publication_symbols => publicities.join(" "),
-        :link_url => URI.join(@url_prefix, "notes/#{ERB::Util.u(@note.name)}").to_s,
-        :icon_url => URI.join(@url_prefix, "icons/note.gif").to_s,
+        :link_url => url_for(:controller => "notes", :action => "show", :id => @note),
+        :icon_url => icon_url("note.gif")
       }
     end
-
   end
 end

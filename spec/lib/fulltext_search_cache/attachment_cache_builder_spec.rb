@@ -2,6 +2,14 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 require 'nokogiri'
 
 describe FulltextSearchCache::AttachmentCacheBuilder, :type => :model do
+  before :all do
+    ActionController::UrlWriter.default_url_options = {
+      :host => "example.com",
+      :protocol => "http"
+    }
+    ActionController::AbstractRequest.relative_url_root = "/skip-knowledge"
+  end
+
   fixtures :notes
   before :all do
     Test::Unit::TestCase.fixture_path = "spec/fixtures/"
@@ -15,7 +23,7 @@ describe FulltextSearchCache::AttachmentCacheBuilder, :type => :model do
       :uploaded_data => fixture_file_upload("data/at_small.png", "image/png", true),
     }
     @attachment = notes(:our_note).attachments.create(params)
-    @builder = FulltextSearchCache::AttachmentCacheBuilder.new(@attachment, "http://example.com/skip-knowledge/")
+    @builder = FulltextSearchCache::AttachmentCacheBuilder.new(@attachment)
   end
 
   describe "メタデータ" do
