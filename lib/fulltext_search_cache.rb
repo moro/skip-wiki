@@ -10,7 +10,12 @@ class FulltextSearchCache
   }.freeze
 
   def self.build(options = {})
-    u = URI("http://test.openskip.org/skip-knowledge")
+    unless skip_url = INITIAL_SETTINGS[:skip_collabolation] && INITIAL_SETTINGS[:skip_collabolation][:skip_url]
+      $stderr.puts "set skip_collabolation -> skip_url in config/initial_settings.yml"
+      exit 1
+    end
+
+    u = URI(skip_url)
     url_opt = { :host => u.host, :protocol => u.scheme }
     url_opt[:port] = u.port unless (u.scheme == "http" && u.port == 80) || (u.scheme == "https" && u.port == 443)
 

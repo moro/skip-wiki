@@ -31,7 +31,7 @@ describe FulltextSearchCache, "new('path/to/cache/root', :since => 15.seconds.ag
       loader.should_receive(:each).and_yield(notes(:our_note))
 
       @builder_klass = mock("builder_klass")
-      @builder_klass.should_receive(:new).with(notes(:our_note), "http://example.com").and_return(builder = mock("builder"))
+      @builder_klass.should_receive(:new).with(notes(:our_note)).and_return(builder = mock("builder"))
       builder.should_receive(:write_cache).with(@fts_cache)
       builder.should_receive(:write_meta).with(@fts_cache)
     end
