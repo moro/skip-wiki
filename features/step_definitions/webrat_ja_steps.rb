@@ -70,6 +70,10 @@ Then /^"(.*)"がチェックされていること$/ do |label|
   field_labeled(label).should be_checked
 end
 
+Then %r!デバッグのためページを確認する! do
+  save_and_open_page
+end
+
 Then /^"(.*?)"がリンクになっていないこと$/ do |label|
   Nokogiri::HTML(response.body).search("a").select{|a| a.text == label }.should be_empty
   response_body_text.should =~ /#{Regexp.escape(label)}/m

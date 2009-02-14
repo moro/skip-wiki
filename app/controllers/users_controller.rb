@@ -28,11 +28,22 @@ class UsersController < ApplicationController
     head(:forbidden) unless @user.to_param == params[:id]
   end
 
+  def update
+    @user = User.find(current_user) # like deep-clone
+    head(:forbidden) unless @user.to_param == params[:id]
+
+    if @user.update_attributes params[:user]
+      redirect_to user_path(@user)
+    else
+      render(:action => "edit")
+    end
+  end
+
   private
   def cant_modify_under_sso
     if FixedOp.sso_enabled?
       flash[:warn] = _("Cannot modify user information manually. Logout and login again to update.")
-      redirect_to(:back) rescue redirect_to(root_path)
+      redirect_to(root_path)
     else
       true
     end

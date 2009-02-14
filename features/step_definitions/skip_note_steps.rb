@@ -108,3 +108,7 @@ Given(/^"(.+)"を"(\d+)"日後に設定する/) do |label, n|
   select_datetime(date, :from => label, :use_month_numbers=>true)
 end
 
+Given(/固定OPの設定をする/) do
+  pending("このシナリオは手動で実行する")
+end
+
