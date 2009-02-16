@@ -1,13 +1,14 @@
 %span.title= link_to(current_note.display_name, note_page_path(current_note, "FrontPage"))
 %span&= current_note.description
 - if current_note.accessible?(current_user)
-  %span.operation&= _("menu")
-  .note-navi
-    %ul
-      %li= link_to(_("new page"), new_note_page_path(current_note))
-      %li= link_to(_("show note"), note_path(current_note))
-      %li= link_to(_("note attachments"), note_attachments_path(current_note))
+  %span.note-operation= select_tag("note_operation", note_operation(request.request_uri))
+
 :javascript
   jQuery(document).ready(function(){
     $("div#current-note span.operation").click(function(){jQuery(this).nextAll("div.note-navi").toggle()});
+    $("span.note-operation select").change(function(){
+      var url = jQuery(this).val();
+      if("" != url){ document.location = url; }
+      return false;
+    });
   });

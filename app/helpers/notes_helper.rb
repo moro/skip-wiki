@@ -46,4 +46,13 @@ module NotesHelper
     else raise ArgumentError
     end
   end
+
+  def note_operation(selected)
+    options_for_select( [
+      [_("menu"), nil],
+      [_("new page"), new_note_page_path(current_note)],
+      [_("show note"), note_path(current_note)],
+      [_("note attachments"), note_attachments_path(current_note)],
+    ], selected)
+  end
 end
