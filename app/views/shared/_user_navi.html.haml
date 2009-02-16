@@ -1,13 +1,4 @@
 %ul.float
-  - if @page && !@page.new_record?
-    %li.bar-item.navigate-in-label
-      = link_to_function(_("all labels"), "$(this).parents('li.navigate-in-label').find('div.move-to-label').show()")
-      .move-to-label{:style=>"display:none"}
-        =link_to_function(_("close"), "$(this).parents('div.move-to-label').hide()")
-        %ul
-          - current_note.label_indices.has_pages.each do |l|
-            %li= link_to labelize(l), note_pages_path(current_note, :label_index_id =>l)
-
   %li.bar-item.page-index
     = link_to(_("note pages"), note_pages_path(current_note))
 
