@@ -1,0 +1,22 @@
+#!script/runner
+# coding: "utf-8"
+
+def log_and_puts_stderr(msg)
+  ActiveRecord::Base.logger.info("MAINTAIN(2009-02-16-add_labels_to_exist_notes.rb):  #{msg}")
+  $stderr.puts(msg)
+end
+
+notes = Note.find(:all, :include => [:label_indices])
+
+ActiveRecord::Base.transaction do
+  fixtures = NoteBuilder.label_fixtures
+  notes.each do |note|
+    short = fixtures.size - note.label_indices.size
+    next if short < 1
+
+    fixtures[1, short].each{ |data| note.label_indices.build(data) }
+    note.save!
+    log_and_puts_stderr("assigned #{short} labels to note[#{note.id}, #{note.display_name}]")
+  end
+end
+
