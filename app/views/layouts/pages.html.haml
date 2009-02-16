@@ -25,6 +25,8 @@
               .show
                 %span.title.ipe-trigger&= @page.display_name
                 %span.labeled= sanitize _("Labeled as %{label}") % {:label=>val_tag(@page.label_index.display_name)}
+                %span.operation.label&= _("show all")
+
                 - if current_note.accessible?(current_user)
                   %span.page-operation= select_tag("page_operation", page_operation)
 
@@ -37,7 +39,10 @@
                     %span.operation.ipe-cancel&= _("Cancel")
                 :javascript
                   jQuery(document).ready(function(){
-                    $("div.page-header span.operation").click(function(){jQuery(this).nextAll("div.page-navi").toggle()});
+                    $("div.page-header span.operation.menu").click(function(){jQuery(this).nextAll("div.page-navi").toggle()});
+                    $("div.page-header span.operation.label").click(function(){
+                      jQuery("#content div.label-navigation").show().siblings(".page-content").removeClass("fullscreen")
+                    });
                     $("h1").aresInplaceEditor(jQuery.extend({
                         callback:application.callbacks.pageDisplaynameEditor
                       }, #{page_display_name_ipe_option.to_json})
@@ -48,8 +53,9 @@
             .user-bar= render :partial => 'shared/user_navi'
             .clear
 
-          = yield
+          .page-content= yield
           = label_traverse
+          .clear
 
     #footer
       = render :partial => 'shared/common_body_footer'

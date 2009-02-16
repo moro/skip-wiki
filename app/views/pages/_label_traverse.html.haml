@@ -1,7 +1,9 @@
 - label_indices = current_note.label_indices.has_pages
 - acordion_opt = {:header => "h3", :active => label_indices.index(@page.label_index), :autoHeight => false}
 .label-navigation
-  %h2&= _("Label indices")
+  %h2
+    =h _("Label indices")
+    %span.operation&= _("hide")
   - label_indices.each do |label|
     %div.label{:style=>"background:#{h(label.color)}"}
       %h3= link_to h(label.display_name), note_pages_path(current_note, :label_index_id => label)
@@ -13,5 +15,9 @@
 :javascript
   $(document).ready(function(){
     $("div.label-navigation").accordion(#{acordion_opt.to_json});
+
+    jQuery("div.label-navigation h2 span.operation").click(function(){
+      jQuery("div.label-navigation").hide().siblings("div.page-content").addClass("fullscreen");
+    });
   })
 
