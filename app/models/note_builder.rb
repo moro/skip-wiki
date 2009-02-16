@@ -1,5 +1,9 @@
 class NoteBuilder
   include GetText
+
+  cattr_accessor :label_fixtures
+  @@label_fixtures = INITIAL_SETTINGS[:label_defaults]
+
   def initialize(user, attrs)
     @user = user
     @attrs = attrs.dup
@@ -10,7 +14,7 @@ class NoteBuilder
     @note = Note.new(@attrs) do |note|
               note.owner_group = find_or_initialize_group
               note.accessibilities << Accessibility.new(:group=>note.owner_group)
-              note.label_indices << LabelIndex.no_label
+              note.label_indices << build_labels(label_fixtures)
             end
   end
 
@@ -33,6 +37,12 @@ class NoteBuilder
       Group.new(attrs){|g| g.memberships = [Membership.new(:group => g, :user=>@user)] }
     when "SkipGroup"
       @user.groups.find(:first, :conditions=>@attrs.slice(:group_backend_type, :group_backend_id))
+    end
+  end
+
+  def build_labels(fixtures = [{}])
+    returning( fixtures.map{|data| LabelIndex.new(data) } ) do |first, *rest|
+      first.default_label = true
     end
   end
 end

@@ -32,13 +32,22 @@ describe NoteBuilder do
     @note.owner_group.should be_new_record
   end
 
+  it "owner_group should have 10 label_indices" do
+    @note.should have(10).label_indices
+  end
+
+
   describe "保存前のfront_page" do
     it "はnew_recordであること" do
       @builder.front_page.should be_new_record
     end
 
     it "のnoteは@noteであること" do
-      @builder.front_page.should be_new_record
+      @builder.front_page.note.should == @note
+    end
+
+    it "のラベルnoteは@noteのデフォルトラベルであること" do
+      @builder.front_page.label_index_id.should == @note.default_label.id
     end
   end
 
@@ -76,8 +85,8 @@ describe NoteBuilder do
       @note.owner_group.backend.owner.should == @user
     end
 
-    it "should have(1) label_indices" do
-      @note.should have(1).label_indices
+    it "should have(10) label_indices" do
+      @note.should have(10).label_indices
     end
 
     it "front_pageはまだnew_recordであること" do

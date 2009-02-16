@@ -1,3 +1,26 @@
+default_label:  &label_defaults
+  label_defaults:
+    - color: "#cccccc"
+      display_name: "ラベルなし"
+    - color: "#ffbbbb"
+      display_name: "ラベル 1"
+    - color: "#cc9999"
+      display_name: "ラベル 2"
+    - color: "#bbffbb"
+      display_name: "ラベル 3"
+    - color: "#99cc99"
+      display_name: "ラベル 4"
+    - color: "#bbbbff"
+      display_name: "ラベル 5"
+    - color: "#9999cc"
+      display_name: "ラベル 6"
+    - color: "#ffffbb"
+      display_name: "ラベル 7"
+    - color: "#ffbbff"
+      display_name: "ラベル 8"
+    - color: "#ffffbb"
+      display_name: "ラベル 9"
+
 production:
   skip_collabolation:
     skip_url: "http://product.skip.local"
@@ -5,6 +28,7 @@ production:
       endpoint:  "http://product.skip.local/search/full_text_search"
       query_name: "full_text_query"
   secret_key: "---FIXME----BEFORE---DEPLOYMENT---"
+  <<: *label_defaults
 
 development:
   skip_collabolation:
@@ -13,6 +37,7 @@ development:
       endpoint:  "http://localhost:3002/search/full_text_search"
       query_name: "full_text_query"
   secret_key: "1f3c30382d9f2060baf14f0cdb102fe2"
+  <<: *label_defaults
 
 test:
   skip_collabolation:
@@ -21,4 +46,5 @@ test:
       endpoint:  "http://localhost:3002/search/full_text_search"
       query_name: "full_text_query"
   secret_key: "1f3c30382d9f2060baf14f0cdb102fe2"
+  <<: *label_defaults
 
