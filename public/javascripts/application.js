@@ -219,7 +219,7 @@
           target.parents("form").get(0).reset()
         };
       });
-  },
+  };
 
   jQuery.fn.reloadLabelRadios = function(config){
     var self = jQuery(this);
@@ -238,7 +238,7 @@
         self.append(li);
       });
     });
-  }
+  };
 
   jQuery.fn.manageLabel = function(config){
     var table = jQuery(this).find("table");
@@ -322,7 +322,7 @@
     jQuery(this).find("div.new form").submit(create);
     jQuery.each(table.find("td.inplace-edit"), function(){jQuery(this).aresInplaceEditor({callback:update}) });
     table.find("td.delete form").submit(destroy);
-  }
+  };
 
   jQuery.fn.aresInplaceEditor = function(config){
     var self = jQuery(this);
@@ -373,6 +373,16 @@
           find(".ipe-cancel").click(hideIPE).end().end();
 
     return self;
+  };
+
+  jQuery.fn.dropdownNavigation = function(config){
+    function navigate(){
+      var loc = jQuery(this).val();
+      if("" != loc){ document.location = loc };
+      return false;
+    };
+
+    return jQuery(this).change(navigate);
   }
 })(jQuery);
 

@@ -26,13 +26,8 @@
                 %span.title.ipe-trigger&= @page.display_name
                 %span.labeled= sanitize _("Labeled as %{label}") % {:label=>val_tag(@page.label_index.display_name)}
                 - if current_note.accessible?(current_user)
-                  %span.operation&= _("menu")
-                  .page-navi{:style=>"display:none"}
-                    %ul
-                      %li= link_to(_("show page"), note_page_path(current_note, @page))
-                      %li= link_to(_("edit content"), new_note_page_history_path(current_note, @page))
-                      %li= link_to(_("edit page"), edit_note_page_path(current_note, @page))
-                      %li= link_to(_("page histories"), note_page_histories_path(current_note, @page))
+                  %span.page-operation= select_tag("page_operation", page_operation)
+
               - if current_note.accessible?(current_user)
                 .edit{:style=>"display:none"}
                   - form_for(:page, :url=>note_page_path(current_note, @page), :style=>"display:none") do |f|
@@ -47,6 +42,7 @@
                         callback:application.callbacks.pageDisplaynameEditor
                       }, #{page_display_name_ipe_option.to_json})
                     );
+                    $("h1 span.page-operation select").dropdownNavigation();
                   });
 
             .user-bar= render :partial => 'shared/user_navi'

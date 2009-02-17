@@ -93,4 +93,14 @@ module PagesHelper
                     :callback => nil }
     }
   end
+
+  def page_operation(selected = request.request_uri)
+    options_for_select([
+      [_("menu"), nil],
+      [_("show page"), note_page_path(current_note, @page)],
+      [_("edit content"), new_note_page_history_path(current_note, @page)],
+      [_("edit page"), edit_note_page_path(current_note, @page)],
+      [_("page histories"), note_page_histories_path(current_note, @page)],
+    ], selected)
+  end
 end

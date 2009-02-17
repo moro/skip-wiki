@@ -9,9 +9,6 @@
 
 :javascript
   jQuery(document).ready(function(){
-    $("#top select").change(function(){
-      var url = jQuery(this).val();
-      if("" != url){ document.location = url; }
-    });
+    $("#top select").dropdownNavigation();
   });
 

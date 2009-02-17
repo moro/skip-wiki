@@ -6,9 +6,5 @@
 :javascript
   jQuery(document).ready(function(){
     $("div#current-note span.operation").click(function(){jQuery(this).nextAll("div.note-navi").toggle()});
-    $("span.note-operation select").change(function(){
-      var url = jQuery(this).val();
-      if("" != url){ document.location = url; }
-      return false;
-    });
+    $("span.note-operation select").dropdownNavigation();
   });
