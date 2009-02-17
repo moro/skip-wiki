@@ -1,9 +1,10 @@
 require 'hikidoc'
 
 module PagesHelper
-  def label_traverse
-    return "" if %w[new edit].include?(params[:action])
-    render :partial => 'pages/label_traverse'
+  def label_navigation_action?
+    [%w[histories new], %w[pages new] ].any?{|c, a|
+      params[:controller] == c && params[:action] == a
+    }
   end
 
   def page_display_name_ipe_option(base={})

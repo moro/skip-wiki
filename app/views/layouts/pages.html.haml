@@ -52,8 +52,11 @@
             .user-bar= render :partial => 'shared/user_navi'
             .clear
 
-          .page-content= yield
-          = label_traverse
+          - if label_navigation_action?
+            .page-content.fullscreen= yield
+          - else
+            .page-content= yield
+            =render :partial => 'pages/label_traverse'
           .clear
 
     #footer
