@@ -112,3 +112,7 @@ Given(/固定OPの設定をする/) do
   pending("このシナリオは手動で実行する")
 end
 
+Given(/ナビゲーションメニューから"(\w+)"を選択する/) do |label|
+  visit select(label)
+end
+
