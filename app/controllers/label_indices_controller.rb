@@ -26,27 +26,6 @@ class LabelIndicesController < ApplicationController
     end
   end
 
-  # POST /label_indices
-  # POST /label_indices.xml
-  def create
-    @note = current_note
-    @label_index = @note.label_indices.build(params[:label_index])
-
-    respond_to do |format|
-      if @label_index.save
-        flash[:notice] = _('LabelIndex %{display_name} was successfully created.') % {:display_name => @label_index.display_name}
-        format.html { redirect_to note_url(@note) }
-        heders = {:status => :created, :location => note_label_index_url(current_note, @label_index)}
-        format.xml  { render heders.merge(:xml => @label_index) }
-        format.js  { render heders.merge(:json => @label_index) }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @label_index.errors, :status => :unprocessable_entity }
-        format.js  { render :json => @label_index.errors.full_messages, :status => :unprocessable_entity }
-      end
-    end
-  end
-
   # PUT /label_indices/1
   # PUT /label_indices/1.xml
   def update
@@ -54,34 +33,15 @@ class LabelIndicesController < ApplicationController
 
     respond_to do |format|
       if @label_index.update_attributes(params[:label_index])
-        flash[:notice] = 'LabelIndex was successfully updated.'
-        format.html { redirect_to note_label_indices_url(current_note) }
+        format.html {
+          flash[:notice] = 'LabelIndex was successfully updated.'
+          redirect_to note_label_indices_url(current_note)
+        }
         format.xml  { head :ok }
         format.js  { head :ok }
       else
         format.html { render :action => "index" }
         format.xml  { render :xml => @label_index.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /label_indices/1
-  # DELETE /label_indices/1.xml
-  def destroy
-    @label_index = current_note.label_indices.find(params[:id])
-    if @label_index.destroy
-      respond_to do |format|
-        format.html { redirect_to(note_label_indices_url(current_note)) }
-        format.xml  { head :ok }
-        format.js   { head :ok }
-      end
-    else
-      respond_to do |format|
-        format.html {
-          flash[:error] = @label_index.errors
-          redirect_to(note_label_indices_url(current_note))
-        }
-        format.js { render :json => @label_index.errors.full_messages, :status => :conflict}
       end
     end
   end
