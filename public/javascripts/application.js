@@ -243,35 +243,6 @@
   jQuery.fn.manageLabel = function(config){
     var table = jQuery(this).find("table");
 
-    function create(){
-      var f = jQuery(this);
-      f.nextAll("ul.errors").remove();
-      application.post(f, {
-        dataType: "json",
-        complete: function(req, stat){
-          if(stat == "success"){
-            f.reset(); appendLabel(req);
-          } else if(stat == "error" && req.status == "422"){
-            showValidationError(req);
-          }
-        }
-      });
-      return false;
-    }
-
-    function destroy(){
-      if(!confirm("削除しますか?")) return false ;
-      var f = jQuery(this);
-      application.post(f, {
-        complete: function(req, stat){
-          if(stat == "success" || application.headOK(req)){ f.parents("tr").fadeOut().remove() }
-          else if(stat == "error") showValidationError(req)
-        }
-      });
-
-      return false;
-    }
-
     function showValidationError(xhr){
       var errors = jQuery.httpData( xhr, "json");
       var ul = jQuery("div.new ul.errors");
@@ -294,34 +265,7 @@
       return false;
     }
 
-    function appendLabel(xhr){
-      var data = jQuery.httpData( xhr, "json")["label_index"];
-      var display_name = data["display_name"];
-      var color = data["color"];
-      var url = xhr.getResponseHeader("Location");
-
-      var row = table.find("tr:first").clone().
-                  find("span.label_badge").
-                    attr("style", "border-color:"+color).
-                    text(display_name).end().
-                  find("td.inplace-edit").
-                    find("form").attr("action", url).
-                      find("[name='label_index[display_name]']").val(display_name).end().
-                      find("[name='label_index[color]']").val(color).end().
-                    end().
-                  end().
-                  find("td.delete form").attr("action", url).submit(destroy).end();
-
-      row.find("td.inplace-edit").aresInplaceEditor({callback:update});
-
-      table.
-        find("tr.inplace-edit span.ipe-cancel").trigger("click").end().
-        find("tbody").append(row);
-    }
-
-    jQuery(this).find("div.new form").submit(create);
     jQuery.each(table.find("td.inplace-edit"), function(){jQuery(this).aresInplaceEditor({callback:update}) });
-    table.find("td.delete form").submit(destroy);
   };
 
   jQuery.fn.aresInplaceEditor = function(config){

@@ -1,30 +1,18 @@
 %h3&= _("label index")
 %table.label-indices
   %tbody
-    - current_note.label_indices.each do |l_idx|
+    - current_note.label_indices.each_slice(2) do |labels|
       %tr
-        - form_opt = {:url=>note_label_index_path(current_note, l_idx)}
-        %td.inplace-edit
-          .show
-            = labelize(l_idx, false, current_note)
-            %span.op.ipe-trigger&= _("Click to edit")
-          .edit{:style=>"display:none"}
-            - form_for :label_index, l_idx, form_opt.merge(:html=>{:method=>"PUT",:style=>"display:visible"}) do |f|
-              = f.text_field :display_name, :size=>12, :id=>"#{l_idx.id}_display_name"
-              = f.text_field :color, :maxlength=>7, :id=>"#{l_idx.id}_display_color"
-              = f.submit _("Update")
-              %span.indicator{:style=>"display:none"}= image_tag("skip/indicator.gif")
-              %span.op.ipe-cancel&= _("Cancel")
-
-        %td.delete
-          - form_for :label_index, l_idx, form_opt.merge(:html =>{:method=>"DELETE"}) do |f|
-            = f.submit _("Delete")
-
-.new
-  - form_for(LabelIndex.new, :url=>note_label_indices_path(current_note)) do |f|
-    = f.label(:display_name, _("add labels"))
-    %br
-    = f.text_field :display_name, :size=>16
-    = f.text_field :color, :size=>7
-    = f.submit _("Create")
+        - labels.each do |l_idx|
+          %td.inplace-edit
+            - form_opt = {:url=>note_label_index_path(current_note, l_idx)}
+            .show
+              = labelize(l_idx, false, current_note)
+              %span.op.ipe-trigger&= _("Click to edit")
+            .edit{:style=>"display:none"}
+              - form_for :label_index, l_idx, form_opt.merge(:html=>{:method=>"PUT",:style=>"display:visible"}) do |f|
+                = f.text_field :display_name, :size=>12, :id=>"#{l_idx.id}_display_name"
+                = f.submit _("Update")
+                %span.indicator{:style=>"display:none"}= image_tag("skip/indicator.gif")
+                %span.op.ipe-cancel&= _("Cancel")
 
