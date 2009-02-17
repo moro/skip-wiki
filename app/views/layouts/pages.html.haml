@@ -25,7 +25,8 @@
               .show
                 %span.title.ipe-trigger&= @page.display_name
                 %span.labeled= sanitize _("Labeled as %{label}") % {:label=>val_tag(@page.label_index.display_name)}
-                %span.operation.label&= _("show all")
+                - if current_note.label_navigation_style == LabelIndex::NAVIGATION_STYLE_TOGGLE
+                  %span.operation.label&= _("show all")
 
                 - if current_note.accessible?(current_user)
                   %span.page-operation= select_tag("page_operation", page_operation)
@@ -52,7 +53,7 @@
             .user-bar= render :partial => 'shared/user_navi'
             .clear
 
-          - if label_navigation_action?
+          - if fullscreen_action?
             .page-content.fullscreen= yield
           - else
             .page-content= yield

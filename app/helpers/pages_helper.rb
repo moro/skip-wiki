@@ -1,7 +1,9 @@
 require 'hikidoc'
 
 module PagesHelper
-  def label_navigation_action?
+  def fullscreen_action?(note = current_note)
+    return true if note.label_navigation_style == LabelIndex::NAVIGATION_STYLE_NONE
+
     [%w[histories new], %w[pages new] ].any?{|c, a|
       params[:controller] == c && params[:action] == a
     }

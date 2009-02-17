@@ -3,7 +3,8 @@
 .label-navigation
   %h2
     =h _("Label indices")
-    %span.operation&= _("hide")
+    - if current_note.label_navigation_style == LabelIndex::NAVIGATION_STYLE_TOGGLE
+      %span.operation&= _("hide")
   - label_indices.each do |label|
     %div.label{:style=>"background:#{h(label.color)}"}
       %h3= link_to h(label.display_name), note_pages_path(current_note, :label_index_id => label)
