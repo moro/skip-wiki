@@ -39,7 +39,6 @@
                     %span.operation.ipe-cancel&= _("Cancel")
                 :javascript
                   jQuery(document).ready(function(){
-                    $("div.page-header span.operation.menu").click(function(){jQuery(this).nextAll("div.page-navi").toggle()});
                     $("div.page-header span.operation.label").click(function(){
                       jQuery("#content div.label-navigation").show().siblings(".page-content").removeClass("fullscreen")
                     });
