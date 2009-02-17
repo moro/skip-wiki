@@ -46,6 +46,7 @@ describe UsersController do
 
   describe "post :create failed" do
     before do
+      FixedOp.should_receive(:sso_enabled?).and_return false
       params = {"user"=>{"name"=>"", "display_name"=>"Human Name"}}
       session[:identity_url] = "http://openid.example.com/ascii"
 

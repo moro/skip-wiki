@@ -127,20 +127,6 @@ describe Note do
     end
   end
 
-  describe "before_create :add_no_label" do
-    before do
-      @note = build_note
-    end
-    it "should have 1 label_indices" do
-      @note.save!
-      @note.reload.should have(1).label_indices
-    end
-
-    it "save!されるまでLabelIndexは追加されれないこと" do
-      lambda{ build_note }.should_not change(LabelIndex, :count)
-    end
-  end
-
   def build_note
     @user.build_note(
       :name => "value for name",
