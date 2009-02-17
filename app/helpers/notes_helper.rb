@@ -49,9 +49,9 @@ module NotesHelper
 
   def navi_style_label(style)
     case style
-    when LabelIndex::NAVIGATION_STYLE_NONE   then "Not display"
-    when LabelIndex::NAVIGATION_STYLE_TOGGLE then "Display and enable toggle"
-    when LabelIndex::NAVIGATION_STYLE_ALWAYS then "Display always"
+    when LabelIndex::NAVIGATION_STYLE_NONE   then _("Not display")
+    when LabelIndex::NAVIGATION_STYLE_TOGGLE then _("Display and enable toggle")
+    when LabelIndex::NAVIGATION_STYLE_ALWAYS then _("Display always")
     else raise ArgumentError
     end
   end

@@ -26,7 +26,7 @@
                 %span.title.ipe-trigger&= @page.display_name
                 %span.labeled= sanitize _("Labeled as %{label}") % {:label=>val_tag(@page.label_index.display_name)}
                 - if current_note.label_navigation_style == LabelIndex::NAVIGATION_STYLE_TOGGLE
-                  %span.operation.label&= _("show all")
+                  %span.operation.label&= _("show label navigation")
 
                 - if current_note.accessible?(current_user)
                   %span.page-operation= select_tag("page_operation", page_operation)

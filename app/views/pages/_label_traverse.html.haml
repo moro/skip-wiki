@@ -2,9 +2,11 @@
 - acordion_opt = {:header => "h3", :active => label_indices.index(@page.label_index), :autoHeight => false}
 .label-navigation
   %h2
-    =h _("Label indices")
-    - if current_note.label_navigation_style == LabelIndex::NAVIGATION_STYLE_TOGGLE
-      %span.operation&= _("hide")
+    =h _("Label navigation")
+  - if current_note.label_navigation_style == LabelIndex::NAVIGATION_STYLE_TOGGLE
+    %div{:style=>"float:right"}
+      %span.operation&= _("[Click to hide]")
+    .clear
   - label_indices.each do |label|
     %div.label{:style=>"background:#{h(label.color)}"}
       %h3= link_to h(label.display_name), note_pages_path(current_note, :label_index_id => label)
@@ -17,7 +19,7 @@
   $(document).ready(function(){
     $("div.label-navigation").accordion(#{acordion_opt.to_json});
 
-    jQuery("div.label-navigation h2 span.operation").click(function(){
+    jQuery("div.label-navigation span.operation").click(function(){
       jQuery("div.label-navigation").hide().siblings("div.page-content").addClass("fullscreen");
     });
   })
