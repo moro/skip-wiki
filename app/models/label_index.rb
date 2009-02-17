@@ -1,4 +1,12 @@
 class LabelIndex < ActiveRecord::Base
+  NAVIGATION_STYLE_NONE = 0
+  NAVIGATION_STYLE_TOGGLE = 1
+  NAVIGATION_STYLE_ALWAYS = 2
+
+  def self.navigation_styles
+    [NAVIGATION_STYLE_NONE, NAVIGATION_STYLE_TOGGLE, NAVIGATION_STYLE_ALWAYS]
+  end
+
   belongs_to :note
   has_many :label_indexings
   has_many :pages, :through => :label_indexings do

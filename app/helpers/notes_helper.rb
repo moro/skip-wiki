@@ -47,6 +47,15 @@ module NotesHelper
     end
   end
 
+  def navi_style_label(style)
+    case style
+    when LabelIndex::NAVIGATION_STYLE_NONE   then "Not display"
+    when LabelIndex::NAVIGATION_STYLE_TOGGLE then "Display and enable toggle"
+    when LabelIndex::NAVIGATION_STYLE_ALWAYS then "Display always"
+    else raise ArgumentError
+    end
+  end
+
   def note_operation(selected)
     options_for_select( [
       [_("menu"), nil],
