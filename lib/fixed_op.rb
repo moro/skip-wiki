@@ -1,32 +1,26 @@
 require 'openid'
 
 class FixedOp
-  def self.servers=(servers)
-    @servers = Array(servers)
-  end
-  def self.servers
-    @servers ||= (defined? ACCEPTABLE_OP_URLS) ?  Array(ACCEPTABLE_OP_URLS) : []
-  end
+  cattr_accessor :servers, :sso_openid_provider_url
 
   def self.accept?(claimed_url)
     servers.empty? || new(*servers).accept?(claimed_url)
   end
 
-  @@sso_openid_provider_url = (defined? FIXED_OPENID_SERVER_URL) ? FIXED_OPENID_SERVER_URL : nil
   def self.sso_enabled?
-    !!sso_openid_provider_url
-  end
-
-  def self.sso_openid_provider_url
-    @@sso_openid_provider_url
+    @@config && !@@config["disabled"]
   end
 
   def self.sso_openid_logout_url
     URI.join(sso_openid_provider_url + "logout").to_s if sso_openid_provider_url
   end
 
-  def self.sso_openid_provider_url=(url)
-    @@sso_openid_provider_url = url
+  @@config = INITIAL_SETTINGS[:fixed_op]
+  if sso_enabled?
+    @@servers = @@config["acceptable_op_urls"]
+    @@sso_openid_provider_url = @@config["fixed_openid_server_url"]
+  else
+    @@servers, @@sso_openid_provider_url = [], nil
   end
 
   def initialize(*allowed)

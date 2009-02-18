@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
 
     if params[:openid_url] && !FixedOp.accept?(params[:openid_url])
       logger.debug("login refused since #{params[:openid_url]} is not member #{FixedOp.servers.inspect}")
-      login_failed(params.merge(:openid_url=>openid_url))
+      login_failed(params.merge(:openid_url=>params[:openid_url]))
     else
       login_with_openid(params[:openid_url])
     end

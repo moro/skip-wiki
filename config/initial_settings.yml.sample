@@ -29,6 +29,10 @@ production:
       query_name: "full_text_query"
   secret_key: "---FIXME----BEFORE---DEPLOYMENT---"
   <<: *label_defaults
+  fixed_op:
+    #disabled: true
+    fixed_openid_server_url: "http://sso.test.example.com"
+    acceptable_op_urls: []
 
 development:
   skip_collabolation:
@@ -38,6 +42,10 @@ development:
       query_name: "full_text_query"
   secret_key: "1f3c30382d9f2060baf14f0cdb102fe2"
   <<: *label_defaults
+  fixed_op:
+    disabled: true
+    fixed_openid_server_url: "http://sso.test.example.com"
+    acceptable_op_urls: []
 
 test:
   skip_collabolation:
@@ -47,4 +55,8 @@ test:
       query_name: "full_text_query"
   secret_key: "1f3c30382d9f2060baf14f0cdb102fe2"
   <<: *label_defaults
+  fixed_op:
+    disabled: true
+    fixed_openid_server_url: "http://sso.test.example.com"
+    acceptable_op_urls: []
 
