@@ -91,6 +91,7 @@ SQL
       :order => order }
   }
 
+  scope_do :chained_scope
   chainable_scope :labeled, :authored, :fulltext
 
   before_validation :assign_default_pubulification
