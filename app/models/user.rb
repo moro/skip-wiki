@@ -56,16 +56,5 @@ class User < ActiveRecord::Base
   def build_note(note_params)
     NoteBuilder.new(self, note_params).note
   end
-
-  def accessible_or_public_notes(parent = Note)
-    pub_cond, pub_param = Note.const_get("PUBLIC_CONDITION")
-    parent.scoped(:conditions=>[<<-EOS, pub_param.merge(:accessable_id => self.id)])
-  #{pub_cond} OR #{parent.table_name}.id IN (
-    SELECT a.note_id FROM accessibilities AS a
-    JOIN   memberships AS m ON m.group_id = a.group_id
-    WHERE  m.user_id = :accessable_id
-  )
-EOS
-  end
 end
 

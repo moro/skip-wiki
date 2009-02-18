@@ -33,7 +33,7 @@ class Note < ActiveRecord::Base
 
   has_many :attachments, :as => :attachable
 
-  named_scope :public, {:conditions=>PUBLIC_CONDITION}
+  named_scope :free, {:conditions=>PUBLIC_CONDITION}
 
   named_scope :recent, proc{|*args|
     {

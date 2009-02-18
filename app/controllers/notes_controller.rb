@@ -22,7 +22,7 @@ class NotesController < ApplicationController
   end
 
   def dashboard
-    @notes = current_user.accessible_or_public_notes.recent(DASHBOARD_ITEM_NUM + 1)
+    @notes = current_user.free_or_accessible_notes.recent(DASHBOARD_ITEM_NUM + 1)
     @pages = Page.scoped(:conditions=>["note_id IN (?)", @notes.map(&:id)]).recent(DASHBOARD_ITEM_NUM + 1)
   end
 
@@ -121,11 +121,11 @@ class NotesController < ApplicationController
       user =current_user
     end
     raise ActiveRecord::RecordNotFound unless user
-    user.accessible_or_public_notes
+    user.free_or_accessible_notes
   end
 
   def explicit_user_required
-    self.current_note = current_user.accessible_or_public_notes.find(params[:id])
+    self.current_note = current_user.free_or_accessible_notes.find(params[:id])
     unless current_user.accessible?(current_note)
       render_not_found
     end
