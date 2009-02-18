@@ -28,10 +28,10 @@
                 - if current_note.label_navigation_style == LabelIndex::NAVIGATION_STYLE_TOGGLE
                   %span.operation.label&= _("show label navigation")
 
-                - if current_note.accessible?(current_user)
+                - if current_user.accessible?(current_note)
                   %span.page-operation= select_tag("page_operation", page_operation)
 
-              - if current_note.accessible?(current_user)
+              - if current_user.accessible?(current_note)
                 .edit{:style=>"display:none"}
                   - form_for(:page, :url=>note_page_path(current_note, @page), :style=>"display:none") do |f|
                     = f.text_field :display_name, :id => "ipe-page_display_name", :size => 20

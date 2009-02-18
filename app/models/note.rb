@@ -64,13 +64,6 @@ class Note < ActiveRecord::Base
     accessibilities.map(&:group)
   end
 
-  def accessible?(user)
-    accessibilities.find(:first,
-      :joins => "JOIN memberships AS m ON m.group_id = accessibilities.group_id",
-      :conditions => ["m.user_id = ?", user.id]
-    )
-  end
-
   def public_readable?
     [Note::PUBLICITY_READABLE, Note::PUBLICITY_WRITABLE].include?(publicity)
   end

@@ -5,11 +5,11 @@
       %th.display_name&= _("Page|Display name")
       %th.mail= _("Notify Mail")
       %th.user&= _("Page|Auther")
-      - if current_note.accessible?(current_user)
+      - if current_user.accessible?(current_note)
         %th.publication&= _("Publication")
         %th.timestamp&= _("Page|Published at")
       %th.timestamp&= _("Page|Updated at")
-      - if current_note.accessible?(current_user)
+      - if current_user.accessible?(current_note)
         %th.history&= _("History")
   %tbody
     - each_with_histories(pages) do |page, history|
@@ -18,7 +18,7 @@
         %td.name= link_to h(page.display_name), note_page_url(current_note, page)
         %td.mail= mail_notification(current_note, page)
         %td&= history.user.name
-        - if current_note.accessible?(current_user)
+        - if current_user.accessible?(current_note)
           %td.publication
             - if page.published?
               %span.published&= _("Published")
@@ -26,6 +26,6 @@
               %span.not_yet&= _("Not yet")
           %td.timestamp&= page.published_at.strftime("%Y-%m-%d %H:%M")
         %td.timestamp&= page.updated_at.strftime("%Y-%m-%d %H:%M")
-        - if current_note.accessible?(current_user)
+        - if current_user.accessible?(current_note)
           %td.history= link_to h(_"Show history"), note_page_histories_path(current_note, page)
 

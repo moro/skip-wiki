@@ -5,8 +5,11 @@ describe PagesController do
   before do
     @current_note = notes(:our_note)
     controller.stub!(:login_required).and_return(true)
-    controller.stub!(:current_user).and_return(@user = mock_model(User))
     controller.stub!(:current_note).and_return(@current_note)
+
+    @user = mock_model(User)
+    @user.stub!(:accessible?).with(@current_note).and_return true
+    controller.stub!(:current_user).and_return(@user)
   end
 
   #Delete this example and add some real ones

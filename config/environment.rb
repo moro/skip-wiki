@@ -29,6 +29,7 @@ Rails::Initializer.run do |config|
   config.gem 'gettext',  :lib => 'gettext/rails', :version => '1.93.0'
   config.gem 'diff-lcs', :lib => 'diff/lcs'
   config.gem 'haml'
+  config.gem 'scope_do'
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :version=> '>=2.3.6', :source => "http://gems.github.com/"
   config.gem 'cucumber' if Rails.env == "test"
 
@@ -39,6 +40,7 @@ Rails::Initializer.run do |config|
   config.plugins = %w[
     friendly_id
     haml
+    scope_do
     jrails
     restful_authentication
     open_id_authentication

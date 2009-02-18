@@ -126,7 +126,7 @@ class NotesController < ApplicationController
 
   def explicit_user_required
     self.current_note = current_user.accessible_or_public_notes.find(params[:id])
-    unless current_note.accessible?(current_user)
+    unless current_user.accessible?(current_note)
       render_not_found
     end
   end

@@ -19,6 +19,9 @@ class User < ActiveRecord::Base
   has_one :account
   has_one :skip_account
 
+  scope_do :named_acl
+  named_acl :notes
+
   named_scope :fulltext, proc{|word|
     return {} if word.blank?
     # TODO
@@ -56,20 +59,12 @@ class User < ActiveRecord::Base
 
   def accessible_or_public_notes(parent = Note)
     pub_cond, pub_param = Note.const_get("PUBLIC_CONDITION")
-    parent.scoped(:conditions=>["#{pub_cond} OR #{parent.table_name}.id IN (#{accessible_query})",
-                                pub_param.merge(:accessable_id => self.id)])
-  end
-
-  def accessible_notes(parent = Note)
-    parent.scoped(:conditions=>["#{parent.table_name}.id IN (#{accessible_query})",{:accessable_id => id}])
-  end
-
-  private
-  def accessible_query
-    <<EOS
+    parent.scoped(:conditions=>[<<-EOS, pub_param.merge(:accessable_id => self.id)])
+  #{pub_cond} OR #{parent.table_name}.id IN (
     SELECT a.note_id FROM accessibilities AS a
     JOIN   memberships AS m ON m.group_id = a.group_id
     WHERE  m.user_id = :accessable_id
+  )
 EOS
   end
 end

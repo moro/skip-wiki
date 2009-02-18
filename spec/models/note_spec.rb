@@ -119,11 +119,11 @@ describe Note do
     end
 
     it "グループのユーザはaccessibleであること" do
-      @note.should be_accessible(users(:quentin))
+      users(:quentin).should be_accessible(@note)
     end
 
     it "グループ外のユーザはaccessibleでないこと" do
-      @note.should_not be_accessible(users(:aaron))
+      users(:aaron).should_not be_accessible(@note)
     end
   end
 
