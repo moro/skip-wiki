@@ -49,7 +49,7 @@
       return validatesPresenceOf("display_name", "名称") &&
              validatesPresenceOf("name", "識別名") ;
     };
-    root.selectInputDescriptionToNext = function(wizard){
+    root.inputDescriptionToNext = function(wizard){
       return validatesPresenceOf("description", "説明");
     };
     root.selectLabelNavigationStyleToNext = function(wizard){

@@ -7,7 +7,7 @@
   .clear
 
   - humanized_step = step + 1
-  %h3= _"#{humanized_step}. #{Note::WIZARD_STEPS[step]}"
+  %h3= _("#{humanized_step}.") + _("#{Note::WIZARD_STEPS[step]}")
   .wizard_content
     =yield key
 
