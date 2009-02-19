@@ -7,7 +7,8 @@ class Note < ActiveRecord::Base
                       {:publicity => [PUBLICITY_READABLE, PUBLICITY_WRITABLE]} ].freeze
 
   WIZARD_STEPS = [ N_("Select gruop"), N_("Select category"), N_("Select publicity"),
-                   N_("Input name"), N_("Input description"), N_("Confirm") ].freeze
+                   N_("Select label navigation style"), N_("Input name"), N_("Input description"),
+                   N_("Confirm") ].freeze
 
   has_friendly_id :name
 

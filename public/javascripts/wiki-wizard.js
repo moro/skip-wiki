@@ -51,7 +51,10 @@
     };
     root.selectInputDescriptionToNext = function(wizard){
       return validatesPresenceOf("description", "説明");
-    }
+    };
+    root.selectLabelNavigationStyleToNext = function(wizard){
+      return validatesSelection("label_navigation_style", "ナビゲーション表示");
+    };
 
     try{
       root.

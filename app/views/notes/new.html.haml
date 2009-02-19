@@ -49,30 +49,30 @@
             %li
               =h _"Office"
               %ul.sub
-                %li&= _"SWAT...TCが展開するシステム開発ツールとノウハウに関するWikiです"
-                %li&= _"QMS...生産技術部が展開するQMSに関する資料公開用のWikiです"
+                %li&= _"SWAT...TCが展開するシステム開発ツールとノウハウに関するノートです"
+                %li&= _"QMS...生産技術部が展開するQMSに関する資料公開用のノートです"
 
             %li
               =h _"Business"
               %ul.sub
-                %li&= _"SONICチーム情報共有Wiki...プロジェクトチーム内の情報共有用Wikiです"
+                %li&= _"SONICチーム情報共有ノート...プロジェクトチーム内の情報共有用ノートです"
 
             %li
               =h _"Life"
               %ul.sub
                 %li&= _"ファシリテーションWG...社内の有志で運営している勉強会グループです"
-                %li&= _"TC部門内運営ルール...休暇申請など、部門内のルールをまとめたWikiです"
+                %li&= _"TC部門内運営ルール...休暇申請など、部門内のルールをまとめたノートです"
 
             %li
               =h _"Off"
               %ul.sub
                 %li&= _"ハムスターの飼育方法...その名の通り、ハムスターを元気に育てるためのノウハウ集です"
-                %li&= _"FFIX...ゲームに関する情報をまとめたWikiです"
+                %li&= _"FFIX...ゲームに関する情報をまとめたノートです"
 
     -render_wizard(2, :select_publicity) do
       .wizard_content
         .topic
-          次のステップではWikiの公開範囲を設定します。<br/>
+          次のステップではノートの公開範囲を設定します。<br/>
 
         %table
           %tr
@@ -96,25 +96,57 @@
             %li
               =h _"グループメンバーのみ閲覧/書込できる"
               %ul.sub
-                %li&= "そのWikiにアクセス可能なグループのメンバーのみが読み書きできます。"
-                %li&= "プロジェクト内や特定のユーザのみで利用するWikiにしたい場合に選びます。"
+                %li&= "そのノートにアクセス可能なグループのメンバーのみが読み書きできます。"
+                %li&= "プロジェクト内や特定のユーザのみで利用するノートにしたい場合に選びます。"
             %li
               =h _"全員が閲覧できる"
               %ul.sub
                 %li
                   グループメンバーが読み書きできるのに加え、<strong>グループに所属していないユーザ</strong>
-                  もWikiの内容を閲覧することができます。
+                  もノートの内容を閲覧することができます。
                 %li&= _"そのグループからグループ外に情報を発信したい場合に選びます。"
             %li
               =h _"全員が閲覧/書込できる"
               %ul.sub
                 %li
                   グループに所属していないユーザを含む、<strong>あらゆるユーザ</strong>
-                  が編集できるWikiになります。
-                %li&= _"Wikipediaのようにみんなでコンテンツを作っていくWikiにしたい場合に選びます。"
+                  が編集できるノートになります。
+                %li&= _"Wikipediaのようにみんなでコンテンツを作っていくノートにしたい場合に選びます。"
 
+    -render_wizard(3, :select_label_navigation_style) do
+      .wizard_content
+        .topic
+          次のステップではページ表示時のラベルナビゲーションの表示方方を設定します。<br/>
 
-    -render_wizard(3, :select_input_name) do
+        %table
+          - LabelIndex.navigation_styles.each do |style|
+            %tr
+              %td
+                =f.radio_button(:label_navigation_style, style)
+                =f.label "label_navigation_style_#{style}", h(navi_style_label(style))
+              %td &nbsp;
+
+        .example
+          %ul
+            %li
+              =h navi_style_label(LabelIndex::NAVIGATION_STYLE_NONE)
+              %ul.sub
+                %li&= "ラベルツールバーを表示しません。"
+                %li&= "公式発表など、他のページへのナビゲーションが不要な場合に選びます。"
+            %li
+              =h navi_style_label(LabelIndex::NAVIGATION_STYLE_TOGGLE)
+              %ul.sub
+                %li&= "ラベルツールバーの表示を切り替えられます。"
+                %li&= "ナビゲーションバーを用意したいが、全画面表示も使いたい場合に選びます。"
+                %li
+                  ページの初期表示時には、<strong>ツールバーが表示</strong>されています。"
+            %li
+              =h navi_style_label(LabelIndex::NAVIGATION_STYLE_ALWAYS)
+              %ul.sub
+                %li&= "ラベルツールバーを常に表示します。"
+                %li&= "グループ内のノートなど、ナビゲーションが簡単に出きるようにしたい場合に選びます"
+
+    -render_wizard(4, :select_input_name) do
       .wizard_content
         .topic
           次のステップでは
@@ -133,7 +165,7 @@
 
         .example
           .h4 名称の例
-          最近作成されたWikiの名称です。
+          最近作成されたノートの名称です。
           %ul
             - Note.recent.each do |note|
               %li= note.display_name
@@ -141,11 +173,11 @@
         .example
           .h4 識別名の例
           // FIXME
-          例えば、グループのWikiで識別名を<b><u>sonic_note</u></b>と入力すると、次のURLでアクセスできます。
+          例えば、グループのノートで識別名を<b><u>sonic_note</u></b>と入力すると、次のURLでアクセスできます。
           %div{:style=>"margin:5px 0 0 10px;color:green"}
             = note_url("sonic_note")
 
-    -render_wizard(4, :select_input_description) do
+    -render_wizard(5, :select_input_description) do
       .wizard_content
         .topic
           次のステップでは
@@ -164,7 +196,7 @@
             - Note.recent.each do |note|
               %li= note.description
 
-    - render_wizard(5, :confirm) do
+    - render_wizard(6, :confirm) do
       %p
         この内容でよろしいですか?
         =f.submit _("Create")
@@ -178,6 +210,9 @@
             %td&= ""
           %tr.publicity
             %th&= _("Note|Publicity")
+            %td&= ""
+          %tr.label_navigation_style
+            %th&= _("Note|LabelNavigationStyle")
             %td&= ""
           %tr.display_name
             %th&= _("Note|Display name")
