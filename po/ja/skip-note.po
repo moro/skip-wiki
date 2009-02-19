@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2009-02-17 17:36+0900\n"
+"POT-Creation-Date: 2009-02-19 11:35+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -125,7 +125,7 @@ msgid "Min"
 msgstr "分"
 
 #: app/helpers/application_helper.rb:34
-#: app/views/pages/_label_traverse.html.haml:7
+#: app/views/pages/_label_traverse.html.haml:8
 msgid "[Click to hide]"
 msgstr "[クリックして消去]"
 
@@ -147,20 +147,20 @@ msgstr "リビジョン%{rev}を表示しています(%{user}が%{date}に更新
 
 #: app/helpers/notes_helper.rb:8 app/models/note.rb:-
 #: app/views/admin/notes/edit.html.haml:22 app/views/notes/edit.html.haml:20
-#: app/views/notes/new.html.haml:123 app/views/notes/new.html.haml:131
-#: app/views/notes/new.html.haml:186
+#: app/views/notes/new.html.haml:155 app/views/notes/new.html.haml:163
+#: app/views/notes/new.html.haml:221
 msgid "Note|Name"
 msgstr "ノート識別子"
 
 #: app/helpers/notes_helper.rb:10 app/models/note.rb:-
 #: app/views/admin/notes/edit.html.haml:37 app/views/notes/edit.html.haml:32
-#: app/views/notes/new.html.haml:180
+#: app/views/notes/new.html.haml:212
 msgid "Note|Publicity"
 msgstr "公開範囲"
 
 #: app/helpers/notes_helper.rb:12 app/models/note.rb:-
 #: app/views/admin/notes/edit.html.haml:52 app/views/notes/edit.html.haml:48
-#: app/views/notes/new.html.haml:177
+#: app/views/notes/new.html.haml:209
 msgid "Note|Category"
 msgstr "カテゴリ"
 
@@ -602,8 +602,8 @@ msgstr "ノート"
 #: app/models/note.rb:- app/views/admin/notes/edit.html.haml:27
 #: app/views/admin/notes/index.html.haml:9
 #: app/views/notes/dashboard.html.haml:20 app/views/notes/edit.html.haml:24
-#: app/views/notes/index.html.haml:20 app/views/notes/new.html.haml:121
-#: app/views/notes/new.html.haml:128 app/views/notes/new.html.haml:183
+#: app/views/notes/index.html.haml:20 app/views/notes/new.html.haml:153
+#: app/views/notes/new.html.haml:160 app/views/notes/new.html.haml:218
 msgid "Note|Display name"
 msgstr "ノート名"
 
@@ -626,8 +626,8 @@ msgstr "更新日時"
 
 #: app/models/note.rb:- app/views/admin/notes/edit.html.haml:32
 #: app/views/notes/dashboard.html.haml:21 app/views/notes/edit.html.haml:28
-#: app/views/notes/index.html.haml:21 app/views/notes/new.html.haml:152
-#: app/views/notes/new.html.haml:157 app/views/notes/new.html.haml:189
+#: app/views/notes/index.html.haml:21 app/views/notes/new.html.haml:184
+#: app/views/notes/new.html.haml:189 app/views/notes/new.html.haml:224
 msgid "Note|Description"
 msgstr "ノートの説明"
 
@@ -636,8 +636,8 @@ msgid "Note|Label navigation style"
 msgstr ""
 
 #: app/models/note.rb:9
-msgid "Select gruop"
-msgstr ""
+msgid "Select group"
+msgstr "グループを選択"
 
 #: app/models/note.rb:9
 msgid "Select category"
@@ -648,6 +648,10 @@ msgid "Select publicity"
 msgstr "公開範囲を選択"
 
 #: app/models/note.rb:10
+msgid "Select label navigation style"
+msgstr "ラベルバーの表示方法を選択"
+
+#: app/models/note.rb:10
 msgid "Input name"
 msgstr "名前を入力"
 
@@ -655,7 +659,7 @@ msgstr "名前を入力"
 msgid "Input description"
 msgstr "ノートの説明を入力"
 
-#: app/models/note.rb:10
+#: app/models/note.rb:11
 msgid "Confirm"
 msgstr "確認"
 
@@ -900,7 +904,7 @@ msgid "edit note properties"
 msgstr "ノートのプロパティを編集"
 
 #: app/views/admin/notes/edit.html.haml:12 app/views/notes/edit.html.haml:9
-#: app/views/notes/new.html.haml:174
+#: app/views/notes/new.html.haml:206
 msgid "Note|GroupBackendType"
 msgstr "管理対象の種別"
 
@@ -950,7 +954,7 @@ msgstr "ラベルを追加"
 
 #: app/views/admin/notes/show.html.haml:54
 #: app/views/label_indices/index.html.haml:19
-#: app/views/notes/new.html.haml:170
+#: app/views/notes/new.html.haml:202
 msgid "Create"
 msgstr "作成"
 
@@ -1178,7 +1182,7 @@ msgstr "編集可能なノート"
 msgid "note pages"
 msgstr "ページ一覧"
 
-#: app/views/notes/edit.html.haml:56
+#: app/views/notes/edit.html.haml:56 app/views/notes/new.html.haml:215
 msgid "Note|LabelNavigationStyle"
 msgstr "ラベルバー表示"
 
@@ -1207,11 +1211,11 @@ msgid "Office"
 msgstr ""
 
 #: app/views/notes/new.html.haml:52
-msgid "SWAT...TCが展開するシステム開発ツールとノウハウに関するWikiです"
+msgid "SWAT...TCが展開するシステム開発ツールとノウハウに関するノートです"
 msgstr ""
 
 #: app/views/notes/new.html.haml:53
-msgid "QMS...生産技術部が展開するQMSに関する資料公開用のWikiです"
+msgid "QMS...生産技術部が展開するQMSに関する資料公開用のノートです"
 msgstr ""
 
 #: app/views/notes/new.html.haml:56
@@ -1219,7 +1223,7 @@ msgid "Business"
 msgstr ""
 
 #: app/views/notes/new.html.haml:58
-msgid "SONICチーム情報共有Wiki...プロジェクトチーム内の情報共有用Wikiです"
+msgid "SONICチーム情報共有ノート...プロジェクトチーム内の情報共有用ノートです"
 msgstr ""
 
 #: app/views/notes/new.html.haml:61
@@ -1231,7 +1235,7 @@ msgid "ファシリテーションWG...社内の有志で運営している勉�
 msgstr ""
 
 #: app/views/notes/new.html.haml:64
-msgid "TC部門内運営ルール...休暇申請など、部門内のルールをまとめたWikiです"
+msgid "TC部門内運営ルール...休暇申請など、部門内のルールをまとめたノートです"
 msgstr ""
 
 #: app/views/notes/new.html.haml:67
@@ -1245,7 +1249,7 @@ msgid ""
 msgstr ""
 
 #: app/views/notes/new.html.haml:70
-msgid "FFIX...ゲームに関する情報をまとめたWikiです"
+msgid "FFIX...ゲームに関する情報をまとめたノートです"
 msgstr ""
 
 #: app/views/notes/new.html.haml:81 app/views/notes/new.html.haml:97
@@ -1266,7 +1270,7 @@ msgstr ""
 
 #: app/views/notes/new.html.haml:114
 msgid ""
-"Wikipediaのようにみんなでコンテンツを作っていくWikiにしたい場合に選びます。"
+"Wikipediaのようにみんなでコンテンツを作っていくノートにしたい場合に選びます。"
 msgstr ""
 
 #: app/views/pages/_filter_query.html.haml:1
