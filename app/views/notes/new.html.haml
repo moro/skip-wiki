@@ -167,7 +167,7 @@
           .h4 名称の例
           最近作成されたノートの名称です。
           %ul
-            - Note.recent.each do |note|
+            - current_user.accessible_or_public_notes.recent.each do |note|
               %li= note.display_name
 
         .example
@@ -193,7 +193,7 @@
           .h4 説明
           ノートの内容を簡単に説明してください
           %ul
-            - Note.recent.each do |note|
+            - current_user.accessible_or_public_notes.recent.each do |note|
               %li= note.description
 
     - render_wizard(6, :confirm) do
