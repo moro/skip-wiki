@@ -8,7 +8,7 @@ class Note < ActiveRecord::Base
 
   WIZARD_STEPS = [ N_("Select group"), N_("Select category"), N_("Select publicity"),
                    N_("Select label navigation style"), N_("Input name"), N_("Input description"),
-                   N_("Confirm") ].freeze
+                   N_("Select list attachments"), N_("Confirm") ].freeze
 
   has_friendly_id :name
 

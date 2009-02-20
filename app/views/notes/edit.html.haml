@@ -60,6 +60,14 @@
                   %li
                     =f.radio_button(:label_navigation_style, style)
                     =f.label "label_navigation_style_#{style}", h(navi_style_label(style))
+          %tr
+            %th&= _("Note|List attachments")
+            %td
+              %ul.radios
+                - [false, true].each do |val|
+                  %li
+                    =f.radio_button(:list_attachments, val)
+                    =f.label "list_attachments_#{val}", h(list_attachments_label(val))
 
         %div
           = back_link_to(_("Note Properties"), note_path(current_note))

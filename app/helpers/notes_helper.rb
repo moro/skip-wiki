@@ -12,7 +12,26 @@ module NotesHelper
       :category_key => content_tag("span", _("Note|Category") , :class=>"key"),
       :category_val => content_tag("span", note.category.display_name , :class=>"val"),
     }
+
     _("This note's %{name_key} is `%{name_val}', %{publicity_key} is `%{publicity_val}', and %{category_key} is `%{category_val}'.") % opts
+  end
+
+  def explain_note_ext(note)
+    opts = {
+      :label_navi_key => content_tag("span", _("Note|Label navigation style"), :class => "key"),
+      :label_navi_val => content_tag("span", navi_style_label(note.label_navigation_style), :class => "val"),
+      :list_attachments_key => content_tag("span", _("Note|List attachments"), :class => "key"),
+      :list_attachments_val => content_tag("span", list_attachments_label(note.list_attachments), :class => "val"),
+    }
+
+      _("%{label_navi_key} is %{label_navi_val}, %{list_attachments_key} is %{list_attachments_val}") % opts
+  end
+
+  def list_attachments_label(val)
+    case val
+    when true, 1  then _("List attachment for download.")
+    when false, 0 then _("NOT list attachment for download.")
+    end
   end
 
   def explain_users(users)

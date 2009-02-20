@@ -56,6 +56,10 @@
       return validatesSelection("label_navigation_style", "ナビゲーション表示");
     };
 
+    root.selectListAttachmentsToNext = function(wizard){
+      return validatesSelection("list_attachments", "添付ファイル一覧");
+    };
+
     try{
       root.
         find("div.step:not(:first)").hide().end().

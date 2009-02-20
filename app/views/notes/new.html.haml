@@ -187,7 +187,7 @@
         %table
           %tr
             %td= f.label :description, _("Note|Description")
-            %td= f.text_field :description, :size=>"100"
+            %td= f.text_field :description, :size=>"60"
 
         .example
           .h4 説明
@@ -196,7 +196,36 @@
             - current_user.accessible_or_public_notes.recent.each do |note|
               %li= note.description
 
-    - render_wizard(6, :confirm) do
+    -render_wizard(6, :select_list_attachments) do
+      .wizard_content
+        .topic
+          次のステップでは
+          %strong= _("Note|List attachments")
+          を入力してください。
+
+        %table
+          - [false, true].each do |val|
+            %tr
+              %td
+                =f.radio_button(:list_attachments, val)
+                =f.label "list_attachments_#{val}", h(list_attachments_label(val))
+
+        .example
+          %h4 説明
+          ノートを呼んでいる一般ユーザに、添付ファイル一覧を表示するかどうかを設定します。
+          %ul
+            %li
+              =h _("NOT list attachment for download.")
+              %ul.sub
+                %li&= "そのノートの編集権限のないユーザは、添付ファイルの一覧にアクセスできません。"
+                %li&= "ページに埋め込まれたリンクからはダウンロードできます。"
+            %li
+              =h _("List attachment for download.")
+              %ul.sub
+                %li&= "そのノートの編集権限のないユーザも、添付ファイルの一覧にアクセスできます。"
+                %li&= "情報共有用のノートなど、全員で添付ファイルを共有する場合に選びます。"
+
+    - render_wizard(7, :confirm) do
       %p
         この内容でよろしいですか?
         =f.submit _("Create")
@@ -222,6 +251,9 @@
             %td&= ""
           %tr.description
             %th&= _("Note|Description")
+            %td&= ""
+          %tr.list_attachments
+            %th&= _("Note|List attachments")
             %td&= ""
 
 = link_to 'Back', notes_path

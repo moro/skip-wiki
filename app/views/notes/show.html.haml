@@ -5,8 +5,9 @@
         %h3
           =h _("Note Properties")
           %span= link_to(h(_"edit note properties"), edit_note_path(@note))
-        %p.explain
-          =sanitize explain_note(@note), :tags => %w[span]
+        %ul.explain
+          %li= sanitize explain_note(@note), :tags => %w[span]
+          %li= sanitize explain_note_ext(@note), :tags => %w[span]
 
       .users
         %h3
