@@ -3,12 +3,13 @@
 #content
   - div_for(current_note, :class=>"app-layout") do
     %h2&= _("%{title}'s attachments") % {:title => current_note.display_name }
-    .attachment.upload
-      %h3&= _("Attach file(s)")
-      %div.sync-upload
-        - form_for(:attachment, :url=> note_attachments_path(current_note), :html=>{:multipart => true}) do |f|
-          = render :partial => 'form', :locals => {:f => f}
-          = submit_tag h(_"Upload")
+    - if current_note.accessible?(current_user)
+      .attachment.upload
+        %h3&= _("Attach file(s)")
+        %div.sync-upload
+          - form_for(:attachment, :url=> note_attachments_path(current_note), :html=>{:multipart => true}) do |f|
+            = render :partial => 'form', :locals => {:f => f}
+            = submit_tag h(_"Upload")
 
     .attachments
       %h3&= _("Attached files")

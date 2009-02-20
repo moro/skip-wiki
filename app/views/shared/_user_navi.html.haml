@@ -2,6 +2,10 @@
   %li.bar-item.page-index
     = link_to(_("note pages"), note_pages_path(current_note))
 
+  - if current_note.list_attachments || current_note.accessible?(current_user)
+    %li.bar-item.attachments
+      = link_to(_("note attachments"), note_attachments_path(current_note))
+
   %li.bar-item.search-pages
     - form_tag(note_pages_path(current_note), :method=>:get) do
       - search_label = _("Search pages in %{note}") % {:note => current_note.display_name}

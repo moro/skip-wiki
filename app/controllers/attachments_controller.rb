@@ -2,6 +2,9 @@ class AttachmentsController < ApplicationController
   include IframeUploader
   include ActionView::Helpers::NumberHelper # to format file size on JSON
 
+  before_filter :writable_user_required, :only => %w[new create destroy]
+  before_filter :only_if_list_attachments_or_group_member, :only => %w[index]
+
   def index
     @attachments = current_note.attachments.
       find(:all, :order =>"#{Attachment.quoted_table_name}.updated_at DESC")
@@ -62,5 +65,17 @@ class AttachmentsController < ApplicationController
 
   def select_layout
     ajax_upload? ? nil : "notes"
+  end
+
+  def only_if_list_attachments_or_group_member
+    unless (current_note.accessible?(current_user) || current_note.list_attachments)
+      head(:forbidden)
+    end
+  end
+
+  def writable_user_required
+    unless current_note.accessible?(current_user)
+      head(:forbidden)
+    end
   end
 end

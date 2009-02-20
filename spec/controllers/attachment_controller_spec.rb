@@ -5,6 +5,9 @@ describe AttachmentsController do
   before do
     controller.stub!(:current_user).and_return(@user = users(:quentin))
     controller.stub!(:current_note).and_return(@note = notes(:our_note))
+
+    controller.stub!(:writable_user_required).and_return(true)
+    controller.stub!(:only_if_list_attachments_or_group_member).and_return(true)
   end
 
   describe "GET index.js" do
