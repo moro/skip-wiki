@@ -1,5 +1,38 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+
+  # From. http://github.com/mojombo/clippy/tree/master
+  def clippy(text, bgcolor='#FFFFFF')
+    html = <<-EOF
+      <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
+              width="110"
+              height="14"
+              id="clippy" >
+      <param name="movie" value="#{flash_path("clippy")}"/>
+      <param name="allowScriptAccess" value="always" />
+      <param name="quality" value="high" />
+      <param name="scale" value="noscale" />
+      <param NAME="FlashVars" value="text=#{text}">
+      <param name="bgcolor" value="#{bgcolor}">
+      <embed src="#{flash_path("clippy")}"
+             width="110"
+             height="14"
+             name="clippy"
+             quality="high"
+             allowScriptAccess="always"
+             type="application/x-shockwave-flash"
+             pluginspage="http://www.macromedia.com/go/getflashplayer"
+             FlashVars="text=#{text}"
+             bgcolor="#{bgcolor}"
+      />
+      </object>
+    EOF
+  end
+
+  def flash_path(source, suffix="swf")
+    compute_public_path(source, "flash", suffix)
+  end
+
   # XXX option_groups_from_collection_for_selectが使えないか検討する
   def notes_navi_on_header(user, selected="")
     notes = user.free_or_accessible_notes

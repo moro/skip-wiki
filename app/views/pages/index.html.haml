@@ -20,9 +20,9 @@
             %tr
               %th.label&= _("LabelIndices")
               %th.display_name&= _("Page|Display name")
-              %th.mail= _("Notify Mail")
               %th.user&= _("Page|Auther")
               %th.timestamp&= _("Page|Updated at")
+              %th.clippy= _("Copy URL")
           %tbody
             - each_with_histories(@pages) do |page, history|
               - note = page.note
@@ -31,9 +31,9 @@
                 %td.name
                   = link_to h(page.display_name), note_page_path(note, page)
                   %span.note&= "on #{note.display_name}"
-                %td.mail= mail_notification(note,page)
                 %td&= history.user.name
                 %td.timestamp&= page.updated_at.strftime("%Y-%m-%d %H:%M")
+                %td.clippy= clippy(note_pages_url(current_note, page)
 
         = will_paginate(@pages)
 

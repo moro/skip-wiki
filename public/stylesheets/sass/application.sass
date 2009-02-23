@@ -592,14 +592,6 @@ table.notes-index, table.pages-index
       :background #eee
       :font-size = !small_font_size
 
-  td.mail
-    :text-align center
-    a
-      :padding 2px 0 2px 18px
-      :background-image url("../images/icons/email_link.png")
-      :background-repeat no-repeat
-      :font-size = !small_font_size
-
   th.published
     :width 12em
   td.published, td.notyet
@@ -824,7 +816,7 @@ table.label-indices
       input
         :margin 0
       input[type=text]
-        :font-size 12px
+        :font-size 16px
         :padding-left 0.2em
       input[type=submit]
         :font-size = !small_font_size
@@ -846,6 +838,11 @@ table
       :font-size 10px
       :text-align center
       :width 10em
+
+    th.clippy, td.clippy
+      :width 110px
+      object
+        :margin 0
 
 table.input
   :margin 1em auto

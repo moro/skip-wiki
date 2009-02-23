@@ -13,17 +13,6 @@ module PagesHelper
     {:messages => {:sending => _("Sending...")}}.merge(base)
   end
 
-  def mail_notification(note, page)
-    subject = _("\"%{name}\"'s url") % {:name => page.display_name}
-    body    = [
-      _("!!! fix [To] !!!"),
-      "",
-      _("URL for \"%{note}\"'s \"%{page}\".") % {:note => note.display_name, :page => page.display_name},
-      note_page_url(note, page)
-    ].join("\n")
-    link_to(_("send mail"), "mailto:dummy?subject=#{u(subject)}&body=#{u(body)}")
-  end
-
   def query_form_options(keys = [:keyword, :authors, :label_index_id, :order])
     {:method => "GET",
      :style  => keys.all?{|k| params[k].blank? } ? "display:none" : ""}
