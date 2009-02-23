@@ -10,23 +10,6 @@
 
   .contents
     #portal
-      #updated-note
-        %h2
-          %span= icon_tag('folder_page', _("Updated notes"))
-          - if has_more?(@notes)
-            %span.operation= link_to(_("more..."), notes_path)
-        %table.notes-index
-          %tr
-            %th.updated_title&= _("Note|Display name")
-            %th.description&= _("Note|Description")
-            %th.updated_at&= _("Note|Updated at")
-
-          - @notes[0, NotesController::DASHBOARD_ITEM_NUM].each do |note|
-            %tr.item_line
-              %td.updated_title= link_to h(note.display_name), note_page_path(note, "FrontPage")
-              %td.description&= note.description
-              %td.date&= note.updated_at.strftime("%m/%d %H:%M")
-
       #updated-page
         %h2
           %span= icon_tag('folder_page', _("Updated pages"))
@@ -53,10 +36,10 @@
       %ul.accessible-notes
         - current_user.accessible_notes.each do |note|
           %li
-            %span.display_name&= note.display_name
+            %span.display_name= link_to(h(note.display_name), note_page_path(note, "FrontPage"))
             %span.operation= link_to(_("show note"), note_path(note))
             %span.operation= link_to(_("note pages"), note_pages_path(note))
-            %span.operation= link_to(_("FrontPage"), note_page_path(note, "FrontPage"))
+            %span.operation= link_to(_("note attachments"), note_attachments_path(note))
             .info
               %span&= note.description
 

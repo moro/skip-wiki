@@ -4,7 +4,7 @@ class NotesController < ApplicationController
   before_filter :login_required, :except => %w[index]
   before_filter :authenticate_with_api_or_login_required, :only => %w[index]
   before_filter :explicit_user_required, :except => %w[index new create dashboard]
-  DASHBOARD_ITEM_NUM = 5
+  DASHBOARD_ITEM_NUM = 10
   include ForServicesModule
 
   layout :select_layout
