@@ -21,6 +21,16 @@ describe User do
     end
   end
 
+  describe "User validation" do
+    before do
+      @it = User.new(:name => "", :display_name => "")
+      @it.valid? && flunk("前提条件の間違い")
+    end
+
+    it{ @it.should have_at_least(1).errors_on(:name) }
+    it{ @it.should have_at_least(1).errors_on(:display_name) }
+  end
+
   describe "#skip_uid=" do
     before do
       @user = create_user

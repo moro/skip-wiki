@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   validates_length_of       :name, :within => 3..40
   validates_uniqueness_of   :name
   validates_format_of       :name, :with => Authentication.login_regex, :message => Authentication.bad_login_message
+  validates_presence_of     :display_name
+  validates_length_of       :display_name, :within => 3..256
 
   has_many :memberships, :dependent => :destroy do
     def replace_by_type(klass, *groups)
