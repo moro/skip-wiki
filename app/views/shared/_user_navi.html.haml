@@ -2,7 +2,7 @@
   %li.bar-item.page-index
     = link_to(_("note pages"), note_pages_path(current_note))
 
-  - if current_note.list_attachments || current_note.accessible?(current_user)
+  - if current_note.list_attachments || current_user.accessible?(current_note)
     %li.bar-item.attachments
       = link_to(_("note attachments"), note_attachments_path(current_note))
 

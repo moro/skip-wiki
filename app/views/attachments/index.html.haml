@@ -3,7 +3,7 @@
 #content
   - div_for(current_note, :class=>"app-layout") do
     %h2&= _("%{title}'s attachments") % {:title => current_note.display_name }
-    - if current_note.accessible?(current_user)
+    - if current_user.accessible?(current_note)
       .attachment.upload
         %h3&= _("Attach file(s)")
         %div.sync-upload

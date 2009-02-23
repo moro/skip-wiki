@@ -78,7 +78,7 @@ describe NoteBuilder do
 
     it "should accessible the note" do
       @note.owner_group.backend.should_not be_new_record
-      @user.accessible_or_public_notes.should include(@note)
+      @user.free_or_accessible_notes.should include(@note)
     end
 
     it "the note.owner_group.backend.owner.should == @user" do
