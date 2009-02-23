@@ -4,8 +4,13 @@
 %tr
   %th= form.label(:name, h(_("Page|Name")))
   %td
-    = h(note_pages_url(current_note) + "/")
-    = form.text_field :name, :size => 20
+    - if @page.name_editable?
+      =h(note_pages_url(current_note) + "/")
+      =form.text_field :name, :size => 10
+    - else
+      =h( url = note_page_url(current_note, @page))
+      =clippy(url)
+
 %tr
   %th= form.label(:published_at, h(_("Page|Published at")))
   %td

@@ -19,6 +19,7 @@ class Page < ActiveRecord::Base
   validates_inclusion_of :format_type, :in => %w[hiki html]
 
   validate_on_update :frontpage_cant_rename
+  validate_on_update :published_page_cant_rename
   before_destroy :frontpage_cant_destroy
 
   named_scope :recent, proc{|*args|
@@ -133,6 +134,10 @@ SQL
     published_at <= pivot
   end
 
+  def name_editable?
+    new_record? || !(published? || name == "FrontPage")
+  end
+
   def head
     histories.first
   end
@@ -197,6 +202,13 @@ SQL
   def frontpage_cant_rename
     if name_changed? && name_was == FRONTPAGE_NAME
       errors.add :name, _("the name `%{n}' is reserved") % {:n => FRONTPAGE_NAME}
+      return false
+    end
+  end
+
+  def published_page_cant_rename
+    if name_changed? && published?
+      errors.add :name, _("published page can't be renamed.")
       return false
     end
   end

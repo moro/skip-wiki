@@ -43,6 +43,11 @@ describe Page do
         Page.new(:published_at => str).published_at.should == @expect
       end
     end
+
+    it "ページは公開済みであること" do
+      @page.should be_published
+    end
+
   end
 
   describe "#label_index_id = an_label.id" do
@@ -66,6 +71,7 @@ describe Page do
       before do
         @note.stub!(:label_indices).and_return(LabelIndex)
         @page.edit("content", mock_model(User))
+        @page.published_at = Time.local(2009,1,1,0,0,0)
         @page.save!
       end
 
@@ -80,6 +86,19 @@ describe Page do
       it "#label_indexings.firstのpage_orderは1であること" do
         l, = Page.find(@page).label_indexings
         l.page_order.should == 1
+      end
+
+      describe "公開済みページの編集" do
+        before do
+          @page = Page.find(@page)
+          @page.published?
+        end
+
+        it "識別子は変更できないこと" do
+          @page.name = "foobar"
+          @page.should_not be_valid
+          @page.should have(1).errors_on(:name)
+        end
       end
 
       describe "別のページを追加した場合" do
