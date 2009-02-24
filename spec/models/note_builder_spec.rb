@@ -106,6 +106,10 @@ describe NoteBuilder do
       it "デフォルトラベルに紐づいていること" do
         @builder.front_page.label_index.should == @note.default_label
       end
+
+      it "公開済みであること" do
+        @builder.front_page.should be_published
+      end
     end
   end
 end

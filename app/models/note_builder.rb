@@ -23,6 +23,7 @@ class NoteBuilder
     @page = returning(Page.front_page) do |page|
               page.edit(Page.front_page_content, @user)
               page.note = note
+              page.published_at = Time.zone.now
               page.label_index_id = note.default_label.id
             end
   end
