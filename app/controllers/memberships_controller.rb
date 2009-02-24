@@ -16,6 +16,7 @@ class MembershipsController < ApplicationController
         ids = (valid_params.map{|q| Integer(q[:user_id]) } << current_user.id).uniq
         group.user_ids = ids
       end
+      flash[:notice] = _("Successfully update membership.")
       redirect_to(group_path(group))
     rescue ActiveRecord::RecordNotSaved
       render :template => "groups/show"
