@@ -1,17 +1,16 @@
 = render :partial => 'users/side_menu'
 
-#content
-  - div_for(@user) do
-    %dl
-      %dt&= _("User|Name")
-      %dd&= @user.name
+- div_for(@user) do
+  %dl
+    %dt&= _("User|Name")
+    %dd&= @user.name
 
-      %dt&= _("User|Display name")
-      %dd&= @user.display_name
+    %dt&= _("User|Display name")
+    %dd&= @user.display_name
 
-      %dt&= _("Account|Identity url")
-      %dd&= @user.account.identity_url
+    %dt&= _("Account|Identity url")
+    %dd&= @user.account.identity_url
 
-    - unless FixedOp.sso_enabled?
-      = link_to "Edit", edit_user_path(@user)
+  - unless FixedOp.sso_enabled?
+    = link_to "Edit", edit_user_path(@user)
 

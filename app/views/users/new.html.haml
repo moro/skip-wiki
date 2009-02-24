@@ -1,14 +1,13 @@
-#content
-  %h1= _("Sign up as a new user")
+%h1= _("Sign up as a new user")
 
-  .app-layout
-    = error_messages_for :user
-    - form_for @user  do |f|
-      %table.input.user
-        = render :partial => 'users/form', :locals => {:f => f}
-        %tr.identity-url
-          %th&= _("OpenID URL")
-          %td&= session[:identity_url]
+.app-layout
+  = error_messages_for :user
+  - form_for @user  do |f|
+    %table.input.user
+      = render :partial => 'users/form', :locals => {:f => f}
+      %tr.identity-url
+        %th&= _("OpenID URL")
+        %td&= session[:identity_url]
 
-      = submit_tag _("Sign up")
+    = submit_tag _("Sign up")
 

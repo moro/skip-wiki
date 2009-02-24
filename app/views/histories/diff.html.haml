@@ -1,53 +1,52 @@
-#content
-  - div_for(@page, "diff") do
-    - treat_as_current = note_page_histories_path(current_note, @page)
-    %h1&= _("diff from rev.%{from} to rev.%{to}.") % {:from=>params[:from], :to=>params[:to]}
+- div_for(@page, "diff") do
+  - treat_as_current = note_page_histories_path(current_note, @page)
+  %h1&= _("diff from rev.%{from} to rev.%{to}.") % {:from=>params[:from], :to=>params[:to]}
 
-    %p= link_to h(_("Back to histories")), treat_as_current
+  %p= link_to h(_("Back to histories")), treat_as_current
 
-    - if @page.format_type == "html"
-      .controll
-        =radio_button_tag("history_display", "contents")
-        =label_tag("history_display_contents", "Show History Contents")
+  - if @page.format_type == "html"
+    .controll
+      =radio_button_tag("history_display", "contents")
+      =label_tag("history_display_contents", "Show History Contents")
 
-        =radio_button_tag("history_display", "diff", :checked=>true)
-        =label_tag("history_display_diff", "Show History Diffs")
+      =radio_button_tag("history_display", "diff", :checked=>true)
+      =label_tag("history_display_diff", "Show History Diffs")
 
-      .history-contents{:style=>"display:none"}
-        %h3&= _("History|Content")
-        .from~ render_page_content(@page, params[:from])
-        .to~ render_page_content(@page, params[:to])
-        .clear
+    .history-contents{:style=>"display:none"}
+      %h3&= _("History|Content")
+      .from~ render_page_content(@page, params[:from])
+      .to~ render_page_content(@page, params[:to])
+      .clear
 
-      :javascript
-        ($(document).ready(function(){
-          $(".controll input:radio").click( function(){
-            if($(".controll input:radio:checked").val() == "diff"){
-              $("div.history-contents").hide().nextAll(".diff").fadeIn("fast");
-            }else{
-              $("div.history-contents").fadeIn("fast").nextAll(".diff").hide();
-            }
-          });
-          return true;
-        }))
+    :javascript
+      ($(document).ready(function(){
+        $(".controll input:radio").click( function(){
+          if($(".controll input:radio:checked").val() == "diff"){
+            $("div.history-contents").hide().nextAll(".diff").fadeIn("fast");
+          }else{
+            $("div.history-contents").fadeIn("fast").nextAll(".diff").hide();
+          }
+        });
+        return true;
+      }))
 
-    .diff{:style=>"overflow:auto"}
-      %table.diff
-        %caption
-          %h3&= _("History|Diff")
-        %tr
-          %th.symbol
-          %th.num&= "r#{params[:from]}"
-          %th.num&= "r#{params[:to]}"
+  .diff{:style=>"overflow:auto"}
+    %table.diff
+      %caption
+        %h3&= _("History|Diff")
+      %tr
+        %th.symbol
+        %th.num&= "r#{params[:from]}"
+        %th.num&= "r#{params[:to]}"
 
-          %th&= _("Contents of r%{rev}") % {:rev => params[:from]}
-          %th&= _("Contents of r%{rev}") % {:rev => params[:to]}
+        %th&= _("Contents of r%{rev}") % {:rev => params[:from]}
+        %th&= _("Contents of r%{rev}") % {:rev => params[:to]}
 
-        - @diffs.each do |symbol, (old_n,old_s), (new_n,new_s)|
-          %tr{:class=>diff_symbol(symbol)}
-            %td.symbol&= diff_symbol(symbol, false)
-            %td.num&= old_n if old_s
-            %td.num&= new_n if new_s
-            %td.text&= decode_nbsp(old_s)
-            %td.text&= decode_nbsp(new_s)
+      - @diffs.each do |symbol, (old_n,old_s), (new_n,new_s)|
+        %tr{:class=>diff_symbol(symbol)}
+          %td.symbol&= diff_symbol(symbol, false)
+          %td.num&= old_n if old_s
+          %td.num&= new_n if new_s
+          %td.text&= decode_nbsp(old_s)
+          %td.text&= decode_nbsp(new_s)
 

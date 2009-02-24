@@ -15,8 +15,9 @@
     #top= render :partial => 'layouts/top'
 
     #main
-      #content_for_layout= yield
-      .clear
+      #content
+        #content_for_layout= yield
+        .clear
 
     #system_contents= image_tag "skip/indicator.gif"
 

@@ -1,5 +1,4 @@
-#content
-  %h1= link_to(h(current_note.display_name), note_path(current_note))
-  %h2&= _("Pages related to %{label}") % {:label =>  @label_index.display_name}
+%h1= link_to(h(current_note.display_name), note_path(current_note))
+%h2&= _("Pages related to %{label}") % {:label =>  @label_index.display_name}
 
-  = render :partial => 'pages/pages', :locals=>{:pages=>@label_index.pages}
+= render :partial => 'pages/pages', :locals=>{:pages=>@label_index.pages}

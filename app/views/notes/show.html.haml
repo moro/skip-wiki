@@ -1,27 +1,26 @@
-#content
-  .app-layout
-    - div_for(@note) do
-      .property
-        %h3
-          =h _("Note Properties")
-          %span= link_to(h(_"edit note properties"), edit_note_path(@note))
-        %ul.explain
-          %li= sanitize explain_note(@note), :tags => %w[span]
-          %li= sanitize explain_note_ext(@note), :tags => %w[span]
+.app-layout
+  - div_for(@note) do
+    .property
+      %h3
+        =h _("Note Properties")
+        %span= link_to(h(_"edit note properties"), edit_note_path(@note))
+      %ul.explain
+        %li= sanitize explain_note(@note), :tags => %w[span]
+        %li= sanitize explain_note_ext(@note), :tags => %w[span]
 
-      .users
-        %h3
-          =h _("Users and Groups")
-          %span= link_to(h(_"edit users permission"), group_path(@note.owner_group))
-          %span= link_to_if false, h(_"add groups"), group_path(current_note.owner_group) # TODO グループ追加
-        %ul
-          - unless (us = @note.owner_group.users).empty?
-            %li.explain= explain_users(us)
-          - unless (gs = @note.groups - [@note.owner_group]).empty?
-            %li.explain= explain_groups(gs)
+    .users
+      %h3
+        =h _("Users and Groups")
+        %span= link_to(h(_"edit users permission"), group_path(@note.owner_group))
+        %span= link_to_if false, h(_"add groups"), group_path(current_note.owner_group) # TODO グループ追加
+      %ul
+        - unless (us = @note.owner_group.users).empty?
+          %li.explain= explain_users(us)
+        - unless (gs = @note.groups - [@note.owner_group]).empty?
+          %li.explain= explain_groups(gs)
 
-      .labels
-        = render :partial => 'label_indices/new'
+    .labels
+      = render :partial => 'label_indices/new'
 :javascript
   jQuery(function(){ $("div.labels").manageLabel() });
 

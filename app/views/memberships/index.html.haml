@@ -1,42 +1,41 @@
 = render :partial => 'users/side_menu'
 
-#content
-  .memberships
-    %h1= _("%{fn}'s groups index") % {:fn=>current_user.name}
-    - builtin_memberships = @memberships.select{|m| m.group.backend_type == "BuiltinGroup" }
-    - skip_memberships = @memberships.select{|m| m.group.backend_type == "SkipGroup" }
+.memberships
+  %h1= _("%{fn}'s groups index") % {:fn=>current_user.name}
+  - builtin_memberships = @memberships.select{|m| m.group.backend_type == "BuiltinGroup" }
+  - skip_memberships = @memberships.select{|m| m.group.backend_type == "SkipGroup" }
 
-    .typed-group
-      %h2= _("BuiltinGroup")
-      %p&= "参加しているノートに1対1対応するグループです。"
-      %p&= "SKIPグループなどに参加していないユーザをノートに参加させる場合に使います。"
+  .typed-group
+    %h2= _("BuiltinGroup")
+    %p&= "参加しているノートに1対1対応するグループです。"
+    %p&= "SKIPグループなどに参加していないユーザをノートに参加させる場合に使います。"
 
-      - unless builtin_memberships.empty?
-        %ul.builting-group
-          - builtin_memberships.each do |m|
-            - note = m.group.notes.first
-            %li{:class=>cycle("odd", "even")}= link_to h(note.display_name), note_path(note)
-      - else
-        // FIXME
-        %p.warn&= _("No builtin groups for the note.")
+    - unless builtin_memberships.empty?
+      %ul.builting-group
+        - builtin_memberships.each do |m|
+          - note = m.group.notes.first
+          %li{:class=>cycle("odd", "even")}= link_to h(note.display_name), note_path(note)
+    - else
+      // FIXME
+      %p.warn&= _("No builtin groups for the note.")
 
-    .typed-group
-      %h2= _("SkipGroup")
-      %p&= "SKIPで参加しているグループです。"
+  .typed-group
+    %h2= _("SkipGroup")
+    %p&= "SKIPで参加しているグループです。"
 
-      - if skip_memberships.empty?
-        %p.warn= _("SKIPのユーザ情報が存在しないか、同期されていません。")
-        - form_tag skip_user_memberships_path(current_user) do
-          = label_tag("SKIPユーザ名")
-          = text_field_tag("skip_uid")
-          = submit_tag("SKIPと同期する", :disabled => true)
+    - if skip_memberships.empty?
+      %p.warn= _("SKIPのユーザ情報が存在しないか、同期されていません。")
+      - form_tag skip_user_memberships_path(current_user) do
+        = label_tag("SKIPユーザ名")
+        = text_field_tag("skip_uid")
+        = submit_tag("SKIPと同期する", :disabled => true)
 
-      - else
-        %ul.skip-group
-          - skip_memberships.each do |m|
-            %li{:class=>cycle("odd", "even")}&= "#{m.group.display_name}[#{m.group.backend.gid}]"
+    - else
+      %ul.skip-group
+        - skip_memberships.each do |m|
+          %li{:class=>cycle("odd", "even")}&= "#{m.group.display_name}[#{m.group.backend.gid}]"
 
-        - form_tag skip_user_memberships_path(current_user) do
-          = text_field_tag("skip_uid")
-          = submit_tag("もう一度SKIPと同期する", :disabled => true)
+      - form_tag skip_user_memberships_path(current_user) do
+        = text_field_tag("skip_uid")
+        = submit_tag("もう一度SKIPと同期する", :disabled => true)
 

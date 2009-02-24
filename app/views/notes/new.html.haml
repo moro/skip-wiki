@@ -34,7 +34,7 @@
     -render_wizard(1, :select_category) do
       .wizard_content
         .topic
-          続いてnoteのカテゴリを選択してください。<br/>
+          続いてノートのカテゴリを選択してください。<br/>
 
         %table
           - Category.lang("ja").each do |c|
@@ -75,21 +75,12 @@
           次のステップではノートの公開範囲を設定します。<br/>
 
         %table
-          %tr
-            %td
-              =f.radio_button(:publicity, Note::PUBLICITY_MEMBER_ONLY)
-              =f.label "publicity_#{Note::PUBLICITY_MEMBER_ONLY}", h(_("グループメンバーのみ閲覧/書込できる"))
-            %td &nbsp;
-          %tr
-            %td
-              =f.radio_button(:publicity, Note::PUBLICITY_READABLE)
-              =f.label "publicity_#{Note::PUBLICITY_READABLE}", h(_("全員が閲覧できる"))
-            %td &nbsp;
-          %tr
-            %td
-              =f.radio_button(:publicity, Note::PUBLICITY_WRITABLE)
-              =f.label "publicity_#{Note::PUBLICITY_WRITABLE}", h(_"全員が閲覧/書込できる")
-            %td &nbsp;
+          - [Note::PUBLICITY_MEMBER_ONLY, Note::PUBLICITY_READABLE, Note::PUBLICITY_WRITABLE].each do |pub|
+            %tr
+              %td
+                =f.radio_button(:publicity, pub)
+                =f.label "publicity_#{pub}", h(publicity_label(pub))
+              %td &nbsp;
 
         .example
           %ul
@@ -226,9 +217,10 @@
                 %li&= "情報共有用のノートなど、全員で添付ファイルを共有する場合に選びます。"
 
     - render_wizard(7, :confirm) do
-      %p
-        この内容でよろしいですか?
-        =f.submit _("Create")
+      .wizard_content
+        .topic
+          この内容でよろしいですか?
+          =f.submit _("Create")
 
         %table.confirmation.input
           %tr.group_backend_type

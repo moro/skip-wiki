@@ -2,22 +2,21 @@
   =javascript_include_tag("fckeditor/fckeditor.js")
 
 =javascript_include_tag("iframe_upload")
-#content
-  - div_for(@page) do
-    %h1&= _("edit content")
-    - form_for(:history, @history, :url=>note_page_histories_path(current_note, @page)) do |f|
-      %h2
-        %label{:for=>"history_content"}&= h(_("Page|Content"))
-        %span.operation.trigger= _("Link Palette")
-      %div.content
-        #linkPalette
-        = text_area_tag("history[content]", @page.content, :id=>"history_content", :size=>"80x70")
+- div_for(@page) do
+  %h1&= _("edit content")
+  - form_for(:history, @history, :url=>note_page_histories_path(current_note, @page)) do |f|
+    %h2
+      %label{:for=>"history_content"}&= h(_("Page|Content"))
+      %span.operation.trigger= _("Link Palette")
+    %div.content
+      #linkPalette
+      = text_area_tag("history[content]", @page.content, :id=>"history_content", :size=>"80x70")
 
-      .submit
-        %span.notice{:style=>"display:none"}&= _("Modified, need to save.")
-        = submit_tag(_("Update %{entity}") % {:entity => _("page")})
-        = link_to(h(_("show page")), note_page_path(current_note, @page), :class=>"back")
-      .clear
+    .submit
+      %span.notice{:style=>"display:none"}&= _("Modified, need to save.")
+      = submit_tag(_("Update %{entity}") % {:entity => _("page")})
+      = link_to(h(_("show page")), note_page_path(current_note, @page), :class=>"back")
+    .clear
 
 
 :javascript

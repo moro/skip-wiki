@@ -1,28 +1,27 @@
 = javascript_include_tag %w[iframe_upload.js]
 
-#content
-  - div_for(current_note, :class=>"app-layout") do
-    %h2&= _("%{title}'s attachments") % {:title => current_note.display_name }
-    - if current_user.accessible?(current_note)
-      .attachment.upload
-        %h3&= _("Attach file(s)")
-        %div.sync-upload
-          - form_for(:attachment, :url=> note_attachments_path(current_note), :html=>{:multipart => true}) do |f|
-            = render :partial => 'form', :locals => {:f => f}
-            = submit_tag h(_"Upload")
+- div_for(current_note, :class=>"app-layout") do
+  %h2&= _("%{title}'s attachments") % {:title => current_note.display_name }
+  - if current_user.accessible?(current_note)
+    .attachment.upload
+      %h3&= _("Attach file(s)")
+      %div.sync-upload
+        - form_for(:attachment, :url=> note_attachments_path(current_note), :html=>{:multipart => true}) do |f|
+          = render :partial => 'form', :locals => {:f => f}
+          = submit_tag h(_"Upload")
 
-    .attachments
-      %h3&= _("Attached files")
-      %table
-        - @attachments.each do |at|
-          %tr
-            %td.content_type&= at.content_type
-            %td.name&= at.filename
-            %td.display_name&= at.display_name
-            %td.size&= number_to_human_size(at.size)
-            %td.timestamp.updated_at&= at.updated_at.strftime("%Y/%m/%d %H:%M")
-            %td.operation= link_to content_tag("span", _("Download"), :class=>"operation"), note_attachment_path(current_note, at)
-            %td.operation= link_to content_tag("span", _("Delete"), :class=>"operation"), note_attachment_path(current_note, at), :method => :delete
+  .attachments
+    %h3&= _("Attached files")
+    %table
+      - @attachments.each do |at|
+        %tr
+          %td.content_type&= at.content_type
+          %td.name&= at.filename
+          %td.display_name&= at.display_name
+          %td.size&= number_to_human_size(at.size)
+          %td.timestamp.updated_at&= at.updated_at.strftime("%Y/%m/%d %H:%M")
+          %td.operation= link_to content_tag("span", _("Download"), :class=>"operation"), note_attachment_path(current_note, at)
+          %td.operation= link_to content_tag("span", _("Delete"), :class=>"operation"), note_attachment_path(current_note, at), :method => :delete
 
 :javascript
 

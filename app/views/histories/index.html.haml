@@ -1,32 +1,31 @@
-#content
-  .history.app-layout
-    %h1&= _("page histories")
+.history.app-layout
+  %h1&= _("page histories")
 
-    // FIXME
-    %table.histories
-      %thead
-        %tr
-          %th.revision&= ""
-          %th.description&= _("History|Description")
-          %th.user&= _("User|Name")
-          %th.updated_at&= _("History|Updated at")
-          %th.diff&= _("diff to next")
-          %th.diff&= _("diff to prev")
-      %tbody
-        - @histories.each do |history|
-          %tr{:class=>cycle("odd", "even")}
-            %td.revision= link_to(h(_("show r%{rev}") % {:rev=>history.revision}), note_page_history_path(current_note, @page, history))
-            %td&= history.description
-            %td&= history.user.name
-            %td.timestamp&= history.updated_at.strftime("%Y-%m-%d %H:%M")
-            %td= link_to_next_diff(@histories, history)
-            %td= link_to_previous_diff(@histories, history)
+  // FIXME
+  %table.histories
+    %thead
+      %tr
+        %th.revision&= ""
+        %th.description&= _("History|Description")
+        %th.user&= _("User|Name")
+        %th.updated_at&= _("History|Updated at")
+        %th.diff&= _("diff to next")
+        %th.diff&= _("diff to prev")
+    %tbody
+      - @histories.each do |history|
+        %tr{:class=>cycle("odd", "even")}
+          %td.revision= link_to(h(_("show r%{rev}") % {:rev=>history.revision}), note_page_history_path(current_note, @page, history))
+          %td&= history.description
+          %td&= history.user.name
+          %td.timestamp&= history.updated_at.strftime("%Y-%m-%d %H:%M")
+          %td= link_to_next_diff(@histories, history)
+          %td= link_to_previous_diff(@histories, history)
 
-    - form_tag diff_note_page_histories_path(current_note, @page), :method=>"get" do
-      %span&= _("Or diff from")
-      =select_tag "from", (1..@page.revision).map{|i| content_tag("option", i)}
-      %span&= _("to")
-      =select_tag "to",   (1..@page.revision).map{|i| content_tag("option", i)}.reverse
-      =submit_tag "diff"
+  - form_tag diff_note_page_histories_path(current_note, @page), :method=>"get" do
+    %span&= _("Or diff from")
+    =select_tag "from", (1..@page.revision).map{|i| content_tag("option", i)}
+    %span&= _("to")
+    =select_tag "to",   (1..@page.revision).map{|i| content_tag("option", i)}.reverse
+    =submit_tag "diff"
 
 

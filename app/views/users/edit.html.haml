@@ -1,16 +1,15 @@
 = render :partial => 'users/side_menu'
 
-#content
-  %h1= _("Edit user information")
+%h1= _("Edit user information")
 
-  .app-layout
-    = error_messages_for :user
-    - form_for @user  do |f|
-      %table.input.user
-        = render :partial => 'form', :locals => {:f => f}
-        %tr.identity-url
-          %th&= _("OpenID URL")
-          %td&= @user.account.identity_url
+.app-layout
+  = error_messages_for :user
+  - form_for @user  do |f|
+    %table.input.user
+      = render :partial => 'form', :locals => {:f => f}
+      %tr.identity-url
+        %th&= _("OpenID URL")
+        %td&= @user.account.identity_url
 
-      = submit_tag _("Update")
+    = submit_tag _("Update")
 

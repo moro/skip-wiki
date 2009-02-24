@@ -1,39 +1,38 @@
-#content
-  .index.app-layout
-    .h3&= _("%{name}'s accessible pages.") % {:name => current_user.name}
-    .query
-      =link_to_function _("Apply filter.."), "$(this).next('form').toggle(); return false", :class=>"op"
-      - form_tag pages_path, query_form_options do
-        %dl= render :partial => 'filter_query'
-        =submit_tag _("Filter")
-        =link_to _("Show all"), pages_path, :class => "back"
+.index.app-layout
+  .h3&= _("%{name}'s accessible pages.") % {:name => current_user.name}
+  .query
+    =link_to_function _("Apply filter.."), "$(this).next('form').toggle(); return false", :class=>"op"
+    - form_tag pages_path, query_form_options do
+      %dl= render :partial => 'filter_query'
+      =submit_tag _("Filter")
+      =link_to _("Show all"), pages_path, :class => "back"
 
-    .clear
+  .clear
 
-    .pages
-      - if @pages.empty?
-        %p.no-result&= _("The query find no pages.")
-      - else
-        - #FIXME クエリ最適化
-        %table.pages-index
-          %thead
+  .pages
+    - if @pages.empty?
+      %p.no-result&= _("The query find no pages.")
+    - else
+      - #FIXME クエリ最適化
+      %table.pages-index
+        %thead
+          %tr
+            %th.label&= _("LabelIndices")
+            %th.display_name&= _("Page|Display name")
+            %th.user&= _("Page|Auther")
+            %th.timestamp&= _("Page|Updated at")
+            %th.clippy= _("Copy URL")
+        %tbody
+          - each_with_histories(@pages) do |page, history|
+            - note = page.note
             %tr
-              %th.label&= _("LabelIndices")
-              %th.display_name&= _("Page|Display name")
-              %th.user&= _("Page|Auther")
-              %th.timestamp&= _("Page|Updated at")
-              %th.clippy= _("Copy URL")
-          %tbody
-            - each_with_histories(@pages) do |page, history|
-              - note = page.note
-              %tr
-                %td.label= labelize(page.label_index)
-                %td.name
-                  = link_to h(page.display_name), note_page_path(note, page)
-                  %span.note&= "on #{note.display_name}"
-                %td&= history.user.name
-                %td.timestamp&= page.updated_at.strftime("%Y-%m-%d %H:%M")
-                %td.clippy= clippy(note_pages_url(current_note, page)
+              %td.label= labelize(page.label_index)
+              %td.name
+                = link_to h(page.display_name), note_page_path(note, page)
+                %span.note&= "on #{note.display_name}"
+              %td&= history.user.name
+              %td.timestamp&= page.updated_at.strftime("%Y-%m-%d %H:%M")
+              %td.clippy= clippy(note_pages_url(current_note, page)
 
-        = will_paginate(@pages)
+      = will_paginate(@pages)
 

@@ -1,9 +1,8 @@
-#content
-  - div_for(@page, :class=>"history") do
-    %p.history-info.explain= explain_history(@history)
+- div_for(@page, :class=>"history") do
+  %p.history-info.explain= explain_history(@history)
 
-    .rendered~ render_page_content(@page, @history.revision)
-    =link_to _("Back to Hisotries"), note_page_histories_path(current_note, @page)
+  .rendered~ render_page_content(@page, @history.revision)
+  =link_to _("Back to Hisotries"), note_page_histories_path(current_note, @page)
 
-    .clear
+  .clear
 
