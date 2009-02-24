@@ -257,11 +257,8 @@
 
     function update(td, _req, _stat){
       var name  = td.find("[name='label_index[display_name]']").val();
-      var color = td.find("[name='label_index[color]']").val();
 
-      td.find("span.label_badge").
-        attr("style", "border-color:"+color).
-        text(name);
+      td.find("span.label_badge").text(name);
       return false;
     }
 
