@@ -3,11 +3,17 @@
 
 #contents_container
   .caption
+    - search_label = _("Search Note")
+    - val = params[:fulltext] || search_label
     -form_tag(notes_path, :method=>"GET") do
-      %span{:style=>"vertical-align:middle;"}= _("Search Note")
-      = text_field_tag('fulltext', params[:fulltext])
+      = text_field_tag("fulltext", val, :class=>"labeled-field", :size=>32)
       = submit_tag _('Search')
       = link_to(_("Show all"), notes_path)
+
+    :javascript
+      jQuery(function(){
+        jQuery("div.caption input.labeled-field").labeledTextField(#{{:message => search_label}.to_json});
+      });
 
   .contents
     #updated-notes

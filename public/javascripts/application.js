@@ -215,8 +215,7 @@
       });
     target.blur(function(){
         if(target.val() == ""){
-          target.removeClass(focusClass);
-          target.parents("form").get(0).reset()
+          target.removeClass(focusClass).val(message);
         };
       });
   };

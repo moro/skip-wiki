@@ -13,9 +13,15 @@
 
 #search
   - if fts = INITIAL_SETTINGS[:skip_collabolation][:fulltext_search]
-    - form_tag(fts[:endpoint], { :method => 'get'}) do
+    - search_label = _("Input keyword to search")
+    - form_tag(fts[:endpoint], :method => 'get', :class => 'skip_fulltext_search') do
       %span{:style=>"vertical-align:middle;"}
-      = text_field_tag(fts[:query_name], _("Input keyword to search"))
+      = text_field_tag(fts[:query_name], search_label, :class => "labeled-field")
       = submit_tag _('Search')
       &nbsp;
+
+    :javascript
+      jQuery(function(){
+        jQuery("#search input.labeled-field").labeledTextField(#{{:message => search_label}.to_json});
+      });
 
