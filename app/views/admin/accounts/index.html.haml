@@ -6,15 +6,12 @@
   #updated-note
     %table.notes-index
       %tr
-        %th.login&= _('Account|Login')
-        %th.name&= _('Account|Name')
-        %th.email&= _('Account|Email')
+        %th.user_name&= _("User|Name")
         %th.identity&= _('Account|Identity url')
         %th.edit&= _('Account|Edit')
       - for account in @accounts
         %tr.item_line
-          %td.login&= account.login
-          %td.name&= account.name
-          %td.email&= account.email
+          %td.user_name&= account.user.name
           %td.identity&= account.identity_url
           %td.edit= link_to _("Edit"), edit_admin_account_path(account.id)
+

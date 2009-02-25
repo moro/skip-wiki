@@ -12,14 +12,10 @@
     - path,search_label = admin_accounts_path,_("Search Account")
     %h2= icon_tag('user', _("manage users")+" < "+_("Account|Index")+" < "+_("Account|Edit(%{user})") % {:user => @account.user.name})
 #user_menu
-  %span.operation&= _("menu")
-  .user-navi
-    %ul
-      %li= link_to(_("manage users"), admin_root_path)
-      %li= link_to(_("Account|Index"), admin_accounts_path)
+  %span.admin-user-operation= select_tag("admin_user_operation", admin_user_operation)
 :javascript
   jQuery(document).ready(function(){
-    $("span.operation").click(function(){jQuery(this).nextAll("div.user-navi").toggle()});
+    $("span.admin-user-operation select").dropdownNavigation();
   });
 #user_search
   - form_tag(path, :method=>:get) do

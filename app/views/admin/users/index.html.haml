@@ -10,7 +10,7 @@
         %th.login&= _('User|Display name')
         %th.admin&= _('User|Admin')
         %th.edit&= _('User|Edit')
-      - for user in @users
+      - @users.each do |user|
         %tr.item_line
           %td.name&= user.name
           %td.login&= user.display_name

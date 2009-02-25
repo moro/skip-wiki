@@ -104,6 +104,15 @@ jQuery(function(){
     end
   end
 
+  def admin_operation(selected = request.request_uri)
+    options_for_select( [
+      [_("menu"), nil],
+      [_("manage users"), admin_root_path],
+      [_("manage notes"), admin_notes_path],
+      [_("manage common files"), nil]
+    ], selected)
+  end
+
   private
   def locale
     GetText.locale
