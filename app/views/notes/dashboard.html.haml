@@ -2,11 +2,7 @@
   =stylesheet_link_tag "mypage"
 
 #contents_container
-  .caption
-    -form_tag(notes_path, :method=>"GET") do
-      %span{:style=>"vertical-align:middle;"}= _("Search Note")
-      = text_field_tag('fulltext', params[:fulltext])
-      = submit_tag _('Search')
+  .caption= render :partial => 'search'
 
   .contents
     #portal
@@ -37,9 +33,6 @@
         - current_user.accessible_notes.each do |note|
           %li
             %span.display_name= link_to(h(note.display_name), note_page_path(note, "FrontPage"))
-            %span.operation= link_to(_("show note"), note_path(note))
-            %span.operation= link_to(_("note pages"), note_pages_path(note))
-            %span.operation= link_to(_("note attachments"), note_attachments_path(note))
             .info
               %span&= note.description
 

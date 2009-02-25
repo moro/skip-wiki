@@ -1,16 +1,11 @@
 /* ----------------------------------- */
-/** {*/
-/*  margin: 0;*/
-/*  padding: 0;*/
-/*}*/
-
 img {
   vertical-align: middle;
   border: 0;
 }
 a {
   text-decoration: none;
-  color: #0080ff;
+  color: #0080dd;
 }
 /* ----------------------------------- */
 body {
@@ -32,13 +27,10 @@ div#header {
 div#header div#logo {
   float: left;
 }
-div#header div#google {
-  float: right;
-  vertical-align: top;
-}
 div#header div#search {
   float: right;
-  padding-top: 4px;
+  padding-top: 2px;
+  padding-right: 6px;
 }
 div#header span#services a {
   color: blue;
@@ -54,23 +46,7 @@ div#top {
   clear: both;
   text-align: right;
   border-bottom: 1px solid silver;
-  padding: 1px 10px 3px 10px;
-}
-div#top div#user_ctl a {
-  border-left: 1px solid #555555;
-  padding-left: 7px;
-  margin-left: 2px;
-}
-div#top div#menu_btn {
-  position: absolute;
-  left: 10px;
-}
-div#top div#menu_btn a {
-  margin-right: 2px;
-  padding: 0 1px 2px 1px;
-}
-div#top div#menu_btn a:hover {
-  background-color: pink;
+  padding: 1px 5px;
 }
 /* ----------------------------------- */
 div#statusbar {
@@ -86,6 +62,58 @@ div#statusbar span {
   vertical-align: middle;
 }
 /* ----------------------------------- */
+div#footer {
+  color: #A9A9A9;
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+  height: 50px;
+}
+div#footer .info {
+  width: 50em;
+  margin: auto;
+  padding: 5px 200px 0 0;
+}
+div#footer .info .first {
+  border-bottom:1px dashed silver;
+  padding-bottom:4px;
+}
+div#footer .info .second {
+  padding-top: 5px;
+}
+div#footer .powered_by {
+  position: absolute; top: 0px; right: 0px;
+}
+/* ----------------------------------- */
+/* flashで表示するメッセージ */
+* html div.flash_message {
+  height: 1%;
+}
+div.notice {
+  border: 2px solid limegreen;
+  margin: 3px 0 1em 0;
+  font-size: 12px;
+  background-color: palegreen;
+}
+div.warning {
+  border: 2px solid orange;
+  margin: 3px 0 1em 0;
+  font-size: 12px;
+  background-color: yellow;
+}
+div.error {
+  border: 2px solid red;
+  margin: 3px 0 1em 0;
+  font-size: 12px;
+  background-color: pink;
+}
+div.notice span, div.warning span, div.error span {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-size: 10px;
+}
+/* ----------------------------------- */
 /* エラーメッセージ */
 div.errorExplanation {
   margin: 3px 0px 1em 0px;
@@ -97,8 +125,6 @@ div.errorExplanation {
 div.errorExplanation h2 {
   border-bottom: 1px solid red;
   background-color: pink;
-  margin: 0;
-  padding: 1px;
 }
 div.errorExplanation p {
   margin: 5px 0px 1px 0px;
@@ -126,51 +152,68 @@ div.errorExplanation li {
 /* hiki_style */
 .hiki_style * {
 }
-.hiki_style p {
+.rich_style {
+  background-color: #FFFFFF;
+  color: #555555;
+  width: 98%;
+}
+.rich_style td {
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 12px;
+  color: #555555;
+}
+.rich_style a[href] {
+  color: -moz-hyperlinktext !important;         /* For Firefox... mark as important, otherwise it becomes black */
+  text-decoration: -moz-anchor-decoration;      /* For Firefox 3, otherwise no underline will be used */
+}
+.hiki_style p, .rich_style p, .rich_style div {
+  color: #555555;
+  font-size: 12px;
+  font-family: Verdana, Arial, sans-serif;
   margin: 10px 0;
   line-height: 1.2;
 }
-.hiki_style hr {
+.rich_style hr, .hiki_style hr {
   margin: 3px;
 }
-.hiki_style h1 {
+.rich_style h1, .hiki_style h1 {
   border: 1px solid silver;
   background-color: #f0f0f0;
   margin-top: 0.8em;
 }
-.hiki_style h2 {
+.rich_style h2, .hiki_style h2 {
   border-left: 10px solid silver;
   border-bottom: 1px solid silver;
   margin-top: 0.8em;
   padding-left: 3px;
 }
-.hiki_style h3 {
+.rich_style h3, .hiki_style h3 {
   border-left: 5px solid silver;
   border-bottom: 1px dashed silver;
   margin-top: 0.8em;
   padding-left: 3px;
 }
-.hiki_style h4 {
+.rich_style h4, .hiki_style h4 {
   border-left: 2px solid silver;
   border-bottom: 1px dotted silver;
   margin-top: 0.8em;
   padding-left: 3px;
 }
-.hiki_style h5 {
+.rich_style h5, .hiki_style h5 {
   border-bottom: 1px dotted silver;
   margin-top: 0.8em;
 }
-.hiki_style ul {
+.rich_style ul, .hiki_style ul {
   list-style-type: disc;
   padding-left: 25px;
 }
-.hiki_style ul li {
+.rich_style ul li, .hiki_style ul li {
 }
-.hiki_style ol {
+.rich_style ol, .hiki_style ol {
   list-style-type: decimal;
   padding-left: 25px;
 }
-.hiki_style pre {
+.rich_style pre, .hiki_style pre {
   white-space: -moz-pre-wrap; /* Mozilla */
   white-space: -pre-wrap;     /* Opera 4-6 */
   white-space: -o-pre-wrap;   /* Opera 7 */
@@ -181,24 +224,971 @@ div.errorExplanation li {
   border: 1px dashed silver;
   padding: 5px;
 }
-.hiki_style blockquote {
+.rich_style blockquote, .hiki_style blockquote {
   background-color: #fff7f7;
   margin: 2px 2px 2px 10px;
   border: 1px dashed silver;
   padding: 2px 2px 2px 5px;
 }
-.hiki_style big {
+.rich_style big, .hiki_style big {
   font-size: 30px;
   font-weight: bold;
 }
 /* ----------------------------------- */
-/* rich_style */
-.rich_style blockquote {
-  margin: 5px 10px 5px 40px;
+/* zoomable_style */
+.image_over{
+        background:url(../../images/skip/zoom.gif) no-repeat 50% 50%;
+        filter:alpha(opacity=50);
+        -moz-opacity:0.5;
+        -khtml-opacity: 0.5;
+        opacity: 0.5;
 }
-.rich_style ul {
-  padding-left: 25px;
+/* 不可視にする時に使う */
+.invisible {
+  display: none;
 }
-.rich_style ol {
-  padding-left: 25px;
+/* グローバルナビ */
+#global_navi {
+ text-align: right;
+ margin: 0;
+ padding: 5px;
+ border-bottom: 1px dashed silver;
+ background-image: url(./../../images/skip/gradient.png);
+ font-family: Verdana,Arial,Helvetica,sans-serif;
+ font-size: 1p3x;
+
 }
+
+a:hover {
+  color: blue;
+  text-decoration: underline;
+}
+form {
+ padding:0px;
+ margin:0px;
+}
+input {
+  font-family: Verdana, Arial, Sans-serif;
+  margin: 0px;
+  padding: 2px;
+  font-size:12px;
+}
+select {
+  font-family: Verdana, Arial, Sans-serif;
+  margin: 0 2px 0 0;
+  padding: 0;
+  font-size:12px;
+  letter-spacing: 2px;
+  z-index:0;
+}
+textarea {
+  font-family: Verdana, Arial, Sans-serif;
+  margin: 0px;
+  padding: 2px;
+  font-size:12px;
+}
+div.submit {
+  text-align: right;
+}
+div.input_line {
+  border-bottom: 1px dotted silver;
+  margin-bottom: 5px;
+  padding-bottom: 2px;
+}
+div.input_line div.input_label {
+  background-color: #f0f0ff;
+  width: 100px;
+  overflow: hidden;
+  float: left;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 3px 5px;
+  margin-right: 5px;
+}
+div.input_line textarea {
+  width: 95%;
+}
+/* ----------------------------------- */
+table {
+  font-size: 12px;
+  table-layout: fixed;
+}
+table.normal {
+  font-size: 12px;
+  border-collapse: collapse;
+  border: 1px solid silver;
+}
+/* --- for IE only -----*/
+* html table.normal{
+  table-layout: auto;
+}
+* html table.normal th{
+  text-align: left;
+}
+/* -- for IE7 only --*/
+*:first-child+html table.normal{
+  table-layout: auto;
+}
+/* ---------------------*/
+table.normal th {
+  background-color: #f0f0ff;
+}
+table.normal td.line_0, table.normal tr.line_0 {
+  background-color: #f8f8ff;
+}
+table.normal td.line_1, table.normal tr.line_1 {
+  background-color: #ffffff;
+}
+table.normal th, table.normal td {
+  border: 1px solid silver;
+  padding: 1px 4px 1px 4px;
+}
+/* ----------------------------------- */
+body {
+  position: absolute;
+  left: 0;
+  margin: 0;
+  text-align: left;
+  font-size: 12px;
+  font-family: Verdana, Arial, sans-serif;
+  background-color: #ffffff;
+  color: #555555;
+  width: 100%;
+}
+
+/* ----------------------------------- */
+div#header {
+  position: relative;
+  border-bottom: 1px dashed silver;
+  height: 50px;
+}
+div#header div#logo {
+  float: left;
+  vertical-align: top;
+  margin: 3px 0 0 10px;
+}
+div#header div#menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  font-size: 12px;
+  text-align: right;
+  background-color: #d0e0f0;
+  padding: 1px 5px;
+}
+div#header div#menu .item {
+  float: left;
+  padding: 3px 10px 1px 10px;
+  font-weight: bold;
+}
+div#header div#menu .item a {
+  color: blue;
+  text-decoration: none;
+}
+div#header div#menu .item a:hover {
+  text-decoration: underline;
+}
+div#header div#search {
+  position: absolute;
+  top: 21px;
+  right: 0;
+}
+/* ----------------------------------- */
+div#top {
+  clear: both;
+  text-align: right;
+  border-bottom: 1px solid silver;
+  padding: 1px 5px;
+}
+/* ----------------------------------- */
+/* 共通系 */
+/* 件数や次ページなどのナビ */
+div.navi {
+  border: 1px solid #e0e0ff;
+  padding: 1px;
+  background-color: #f8f8ff;
+  text-align: right;
+}
+/* 検索時の検索条件スペース */
+div.search_cond_space {
+  border: 1px dashed silver;
+  padding: 5px;
+  _width: 100%;
+}
+/* 検索時の検索結果スペース */
+div.search_result_space {
+  margin-top: 10px;
+  _width: 100%;
+}
+/* エディット時のフォーム入力スペース */
+div.edit_form_space {
+  border: 1px dashed silver;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+div.edit_form_space p {
+  margin: 5px 0;
+}
+/* ページ先頭に説明文を入れる場合などに使う */
+div.desc {
+  padding: 3px 10px;
+  background-color: #f0f0ff;
+  border: 1px dashed #ffc000;
+}
+/* 感応型ヘルプ */
+div.helpbar {
+  background-color: #fff0f0;
+  text-align: center;
+  margin-bottom: 2px;
+}
+/* ----------------------------------- */
+/* タイトル＋一覧系 */
+h2.topix_title {
+  border-top: 1px solid silver;
+  border-bottom: 1px dashed silver;
+  padding: 4px 0px 2px 7px;
+  background-color: #f3f3ff;
+  margin-bottom: 0px;
+
+  font-size: 16px;
+  font-weight: bold;
+  vertical-align: bottom;
+  margin-left: 5px;
+  color: #003399;
+  background-image: url(./../images/skip/gradient.png);
+}
+div.topix_body {
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+div.topix_body a:visited {
+  color: purple;
+}
+div.topix_body .page_line, div.topix_body .item_line {
+  border-bottom: 1px dotted silver;
+  padding: 1px 2px 3px 2px;
+  margin-bottom: 2px;
+}
+div.topix_body .page_reading {
+  float: left;
+  margin-right: 5px;
+}
+div.topix_body .page_title {
+  width: 65%;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  float: left;
+}
+div.topix_body .page_from {
+  float: left;
+  margin-left: 5px;
+  width: 70px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+div.topix_body .page_date, div.topix_body .item_date {
+  text-align: right;
+  font-size: 10px;
+}
+div.topix_body .item_name {
+  width:120px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  float: left;
+  margin-right: 15px;
+}
+div.topix_body .item_desc {
+  float: left;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  width: 50%;
+}
+/* ----------------------------------- */
+/* flashで表示するメッセージ */
+div.notice {
+  border: 2px solid limegreen;
+  margin: 3px 0 1em 0;
+  font-size: 12px;
+  background-color: palegreen;
+}
+div.warning {
+  border: 2px solid orange;
+  margin: 3px 0 1em 0;
+  font-size: 12px;
+  background-color: yellow;
+}
+div.notice span, div.warning span {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-size: 10px;
+}
+/* ----------------------------------- */
+/* ボックス型 */
+/* 外側の表示枠 */
+div.box_space {
+  background-color: #ffffff;
+  border: 1px solid silver;
+  padding: 1px;
+  margin-bottom: 5px;
+  border-right: 2px solid silver;
+  border-bottom: 2px solid #aaaaaa;
+}
+/* タイトル部分 */
+div.box_space div.box_space_title {
+  padding: 1px;
+  border-top: 1px solid silver;
+  border-left: 1px solid silver;
+  color: #0033cc;
+  font-size: 15px;
+  font-weight: bold;
+  background-image: url(./../images/label_bar.png);
+}
+/* タイトル中のサイズの小さい文字 */
+div.box_space div.box_space_title span.small {
+  font-size: 10px;
+  margin-left: 3px;
+}
+/* 本体部分 */
+div.box_space div.box_space_body {
+  text-align: left;
+  margin: 2px;
+  word-break:break-all;
+  overflow: hidden;
+}
+/* 本体部分 */
+div.box_space div.box_space_img_body {
+  text-align: center;
+  margin: 2px;
+}
+/* 本体の中の箇条書き */
+div.box_space div.box_space_body ul {
+  list-style-type: none;
+}
+/* 底の部分 */
+div.box_space div.box_space_bottom {
+  text-align: right;
+  border-right: 1px solid silver;
+  border-bottom: 1px solid silver;
+  padding: 1px;
+  font-size: 10px;
+}
+
+/* ----------------------------------- */
+/* オートコンプリートで使う */
+div.auto_complete {
+  width: 350px;
+  background: #fff;
+}
+div.auto_complete ul {
+  border:1px solid #888;
+  margin:0;
+  padding:0;
+  width:100%;
+  list-style-type:none;
+}
+div.auto_complete ul li {
+  margin:0;
+  padding:3px;
+}
+div.auto_complete ul li.selected {
+  background-color: #ffb;
+}
+div.auto_complete ul strong.highlight {
+  color: #800;
+  margin:0;
+  padding:0;
+}
+/* ----------------------------------- */
+/* カレンダー */
+.calendar {
+  border: none;
+  width: 100%;
+  _width: 94%;
+}
+.calendar, .calendar tr, .calendar th, .calendar td {
+  text-align: center;
+}
+.calendar tbody td {
+}
+.calendar hr {
+  border: solid thin #46f;
+}
+.monthName {
+  background-color: #abf;
+}
+.dayName {
+  background-color: #abf;
+  border: solid 1px #46f;
+}
+.otherMonth {
+}
+.day {
+  background-color: #f0f0ff;
+}
+.holiday {
+  background-color: #ffe0e0;
+}
+.today {
+  background-color: #c0ffc0;
+}
+.selected {
+  background-color: #ffffa0;
+}
+/* ----------------------------------- */
+/* コンテンツの左メニュー・右中身の構造 */
+/* レイアウトのコンテナ */
+div#contents_container {
+  width:100%;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:left;
+}
+/* レイアウトの左側 */
+div#contents_left {
+  width:150px;
+  float:left;
+}
+/* レイアウトの右側 */
+div#contents_right {
+  margin-left: 160px;
+  _width: 100%;
+}
+/* レイアウトの下側 */
+div#contents_bottom {
+  width:100%;
+  clear:left;
+}
+/* ----------------------------------- */
+/* 紹介文のところで使う */
+table.chain_table {
+  width: 100%;
+  margin: 5px 0;
+  border-collapse: separate;
+  empty-cells: hide;
+}
+table.chain_table th {
+  background-color: #f0f0ff;
+  width: 120px;
+  text-align: center;
+  border: 1px solid silver;
+}
+table.chain_table td.message {
+}
+table.chain_table td.arrow {
+  width: 10px;
+}
+table.chain_table td.message div {
+  border: 1px solid silver;
+  overflow: hidden;
+  padding: 5px;
+  word-break: break-all;
+}
+/* ----------------------------------- */
+/* タグクラウドのフォントサイズ */
+.tag1 {font-size: 1.0em;}
+.tag2 {font-size: 1.2em;}
+.tag3 {font-size: 1.4em;}
+.tag4 {font-size: 1.6em;}
+.tag5 {font-size: 1.8em;}
+.tag6 {font-size: 2.0em;}
+
+/* ----------------------------------- */
+/* マイページ：足跡 */
+div.access_count {
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  border: 1px dashed #ffc000;
+  margin: 2px 0;
+}
+ul.access_tracks {
+  list-style-type: none;
+  margin: 5px 15px;
+}
+ul.access_tracks li {
+  border-bottom: 1px dotted silver;
+}
+
+/* ----------------------------------- */
+/* グループ・ユーザの検索条件部分 */
+table.search_cond_box {
+  width: 100%;
+  border-collapse: separate;
+}
+table.search_cond_box th {
+  width: 130px;
+  background-color: #f0f0ff;
+  padding: 0px 5px;
+  border-top: 1px solid silver;
+  border-bottom: 1px solid silver;
+}
+div.search_cond_space table.cateogry {
+  border-collapse: separate;
+}
+div.search_cond_space table.category th {
+  background-color: #f0f0ff;
+  padding: 0px 5px;
+  border-top: 1px solid silver;
+  border-bottom: 1px solid silver;
+  width: 120px;
+}
+div.search_cond_space table.category td {
+  font-size: 10px;
+  width: 105px;
+}
+div.search_cond_space table.cateogry {
+  border-collapse: separate;
+}
+div.search_cond_space table.sort th {
+  background-color: #f0f0ff;
+  padding: 0px 5px;
+  border-top: 1px solid silver;
+  border-bottom: 1px solid silver;
+  width: 120px;
+}
+div.search_cond_space table.category td.title {
+  color: gray;
+  font-weight: bold;
+  background-color: #eee;
+  width: 80px;
+  text-align: center;
+}
+
+/* ----------------------------------- */
+/* ユーザ検索の検索結果部分 */
+div.user_box {
+  position: relative;
+  margin: 5px 10px;
+  width: 95%;
+}
+div#user_buttons {
+  position: absolute;
+  top: 2px;
+  right: 5px;
+}
+table.user_box {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid silver;
+}
+table.user_box th {
+  width: 20%;
+  background-color: #f0f0ff;
+  padding-left: 5px;
+  border: 1px solid silver;
+}
+table.user_box td.image {
+  padding: 0px;
+  width: 130px;
+  text-align: center;
+}
+table.user_box td {
+  padding-left: 5px;
+  border: 1px solid silver;
+}
+
+/* ----------------------------------- */
+/* グループ検索の検索結果部分 */
+table.group_box {
+  margin: 5px;
+  width: 98%;
+  border-collapse: collapse;
+  border: 1px solid silver;
+  table-layout: fixed;
+}
+table.group_box th {
+  width: 200px;
+  padding-left: 5px;
+  border: 1px solid silver;
+  background-color: #F8F8FF;
+  font-weight: bold;
+  font-size: 14px;
+}
+table.group_box td {
+  padding: 0px 5px;
+  font-size: 10px;
+  border: 1px solid silver;
+  color: gray;
+}
+table.group_box td.auth {
+  text-align: left;
+}
+table.group_box td.auth p {
+  margin: 5px;
+}
+table.group_box td.since {
+  text-align: right;
+}
+
+table.group_list_box {
+  margin: 5px 10px;
+  width: 95%;
+  border-collapse: collapse;
+  border: 1px solid silver;
+}
+table.group_list_box th {
+  text-align: left;
+  background-color: #f0f0ff;
+  padding-left: 5px;
+  border: 1px solid silver;
+}
+table.group_list_box td {
+  padding: 0px 5px;
+}
+
+/* ----------------------------------- */
+/* 共有ファイル関連 */
+div.error_files {
+  color: gray;
+  font-size: 10px;
+  margin-top: 5px;
+}
+
+div.error_messages {
+  margin-left: 20px;
+  width: 350px;
+}
+
+/* ----------------------------------- */
+/* ランキングメニューのスタイルシート */
+table.calendar_table {
+  font-size: 12px;
+  width: 150px;
+}
+table.calendar_table th {
+  background-color: #EEEEEE;
+}
+div.ranking_menu {
+  margin-bottom: 20px;
+}
+div.ranking_data {
+  margin-top: 10px;
+}
+div.ranking_menu_title {
+  margin-bottom: 10px;
+}
+span.ranking_caption {
+  font-size: 10px;
+}
+table.ranking_square {
+  padding: 0px 0px 0px 0px;
+  margin: 0 0 10px 0;
+  background-color: #f0f0ff;
+  border: #C6C7C6 1px solid;
+  font-size: 12px;
+  table-layout: auto;
+}
+table.ranking_square .title {
+  margin: 1px;
+  padding: 5px;
+  background-color: #f0f0ff;
+  border: #C6C7C6 1px solid;
+  font-size: 14px;
+  font-weight: bold;
+  color: #77778C;
+  text-align: center;
+}
+table.ranking_square table {
+  text-align: left;
+  font-size: 12px;
+}
+table.ranking_square tr {
+  background-color: #ffffff;
+}
+table.ranking_square th {
+  padding: 3px 0 3px 0;
+  font-size: 12px;
+  background-color: #f8f8ff;
+  text-align: left;
+}
+table.ranking_square th.point {
+  text-align: center;
+}
+table.ranking_square .rank {
+  padding: 3px;
+  width: 15px;
+  font-size: 12px;
+  text-align: center;
+}
+table.ranking_square .link_text {
+  padding: 3px 0 3px 0;
+  font-size: 12px;
+  width: 350px;
+}
+table.ranking_square .user_name {
+  padding: 3px 0 3px 0;
+  font-size: 12px;
+  width: 100px;
+}
+table.ranking_square .point {
+  padding: 3px 0 3px 0;
+  font-size: 12px;
+  text-align: center;
+  width: 100px;
+}
+
+#ranking_title {
+  color:#0033CC;
+  font-size:14px;
+  font-weight:bold;
+  margin-left:5px;
+  vertical-align:middle;
+}
+
+div.statistics_history {
+  margin-top: 20px;
+}
+div.statistics_line {
+  font-size: 11px;
+  padding: 3px;
+  border-bottom: 1px dashed silver;
+  margin: 0px 5px;
+  float: left;
+}
+div.statistics_line .statistics_desc {
+  width: 240px;
+  float: left;
+}
+div.statistics_line .statistics_value {
+  width: 45px;
+  text-align: right;
+  float: left;
+}
+div.statistics_line .statistics_menu {
+  font-size: 10px;
+  width: 200px;
+  margin-left: 10px;
+  float: left;
+}
+
+div.monthly_statictics_box {
+  width: 300px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid silver;
+  background-color: #eee;
+}
+div.monthly_statictics_line {
+  float: left;
+  border-bottom: 1px dotted silver;
+}
+div.monthly_statistics_inner_space {
+  padding: 3px;
+  background-color: #fff;
+}
+div.current_statistics {
+  float: left;
+  width: 100%;
+}
+
+/* ----------------------------------- */
+/* ブックマーク用メニューのスタイルシート */
+table.bookmark_comment_box {
+  margin: 5px 10px;
+  width: 600px;
+  border-collapse: collapse;
+  border: 1px solid silver;
+}
+table.bookmark_comment_box th {
+  width: 70px;
+  background-color: #f0f0ff;
+  padding-left: 5px;
+  border: 1px solid silver;
+}
+table.bookmark_comment_box td {
+  padding: 0px 5px;
+}
+
+span.label {
+  background-color: #f0f0ff;
+  width: 100px;
+  overflow: hidden;
+  float: left;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 3px 5px;
+  margin-right: 5px;
+}
+
+div.title {
+  background-color: #f0f0ff;
+  padding: 2px 2px;
+  font-size: 12pt;
+  font-weight:bold;
+}
+
+div.bookmark_space div.comment_space {
+  overflow: hidden;
+}
+
+/* 検索結果部分 */
+table.bookmark_box {
+  margin: 5px 10px;
+  width: 95%;
+  border-collapse: collapse;
+  border: 1px solid silver;
+}
+
+label.url , label.title {
+  background-color: #f0f0ff;
+  padding: 2px 2px;
+  border-top: 1px solid silver;
+  border-bottom: 1px solid silver;
+
+}
+div.title {
+  background-color: #f0f0ff;
+  padding: 2px 2px;
+  font-size: 12pt;
+  font-weight:bold
+}
+
+/* ブックマーク一覧の一行のスタイル */
+.bookmark_line {
+  margin-top: 5px;
+  padding-left: 5px;
+  border-bottom: 1px dotted silver;
+}
+.bookmark_line .title {
+  font-size: 15px;
+}
+.bookmark_line .users {
+  font-size: 10px;
+  font-weight: bold;
+  background-color: #ffe0e0;
+}
+.bookmark_line .tags {
+  margin: 3px 0 3px 15px;
+  font-size: 10px;
+  color: green;
+}
+
+/* ----------------------------------- */
+/* プロフィール表示 */
+div.subtitle {
+  border-left: 10px solid #aaaaff;
+  border-bottom: 1px solid #aaaaff;
+  padding-left: 5px;
+  padding-top: 3px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+div.subtitle span.description {
+  font-weight: normal;
+}
+
+
+/* ----------------------------------- */
+/* color1:外線, color2:タブ線, color3: タブ, color4:外側 */
+/* ----------------------------------- */
+div#main {
+  position: relative;
+  padding: 10px 10px 10px 15px;
+  _width: 100%;
+}
+/* ----------------------------------- */
+div#side {
+  float: right;
+  width: 110px;
+}
+div#side ul {
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+div#side ul img {
+  margin-right: 4px;
+}
+div#side li {
+  background-color: #ffffff;
+  padding: 5px 0 5px 3px;
+  list-style-type: none;
+}
+div#side li.selected a {
+  font-size: 14px;
+}
+div#side li.separator {
+  padding: 0px 0 0px 7px;
+  list-style-type: none;
+  text-align: right;
+  font-size: 10px;
+}
+/* ----------------------------------- */
+#globalnavi{
+  position: relative;
+  _width: 100%;
+}
+#globalnavi ul{
+  list-style-type: none;
+}
+#globalnavi li{
+  float:left;
+  width: 100px;
+}
+#globalnavi li a{
+  padding: 0.5em 0;
+  text-align: center;
+  display:block;
+  width:100%;
+  background-color: #FFF;
+  font-weight: bold;
+}
+/* ----------------------------------- */
+h1#title {
+  margin: 0 0 0 10px;
+  padding: 4px;
+  font-size: 18px;
+  font-weight: bold;
+}
+#tab_menu {
+  float:left;
+  font-size:93%;
+  line-height:normal;
+  font-size: 12px;
+  font-weight: bold;
+}
+#tab_menu ul {
+  margin:0;
+  padding:0px 10px 0 5px;
+  list-style:none;
+}
+#tab_menu li {
+  display:inline;
+  margin:0;
+  padding:0;
+}
+#tab_menu a {
+  float:left;
+  margin:0 1px 0 0;
+  padding:0 0 0 2px;
+  text-decoration:none;
+}
+#tab_menu a span {
+  float:left;
+  display:block;
+  padding:5px 10px 4px 6px;
+}
+/* Commented Backslash Hack hides rule from IE5-Mac \*/
+#tab_menu a span {float:none;}
+/* End IE5-Mac hack */
+#tab_menu a:hover, #tab_menu a.selected {
+  background-position:0% -42px;
+}
+#tab_menu a:hover span, #tab_menu a.selected span {
+  background-position:100% -42px;
+}
+div#tab_body {
+  position: relative;
+  margin-right: 10px;
+  background-color: #ffffff;
+  padding: 10px;
+  _width: 100%;
+}
+/* ----------------------------------- */

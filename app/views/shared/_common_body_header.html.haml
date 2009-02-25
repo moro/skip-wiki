@@ -1,22 +1,18 @@
-#services
-  %a{:href=>"http://www.openskip.org/", :target=>"_blank"}&= _("SKIP Official Site")
-  %a{:href=>"http://user.openskip.org/", :target=>"_blank"}&= _("SKIP User Commnity")
-  %a{:href=>"./help", :target=>"_blank"}
-    %span.ss_sprite.ss_help{:title=>_("Help")}&= _("Help")
-
+#menu
   - if logged_in?
-    =link_to _("Logout") % {:name=>current_user.name}, logout_path
+    .item{:style=>"color:block"}&= _("Login ID: %{name}") % {:name => current_user.name }
+    .item= link_to(_("Edit profile"), edit_user_path(current_user))
+    .item= link_to _("Logout"), logout_path
   - else
-    =link_to _("Login"), login_path
+    .item= =link_to _("Login"), login_path
 
-<br style="clear: right;" />
+  <br style="clear: left;" />
 
 #search
   - if fts = INITIAL_SETTINGS[:skip_collabolation][:fulltext_search]
     - search_label = _("Input keyword to search")
     - form_tag(fts[:endpoint], :method => 'get', :class => 'skip_fulltext_search') do
-      %span{:style=>"vertical-align:middle;"}
-      = text_field_tag(fts[:query_name], search_label, :class => "labeled-field")
+      = text_field_tag(fts[:query_name], search_label, :class => "labeled-field", :size => 40)
       = submit_tag _('Search')
       &nbsp;
 

@@ -1,0 +1,18 @@
+:ruby
+  links = [
+    ["http://www.openskip.org/ja/", _("SKIP Official Site")],
+    ["http://demo.openskip.org/",   _("Demo")],
+    ["http://www.openskip.org/ja/download/", _("Download")],
+    ["http://www.openskip.org/ja/license/",  _("License")],
+    ["http://www.openskip.org/ja/community/", _("Community")],
+    ["http://www.openskip.org/ja/developer/", _("Developer")],
+    ["http://portal.openskip.org/", _("Manual")],
+    ["http://www.openskip.org/ja/news/", _("News")],
+    ["http://www.openskip.org/ja/support/", _("Support")],
+  ]
+- [links].each do |(href, label), *rest|
+  %a{:href=>href, :target => "_blank"}&= label
+  - rest.each do |href, label|
+    %span.seprator= "&nbsp;|&nbsp;"
+    %a{:href=>href, :target => "_blank"}&= label
+

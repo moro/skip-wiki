@@ -5,11 +5,12 @@
     = render :partial => 'shared/common_header'
 
   %body
-    #header.page-layout
-      #logo
-        = link_to image_tag("logo.png", :alt=>"SKIP Note - Logo", :height=>"15px"), root_path
-        %p{:style=>"display:none"}= link_to _('SKIP Note'), root_path
+    #logo.page-layout
+      = link_to image_tag("logo.png", :alt=>"SKIP Note - Logo", :height=>"15px"), root_path
+      %p{:style=>"display:none"}= link_to _('SKIP Note'), root_path
 
+    #global_navi= render(:partial => "shared/global_navi")
+    #header.page-layout
       = render :partial => 'shared/common_body_header'
       #current-note= render :partial => 'shared/current_note_and_operation'
 
@@ -26,7 +27,7 @@
                 %span.title.ipe-trigger&= @page.display_name
                 %span.labeled= sanitize _("Labeled as %{label}") % {:label=>val_tag(@page.label_index.display_name)}
                 - if current_note.label_navigation_style == LabelIndex::NAVIGATION_STYLE_TOGGLE
-                  %span.operation.label&= _("show label navigation")
+                  %span.operation.show-label-navi&= _("show label navigation")
 
                 - if current_user.accessible?(current_note)
                   %span.page-operation= select_tag("page_operation", page_operation)
@@ -40,7 +41,7 @@
                     %span.operation.ipe-cancel&= _("Cancel")
                 :javascript
                   jQuery(document).ready(function(){
-                    $("div.page-header span.operation.label").click(function(){
+                    $("div.page-header span.operation.show-label-navi").click(function(){
                       jQuery("#content div.label-navigation").show().siblings(".page-content").removeClass("fullscreen")
                     });
                     $("h1").aresInplaceEditor(jQuery.extend({

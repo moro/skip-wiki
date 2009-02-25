@@ -37,6 +37,15 @@ body
     span.title
       :font-size 24px
 
+  a
+    :color #0080DD
+    :text-decoration none
+
+  #global_navi
+    :background-image url(./../images/skip/gradient.png)
+
+  select
+    :border 1px solid silver
 #current-note .note-navi, .page-header .page-navi
   :position absolute
   :left 300px
@@ -58,8 +67,8 @@ body
     li:last-child
       :border-bottom 0
 
-#logo
-  :align top
+#logo.page-layout, #logo.note-layout
+  :position absolute
   :margin 3px 0 0 5px
   p
     :margin auto 3px auto 3px
@@ -142,7 +151,7 @@ body
       :float left
       :margin 3px 0 3px 10px
       span.title
-        :font-size = !modern_page_font_size
+        :font-size = !modern_page_font_size + 8px
       span.labeled
         :font-size = !small_font_size
         :margin auto 3px

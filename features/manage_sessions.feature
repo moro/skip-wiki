@@ -10,7 +10,7 @@
     かつ I press "Sign up"
 
     ならば I should see "Thanks for signing up!"
-    かつ   I should see "Your profile(moro)"
+    かつ   "Login ID: moro"と表示されていること
 
   シナリオ: ログイン
     前提   言語は"ja-JP"
@@ -20,14 +20,14 @@
     ならば I should not see "Thanks for signing up!"
 
     もし    再読み込みする
-    ならば  "プロフィール(aliceさん)"と表示されていること
+    ならば  "ログインID: alice"と表示されていること
 
   シナリオ: ログアウト
     前提シナリオ: ログイン
     もし   "ログアウト"リンクをクリックする
     かつ   "再読み込みする"
     ならば "OpenIDでログインできます"と表示されていること
-    かつ   "プロフィール(aliceさん)"と表示されていないこと
+    かつ   "ログインID: alice"と表示されていないこと
 
   シナリオ: ログイン失敗
     前提   言語は"ja-JP"
@@ -35,5 +35,5 @@
     かつ   "再読み込みする"
 
     ならば "OpenIDでログインできます"と表示されていること
-    かつ   "プロフィール(aliceさん)"と表示されていないこと
+    かつ   "ログインID: alice"と表示されていないこと
 
