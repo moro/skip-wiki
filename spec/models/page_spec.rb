@@ -256,40 +256,6 @@ describe Page do
     end
   end
 
-  describe ".no_labels" do
-    fixtures :notes, :pages
-
-    it "notes(:our_note)は2つのラベルなしページがあること" do
-      notes(:our_note).pages.no_labels.should have(2).items
-    end
-
-      it "order_in_labelを手動設定した場合、反映されること" do
-        page = pages(:our_note_page_1)
-        page.order_in_label = 1
-        page.order_in_label.should == 1
-      end
-
-    describe "nth(n) で片方のupdated_atを新しくした場合" do
-      before do
-        @page = pages(:our_note_page_1)
-        t = 5.days.since( @page.updated_at )
-        Page.update_all("updated_at = '#{t.to_s(:db)}'", ["id = ?", @page.id])
-      end
-
-      it "nth(1)で更新されたページがとれること" do
-        notes(:our_note).pages.no_labels.nth(1).should == [@page]
-      end
-
-      it "nth(2)で更新されないほうのページがとれること" do
-        notes(:our_note).pages.no_labels.nth(2).should == [pages(:our_note_page_2)]
-      end
-
-      it "nth(3)では空配列がとれること" do
-        notes(:our_note).pages.no_labels.nth(3).should == []
-      end
-    end
-  end
-
   describe ".authored(*authors)" do
     fixtures :users
     before do

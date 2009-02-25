@@ -73,25 +73,6 @@ SQL
     end
   }
 
-  named_scope :no_labels, proc{
-    { :conditions => <<SQL }
-#{quoted_table_name}.id IN (
-  SELECT p.id
-  FROM pages AS p
-  LEFT JOIN label_indexings AS l ON l.page_id = p.id
-  WHERE l.id IS NULL
-)
-SQL
-  }
-
-  named_scope :nth, proc{|*args|
-    nth, order, = args
-    order ||= quoted_table_name + ".updated_at DESC"
-    { :limit => 1,
-      :offset => Integer(nth) - 1,
-      :order => order }
-  }
-
   scope_do :chained_scope
   chainable_scope :labeled, :authored, :fulltext
 
@@ -113,12 +94,7 @@ SQL
   end
 
   def order_in_label
-    if idx = self.label_indexings.first
-      idx.page_order
-    else
-      cond = ["#{self.class.quoted_table_name}.updated_at > ?", updated_at]
-      @order_in_label ||= note.pages.no_labels.count(:conditions=>cond).succ
-    end
+    (idx = self.label_indexings.first) && idx.page_order
   end
 
   def published_at=(timy_or_hash)
