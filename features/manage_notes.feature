@@ -6,7 +6,7 @@
     かつ   ユーザ"alice"を登録する
     かつ   ユーザのIdentity URLを"http://localhost:3200/user/alice"として登録する
     かつ   OpenId "http://localhost:3200/user/alice"でログインする
-    かつ   "New Note"リンクをクリックする
+    かつ   "ノートを作る"リンクをクリックする
 
     もし  "個人用ノート"を選択する
     かつ  "ビジネス"を選択する
