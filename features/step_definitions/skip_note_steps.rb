@@ -47,6 +47,14 @@ def disable_sso
   FixedOp.sso_openid_provider_url = nil
 end
 
+def lookup_publicity(val)
+  case val
+  when _("Not display") then LabelIndex::NAVIGATION_STYLE_NONE
+  when _("Display and enable toggle") then LabelIndex::NAVIGATION_STYLE_TOGGLE
+  when _("Display always") then LabelIndex::NAVIGATION_STYLE_ALWAYS
+  end
+end
+
 Before do
   prepare_default_category
   disable_sso
@@ -116,3 +124,14 @@ Given(/ナビゲーションメニューから"(\w+)"を選択する/) do |label
   visit select(label)
 end
 
+Given(/ノート"(\w+)"の公開範囲を「全員が読める。メンバーのみが書き込める。」に設定する/) do |note|
+  Note.find(note).update_attributes!(:publicity => Note::PUBLICITY_READABLE)
+end
+
+Given(/ノート"(\w+)"の公開範囲を「メンバーのみが読み書きできる」に設定する/) do |note|
+  Note.find(note).update_attributes!(:publicity => Note::PUBLICITY_MEMBER_ONLY)
+end
+
+Given(/ノート"(\w+)"の公開範囲を「全員が読み書きできる」に設定する/) do |note|
+  Note.find(note).update_attributes!(:publicity => Note::PUBLICITY_WRITABLE)
+end
