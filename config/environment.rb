@@ -29,10 +29,10 @@ Rails::Initializer.run do |config|
   config.gem 'gettext',  :lib => 'gettext/rails', :version => '1.93.0'
   config.gem 'diff-lcs', :lib => 'diff/lcs'
   config.gem 'haml'
-  config.gem 'moro-scope_do', :lib => 'scope_do', :version => '>=0.1.1'
-  config.gem 'mislav-will_paginate', :lib => 'will_paginate', :version=> '>=2.3.6', :source => "http://gems.github.com/"
+  config.gem 'moro-scope_do', :lib => 'scope_do', :version => '>=0.1.1', :source =>  'http://gems.github.com/'
+  config.gem 'mislav-will_paginate', :lib => 'will_paginate', :version=> '>=2.3.6', :source => 'http://gems.github.com/'
 
-  if true || Rails.env == "test"
+  if Rails.env == "test"
     # loading rspec-rails in initializer causes problem,
     # `rake spec` and `spec -fs SPEC_FILE' works without comment out.
     #
@@ -55,6 +55,7 @@ Rails::Initializer.run do |config|
     attachment_fu
     moro-scope_do
   ]
+
   config.plugins += %w[rails-footnotes] if Rails.env == "development"
 
   # Add additional load paths for your own custom dirs
