@@ -278,8 +278,6 @@ select {
   margin: 0 2px 0 0;
   padding: 0;
   font-size:12px;
-  letter-spacing: 2px;
-  z-index:0;
 }
 textarea {
   font-family: Verdana, Arial, Sans-serif;
@@ -636,9 +634,6 @@ div.auto_complete ul strong.highlight {
 }
 .today {
   background-color: #c0ffc0;
-}
-.selected {
-  background-color: #ffffa0;
 }
 /* ----------------------------------- */
 /* コンテンツの左メニュー・右中身の構造 */

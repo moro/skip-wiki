@@ -201,25 +201,6 @@
     jQuery("span.trigger.operation").one("click", onLoad);
   },
 
-  jQuery.fn.labeledTextField = function(config){
-    var target = jQuery(this);
-    var focusClass = config["focusClass"] || "focus";
-    var message = config["message"];
-
-    target.parents("form").get(0).reset();
-    if(target.val() != message){ target.addClass(focusClass); };
-
-    target.focus(function(){
-        target.addClass(focusClass);
-        if(target.val() == message){ target.val("") };
-      });
-    target.blur(function(){
-        if(target.val() == ""){
-          target.removeClass(focusClass).val(message);
-        };
-      });
-  };
-
   jQuery.fn.reloadLabelRadios = function(config){
     var self = jQuery(this);
     var proto = self.find("li:first").clone().find("input").attr("checked", null).end();
@@ -315,15 +296,6 @@
     return self;
   };
 
-  jQuery.fn.dropdownNavigation = function(config){
-    function navigate(){
-      var loc = jQuery(this).val();
-      if("" != loc){ document.location = loc };
-      return false;
-    };
-
-    return jQuery(this).change(navigate);
-  }
 })(jQuery);
 
 application = function(){}
