@@ -171,7 +171,7 @@
       jQuery("span.trigger.operation").one("click", onLoad);
     }
 
-    function uploaderButtontton(conf){
+    function uploaderButton(conf){
       conf["callback"] = function(){
         root.find("table").remove();
         loadAttachments(root.find(".palette"), config["note_attachments"], message["note_attachments"]);
@@ -191,7 +191,7 @@
             jQuery("<h3>").text(message["title"]).append(
               jQuery("<span>").text(message["close"]).click(hidePalette)
             )).append(
-              uploaderButtontton(config["uploader"])
+              uploaderButton(config["uploader"])
             ).append(
               jQuery("<div class='palette' />")
           )).
