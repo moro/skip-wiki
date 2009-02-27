@@ -68,13 +68,13 @@ class AttachmentsController < ApplicationController
   end
 
   def only_if_list_attachments_or_group_member
-    unless (current_user.accessible?(current_note) || current_note.list_attachments)
+    unless (current_user.page_editable?(current_note) || current_note.list_attachments)
       head(:forbidden)
     end
   end
 
   def writable_user_required
-    unless current_user.accessible?(current_note)
+    unless current_user.page_editable?(current_note)
       head(:forbidden)
     end
   end

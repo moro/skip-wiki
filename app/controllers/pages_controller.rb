@@ -85,7 +85,7 @@ class PagesController < ApplicationController
   private
   def accessible_pages(user = current_user, note = nil)
     if params[:note_id] && note ||= current_note
-      user.accessible?(note) ? note.pages : note.pages.published
+      user.page_editable?(note) ? note.pages : note.pages.published
     else
       Page.scoped(:conditions => ["#{Page.quoted_table_name}.note_id IN (?)", user.free_or_accessible_notes.all.map(&:id)])
     end

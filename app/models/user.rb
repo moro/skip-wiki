@@ -48,6 +48,10 @@ class User < ActiveRecord::Base
     build_skip_account(:skip_uid=>uid) unless uid.blank?
   end
 
+  def page_editable?(note)
+    note.public_writable? || accessible?(note)
+  end
+
   def build_skip_membership
     groups = SkipGroup.fetch_and_store(skip_uid).map do |sg|
       sg.group ||= sg.build_group(:name=>sg.name, :display_name=>sg.display_name + "(SKIP)")

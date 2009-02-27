@@ -3,7 +3,7 @@ module NotesHelper
     !!arr[num]
   end
 
-  def explain_note(note)
+  def explain_note(note = current_note)
     opts = {
       :name_key => content_tag("span", _("Note|Name") , :class=>"key"),
       :name_val => content_tag("span", note.name , :class=>"val"),
@@ -16,7 +16,7 @@ module NotesHelper
     _("This note's %{name_key} is `%{name_val}', %{publicity_key} is `%{publicity_val}', and %{category_key} is `%{category_val}'.") % opts
   end
 
-  def explain_note_ext(note)
+  def explain_note_ext(note = current_note)
     opts = {
       :label_navi_key => content_tag("span", _("Note|Label navigation style"), :class => "key"),
       :label_navi_val => content_tag("span", navi_style_label(note.label_navigation_style), :class => "val"),

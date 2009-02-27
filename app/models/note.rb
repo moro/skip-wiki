@@ -64,6 +64,10 @@ class Note < ActiveRecord::Base
     accessibilities.map(&:group)
   end
 
+  def public_writable?
+    Note::PUBLICITY_WRITABLE == publicity
+  end
+
   def public_readable?
     [Note::PUBLICITY_READABLE, Note::PUBLICITY_WRITABLE].include?(publicity)
   end

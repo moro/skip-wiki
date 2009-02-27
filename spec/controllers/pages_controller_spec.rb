@@ -8,7 +8,7 @@ describe PagesController do
     controller.stub!(:current_note).and_return(@current_note)
 
     @user = mock_model(User)
-    @user.stub!(:accessible?).with(@current_note).and_return true
+    @user.stub!(:page_editable?).with(@current_note).and_return true
     controller.stub!(:current_user).and_return(@user)
   end
 
