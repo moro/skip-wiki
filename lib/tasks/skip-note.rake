@@ -4,13 +4,13 @@ namespace :skip_note do
 
   desc "build fulltext search cache DIR=[cache_root] SINCE=[sec target updated]"
   task :fulltext_cache do
-    require 'fulltext_search_cache'
+    require 'skip_note_fulltext_search'
     options = {}
     options[:cache_dir] = ENV["DIR"] unless ENV["DIR"].blank?
     options[:since] = ENV["SINCE"] unless ENV["SINCE"].blank?
     options[:url_prefix] = ENV["URL"] unless ENV["URL"].blank?
 
-    FulltextSearchCache.build(options)
+    SkipNoteFulltextSearch.run(options)
   end
 
   desc "create release .zip archive."
