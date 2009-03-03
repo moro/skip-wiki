@@ -31,8 +31,8 @@ class SessionsController < ApplicationController
   def create
     logout_keeping_session!
 
-    if params[:openid_url] && !FixedOp.accept?(params[:openid_url])
-      logger.debug("login refused since #{params[:openid_url]} is not member #{FixedOp.servers.inspect}")
+    if params[:openid_url] && !SkipCollabo::OpFixation.accept?(params[:openid_url])
+      logger.debug("login refused since #{params[:openid_url]} is not member #{SkipCollabo::OpFixation.servers.inspect}")
       login_failed(params.merge(:openid_url=>params[:openid_url]))
     else
       login_with_openid(params[:openid_url])
@@ -43,7 +43,7 @@ class SessionsController < ApplicationController
     logout_killing_session!
     flash[:notice] = _("You have been logged out.")
 
-    redirect_back_or_default(FixedOp.sso_openid_logout_url || login_path)
+    redirect_back_or_default(SkipCollabo::OpFixation.sso_openid_logout_url || login_path)
   end
 
   protected
@@ -76,7 +76,7 @@ class SessionsController < ApplicationController
   end
 
   def logged_in_successful(user, personal_data, redirect=root_path)
-    if FixedOp.sso_enabled?
+    if SkipCollabo::OpFixation.sso_enabled?
       data = self.class.translate_ax_response(personal_data)
       user.update_attributes!(data.slice(:display_name))
       flash[:notice] = _("Successfully synchronized your display name with OP's")
@@ -102,7 +102,7 @@ class SessionsController < ApplicationController
   def signup_with_openid(identity_url, ax_attributes = {})
     session[:identity_url] = identity_url
     data = self.class.translate_ax_response(ax_attributes)
-    session[:user] = data if FixedOp.sso_enabled?
+    session[:user] = data if SkipCollabo::OpFixation.sso_enabled?
     @user = User.new(data)
 
     render :template=>"users/new"

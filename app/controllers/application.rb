@@ -1,5 +1,6 @@
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
+require 'skip_collabo/op_fixation'
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
@@ -34,7 +35,7 @@ class ApplicationController < ActionController::Base
   end
 
   def access_denied_with_open_id_sso
-    if op = FixedOp.sso_openid_provider_url
+    if op = SkipCollabo::OpFixation.sso_openid_provider_url
       store_location
       authenticate_with_open_id(op, :method => "get", :return_to=>session_url,
                                     :required => SessionsController.ax_attributes.values.flatten) do

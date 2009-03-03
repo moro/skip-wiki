@@ -1,7 +1,7 @@
 %tr.user_name
   %th= f.label :name, _("User|Name")
-  %td= FixedOp.sso_enabled? ? @user.name : f.text_field(:name)
+  %td= SkipCollabo::OpFixation.sso_enabled? ? @user.name : f.text_field(:name)
 %tr.user_display_name
   %th= f.label :display_name, _("User|Display name")
-  %td= FixedOp.sso_enabled? ? @user.display_name : f.text_field(:display_name)
+  %td= SkipCollabo::OpFixation.sso_enabled? ? @user.display_name : f.text_field(:display_name)
 

@@ -31,6 +31,7 @@ Rails::Initializer.run do |config|
   config.gem 'haml'
   config.gem 'moro-scope_do', :lib => 'scope_do', :version => '>=0.1.1', :source =>  'http://gems.github.com/'
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :version=> '>=2.3.6', :source => 'http://gems.github.com/'
+  config.gem 'skip_collabo'
 
   if Rails.env == "test"
     # loading rspec-rails in initializer causes problem,
@@ -57,6 +58,7 @@ Rails::Initializer.run do |config|
   ]
 
   config.plugins += %w[rails-footnotes] if Rails.env == "development"
+  config.plugins << "skip_collabo" if Gem.source_index.any?{|_,y| y.name =~ /(?:[:ascii:]+-)?skip_collabo/  }
 
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
@@ -92,15 +94,4 @@ Rails::Initializer.run do |config|
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
 end
-
-def load_initial_settings(name = "config/initial_settings.yml")
-  if File.readable?(path = File.expand_path(name, Rails.root))
-    conf = YAML.load_file(path)
-    conf[Rails.env] || {}
-  else
-    {}
-  end
-end
-
-INITIAL_SETTINGS = load_initial_settings.with_indifferent_access.freeze
 

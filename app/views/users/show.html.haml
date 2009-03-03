@@ -11,6 +11,6 @@
     %dt&= _("Account|Identity url")
     %dd&= @user.account.identity_url
 
-  - unless FixedOp.sso_enabled?
+  - unless SkipCollabo::OpFixation.sso_enabled?
     = link_to "Edit", edit_user_path(@user)
 

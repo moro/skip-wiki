@@ -15,9 +15,9 @@ describe SessionsController do
                    "http://axschema.org/namePerson/friendly" => "nick"})
     end
 
-    describe "with FixedOp.sso_enabled? => false" do
+    describe "with SkipCollabo::OpFixation.sso_enabled? => false" do
       before do
-        FixedOp.should_receive(:sso_enabled?).and_return false
+        SkipCollabo::OpFixation.should_receive(:sso_enabled?).and_return false
         post :create
       end
       it{ session[:user].should be_blank }
@@ -25,9 +25,9 @@ describe SessionsController do
       it{ response.should render_template( "users/new") }
     end
 
-    describe "with FixedOp.sso_enabled? => true" do
+    describe "with SkipCollabo::OpFixation.sso_enabled? => true" do
       before do
-        FixedOp.should_receive(:sso_enabled?).and_return true
+        SkipCollabo::OpFixation.should_receive(:sso_enabled?).and_return true
         post :create
       end
       it{ session[:user].should == {:name => "nick", :display_name => "fullname"} }
@@ -35,10 +35,10 @@ describe SessionsController do
       it{ response.should render_template( "users/new") }
     end
 
-    describe "with FixedOp.sso_enabled? => true/ update User's display name" do
+    describe "with SkipCollabo::OpFixation.sso_enabled? => true/ update User's display name" do
       fixtures :users
       before do
-        FixedOp.should_receive(:sso_enabled?).and_return true
+        SkipCollabo::OpFixation.should_receive(:sso_enabled?).and_return true
         Account.should_receive(:find_by_identity_url).with("http://example.com/alice").
           and_return(account = mock_model(Account))
         account.should_receive(:user).and_return(users(:quentin))
@@ -52,7 +52,7 @@ describe SessionsController do
 
   describe "GET destroy #SSOでない場合" do
     before do
-      FixedOp.sso_openid_provider_url = nil
+      SkipCollabo::OpFixation.sso_openid_provider_url = nil
       get :destroy
     end
     it{ response.should redirect_to login_path }
@@ -60,7 +60,7 @@ describe SessionsController do
 
   describe "GET destroy #SSOの場合" do
     before do
-      FixedOp.sso_openid_provider_url = "http://openid.example.com/"
+      SkipCollabo::OpFixation.sso_openid_provider_url = "http://openid.example.com/"
       get :destroy
     end
     it{ response.should redirect_to "http://openid.example.com/logout" }
