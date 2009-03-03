@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 require 'nokogiri'
 
-describe FulltextSearchCache::AttachmentCacheBuilder, :type => :model do
+describe SkipNoteFulltextSearch::AttachmentCacheBuilder, :type => :model do
   before :all do
     ActionController::UrlWriter.default_url_options = {
       :host => "example.com",
@@ -23,7 +23,7 @@ describe FulltextSearchCache::AttachmentCacheBuilder, :type => :model do
       :uploaded_data => fixture_file_upload("data/at_small.png", "image/png", true),
     }
     @attachment = notes(:our_note).attachments.create(params)
-    @builder = FulltextSearchCache::AttachmentCacheBuilder.new(@attachment)
+    @builder = SkipNoteFulltextSearch::AttachmentCacheBuilder.new(@attachment)
   end
 
   describe "メタデータ" do

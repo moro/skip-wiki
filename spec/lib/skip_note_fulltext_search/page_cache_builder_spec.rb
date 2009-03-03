@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 require 'nokogiri'
 
-describe FulltextSearchCache::PageCacheBuilder, :type => :model do
+describe SkipNoteFulltextSearch::PageCacheBuilder, :type => :model do
   before :all do
     ActionController::UrlWriter.default_url_options = {
       :host => "example.com",
@@ -13,7 +13,7 @@ describe FulltextSearchCache::PageCacheBuilder, :type => :model do
   fixtures :pages, :notes
   before do
     @page = pages(:our_note_page_1)
-    @builder = FulltextSearchCache::PageCacheBuilder.new(@page)
+    @builder = SkipNoteFulltextSearch::PageCacheBuilder.new(@page)
   end
 
   it "#to_cacheで作られるHTMLのBody部分は@page.descriptionを含むこと" do
