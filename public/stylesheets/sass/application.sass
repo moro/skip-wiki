@@ -31,7 +31,9 @@ body
     :border 1px dashed gray
 
   #current-note
-    :margin-left 20px
+    :position absolute
+    :top 20px
+    :left 20px
     span
       :font-size 0.8em
     span.title
@@ -70,6 +72,7 @@ body
 #logo.page-layout, #logo.note-layout
   :position absolute
   :margin 3px 0 0 5px
+  :z-index 1
   p
     :margin auto 3px auto 3px
     :font-size  20px
