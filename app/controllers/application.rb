@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
     if op = SkipCollabo::OpFixation.sso_openid_provider_url
       store_location
       authenticate_with_open_id(op, :method => "get", :return_to=>session_url,
-                                    :required => SessionsController.ax_attributes.values.flatten) do
+                                    :required => SessionsController.attribute_adapter.keys) do
         access_denied_without_open_id_sso
       end
     else

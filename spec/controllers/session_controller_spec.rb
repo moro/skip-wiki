@@ -72,7 +72,7 @@ describe SessionsController do
         "http://axschema.org/namePerson"   => ["Human Name"],
         "http://axschema.org/namePerson/friendly" => ["asciiname"],
       }
-      @translated = SessionsController.translate_ax_response(data)
+      @translated = SessionsController.attribute_adapter.adapt(data)
     end
     it{ @translated[:name].should == "asciiname" }
     it{ @translated[:display_name].should == "Human Name" }
@@ -86,7 +86,7 @@ describe SessionsController do
         "http://axschema.org/namePerson"=>["Human name"],
         "http://axschema.org/namePerson/friendly"=>["asciiname"],
       }
-      @translated = SessionsController.translate_ax_response(data)
+      @translated = SessionsController.attribute_adapter.adapt(data)
     end
     it{ @translated[:name].should == "asciiname" }
     it{ @translated[:display_name].should == "Human name" }

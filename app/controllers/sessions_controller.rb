@@ -16,7 +16,7 @@ module SkipCollabo
     def login_successfully(user, personal_data)
       if SkipCollabo::OpFixation.sso_enabled?
         data = attribute_adapter.adapt(personal_data)
-        account.user.update_attributes!(data.slice(:display_name))
+        user.update_attributes!(data.slice(:display_name))
         flash[:notice] = _("Successfully synchronized your display name with OP's")
       end
       super
