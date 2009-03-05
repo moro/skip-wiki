@@ -26,6 +26,6 @@
     =select_tag "from", (1..@page.revision).map{|i| content_tag("option", i)}
     %span&= _("to")
     =select_tag "to",   (1..@page.revision).map{|i| content_tag("option", i)}.reverse
-    =submit_tag "diff"
+    =submit_tag _("Show diff")
 
 
