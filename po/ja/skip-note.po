@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2009-02-25 16:41+0900\n"
+"POT-Creation-Date: 2009-03-05 09:59+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -541,7 +541,7 @@ msgstr "更新日時"
 
 #: app/models/history.rb:- app/views/histories/index.html.haml:9
 msgid "History|Description"
-msgstr ""
+msgstr "編集コメント"
 
 #: app/models/label_index.rb:- app/views/admin/notes/show.html.haml:27
 #: app/views/label_indices/_new.html.haml:1
@@ -630,7 +630,7 @@ msgstr "ノート"
 
 #: app/models/note.rb:- app/views/admin/notes/edit.html.haml:27
 #: app/views/admin/notes/index.html.haml:9 app/views/notes/edit.html.haml:23
-#: app/views/notes/index.html.haml:27 app/views/notes/new.html.haml:144
+#: app/views/notes/index.html.haml:15 app/views/notes/new.html.haml:144
 #: app/views/notes/new.html.haml:151 app/views/notes/new.html.haml:239
 msgid "Note|Display name"
 msgstr "ノート名"
@@ -648,12 +648,12 @@ msgid "Note|Created at"
 msgstr ""
 
 #: app/models/note.rb:- app/views/admin/notes/index.html.haml:11
-#: app/views/notes/index.html.haml:30
+#: app/views/notes/index.html.haml:18
 msgid "Note|Updated at"
 msgstr "更新日時"
 
 #: app/models/note.rb:- app/views/admin/notes/edit.html.haml:32
-#: app/views/notes/edit.html.haml:27 app/views/notes/index.html.haml:28
+#: app/views/notes/edit.html.haml:27 app/views/notes/index.html.haml:16
 #: app/views/notes/new.html.haml:175 app/views/notes/new.html.haml:180
 #: app/views/notes/new.html.haml:245
 msgid "Note|Description"
@@ -713,7 +713,7 @@ msgid "Page|Name"
 msgstr "ページ識別子"
 
 #: app/models/page.rb:- app/views/admin/pages/_pages.html.haml:5
-#: app/views/layouts/pages.html.haml:39 app/views/notes/dashboard.html.haml:20
+#: app/views/layouts/pages.html.haml:38 app/views/notes/dashboard.html.haml:16
 #: app/views/pages/_pages.html.haml:5 app/views/pages/index.html.haml:21
 #: app/views/pages/new.html.haml:17
 msgid "Page|Display name"
@@ -741,7 +741,7 @@ msgid "Page|Created at"
 msgstr ""
 
 #: app/models/page.rb:- app/views/admin/pages/_pages.html.haml:10
-#: app/views/notes/dashboard.html.haml:21 app/views/pages/_pages.html.haml:10
+#: app/views/notes/dashboard.html.haml:17 app/views/pages/_pages.html.haml:10
 #: app/views/pages/index.html.haml:23
 msgid "Page|Updated at"
 msgstr "更新日時"
@@ -986,7 +986,7 @@ msgstr "[クリックして編集]"
 
 #: app/views/admin/notes/show.html.haml:42
 #: app/views/label_indices/_new.html.haml:17
-#: app/views/layouts/pages.html.haml:41
+#: app/views/layouts/pages.html.haml:40
 msgid "Cancel"
 msgstr "取消"
 
@@ -1048,8 +1048,9 @@ msgstr "ページ一覧を絞り込み..."
 msgid "Filter"
 msgstr "絞り込み"
 
-#: app/views/admin/pages/index.html.haml:18 app/views/notes/index.html.haml:11
-#: app/views/pages/index.html.haml:8 app/views/pages/notes_index.html.haml:14
+#: app/views/admin/pages/index.html.haml:18
+#: app/views/notes/_search.html.haml:6 app/views/pages/index.html.haml:8
+#: app/views/pages/notes_index.html.haml:14
 msgid "Show all"
 msgstr "すべて表示"
 
@@ -1106,7 +1107,11 @@ msgstr "差分のバージョン指定 :"
 msgid "to"
 msgstr "から"
 
-#: app/views/histories/new.html.haml:17 app/views/layouts/pages.html.haml:39
+#: app/views/histories/index.html.haml:29
+msgid "Show diff"
+msgstr "変更を表示"
+
+#: app/views/histories/new.html.haml:17 app/views/layouts/pages.html.haml:38
 #: app/views/pages/edit.html.haml:12
 msgid "Update %{entity}"
 msgstr "%{entity}を更新"
@@ -1127,11 +1132,11 @@ msgstr "%{label}のついたページ一覧"
 msgid "SKIP Note"
 msgstr "SKIP Note"
 
-#: app/views/layouts/pages.html.haml:28
+#: app/views/layouts/pages.html.haml:27
 msgid "Labeled as %{label}"
 msgstr "ラベル: %{label}"
 
-#: app/views/layouts/pages.html.haml:30
+#: app/views/layouts/pages.html.haml:29
 msgid "show label navigation"
 msgstr "ラベルバーを表示"
 
@@ -1159,6 +1164,20 @@ msgstr ""
 msgid "Updated"
 msgstr "更新されたページ"
 
+#: app/views/notes/_search.html.haml:1
+#: app/views/shared/admin/_note_navi.html.haml:3
+#: app/views/shared/admin/_note_navi.html.haml:35
+msgid "Search Note"
+msgstr "ノートを検索"
+
+#: app/views/notes/_search.html.haml:5
+#: app/views/shared/_common_body_header.html.haml:16
+#: app/views/shared/_user_navi.html.haml:14
+#: app/views/shared/admin/_note_navi.html.haml:42
+#: app/views/shared/admin/_user_navi.html.haml:26
+msgid "Search"
+msgstr "検索"
+
 #: app/views/notes/_wizard.html.haml:15 app/views/pages/_labels.html.haml:9
 #: app/views/pages/_labels.html.haml:19
 msgid "Previous"
@@ -1169,33 +1188,19 @@ msgstr "戻る"
 msgid "Next"
 msgstr "進む"
 
-#: app/views/notes/dashboard.html.haml:7 app/views/notes/index.html.haml:6
-#: app/views/shared/admin/_note_navi.html.haml:3
-#: app/views/shared/admin/_note_navi.html.haml:35
-msgid "Search Note"
-msgstr "ノートを検索"
-
-#: app/views/notes/dashboard.html.haml:9 app/views/notes/index.html.haml:10
-#: app/views/shared/_common_body_header.html.haml:16
-#: app/views/shared/_user_navi.html.haml:14
-#: app/views/shared/admin/_note_navi.html.haml:42
-#: app/views/shared/admin/_user_navi.html.haml:26
-msgid "Search"
-msgstr "検索"
-
-#: app/views/notes/dashboard.html.haml:15
+#: app/views/notes/dashboard.html.haml:11
 msgid "Updated pages"
 msgstr "更新されたページ"
 
-#: app/views/notes/dashboard.html.haml:17
+#: app/views/notes/dashboard.html.haml:13
 msgid "more..."
 msgstr "もっと見る..."
 
-#: app/views/notes/dashboard.html.haml:34 app/views/shared/_top.html.haml:3
+#: app/views/notes/dashboard.html.haml:30 app/views/shared/_top.html.haml:3
 msgid "Dashboard"
 msgstr "マイページ"
 
-#: app/views/notes/dashboard.html.haml:35
+#: app/views/notes/dashboard.html.haml:31
 msgid "Accessible Note"
 msgstr "編集可能なノート"
 
@@ -1203,19 +1208,19 @@ msgstr "編集可能なノート"
 msgid "Note|LabelNavigationStyle"
 msgstr "ラベルバー表示"
 
-#: app/views/notes/index.html.haml:21
+#: app/views/notes/index.html.haml:9
 msgid "Updated notes"
 msgstr "更新されたノート"
 
-#: app/views/notes/index.html.haml:23
+#: app/views/notes/index.html.haml:11
 msgid "The query find no notes."
 msgstr "検索条件にヒットするページがありません。"
 
-#: app/views/notes/index.html.haml:29
+#: app/views/notes/index.html.haml:17
 msgid "Updated page"
 msgstr "更新されたページ"
 
-#: app/views/notes/index.html.haml:41
+#: app/views/notes/index.html.haml:29
 msgid "No page exists"
 msgstr "ページが存在しません"
 
@@ -1336,7 +1341,7 @@ msgstr "履歴"
 
 #: app/views/pages/_pages.html.haml:13 app/views/pages/index.html.haml:24
 msgid "Copy URL"
-msgstr ""
+msgstr "URLをコピー"
 
 #: app/views/pages/_pages.html.haml:29
 msgid "Show history"
@@ -1379,6 +1384,7 @@ msgstr ""
 "ができます。"
 
 #: app/views/sessions/new.html.haml:17
+#: app/views/shared/_common_body_header.html.haml:7
 msgid "Login"
 msgstr "ログイン"
 
