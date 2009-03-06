@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :cant_modify_under_sso, :only => %w[edit update]
 
   def create
-    logout_keeping_session!
+    # logout_keeping_session!
     @user = User.new(SkipCollabo::OpFixation.sso_enabled? ? session[:user] : params[:user])
     @user.account = Account.new{|a| a.identity_url = session[:identity_url] }
     if @user.save
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       session[:identity_url] = nil
 
       self.current_user = @user
-      redirect_back_or_default(root_path)
+      redirect_back_or(root_path)
       flash[:notice] = _("Thanks for signing up!.")
     else
       flash[:error]  = _("We couldn't set up that account, sorry.  Please try again.")

@@ -36,6 +36,11 @@ class User < ActiveRecord::Base
     {:conditions => ["name LIKE ? OR display_name LIKE ?", w, w]}
   }
 
+  def self.find_by_identity_url(identity_url)
+    find(:first, :include => :account,
+                 :conditions => ["#{Account.quoted_table_name}.identity_url = ?", identity_url])
+  end
+
   def name=(value)
     write_attribute :name, (value ? value.downcase : nil)
   end

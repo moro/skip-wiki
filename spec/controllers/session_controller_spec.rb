@@ -39,9 +39,7 @@ describe SessionsController do
       fixtures :users
       before do
         SkipCollabo::OpFixation.should_receive(:sso_enabled?).and_return true
-        Account.should_receive(:find_by_identity_url).with("http://example.com/alice").
-          and_return(account = mock_model(Account))
-        account.should_receive(:user).and_return(users(:quentin))
+        User.should_receive(:find_by_identity_url).with("http://example.com/alice").and_return(users(:quentin))
 
         post :create
       end

@@ -1,3 +1,4 @@
+require 'repim/relying_party'
 # This controller handles the login/logout function of the site.
 module SkipCollabo
   module OpenIdSso
@@ -22,7 +23,7 @@ module SkipCollabo
       super
     end
 
-    def signup_with_openid(identity_url, personal_data = {})
+    def signup(identity_url, personal_data = {})
       session[:user] = attribute_adapter.adapt(personal_data) if SkipCollabo::OpFixation.sso_enabled?
       super
     end
@@ -39,17 +40,12 @@ module SkipCollabo
 end
 
 class SessionsController < ApplicationController
-  include SimpleRelyingParty
+  include Repim::RelyingParty
   include SkipCollabo::OpenIdSso
   before_filter :login_required, :except=>%w[new create]
 
   use_attribute_exchange(["http://axschema.org", "http://schema.openid.net"],
                          :display_name => "/namePerson", :name => "/namePerson/friendly" )
 
-  private
-  def find_user_by_identity_url(identity_url)
-    account = Account.find_by_identity_url(identity_url)
-    account && account.user
-  end
 end
 
