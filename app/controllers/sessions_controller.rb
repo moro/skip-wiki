@@ -3,13 +3,10 @@ require 'repim/relying_party'
 module SkipCollabo
   module OpenIdSso
     def self.included(controller)
-      controller.before_filter :specified_op_is_accesptable, :only => %w[create]
+      controller.before_filter :available_op_limitation, :only => %w[create]
     end
 
-    def after_login_path
-      session[:return_to] || root_path
-    end
-
+    private
     def after_logout_path
       SkipCollabo::OpFixation.sso_openid_logout_url || login_path
     end
@@ -28,10 +25,14 @@ module SkipCollabo
       super
     end
 
-    def specified_op_is_accesptable
+    def available_op_limitation
+      logger.debug([params["openid.identity"], params["openid.claimed_id"]].inspect)
       if params[:openid_url] && !SkipCollabo::OpFixation.accept?(params[:openid_url])
         logger.debug("login refused since #{params[:openid_url]} is not member #{SkipCollabo::OpFixation.servers.inspect}")
-        login_failed(params.merge(:openid_url=>params[:openid_url]))
+        authenticate_failure
+      elsif SkipCollabo::OpFixation.sso_enabled? && !params["open_id_complete"].blank? && (params["openid.identity"] != params["openid.claimed_id"])
+        logger.debug("login refused since claimed_id differs from identity.")
+        authenticate_failure
       else
         true
       end

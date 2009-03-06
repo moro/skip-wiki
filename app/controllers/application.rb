@@ -35,15 +35,15 @@ class ApplicationController < ActionController::Base
     render :template => "shared/not_found", :status => :not_found, :layout => false
   end
 
-  def access_denied_with_open_id_sso
+  def access_denied_with_open_id_sso(message = nil)
     if op = SkipCollabo::OpFixation.sso_openid_provider_url
       store_location
       authenticate_with_open_id(op, :method => "get", :return_to=>session_url,
                                     :required => SessionsController.attribute_adapter.keys) do
-        access_denied_without_open_id_sso
+        access_denied_without_open_id_sso(message)
       end
     else
-      access_denied_without_open_id_sso
+      access_denied_without_open_id_sso(message)
     end
   end
   alias_method_chain :access_denied, :open_id_sso
