@@ -17,7 +17,7 @@ describe SessionsController do
 
     describe "with SkipCollabo::OpFixation.sso_enabled? => false" do
       before do
-        SkipCollabo::OpFixation.should_receive(:sso_enabled?).and_return false
+        SkipCollabo::OpFixation.should_receive(:sso_enabled?).at_least(:once).and_return false
         post :create
       end
       it{ session[:user].should be_blank }
@@ -27,7 +27,7 @@ describe SessionsController do
 
     describe "with SkipCollabo::OpFixation.sso_enabled? => true" do
       before do
-        SkipCollabo::OpFixation.should_receive(:sso_enabled?).and_return true
+        SkipCollabo::OpFixation.should_receive(:sso_enabled?).at_least(:once).and_return true
         post :create
       end
       it{ session[:user].should == {:name => "nick", :display_name => "fullname"} }
@@ -38,7 +38,7 @@ describe SessionsController do
     describe "with SkipCollabo::OpFixation.sso_enabled? => true/ update User's display name" do
       fixtures :users
       before do
-        SkipCollabo::OpFixation.should_receive(:sso_enabled?).and_return true
+        SkipCollabo::OpFixation.should_receive(:sso_enabled?).at_least(:once).and_return true
         User.should_receive(:find_by_identity_url).with("http://example.com/alice").and_return(users(:quentin))
 
         post :create
