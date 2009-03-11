@@ -1,6 +1,8 @@
-<%= render_flash(:error) %>
-<%= render_flash(:warn) %>
-<%= render_flash(:notice) %>
+<div id="flash_message">
+  <%= render_flash(:error) %>
+  <%= render_flash(:warn) %>
+  <%= render_flash(:notice) %>
+</div>
 
 <%- javascript_tag do %>
   jQuery(document).ready(function(){
