@@ -52,7 +52,6 @@ Rails::Initializer.run do |config|
     friendly_id
     haml
     jrails
-    restful_authentication
     open_id_authentication
     attachment_fu
     moro-scope_do
