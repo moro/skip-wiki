@@ -9,7 +9,7 @@ describe Admin::PagesController do
     @current_note = notes(:our_note)
     @page = pages(:our_note_page_1)
     controller.stub!(:current_user).and_return(@user = users(:quentin))
-    controller.stub!(:login_required).and_return(true)
+    controller.stub!(:authenticate).and_return(true)
     controller.stub!(:require_admin).and_return(true)
     controller.stub!(:current_note).and_return(@current_note)
   end

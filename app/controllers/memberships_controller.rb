@@ -1,5 +1,5 @@
 class MembershipsController < ApplicationController
-  before_filter :login_required, :except=>[:index]
+  before_filter :authenticate, :except=>[:index]
 
   def index
     @memberships = requested_user.memberships

@@ -4,7 +4,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe UsersController do
   before do
-    controller.stub!(:login_required).and_return(true)
+    controller.stub!(:authenticate).and_return(true)
     controller.stub!(:current_user).and_return(@user = mock_model(User))
   end
 

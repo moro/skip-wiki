@@ -4,7 +4,7 @@ describe Admin::ApplicationController, "#require_admin" do
 
   describe "管理者ではない場合" do
     before do
-      controller.stub!(:login_required).and_return(true)
+      controller.stub!(:authenticate).and_return(true)
       @user = mock_model(User)
       @user.should_receive(:admin?).and_return(false)
       controller.should_receive(:current_user).and_return(@user)

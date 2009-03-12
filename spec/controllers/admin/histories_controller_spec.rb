@@ -4,7 +4,7 @@ describe Admin::HistoriesController do
   fixtures :notes, :pages
   before do
     @requested_note = notes(:our_note)
-    controller.stub!(:login_required).and_return(true)
+    controller.stub!(:authenticate).and_return(true)
     controller.stub!(:require_admin).and_return(true)
     controller.stub!(:requested_note).and_return(@requested_note)
   end

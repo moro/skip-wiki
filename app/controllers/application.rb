@@ -12,9 +12,6 @@ class ApplicationController < ActionController::Base
 
   init_gettext("skip-note") if defined? GetText
   before_filter { Time.zone = "Asia/Tokyo" }
-  # FIXME
-  skip_before_filter :authenticate
-  before_filter :login_required
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store

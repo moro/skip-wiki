@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :login_required, :except=>%w[new create]
+  before_filter :authenticate, :except=>%w[new create]
   before_filter :cant_modify_under_sso, :only => %w[edit update]
 
   def create
