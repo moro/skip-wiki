@@ -3,6 +3,11 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe UsersController do
+  before do
+    controller.stub!(:login_required).and_return(true)
+    controller.stub!(:current_user).and_return(@user = mock_model(User))
+  end
+
   fixtures :users
   describe "post :create" do
     before do
@@ -46,7 +51,7 @@ describe UsersController do
 
   describe "post :create failed" do
     before do
-      SkipCollabo::OpFixation.should_receive(:sso_enabled?).and_return false
+      SkipCollabo::OpFixation.should_receive(:sso_enabled?).at_least(:once).and_return false
       params = {"user"=>{"name"=>"", "display_name"=>"Human Name"}}
       session[:identity_url] = "http://openid.example.com/ascii"
 
@@ -64,11 +69,6 @@ describe UsersController do
   end
 
   describe "Edit and Update" do
-    before do
-      controller.stub!(:login_required).and_return(true)
-      controller.stub!(:current_user).and_return(@user = mock_model(User))
-    end
-
     describe "get :edit when sso_enabled" do
       before do
         SkipCollabo::OpFixation.should_receive(:sso_enabled?).and_return true

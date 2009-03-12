@@ -1,25 +1,24 @@
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 require 'repim/application'
-require 'skip_collabo/op_fixation'
+require 'skip_collabo/open_id_sso/authentication'
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   helper_method :current_note
+
   include Repim::Application
-  include OpenIdAuthentication
+  include SkipCollabo::OpenIdSso::Authentication
+
   init_gettext("skip-note") if defined? GetText
   before_filter { Time.zone = "Asia/Tokyo" }
+  # FIXME
+  skip_before_filter :authenticate
   before_filter :login_required
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery # :secret => '77b5db0ea0fa2d0a22f4fe4a123d699e'
-
-  # See ActionController::Base for details
-  # Uncomment this to filter the contents of submitted sensitive data parameters
-  # from your application log (in this case, all fields with names like "password").
-  # filter_parameter_logging :password
 
   rescue_from ActiveRecord::RecordNotFound, :with => :render_not_found
 
@@ -34,19 +33,6 @@ class ApplicationController < ActionController::Base
     e.backtrace.each{|m| logger.debug m } if e
     render :template => "shared/not_found", :status => :not_found, :layout => false
   end
-
-  def access_denied_with_open_id_sso(message = nil)
-    if op = SkipCollabo::OpFixation.sso_openid_provider_url
-      store_location
-      authenticate_with_open_id(op, :method => "get", :return_to=>session_url,
-                                    :required => SessionsController.attribute_adapter.keys) do
-        access_denied_without_open_id_sso(message)
-      end
-    else
-      access_denied_without_open_id_sso(message)
-    end
-  end
-  alias_method_chain :access_denied, :open_id_sso
 
   def current_note=(note)
     @__current_note = note
