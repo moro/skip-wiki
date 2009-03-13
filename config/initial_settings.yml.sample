@@ -23,40 +23,40 @@ default_label:  &label_defaults
 
 production:
   skip_collabolation:
+    secret_key: "---FIXME----BEFORE---DEPLOYMENT---"
     skip_url: "http://product.skip.local"
     fulltext_search:
       endpoint:  "http://product.skip.local/search/full_text_search"
       query_name: "full_text_query"
-  secret_key: "---FIXME----BEFORE---DEPLOYMENT---"
+    fixed_op:
+      #disabled: true
+      fixed_openid_server_url: "http://sso.test.example.com"
+      acceptable_op_urls: []
   <<: *label_defaults
-  fixed_op:
-    #disabled: true
-    fixed_openid_server_url: "http://sso.test.example.com"
-    acceptable_op_urls: []
 
 development:
   skip_collabolation:
+    secret_key: "1f3c30382d9f2060baf14f0cdb102fe2"
     skip_url: "http://test.skip.local"
     fulltext_search:
       endpoint:  "http://localhost:3002/search/full_text_search"
       query_name: "full_text_query"
-  secret_key: "1f3c30382d9f2060baf14f0cdb102fe2"
+    fixed_op:
+      disabled: true
+      fixed_openid_server_url: "http://sso.test.example.com"
+      acceptable_op_urls: []
   <<: *label_defaults
-  fixed_op:
-    disabled: true
-    fixed_openid_server_url: "http://sso.test.example.com"
-    acceptable_op_urls: []
 
 test:
   skip_collabolation:
+    secret_key: "1f3c30382d9f2060baf14f0cdb102fe2"
     skip_url: "http://test.skip.local"
     fulltext_search:
-      endpoint:  "http://localhost:3002/search/full_text_search"
+      endpoint:  "/search/full_text_search"
       query_name: "full_text_query"
-  secret_key: "1f3c30382d9f2060baf14f0cdb102fe2"
+    fixed_op:
+      disabled: true
+      fixed_openid_server_url: "http://sso.test.example.com"
+      acceptable_op_urls: []
   <<: *label_defaults
-  fixed_op:
-    disabled: true
-    fixed_openid_server_url: "http://sso.test.example.com"
-    acceptable_op_urls: []
 

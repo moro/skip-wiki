@@ -41,7 +41,7 @@ describe NotesController do
 
       Note.should_receive(:find).and_return([@target])
 
-      request.env["HTTP_X_SECRET_KEY"] = SkipCollabo::InitialSettings['secret_key']
+      request.env["HTTP_X_SECRET_KEY"] = SkipCollabo::InitialSettings['skip_collaboration']['secret_key']
       xhr :get, :index, :user => "--IDENTITY--"
     end
 
