@@ -1,0 +1,24 @@
+<%
+  config = SkipCollabo::InitialSettings["skip_collaboration"]["fulltext_search"]
+  endpoint = config["endpoint"]
+  query_name = config["full_text_query"]
+  search_label = _("Input keyword to search")
+
+  unless endpoint =~ /\Ahttp(s)?:\/\//
+    endpoint = SkipCollabo::InitialSettings["skip_collaboration"]["skip_url"] + endpoint
+  end
+%>
+
+<div id="search">
+  <% form_tag(endpoint, :method => 'get', :class => 'skip_fulltext_search') do -%>
+    <%= text_field_tag(query_name, search_label, :class => "labeled-field", :size => 40) %>
+    <%= submit_tag _('Search') %>
+  <% end -%>
+
+  <% javascript_tag do %>
+    jQuery(function(){
+      jQuery("#search input.labeled-field").labeledTextField(<%= {:message => search_label}.to_json %>);
+    });
+  <% end %>
+</div>
+

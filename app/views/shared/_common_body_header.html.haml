@@ -8,16 +8,5 @@
 
   <br style="clear: left;" />
 
-#search
-  - if fts = SkipCollabo::InitialSettings[:skip_collabolation][:fulltext_search]
-    - search_label = _("Input keyword to search")
-    - form_tag(fts[:endpoint], :method => 'get', :class => 'skip_fulltext_search') do
-      = text_field_tag(fts[:query_name], search_label, :class => "labeled-field", :size => 40)
-      = submit_tag _('Search')
-      &nbsp;
-
-    :javascript
-      jQuery(function(){
-        jQuery("#search input.labeled-field").labeledTextField(#{{:message => search_label}.to_json});
-      });
-
+- if SkipCollabo::InitialSettings["skip_collaboration"]["fulltext_search"]
+  = render(:partial => "shared/skip_full_text_search_form")

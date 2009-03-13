@@ -1,0 +1,78 @@
+#flash_message {
+  position: absolute;
+  top: 3px;
+  width: 100%;
+  z-index: 1; }
+  #flash_message div {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    font-size: 12px;
+    border-width: 2px;
+    border-style: solid; }
+    #flash_message div h3 {
+      width: 100%; }
+      #flash_message div h3 span {
+        position: static;
+        font-size: 10px;
+        margin-left: 20px;
+        right: 15px;
+        top: 15px; }
+  #flash_message div.warn {
+    border-color: orange;
+    background-color: yellow; }
+  #flash_message div.notice {
+    border-color: limegreen;
+    background-color: palegreen; }
+  #flash_message div.error {
+    border-color: red;
+    background-color: pink; }
+
+div#header div#search {
+  position: absolute;
+  top: 25px;
+  right: 5px;
+}
+
+div#header div#search form {
+  margin:0;
+  padding:0;
+}
+
+div#header div#serach input {
+  font-family:Verdana,Arial,Sans-serif;
+  font-size:12px;
+  margin:0;
+  padding:2px;
+}
+
+div#header div#menu {
+  background-color:#D0E0F0;
+  border:medium none;
+  font-size:12px;
+  padding:1px 5px;
+  position:absolute;
+  right:0;
+  text-align:right;
+  top:0;
+}
+
+div#header div#menu .item {
+  float:left;
+  font-weight:bold;
+  padding:3px 10px 1px;
+}
+
+div#header div#menu .item a {
+  color:blue;
+  text-decoration:none;
+}
+
+.labeled-field {
+  border: 1px solid silver;
+  color: rgb(153, 153, 153);
+  font-size: 13px; }
+
+.labeled-field.focus {
+  color: #000000; }
+

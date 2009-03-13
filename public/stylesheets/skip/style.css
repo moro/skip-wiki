@@ -27,11 +27,6 @@ div#header {
 div#header div#logo {
   float: left;
 }
-div#header div#search {
-  float: right;
-  padding-top: 2px;
-  padding-right: 6px;
-}
 div#header span#services a {
   color: blue;
   text-decoration: none;
@@ -386,11 +381,6 @@ div#header div#menu .item a {
 }
 div#header div#menu .item a:hover {
   text-decoration: underline;
-}
-div#header div#search {
-  position: absolute;
-  top: 21px;
-  right: 0;
 }
 /* ----------------------------------- */
 div#top {
