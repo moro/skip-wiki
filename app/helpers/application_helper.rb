@@ -1,6 +1,6 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  include SkipCollabo::Helpers
+  include SkipEmbedded::Helpers
 
   # XXX option_groups_from_collection_for_selectが使えないか検討する
   def notes_navi_on_header(user, selected="")

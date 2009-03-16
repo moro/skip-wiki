@@ -1,14 +1,14 @@
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 require 'repim/application'
-require 'skip_collabo/open_id_sso/authentication'
+require 'skip_embedded/open_id_sso/authentication'
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   helper_method :current_note
 
   include Repim::Application
-  include SkipCollabo::OpenIdSso::Authentication
+  include SkipEmbedded::OpenIdSso::Authentication
 
   init_gettext("skip-note") if defined? GetText
   before_filter { Time.zone = "Asia/Tokyo" }

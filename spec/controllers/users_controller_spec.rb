@@ -28,9 +28,9 @@ describe UsersController do
     it{ assigns(:user).display_name.should == "Human Name" }
   end
 
-  describe "post :create when SkipCollabo::OpFixation.sso_enabled?" do
+  describe "post :create when SkipEmbedded::OpFixation.sso_enabled?" do
     before do
-      SkipCollabo::OpFixation.should_receive(:sso_enabled?).and_return true
+      SkipEmbedded::OpFixation.should_receive(:sso_enabled?).and_return true
       session[:user] = {"name"=>"ascii", "display_name"=>"Human Name"}
       session[:identity_url] = "http://openid.example.com/ascii"
 
@@ -51,7 +51,7 @@ describe UsersController do
 
   describe "post :create failed" do
     before do
-      SkipCollabo::OpFixation.should_receive(:sso_enabled?).at_least(:once).and_return false
+      SkipEmbedded::OpFixation.should_receive(:sso_enabled?).at_least(:once).and_return false
       params = {"user"=>{"name"=>"", "display_name"=>"Human Name"}}
       session[:identity_url] = "http://openid.example.com/ascii"
 
@@ -71,7 +71,7 @@ describe UsersController do
   describe "Edit and Update" do
     describe "get :edit when sso_enabled" do
       before do
-        SkipCollabo::OpFixation.should_receive(:sso_enabled?).and_return true
+        SkipEmbedded::OpFixation.should_receive(:sso_enabled?).and_return true
         get :edit
       end
 
@@ -81,7 +81,7 @@ describe UsersController do
 
     describe "get :edit when disabled" do
       before do
-        SkipCollabo::OpFixation.should_receive(:sso_enabled?).and_return false
+        SkipEmbedded::OpFixation.should_receive(:sso_enabled?).and_return false
         get :edit, :id => "others"
       end
 
@@ -90,7 +90,7 @@ describe UsersController do
 
     describe "get :edit when disabled and valid user" do
       before do
-        SkipCollabo::OpFixation.should_receive(:sso_enabled?).and_return false
+        SkipEmbedded::OpFixation.should_receive(:sso_enabled?).and_return false
         get :edit, :id => @user.to_param
       end
 
@@ -99,7 +99,7 @@ describe UsersController do
 
     describe "post :update when sso_enabled" do
       before do
-        SkipCollabo::OpFixation.should_receive(:sso_enabled?).and_return true
+        SkipEmbedded::OpFixation.should_receive(:sso_enabled?).and_return true
         post :update
       end
 

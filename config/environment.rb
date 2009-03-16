@@ -32,14 +32,14 @@ Rails::Initializer.run do |config|
   config.gem 'repim'
   config.gem 'moro-scope_do', :lib => 'scope_do', :version => '>=0.1.1', :source =>  'http://gems.github.com/'
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :version=> '>=2.3.6', :source => 'http://gems.github.com/'
-  config.gem 'skip_collabo'
+  config.gem 'skip_embedded'
 
   if Rails.env == "test"
     # loading rspec-rails in initializer causes problem,
     # `rake spec` and `spec -fs SPEC_FILE' works without comment out.
     #
-    # config.gem 'rspec', :lib => 'spec', :version => '>=1.1.12'
-    # config.gem 'rspec-rails', :lib => 'spec/rails', :version => '>=1.1.12'
+    # config.gem 'rspec', :lib => 'spec', :version => '=1.1.12'
+    # config.gem 'rspec-rails', :lib => 'spec/rails', :version => '=1.1.12'
     config.gem 'webrat', :version => '>=0.4.1'
     config.gem 'cucumber'
   end
@@ -58,7 +58,7 @@ Rails::Initializer.run do |config|
   ]
 
   config.plugins += %w[rails-footnotes] if Rails.env == "development"
-  config.plugins << "skip_collabo" if Gem.source_index.any?{|_,y| y.name =~ /(?:[:ascii:]+-)?skip_collabo/  }
+  config.plugins << "skip_embedded" if Gem.source_index.any?{|_,y| y.name =~ /(?:[:ascii:]+-)?skip_embedded/  }
 
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )

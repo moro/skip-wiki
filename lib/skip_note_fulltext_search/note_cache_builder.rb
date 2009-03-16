@@ -1,8 +1,8 @@
 require 'erb'
-require 'skip_collabo/fulltext_search_cache/builder_base'
+require 'skip_embedded/fulltext_search_cache/builder_base'
 
 module SkipNoteFulltextSearch
-  class NoteCacheBuilder < SkipCollabo::FulltextSearchCache::BuilderBase
+  class NoteCacheBuilder < SkipEmbedded::FulltextSearchCache::BuilderBase
     self.entity_name = "note"
 
     def title; ERB::Util.h(note.display_name) ; end

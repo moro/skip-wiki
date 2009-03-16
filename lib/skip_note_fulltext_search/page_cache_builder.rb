@@ -1,7 +1,7 @@
 require 'erb'
 
 module SkipNoteFulltextSearch
-  class PageCacheBuilder < SkipCollabo::FulltextSearchCache::BuilderBase
+  class PageCacheBuilder < SkipEmbedded::FulltextSearchCache::BuilderBase
     self.entity_name = "page"
 
     def title; ERB::Util.h(page.display_name) ; end

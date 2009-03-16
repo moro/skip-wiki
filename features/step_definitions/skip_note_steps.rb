@@ -44,7 +44,7 @@ def prepare_default_category
 end
 
 def disable_sso
-  SkipCollabo::OpFixation.sso_openid_provider_url = nil
+  SkipEmbedded::OpFixation.sso_openid_provider_url = nil
 end
 
 def lookup_publicity(val)

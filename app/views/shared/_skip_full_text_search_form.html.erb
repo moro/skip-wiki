@@ -1,11 +1,11 @@
 <%
-  config = SkipCollabo::InitialSettings["skip_collaboration"]["fulltext_search"]
+  config = SkipEmbedded::InitialSettings["skip_collaboration"]["fulltext_search"]
   endpoint = config["endpoint"]
   query_name = config["full_text_query"]
   search_label = _("Input keyword to search")
 
   unless endpoint =~ /\Ahttp(s)?:\/\//
-    endpoint = SkipCollabo::InitialSettings["skip_collaboration"]["skip_url"] + endpoint
+    endpoint = SkipEmbedded::InitialSettings["skip_collaboration"]["skip_url"] + endpoint
   end
 %>
 

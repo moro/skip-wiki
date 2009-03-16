@@ -3,6 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe SessionsController do
   fixtures :users, :accounts
   before do
+    SessionsController.user_klass = User
     controller.session[:user_id] = users(:quentin).id
   end
 
@@ -15,9 +16,9 @@ describe SessionsController do
                    "http://axschema.org/namePerson/friendly" => "nick"})
     end
 
-    describe "with SkipCollabo::OpFixation.sso_enabled? => false" do
+    describe "with SkipEmbedded::OpFixation.sso_enabled? => false" do
       before do
-        SkipCollabo::OpFixation.should_receive(:sso_enabled?).at_least(:once).and_return false
+        SkipEmbedded::OpFixation.should_receive(:sso_enabled?).at_least(:once).and_return false
         post :create
       end
       it{ session[:user].should be_blank }
@@ -25,9 +26,9 @@ describe SessionsController do
       it{ response.should render_template( "users/new") }
     end
 
-    describe "with SkipCollabo::OpFixation.sso_enabled? => true" do
+    describe "with SkipEmbedded::OpFixation.sso_enabled? => true" do
       before do
-        SkipCollabo::OpFixation.should_receive(:sso_enabled?).at_least(:once).and_return true
+        SkipEmbedded::OpFixation.should_receive(:sso_enabled?).at_least(:once).and_return true
         post :create
       end
       it{ session[:user].should == {:name => "nick", :display_name => "fullname"} }
@@ -35,10 +36,10 @@ describe SessionsController do
       it{ response.should render_template( "users/new") }
     end
 
-    describe "with SkipCollabo::OpFixation.sso_enabled? => true/ update User's display name" do
+    describe "with SkipEmbedded::OpFixation.sso_enabled? => true/ update User's display name" do
       fixtures :users
       before do
-        SkipCollabo::OpFixation.should_receive(:sso_enabled?).at_least(:once).and_return true
+        SkipEmbedded::OpFixation.should_receive(:sso_enabled?).at_least(:once).and_return true
         User.should_receive(:find_by_identity_url).with("http://example.com/alice").and_return(users(:quentin))
 
         post :create
@@ -50,7 +51,7 @@ describe SessionsController do
 
   describe "GET destroy #SSOでない場合" do
     before do
-      SkipCollabo::OpFixation.sso_openid_provider_url = nil
+      SkipEmbedded::OpFixation.sso_openid_provider_url = nil
       get :destroy
     end
     it{ response.should redirect_to login_path }
@@ -58,7 +59,7 @@ describe SessionsController do
 
   describe "GET destroy #SSOの場合" do
     before do
-      SkipCollabo::OpFixation.sso_openid_provider_url = "http://openid.example.com/"
+      SkipEmbedded::OpFixation.sso_openid_provider_url = "http://openid.example.com/"
       get :destroy
     end
     it{ response.should redirect_to "http://openid.example.com/logout" }

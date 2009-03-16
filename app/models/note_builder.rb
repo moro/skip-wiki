@@ -2,7 +2,7 @@ class NoteBuilder
   include GetText
 
   cattr_accessor :label_fixtures
-  @@label_fixtures = SkipCollabo::InitialSettings[:label_defaults]
+  @@label_fixtures = SkipEmbedded::InitialSettings[:label_defaults]
 
   def initialize(user, attrs)
     @user = user

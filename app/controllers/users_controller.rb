@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def create
     # logout_keeping_session!
-    @user = User.new(SkipCollabo::OpFixation.sso_enabled? ? session[:user] : params[:user])
+    @user = User.new(SkipEmbedded::OpFixation.sso_enabled? ? session[:user] : params[:user])
     @user.account = Account.new{|a| a.identity_url = session[:identity_url] }
     if @user.save
       reset_session
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
 
   private
   def cant_modify_under_sso
-    if SkipCollabo::OpFixation.sso_enabled?
+    if SkipEmbedded::OpFixation.sso_enabled?
       flash[:warn] = _("Cannot modify user information manually. Logout and login again to update.")
       redirect_to(root_path)
     else

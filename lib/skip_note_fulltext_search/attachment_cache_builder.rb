@@ -1,7 +1,7 @@
-require 'skip_collabo/fulltext_search_cache/builder_base'
+require 'skip_embedded/fulltext_search_cache/builder_base'
 
 module SkipNoteFulltextSearch
-  class AttachmentCacheBuilder < SkipCollabo::FulltextSearchCache::BuilderBase
+  class AttachmentCacheBuilder < SkipEmbedded::FulltextSearchCache::BuilderBase
     self.entity_name = "attachment"
 
     def filename

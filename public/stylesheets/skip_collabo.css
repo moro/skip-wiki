@@ -1,11 +1,12 @@
 #flash_message {
   position: absolute;
   top: 3px;
-  width: 100%;
+  left: 15%;
+  right: 15%;
+  width: 70%;
   z-index: 1; }
   #flash_message div {
-    width: 50%;
-    margin: auto;
+    width: 100%;
     text-align: center;
     font-size: 12px;
     border-width: 2px;
