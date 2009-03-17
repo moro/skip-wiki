@@ -304,7 +304,6 @@ div.input_line textarea {
 /* ----------------------------------- */
 table {
   font-size: 12px;
-  table-layout: fixed;
 }
 table.normal {
   font-size: 12px;
@@ -1075,7 +1074,7 @@ div.subtitle span.description {
 /* ----------------------------------- */
 div#main {
   position: relative;
-  padding: 10px 10px 10px 15px;
+  padding: 0 10px
   _width: 100%;
 }
 /* ----------------------------------- */

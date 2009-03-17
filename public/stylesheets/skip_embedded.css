@@ -4,7 +4,7 @@
   left: 15%;
   right: 15%;
   width: 70%;
-  z-index: 1; }
+  z-index: 2; }
   #flash_message div {
     width: 100%;
     text-align: center;
@@ -33,6 +33,7 @@ div#header div#search {
   position: absolute;
   top: 25px;
   right: 5px;
+  z-index: -1;
 }
 
 div#header div#search form {
@@ -45,6 +46,15 @@ div#header div#serach input {
   font-size:12px;
   margin:0;
   padding:2px;
+}
+
+input.input_submit{
+  padding: 0;
+  font-size:11px;
+}
+
+input.input_text{
+  padding: 0;
 }
 
 div#header div#menu {

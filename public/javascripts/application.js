@@ -309,7 +309,7 @@ application.post = function(form, parameters) {
   var paramFromForm = {
     url  : form.attr("action") + ".js",
     type : "POST",
-    data : form.serializeArray(),
+    data : form.serializeArray()
   }
   jQuery.ajax(jQuery.extend(paramFromForm, parameters));
 }

@@ -69,7 +69,7 @@ body
     li:last-child
       :border-bottom 0
 
-#logo.page-layout, #logo.note-layout
+#logo
   :position absolute
   :margin 3px 0 0 5px
   :z-index 1
@@ -129,6 +129,9 @@ body
 
 #content
   :color gray
+  :border 0
+  #content_for_layout
+    :border 0
 
   .user
     :margin-left = !content_margin
@@ -166,7 +169,7 @@ body
         :font-size 12px
 
   .page-content.fullscreen
-    :width 100%
+    :width 100% !important
     :border 0 none
   .page-content
     :width 80%
@@ -231,7 +234,12 @@ body
 
   .from, .to
     :border 1px solid gray
+    :overflow auto
+  .from
     :width 49%
+  .to
+    :width 49%
+    :_width 100%
 
     *
       :margin auto
@@ -331,6 +339,8 @@ table.input
       :clear both
       :font-size = !small_font_size
       :margin 0
+      span.label_badge
+        :width 15em
 
 div.app-layout
   :margin-left 5%
@@ -346,15 +356,15 @@ div.app-layout
       :list-style none
       :padding-left 10px
 
-    input[type=text], input[type=submit], textarea
+    input[type=text], input[type=submit], textarea, input.input_submit, input.input_text
       :font-size = !modern_page_font_size
       :margin 5px 10px
 
-    input[type=text], textarea
+    input[type=text], input.input_text, textarea
       :border 1px solid gray
       :padding 1px
 
-    input[type=submit]
+    input[type=submit], input.input_submit
       :font-weight bold
 
 div.note
@@ -386,14 +396,15 @@ div.note
     :margin 2em auto
     :width  70%
     :background #eeeeee
+    :_margin-left 20%
 
-  .query > a
+  .query a.op
     :float right
     :font-size = !small_font_size
 
-  .query > form
+  .query form
     :clear right
-    dt, input[type=text]
+    dt, input[type=text], input.input_text
       :font-size 13px
 
     div.commit
@@ -486,7 +497,8 @@ div.label-navigation
         :margin 5px auto
 
 .user-bar
-  > ul
+  ul.float
+    :margin-top 1em
     :height 11px
     :float right
 
@@ -500,9 +512,9 @@ div.label-navigation
       :padding-bottom 0
       :font-size = !small_font_size
 
-div.page-header div.user-bar > ul
-  :margin-top 1em
-  
+div.login form
+  :width 350px
+
 div.hint
   :border 1px dashed #0080FF
   :margin 1em 1em
@@ -568,11 +580,13 @@ div.caption
 
 #mypage
   :width 49%
+  :_width 100%
   :margin-left 50%
 
   ul.accessible-notes
     :list-style none
     :padding-left 2em
+    :width 100%
     li
       :margin-bottom 5px
       :border-bottom 1px solid silver
@@ -706,8 +720,8 @@ table.notes-index, table.pages-index
       // FIXME
       // (1 + 5 + 3) means (margin + padding + border)
       :width  = (!wizard_width / !wizard_steps - (1 + 5 + 3) * 2) + px
-      :height 35px
-      :font-size 13px
+      :height 60px
+      :font-size 12px
       :text-align center
 
     li.current
@@ -759,39 +773,6 @@ ul.float
   li
     :float left
 
-#flash_message
-  :position absolute
-  :top 3px
-  :width 100%
-  :z-index 1
-
-  div
-    :width 50%
-    :margin auto
-    :text-align center
-    :font-size 12px
-    :border-width 2px
-    :border-style solid
-
-    h3
-      :width 100%
-      span
-        :position static
-        :font-size = !small_font_size
-        :margin-left 20px
-        :right 15px
-        :top 15px
-
-  div.warn
-    :border-color orange
-    :background-color yellow
-  div.notice
-    :border-color limegreen
-    :background-color palegreen
-  div.error
-    :border-color red
-    :background-color pink
-
 table.group-users
   :margin 1em
 
@@ -809,13 +790,14 @@ table.label-indices
   td
     :font-size 12px
   td.inplace-edit
-    :width 300px
+    :width 370px
+
     div span.op
       :color #0080FF
 
     div.show
       span.label_badge
-        :width 120px
+        :width 200px
       span.op
         :margin-left 1em
     div.edit
@@ -863,7 +845,7 @@ table.input
     :padding-left 1em
     .fieldWithErrors
       :display inline
-    input[type=text], select
+    input[type=text], select, input.input_text
       :font-size = !modern_page_font_size
 
 input[type=text].datepicker

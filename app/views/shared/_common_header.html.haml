@@ -17,3 +17,9 @@
 = javascript_include_file 'application'
 = yield :header
 
+:javascript
+  jQuery(function(){
+    jQuery("input[type=submit]").addClass("input_submit");
+    jQuery("input[type=text]").addClass("input_text");
+  });
+
