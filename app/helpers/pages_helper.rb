@@ -80,6 +80,7 @@ module PagesHelper
                    :note_attachments  => _("note attachments"),
                    :upload_attachment => _("Attach file(s)") },
       :uploader => {:target => IframeUploader::UPLOAD_KEY,
+                    :trigger => "submit",
                     :src => {:form =>   new_note_attachment_path(current_note, IframeUploader.palette_opt),
                              :target => note_attachments_path(IframeUploader.palette_opt) },
                     :callback => nil }

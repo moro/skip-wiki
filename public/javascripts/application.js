@@ -124,12 +124,13 @@
     var message = config["message"];
 
     function insertToEditor(elem){
-      FCKeditorAPI.GetInstance(config["editor"]).InsertElement(elem.get(0));
+      FCKeditorAPI.GetInstance(config["editor"]).InsertHtml(elem.wrap('<span></span>').parent().html());
+      hidePalette();
     }
 
     function insertLink(label, href){
-      return jQuery("<span>").text(message["insert_link_label"]).attr("class", "insertLink").click(function(){
-        insertToEditor(jQuery("<a>").text(label).attr("href", href));
+      return jQuery("<span></span>").text(message["insert_link_label"]).attr("class", "insertLink").click(function(){
+        insertToEditor(jQuery("<a></a>").text(label).attr("href", href));
       });
     }
 
@@ -138,15 +139,15 @@
         var img = jQuery("<img />").attr("src", src).attr("alt", label);
         return img.clone().attr("width", 200).click(function(){ insertToEditor(img); });
       }else{
-        return jQuery("<span>").text(filename.substr(0,16));
+        return jQuery("<span></span>").text(filename.substr(0,16));
       }
     }
 
     function attachmentToTableRow(data){
       var tr = jQuery("<tr>");
-      tr.append(jQuery("<td class='name'>").append(insertImage(data["display_name"], data["inline"], data["filename"]))).
-         append(jQuery("<td class='display_name'>").text(data["display_name"])).
-         append(jQuery("<td class='insert'>").append(insertLink(data["display_name"], data["path"])));
+      tr.append(jQuery("<td class='name'></td>").append(insertImage(data["display_name"], data["inline"], data["filename"]))).
+         append(jQuery("<td class='display_name'></td>").text(data["display_name"])).
+         append(jQuery("<td class='insert'></td>").append(insertLink(data["display_name"], data["path"])));
 
       return tr;
     }
@@ -161,7 +162,7 @@
         });
         palette.
           append(jQuery("<table>").
-            append(jQuery("<caption>").text(label)).
+            append(jQuery("<caption></caption>").text(label)).
             append(tbody));
       });
     }
@@ -178,7 +179,7 @@
       };
 
       return jQuery("<div class='attachment upload' />").append(
-          jQuery("<span class='operation'>").
+          jQuery("<span class='operation'></span>").
             text(message["upload_attachment"]).
             one("click", function(){ jQuery(this).hide().parent().iframeUploader(conf) })
       )
@@ -188,8 +189,8 @@
       root.empty().attr("class", "enabled").draggable().
         append(
           jQuery("<div>").append(
-            jQuery("<h3>").text(message["title"]).append(
-              jQuery("<span>").text(message["close"]).click(hidePalette)
+            jQuery("<h3></h3>").text(message["title"]).append(
+              jQuery("<span></span>").text(message["close"]).click(hidePalette)
             )).append(
               uploaderButton(config["uploader"])
             ).append(
