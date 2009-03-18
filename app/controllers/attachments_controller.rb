@@ -64,7 +64,8 @@ class AttachmentsController < ApplicationController
   end
 
   def select_layout
-    ajax_upload? ? nil : "notes"
+    return "application" unless signed_in?
+    ajax_upload? ? "iframe_upload" : "notes"
   end
 
   def only_if_list_attachments_or_group_member

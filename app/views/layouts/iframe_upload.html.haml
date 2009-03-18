@@ -1,0 +1,35 @@
+!!! XML
+!!!
+%html{html_attrs("ja")}
+  %head
+    %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}
+    %meta{"http-equiv"=>"Content-Script-Type", :content=>"text/javascript"}
+    %style{:type => "text/css"}
+      :sass
+        body
+          :border 0
+        .upload-form
+          :width 80%
+          :color gray
+          :margin 0 auto
+        label, input
+          :font-size 16px
+        .palette label, .palette input
+          :font-size 10px
+        #footnotes_debug
+          :display none
+        th
+          :text-align left
+        td.indicator
+          :width 20px
+        input.input_submit
+          :padding-top 0
+          :padding-bottom 0
+          :font-size 12px
+        .clear
+          :width 0
+          :height 0
+          :clear both
+
+  %body= yield
+

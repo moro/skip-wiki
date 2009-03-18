@@ -1,10 +1,28 @@
 (function() {
   jQuery.fn.iframeUploader = function(config){
-    function attachAutoUploaderToInput(){
+    function attachUploader(){
+      var form = jQuery(this.contentWindow.document).find("form");
+      if( config['trigger'] == 'submit' ){
+        attachSubmitUploader(form);
+      }else{
+        attachAutoUploaderToInput(form);
+      }
+    };
+    function attachSubmitUploader(f){
+      f.submit(function(){
+        var indicator = f.find("td.indicator img").show();
+        f.get(0).submit();
+        f.get(0).reset();
+        indicator.hide();
+        var file = f.find("input[type=file]");
+        file.focus();
+        return false;
+      });
+    };
+    function attachAutoUploaderToInput(f){
       var timer = null;
-      jQuery(this.contentWindow.document).find("form input").change(function(){
+      f.find('input').change(function(){
         if(timer){ clearTimeout(timer) };
-        var f = jQuery(this).parents("form");
         var file = f.find("input[type=file]");
         var name = f.find("input[type=text]");
         if(file.val().length > 0 && name.val().length > 0){
@@ -21,13 +39,16 @@
     var callback = config["callback"];
 
     jQuery("<div>").addClass("form").append(
-      jQuery("<iframe>").attr("src", config["src"]["form"]).load(attachAutoUploaderToInput)
+      jQuery("<iframe>").attr("src", config["src"]["form"]).load(attachUploader)
     ).appendTo(root);
 
-    jQuery("<div>").addClass("target").append(
-      jQuery("<iframe>").attr("src", config["src"]["target"]).attr("name", config["target"]).
-        one("load", function(){ jQuery(this).load(callback) })
-    ).appendTo(root);
+    var targetIFrame = jQuery("<iframe>").attr("src", config["src"]["target"]).attr("name", config["target"]).
+      one("load", function(){ jQuery(this).load(callback) })
+
+    jQuery("<div>").addClass("target").append(targetIFrame).appendTo(root);
+
+    // IE6対策
+    targetIFrame.get(0).contentWindow.name = config["target"];
   }
 })(jQuery);
 
