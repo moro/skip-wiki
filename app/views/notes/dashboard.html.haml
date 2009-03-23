@@ -30,9 +30,16 @@
       %h2&= _("Dashboard")
       %h3&= _("Accessible Note")
       %ul.accessible-notes
-        - current_user.accessible_notes.each do |note|
+        - @notes.each do |note|
           %li
             %span.display_name= link_to(h(note.display_name), note_page_path(note, "FrontPage"))
+            - if current_user.accessible?(note)
+              %spn.publicity.accessible&= _("Accessible")
+            - elsif note.public_writable?
+              %spn.publicity.public-writable&= _("Public writable")
+            - else
+              %spn.publicity.public-readable&= _("Public readable")
+
             .info
               %span&= note.description
 
