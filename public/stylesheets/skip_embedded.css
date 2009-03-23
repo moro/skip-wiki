@@ -7,11 +7,13 @@
   z-index: 2; }
   #flash_message div {
     width: 100%;
+    margin: 0;
     text-align: center;
     font-size: 12px;
     border-width: 2px;
     border-style: solid; }
     #flash_message div h3 {
+      margin: 10px;
       width: 100%; }
       #flash_message div h3 span {
         position: static;
@@ -87,3 +89,7 @@ div#header div#menu .item a {
 .labeled-field.focus {
   color: #000000; }
 
+iframe#ie-select-fix {
+  border : 0;
+  position : absolute;
+}

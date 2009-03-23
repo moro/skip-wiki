@@ -6,8 +6,22 @@
 
 <%- javascript_tag do %>
   jQuery(document).ready(function(){
-    $("#flash_message div").click(function(){$(this).fadeOut("slow")});
+    $("#flash_message div").click(function(){$('#ie-select-fix').remove(); $(this).fadeOut("slow")});
     setTimeout(function(){ $("#flash_message div.notice").trigger("click"); }, 2*1000);
     setTimeout(function(){ $("#flash_message div.warn").trigger("click"); }, 5*1000);
+
+    if(jQuery.browser.ie){
+      var flash =  jQuery("#flash_message");
+      var position = flash.position();
+
+      var iframe = jQuery("<iframe id='ie-select-fix' src='<%= request.relative_url_root + "/blank" %>'></iframe>").
+        css("z-index",  flash.css("z-index")).
+        css("width",  flash.width()).
+        css("height",  flash.height()).
+        css("top", position.top).
+        css("left", position.left);
+
+      flash.css("z-index", Number(iframe.css("z-index")) + 1).after(iframe);
+    };
   });
 <% end %>
