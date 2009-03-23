@@ -1,6 +1,8 @@
 %span.title= _("Admin menu")
-%span.admin-operation= select_tag("admin_operation", admin_operation)
+%span.note-operation= select_tag("note_operation", admin_operation(:entire,request.request_uri))
+
 :javascript
   jQuery(document).ready(function(){
-    $("span.admin-operation select").dropdownNavigation();
+    $("div#current-note span.operation").click(function(){jQuery(this).nextAll("div.note-navi").toggle()});
+    $("span.note-operation select").dropdownNavigation();
   });

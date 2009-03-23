@@ -1,35 +1,27 @@
 #admin_title
   - if @notes and !@note
     - path,search_label = admin_notes_path,_("Search Note")
-    %h2= icon_tag('folder_page', _("manage notes")+" < "+_("User|Notes"))
+    %h2= icon_tag('folder_page', _("User|Notes"))
   - elsif @note and !@pages and !@attachments and !@page
     - path,search_label = admin_note_pages_path(@note),_("Search pages in %{note}") % {:note=>@note.display_name}
-    %h2= icon_tag('folder_page', _("manage notes")+" < "+_("manage note(%{note})") % {:note => @note.display_name})
+    %h2= icon_tag('folder_page', _("manage note(%{note})") % {:note => @note.display_name})
   - elsif @pages and !@attachments
     - path,search_label = admin_note_pages_path(@note),_("Search pages in %{note}") % {:note=>@note.display_name}
-    %h2= icon_tag('folder_page', _("manage notes")+" < "+_("manage note(%{note})") % {:note => @note.display_name}+" < "+_("manage pages"))
+    %h2= icon_tag('folder_page', _("manage note(%{note})") % {:note => @note.display_name})
   - elsif @page
     - path,search_label = admin_note_pages_path(@note),_("Search pages in %{note}") % {:note=>@note.display_name}
-    %h2= icon_tag('folder_page', _("manage notes")+" < "+_("manage note(%{note})") % {:note => @note.display_name}+" < "+_("manage page(%{page})") % {:page => @page.display_name})
+    %h2= icon_tag('folder_page', _("manage page(%{page})") % {:page => @page.display_name})
   - elsif @attachments
     - path,search_label = admin_note_pages_path(@note),_("Search pages in %{note}") % {:note=>@note.display_name}
-    %h2= icon_tag('folder_page', _("manage notes")+" < " +_("manage note(%{note})") % {:note => @note.display_name}+ " < " +_("manage attachments"))
+    %h2= icon_tag('folder_page', _("manage note(%{note})") % {:note => @note.display_name})
    
-- if @note
+- if @note and !@page
   #user_menu
-    %span.operation&= _("menu")
-    .user-navi
-      %ul
-        %li= link_to(_("manage pages"), admin_note_pages_path(@note))
-        %li= link_to(_("manage attachments"), admin_note_attachments_path(@note))
-        - if @page
-          %li= link_to(_("manage property"), edit_admin_note_page_path(@note,@page))
-          %li= link_to(_("manage page"), new_admin_note_page_history_path(@note,@page))
-        %li= link_to(_("User|Notes"), admin_notes_path)
-:javascript
-  jQuery(document).ready(function(){
-    $("span.operation").click(function(){jQuery(this).nextAll("div.user-navi").toggle()});
-  });
+    %span.note-operation= select_tag("note_operation", admin_operation(:note, request.request_uri))
+- if @note and @page
+  #user_menu
+    %span.note-operation= select_tag("note_operation", admin_operation(:note_and_page, request.request_uri))
+  
 #user_search
   - form_tag(path, :method=>:get) do
     - search_label ||= _("Search Note")
