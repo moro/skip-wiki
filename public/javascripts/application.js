@@ -186,7 +186,10 @@
     }
 
     function onLoad(){
-      root.empty().attr("class", "enabled").draggable().
+      root.empty().attr("class", "enabled").draggable({
+          handle:"h3",
+          containment:root.parents("div.page-content")
+        }).
         append(
           jQuery("<div>").append(
             jQuery("<h3></h3>").text(message["title"]).append(
