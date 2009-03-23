@@ -5,6 +5,7 @@
 !small_font_size = 10px
 !wizard_steps = 8
 !wizard_width = 950
+!skip_blue = #D0E0F0
 
 body
   :font-size 13px
@@ -482,6 +483,8 @@ div.label-navigation
   :float left
 
   h2
+    :font-size = !small_font_size
+
   div.label
     :border-top 1px solid silver
     :border-bottom 1px solid silver
@@ -746,9 +749,14 @@ table.notes-index, table.pages-index
   :width 500px
   :border 2px solid #9999cc
 
-  h3 span
-    :font-size = !small_font_size
-    :margin-left 5em
+  h3
+    :background  = !skip_blue
+    :margin 0
+    :padding 5px
+
+    span
+      :font-size = !small_font_size
+      :margin-left 5em
 
   .palette
     :overflow auto
@@ -761,12 +769,16 @@ table.notes-index, table.pages-index
   div.palette table
     :width 95%
     :margin 0 auto
+    :position relative
     td.name, td.insert
       :text-align center
     td.name
       :width 200px
     td.insert
       :width 6em
+
+  .upload div.form iframe
+    :height 5em
 
 ul.float
   :list-style none
@@ -909,7 +921,4 @@ p.history-info
   div.target iframe
     :width 0
     :height 0
-
-#linkPalette .upload div.form iframe
-  :height 5em
 
