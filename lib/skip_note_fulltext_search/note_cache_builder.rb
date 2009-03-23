@@ -14,7 +14,7 @@ module SkipNoteFulltextSearch
       {
         :title => note.display_name,
         :contents_type => "knowledge-note",
-        :publication_symbols => publicities.join(" "),
+        :publication_symbols => publicities.join(","),
         :link_url => url_for(:controller => "notes", :action => "show", :id => note),
         :icon_url => icon_url("note.gif")
       }

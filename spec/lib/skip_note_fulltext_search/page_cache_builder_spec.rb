@@ -27,7 +27,7 @@ describe SkipNoteFulltextSearch::PageCacheBuilder, :type => :model do
   end
 
   it "#to_metaのpublication_symbolsは'note:{@page.id} public'であること" do
-    @builder.to_meta[:publication_symbols].should == "note:#{@page.id} public"
+    @builder.to_meta[:publication_symbols].should == "note:#{@page.id},public"
   end
 
   it "#to_metaのlink_urlは'http://example.com/skip-knowledge/notes/\#{@page.note.name}/pages/\#{@page.name}'であること" do

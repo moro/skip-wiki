@@ -13,7 +13,7 @@ module SkipNoteFulltextSearch
       {
         :title => page.display_name,
         :contents_type => "knowledge-page",
-        :publication_symbols => publicities.join(" "),
+        :publication_symbols => publicities.join(","),
         :link_url => url_for(:controller => "pages", :action => "show", :id => page, :note_id => page.note),
         :icon_url => icon_url("page.gif"),
       }

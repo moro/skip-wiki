@@ -1,4 +1,4 @@
-gem 'skip_embedded'
+gem 'openskip-skip_embedded'
 require "skip_embedded/fulltext_search_cache"
 
 module SkipNoteFulltextSearch

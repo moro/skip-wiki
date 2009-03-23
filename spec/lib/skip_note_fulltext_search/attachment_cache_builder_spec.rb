@@ -28,7 +28,7 @@ describe SkipNoteFulltextSearch::AttachmentCacheBuilder, :type => :model do
 
   describe "メタデータ" do
     it "#to_metaのpublication_symbolsは'note:{@attachment.note_id} public'であること" do
-      @builder.to_meta[:publication_symbols].should == "note:#{@attachment.attachable_id} public"
+      @builder.to_meta[:publication_symbols].should == "note:#{@attachment.attachable_id},public"
     end
 
     it {

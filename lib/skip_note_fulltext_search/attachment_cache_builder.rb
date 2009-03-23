@@ -21,7 +21,7 @@ module SkipNoteFulltextSearch
       {
         :title => attachment.display_name,
         :contents_type => "knowledge-attachment",
-        :publication_symbols => publicities.join(" "),
+        :publication_symbols => publicities.join(","),
         :link_url => url_for(:controller => "attachments", :action => "show", :id => attachment, :note_id => attachable),
         :icon_url => icon_url("attachment.gif"),
       }
