@@ -7,10 +7,10 @@
   - if @page.format_type == "html"
     .controll
       =radio_button_tag("history_display", "contents")
-      =label_tag("history_display_contents", "Show History Contents")
+      =label_tag("history_display_contents", _("Show History Contents"))
 
       =radio_button_tag("history_display", "diff", :checked=>true)
-      =label_tag("history_display_diff", "Show History Diffs")
+      =label_tag("history_display_diff", _("Show History Diffs"))
 
     .history-contents{:style=>"display:none"}
       %h3&= _("History|Content")
