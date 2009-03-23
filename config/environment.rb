@@ -32,7 +32,7 @@ Rails::Initializer.run do |config|
   config.gem 'repim'
   config.gem 'moro-scope_do', :lib => 'scope_do', :version => '>=0.1.1', :source =>  'http://gems.github.com/'
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :version=> '>=2.3.6', :source => 'http://gems.github.com/'
-  config.gem 'skip_embedded'
+  config.gem 'openskip-skip_embedded', :lib => 'skip_embedded', :version => '>=0.0.15', :source => 'http://gems.github.com'
 
   if Rails.env == "test"
     # loading rspec-rails in initializer causes problem,
@@ -58,7 +58,7 @@ Rails::Initializer.run do |config|
   ]
 
   config.plugins += %w[rails-footnotes] if Rails.env == "development"
-  config.plugins << "skip_embedded" if Gem.source_index.any?{|_,y| y.name =~ /(?:[:ascii:]+-)?skip_embedded/  }
+  config.plugins << "openskip-skip_embedded" if Gem.source_index.any?{|_,y| y.name =~ /(?:[:ascii:]+-)?openskip-skip_embedded/  }
 
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
