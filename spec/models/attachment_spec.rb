@@ -8,13 +8,21 @@ describe Attachment do
     def @uploaded_data.content_type; "image/png" end
 
     @valid_attributes = {
-      :display_name => "value for display_name",
       :uploaded_data => @uploaded_data,
     }
   end
 
   it "should create a new instance given valid attributes" do
     notes(:our_note).attachments.create!(@valid_attributes)
+  end
+
+  describe "initialize()" do
+    before do
+      @attachment = notes(:our_note).attachments.build(@valid_attributes)
+    end
+    it "should assign display name" do
+      @attachment.display_name.should == "at_small.png"
+    end
   end
 end
 
