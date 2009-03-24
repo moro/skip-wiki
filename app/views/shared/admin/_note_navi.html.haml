@@ -1,19 +1,19 @@
 #admin_title
   - if @notes and !@note
     - path,search_label = admin_notes_path,_("Search Note")
-    %h2= icon_tag('folder_page', _("User|Notes"))
+    %h2= icon_tag('folder_page') + h(_("User|Notes"))
   - elsif @note and !@pages and !@attachments and !@page
     - path,search_label = admin_note_pages_path(@note),_("Search pages in %{note}") % {:note=>@note.display_name}
-    %h2= icon_tag('folder_page', _("manage note(%{note})") % {:note => @note.display_name})
+    %h2= icon_tag('folder_page') + h(_("manage note(%{note})") % {:note => @note.display_name})
   - elsif @pages and !@attachments
     - path,search_label = admin_note_pages_path(@note),_("Search pages in %{note}") % {:note=>@note.display_name}
-    %h2= icon_tag('folder_page', _("manage note(%{note})") % {:note => @note.display_name})
+    %h2= icon_tag('folder_page') + h(_("manage note(%{note})") % {:note => @note.display_name})
   - elsif @page
     - path,search_label = admin_note_pages_path(@note),_("Search pages in %{note}") % {:note=>@note.display_name}
-    %h2= icon_tag('folder_page', _("manage page(%{page})") % {:page => @page.display_name})
+    %h2= icon_tag('folder_page') + h(_("manage page(%{page})") % {:page => @page.display_name})
   - elsif @attachments
     - path,search_label = admin_note_pages_path(@note),_("Search pages in %{note}") % {:note=>@note.display_name}
-    %h2= icon_tag('folder_page', _("manage note(%{note})") % {:note => @note.display_name})
+    %h2= icon_tag('folder_page') + h(_("manage note(%{note})") % {:note => @note.display_name})
    
 - if @note and !@page
   #user_menu

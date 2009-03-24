@@ -1,9 +1,12 @@
 #admin_title
+  // TODO rafactor
   - path,search_label = admin_root_path,_("Search User")
   - if @users
-    %h2= icon_tag('user', _("manage users")+" &lt; "+_("User|Index"))
+    %h2
+      = icon_tag('user') + h(_("manage users")+" > "+_("User|Index"))
   - elsif @user
-    %h2= icon_tag('user', _("manage users")+" &lt; "+_("User|Index")+" &lt; "+_("User|Edit(%{user})") % {:user => @user.name})
+    %h2
+      = icon_tag('user') + h(_("manage users")+" > "+_("User|Index")+" > "+_("User|Edit(%{user})") % {:user => @user.name})
 :javascript
   jQuery(document).ready(function(){
     $("span.admin-user-operation select").dropdownNavigation();

@@ -6,7 +6,7 @@
 
   .contents
     #updated-notes
-      %h2= icon_tag('folder_page', _("Updated notes"))
+      %h2= icon_tag('folder_page') + h(_("Updated notes"))
       - if @notes.empty?
         %p.no-result&= _("The query find no notes.")
       - else

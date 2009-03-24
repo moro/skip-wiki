@@ -42,15 +42,6 @@ jQuery(function(){
     [inclusion, javascript_tag(date_picker_scripts)].join("\n")
   end
 
-  def icon_tag(icon, desc=nil)
-    img = "icons/#{File.basename(icon)}.png"
-    if desc
-      image_tag(img, :title=>_(desc), :class=>"icon") + _(desc)
-    else
-      image_tag(img, :title=>icon.humanize, :class=>"icon")
-    end
-  end
-
   def back_link_to(page_name, url, options ={})
     options[:class] = options[:class].nil? ? "back" :  ["back", options[:class]].flatten.uniq
     link_to(_("Back to %{page}") % {:page => page_name}, url, options)

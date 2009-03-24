@@ -8,7 +8,7 @@
     #portal
       #updated-page
         %h2
-          %span= icon_tag('folder_page', _("Updated pages"))
+          = icon_tag('folder_page') + h(_("Updated pages"))
           - if has_more?(@pages)
             %span.operation= link_to(_("more..."), pages_path)
         %table.pages-index
