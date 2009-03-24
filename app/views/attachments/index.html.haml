@@ -16,18 +16,17 @@
       - @attachments.each do |at|
         %tr
           %td.content_type&= at.content_type
-          %td.name&= at.filename
           %td.display_name&= at.display_name
           %td.size&= number_to_human_size(at.size)
           %td.timestamp.updated_at&= at.updated_at.strftime("%Y/%m/%d %H:%M")
           %td.operation= link_to content_tag("span", _("Download"), :class=>"operation"), note_attachment_path(current_note, at)
           %td.operation= link_to content_tag("span", _("Delete"), :class=>"operation"), note_attachment_path(current_note, at), :method => :delete
 
-:javascript
-
-  $(document).ready(function(){
-    $("div.attachment div.sync-upload").remove();
-    $("div.attachment.upload").
-      iframeUploader($.extend({callback:application.callbacks.refreshAttachments}, #{uploader_js_option.to_json}))
-  });
+- if current_user.page_editable?(current_note)
+  :javascript
+    $(document).ready(function(){
+      $("div.attachment div.sync-upload").remove();
+      $("div.attachment.upload").
+        iframeUploader($.extend({callback:application.callbacks.refreshAttachments}, #{uploader_js_option.to_json}))
+    });
 

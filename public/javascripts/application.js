@@ -145,9 +145,12 @@
 
     function attachmentToTableRow(data){
       var tr = jQuery("<tr>");
-      tr.append(jQuery("<td class='name'></td>").append(insertImage(data["display_name"], data["inline"], data["filename"]))).
-         append(jQuery("<td class='display_name'></td>").text(data["display_name"])).
-         append(jQuery("<td class='insert'></td>").append(insertLink(data["display_name"], data["path"])));
+      if(data["inline"]){
+        tr.append(jQuery("<td class='display_name'></td>").append(insertImage(data["display_name"], data["inline"], data["filename"])));
+      }else{
+        tr.append(jQuery("<td class='display_name'></td>").text(data["display_name"]));
+      }
+      tr.append(jQuery("<td class='insert'></td>").append(insertLink(data["display_name"], data["path"])));
 
       return tr;
     }
@@ -344,7 +347,6 @@ application.callbacks = {
         var atmt = json["attachment"];
         row = tr.clone();
         row.find("td.content_type").text(atmt["content_type"]).end().
-            find("td.name").text(atmt["filename"]).end().
             find("td.display_name").text(atmt["display_name"]).end().
             find("td.size").text(atmt["size"]).end().
             find("td.updated_at").text(atmt["updated_at"]).end().

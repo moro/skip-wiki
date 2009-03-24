@@ -1,13 +1,9 @@
 - from_palette = ajax_upload? && params[:ajax_upload] == IframeUploader::FROM_PALETTE
 %table.upload-form.input{:class => (from_palette ? "palette" : "")}
   %tr
-    %th.name= f.label :display_name, _("Attachment|Display name")
     %th.file= f.label :uploaded_data, _("Attachment|Upload Data")
-    %th.submit
-    %th.indicator= "&nbsp;"
-  %tr
-    %td.name= f.text_field :display_name, :size => 20
-    %td.file= f.file_field :uploaded_data, :size => 20
+    %td.file= f.file_field :uploaded_data, :size => 32
     %td= submit_tag(_("Upload"), :class => "input_submit")
     %td.indicator= image_tag("skip/indicator.gif", {:style=>"display:none"})
+  %tr
 .clear
