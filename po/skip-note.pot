@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2009-03-23 16:14+0900\n"
+"POT-Creation-Date: 2009-03-24 00:13+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,17 +15,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-
-#: app/controllers/admin/accounts_controller.rb:15
-msgid "Account update successfully."
-msgstr ""
-
-#: app/controllers/admin/accounts_controller.rb:18
-#: app/controllers/admin/notes_controller.rb:24
-#: app/controllers/admin/pages_controller.rb:30
-#: app/controllers/admin/users_controller.rb:22
-msgid "validation error"
-msgstr ""
 
 #: app/controllers/admin/attachments_controller.rb:10
 msgid "Attachment was created successfully."
@@ -45,6 +34,12 @@ msgstr ""
 
 #: app/controllers/admin/notes_controller.rb:21
 msgid "Note was successfully updated."
+msgstr ""
+
+#: app/controllers/admin/notes_controller.rb:24
+#: app/controllers/admin/pages_controller.rb:30
+#: app/controllers/admin/users_controller.rb:22
+msgid "validation error"
 msgstr ""
 
 #: app/controllers/admin/notes_controller.rb:34
@@ -104,24 +99,49 @@ msgid ""
 "Cannot modify user information manually. Logout and login again to update."
 msgstr ""
 
+#: app/helpers/admin/application_helper.rb:17
+#: app/helpers/admin/application_helper.rb:25
 #: app/helpers/admin/users_helper.rb:4 app/helpers/application_helper.rb:70
 #: app/helpers/notes_helper.rb:80 app/helpers/pages_helper.rb:92
-#: app/views/shared/admin/_note_navi.html.haml:20
 #: app/views/shared/admin/_requested_note_and_operation.html.haml:3
 msgid "menu"
 msgstr ""
 
+#: app/helpers/admin/application_helper.rb:18
 #: app/helpers/admin/users_helper.rb:5 app/helpers/application_helper.rb:71
 #: app/views/shared/admin/_user_navi.html.haml:4
 #: app/views/shared/admin/_user_navi.html.haml:7
-#: app/views/shared/admin/_user_navi.html.haml:10
-#: app/views/shared/admin/_user_navi.html.haml:13
 msgid "manage users"
 msgstr ""
 
+#: app/helpers/admin/application_helper.rb:19
+#: app/helpers/application_helper.rb:72
+msgid "manage notes"
+msgstr ""
+
+#: app/helpers/admin/application_helper.rb:26
+msgid "manage pages"
+msgstr ""
+
+#: app/helpers/admin/application_helper.rb:27
+msgid "manage attachments"
+msgstr ""
+
+#: app/helpers/admin/application_helper.rb:28
+#: app/views/shared/admin/_note_navi.html.haml:4
+#: app/views/users/_side_menu.html.haml:7
+msgid "User|Notes"
+msgstr ""
+
+#: app/helpers/admin/application_helper.rb:33
+msgid "manage property"
+msgstr ""
+
+#: app/helpers/admin/application_helper.rb:34
+msgid "manage page"
+msgstr ""
+
 #: app/helpers/admin/users_helper.rb:6
-#: app/views/shared/admin/_user_navi.html.haml:10
-#: app/views/shared/admin/_user_navi.html.haml:13
 msgid "Account|Index"
 msgstr ""
 
@@ -139,15 +159,6 @@ msgstr ""
 
 #: app/helpers/application_helper.rb:56
 msgid "Back to %{page}"
-msgstr ""
-
-#: app/helpers/application_helper.rb:72
-#: app/views/shared/admin/_note_navi.html.haml:4
-#: app/views/shared/admin/_note_navi.html.haml:7
-#: app/views/shared/admin/_note_navi.html.haml:10
-#: app/views/shared/admin/_note_navi.html.haml:13
-#: app/views/shared/admin/_note_navi.html.haml:16
-msgid "manage notes"
 msgstr ""
 
 #: app/helpers/application_helper.rb:73
@@ -590,7 +601,7 @@ msgstr ""
 msgid "Page|Format type"
 msgstr ""
 
-#: app/models/page.rb:- app/views/admin/pages/_pages.html.haml:9
+#: app/models/page.rb:- app/views/admin/pages/_pages.html.haml:8
 #: app/views/pages/_page_form.html.haml:15 app/views/pages/_pages.html.haml:9
 msgid "Page|Published at"
 msgstr ""
@@ -607,7 +618,7 @@ msgstr ""
 msgid "Page|Created at"
 msgstr ""
 
-#: app/models/page.rb:- app/views/admin/pages/_pages.html.haml:10
+#: app/models/page.rb:- app/views/admin/pages/_pages.html.haml:9
 #: app/views/notes/dashboard.html.haml:17 app/views/pages/_pages.html.haml:10
 #: app/views/pages/index.html.haml:23
 msgid "Page|Updated at"
@@ -676,8 +687,8 @@ msgstr ""
 #: app/views/shared/_skip_full_text_search_form.html.erb:15
 #: app/views/notes/_search.html.haml:5
 #: app/views/shared/_user_navi.html.haml:14
-#: app/views/shared/admin/_note_navi.html.haml:42
-#: app/views/shared/admin/_user_navi.html.haml:26
+#: app/views/shared/admin/_note_navi.html.haml:34
+#: app/views/shared/admin/_user_navi.html.haml:18
 msgid "Search"
 msgstr ""
 
@@ -880,17 +891,18 @@ msgstr ""
 msgid "LabelIndices"
 msgstr ""
 
-#: app/views/admin/pages/_pages.html.haml:6
-msgid "Notify Mail"
-msgstr ""
-
-#: app/views/admin/pages/_pages.html.haml:7 app/views/pages/_pages.html.haml:6
+#: app/views/admin/pages/_pages.html.haml:6 app/views/pages/_pages.html.haml:6
 #: app/views/pages/index.html.haml:22
 msgid "Page|Auther"
 msgstr ""
 
-#: app/views/admin/pages/_pages.html.haml:8 app/views/pages/_pages.html.haml:8
+#: app/views/admin/pages/_pages.html.haml:7 app/views/pages/_pages.html.haml:8
 msgid "Publication"
+msgstr ""
+
+#: app/views/admin/pages/_pages.html.haml:10
+#: app/views/pages/_pages.html.haml:13 app/views/pages/index.html.haml:24
+msgid "Copy URL"
 msgstr ""
 
 #: app/views/admin/pages/_pages.html.haml:11
@@ -901,12 +913,12 @@ msgstr ""
 msgid "Page|Delete"
 msgstr ""
 
-#: app/views/admin/pages/_pages.html.haml:22
+#: app/views/admin/pages/_pages.html.haml:21
 #: app/views/pages/_pages.html.haml:23
 msgid "Published"
 msgstr ""
 
-#: app/views/admin/pages/_pages.html.haml:24
+#: app/views/admin/pages/_pages.html.haml:23
 #: app/views/pages/_pages.html.haml:25
 msgid "Not yet"
 msgstr ""
@@ -1059,7 +1071,7 @@ msgstr ""
 
 #: app/views/notes/_search.html.haml:1
 #: app/views/shared/admin/_note_navi.html.haml:3
-#: app/views/shared/admin/_note_navi.html.haml:35
+#: app/views/shared/admin/_note_navi.html.haml:27
 msgid "Search Note"
 msgstr ""
 
@@ -1240,10 +1252,6 @@ msgstr ""
 msgid "History"
 msgstr ""
 
-#: app/views/pages/_pages.html.haml:13 app/views/pages/index.html.haml:24
-msgid "Copy URL"
-msgstr ""
-
 #: app/views/pages/_pages.html.haml:29
 msgid "Show history"
 msgstr ""
@@ -1364,44 +1372,19 @@ msgstr ""
 msgid "Search pages in %{note}"
 msgstr ""
 
-#: app/views/shared/admin/_note_navi.html.haml:4
-#: app/views/shared/admin/_note_navi.html.haml:28
-#: app/views/users/_side_menu.html.haml:7
-msgid "User|Notes"
-msgstr ""
-
 #: app/views/shared/admin/_note_navi.html.haml:7
 #: app/views/shared/admin/_note_navi.html.haml:10
-#: app/views/shared/admin/_note_navi.html.haml:13
 #: app/views/shared/admin/_note_navi.html.haml:16
 msgid "manage note(%{note})"
-msgstr ""
-
-#: app/views/shared/admin/_note_navi.html.haml:10
-#: app/views/shared/admin/_note_navi.html.haml:23
-msgid "manage pages"
 msgstr ""
 
 #: app/views/shared/admin/_note_navi.html.haml:13
 msgid "manage page(%{page})"
 msgstr ""
 
-#: app/views/shared/admin/_note_navi.html.haml:16
-#: app/views/shared/admin/_note_navi.html.haml:24
-msgid "manage attachments"
-msgstr ""
-
-#: app/views/shared/admin/_note_navi.html.haml:26
-msgid "manage property"
-msgstr ""
-
-#: app/views/shared/admin/_note_navi.html.haml:27
-msgid "manage page"
-msgstr ""
-
 #: app/views/shared/admin/_user_navi.html.haml:3
 #: app/views/shared/admin/_user_navi.html.haml:6
-#: app/views/shared/admin/_user_navi.html.haml:22
+#: app/views/shared/admin/_user_navi.html.haml:14
 msgid "Search User"
 msgstr ""
 
@@ -1412,15 +1395,6 @@ msgstr ""
 
 #: app/views/shared/admin/_user_navi.html.haml:7
 msgid "User|Edit(%{user})"
-msgstr ""
-
-#: app/views/shared/admin/_user_navi.html.haml:9
-#: app/views/shared/admin/_user_navi.html.haml:12
-msgid "Search Account"
-msgstr ""
-
-#: app/views/shared/admin/_user_navi.html.haml:13
-msgid "Account|Edit(%{user})"
 msgstr ""
 
 #: app/views/shared/not_found.html.haml:1

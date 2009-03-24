@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2009-03-23 16:14+0900\n"
+"POT-Creation-Date: 2009-03-24 00:13+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,17 +15,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-
-#: app/controllers/admin/accounts_controller.rb:15
-msgid "Account update successfully."
-msgstr "ログインしました。"
-
-#: app/controllers/admin/accounts_controller.rb:18
-#: app/controllers/admin/notes_controller.rb:24
-#: app/controllers/admin/pages_controller.rb:30
-#: app/controllers/admin/users_controller.rb:22
-msgid "validation error"
-msgstr "バリデーションエラーが発生しました。"
 
 #: app/controllers/admin/attachments_controller.rb:10
 msgid "Attachment was created successfully."
@@ -46,6 +35,12 @@ msgstr "ログインしました。"
 #: app/controllers/admin/notes_controller.rb:21
 msgid "Note was successfully updated."
 msgstr "ノート「%{note}」を作成しました。"
+
+#: app/controllers/admin/notes_controller.rb:24
+#: app/controllers/admin/pages_controller.rb:30
+#: app/controllers/admin/users_controller.rb:22
+msgid "validation error"
+msgstr "バリデーションエラーが発生しました。"
 
 #: app/controllers/admin/notes_controller.rb:34
 msgid "Note was deleted successfully"
@@ -106,24 +101,49 @@ msgstr ""
 "ユーザ情報は再ログインすると、自動的に更新されます。手動での更新はできませ"
 "ん。"
 
+#: app/helpers/admin/application_helper.rb:17
+#: app/helpers/admin/application_helper.rb:25
 #: app/helpers/admin/users_helper.rb:4 app/helpers/application_helper.rb:70
 #: app/helpers/notes_helper.rb:80 app/helpers/pages_helper.rb:92
-#: app/views/shared/admin/_note_navi.html.haml:20
 #: app/views/shared/admin/_requested_note_and_operation.html.haml:3
 msgid "menu"
 msgstr "メニュー"
 
+#: app/helpers/admin/application_helper.rb:18
 #: app/helpers/admin/users_helper.rb:5 app/helpers/application_helper.rb:71
 #: app/views/shared/admin/_user_navi.html.haml:4
 #: app/views/shared/admin/_user_navi.html.haml:7
-#: app/views/shared/admin/_user_navi.html.haml:10
-#: app/views/shared/admin/_user_navi.html.haml:13
 msgid "manage users"
 msgstr "ユーザ管理"
 
+#: app/helpers/admin/application_helper.rb:19
+#: app/helpers/application_helper.rb:72
+msgid "manage notes"
+msgstr "ノート管理"
+
+#: app/helpers/admin/application_helper.rb:26
+msgid "manage pages"
+msgstr "ページ管理"
+
+#: app/helpers/admin/application_helper.rb:27
+msgid "manage attachments"
+msgstr "添付ファイル管理"
+
+#: app/helpers/admin/application_helper.rb:28
+#: app/views/shared/admin/_note_navi.html.haml:4
+#: app/views/users/_side_menu.html.haml:7
+msgid "User|Notes"
+msgstr "ノート一覧"
+
+#: app/helpers/admin/application_helper.rb:33
+msgid "manage property"
+msgstr "プロパティ編集"
+
+#: app/helpers/admin/application_helper.rb:34
+msgid "manage page"
+msgstr "本文編集"
+
 #: app/helpers/admin/users_helper.rb:6
-#: app/views/shared/admin/_user_navi.html.haml:10
-#: app/views/shared/admin/_user_navi.html.haml:13
 msgid "Account|Index"
 msgstr "アカウント一覧"
 
@@ -142,15 +162,6 @@ msgstr "分"
 #: app/helpers/application_helper.rb:56
 msgid "Back to %{page}"
 msgstr "%{page}に戻る"
-
-#: app/helpers/application_helper.rb:72
-#: app/views/shared/admin/_note_navi.html.haml:4
-#: app/views/shared/admin/_note_navi.html.haml:7
-#: app/views/shared/admin/_note_navi.html.haml:10
-#: app/views/shared/admin/_note_navi.html.haml:13
-#: app/views/shared/admin/_note_navi.html.haml:16
-msgid "manage notes"
-msgstr "ノート管理"
 
 #: app/helpers/application_helper.rb:73
 msgid "manage common files"
@@ -598,7 +609,7 @@ msgstr "ページ名"
 msgid "Page|Format type"
 msgstr ""
 
-#: app/models/page.rb:- app/views/admin/pages/_pages.html.haml:9
+#: app/models/page.rb:- app/views/admin/pages/_pages.html.haml:8
 #: app/views/pages/_page_form.html.haml:15 app/views/pages/_pages.html.haml:9
 msgid "Page|Published at"
 msgstr "公開日時"
@@ -615,7 +626,7 @@ msgstr ""
 msgid "Page|Created at"
 msgstr ""
 
-#: app/models/page.rb:- app/views/admin/pages/_pages.html.haml:10
+#: app/models/page.rb:- app/views/admin/pages/_pages.html.haml:9
 #: app/views/notes/dashboard.html.haml:17 app/views/pages/_pages.html.haml:10
 #: app/views/pages/index.html.haml:23
 msgid "Page|Updated at"
@@ -684,8 +695,8 @@ msgstr "検索したいキーワードを入れてください"
 #: app/views/shared/_skip_full_text_search_form.html.erb:15
 #: app/views/notes/_search.html.haml:5
 #: app/views/shared/_user_navi.html.haml:14
-#: app/views/shared/admin/_note_navi.html.haml:42
-#: app/views/shared/admin/_user_navi.html.haml:26
+#: app/views/shared/admin/_note_navi.html.haml:34
+#: app/views/shared/admin/_user_navi.html.haml:18
 msgid "Search"
 msgstr "検索"
 
@@ -888,18 +899,19 @@ msgstr "作成"
 msgid "LabelIndices"
 msgstr "ラベル識別子"
 
-#: app/views/admin/pages/_pages.html.haml:6
-msgid "Notify Mail"
-msgstr "メールで知らせる"
-
-#: app/views/admin/pages/_pages.html.haml:7 app/views/pages/_pages.html.haml:6
+#: app/views/admin/pages/_pages.html.haml:6 app/views/pages/_pages.html.haml:6
 #: app/views/pages/index.html.haml:22
 msgid "Page|Auther"
 msgstr "編集者"
 
-#: app/views/admin/pages/_pages.html.haml:8 app/views/pages/_pages.html.haml:8
+#: app/views/admin/pages/_pages.html.haml:7 app/views/pages/_pages.html.haml:8
 msgid "Publication"
 msgstr "公開状況"
+
+#: app/views/admin/pages/_pages.html.haml:10
+#: app/views/pages/_pages.html.haml:13 app/views/pages/index.html.haml:24
+msgid "Copy URL"
+msgstr "URLをコピー"
 
 #: app/views/admin/pages/_pages.html.haml:11
 msgid "Page|Edit"
@@ -909,12 +921,12 @@ msgstr "編集"
 msgid "Page|Delete"
 msgstr "削除"
 
-#: app/views/admin/pages/_pages.html.haml:22
+#: app/views/admin/pages/_pages.html.haml:21
 #: app/views/pages/_pages.html.haml:23
 msgid "Published"
 msgstr "公開中"
 
-#: app/views/admin/pages/_pages.html.haml:24
+#: app/views/admin/pages/_pages.html.haml:23
 #: app/views/pages/_pages.html.haml:25
 msgid "Not yet"
 msgstr "未公開"
@@ -1067,7 +1079,7 @@ msgstr "更新されたページ"
 
 #: app/views/notes/_search.html.haml:1
 #: app/views/shared/admin/_note_navi.html.haml:3
-#: app/views/shared/admin/_note_navi.html.haml:35
+#: app/views/shared/admin/_note_navi.html.haml:27
 msgid "Search Note"
 msgstr "ノートを検索"
 
@@ -1248,10 +1260,6 @@ msgstr "ラベルを追加"
 msgid "History"
 msgstr "履歴"
 
-#: app/views/pages/_pages.html.haml:13 app/views/pages/index.html.haml:24
-msgid "Copy URL"
-msgstr "URLをコピー"
-
 #: app/views/pages/_pages.html.haml:29
 msgid "Show history"
 msgstr "履歴を表示"
@@ -1374,44 +1382,19 @@ msgstr "ページ一覧"
 msgid "Search pages in %{note}"
 msgstr "「%{note}」内のページを検索"
 
-#: app/views/shared/admin/_note_navi.html.haml:4
-#: app/views/shared/admin/_note_navi.html.haml:28
-#: app/views/users/_side_menu.html.haml:7
-msgid "User|Notes"
-msgstr "ノート一覧"
-
 #: app/views/shared/admin/_note_navi.html.haml:7
 #: app/views/shared/admin/_note_navi.html.haml:10
-#: app/views/shared/admin/_note_navi.html.haml:13
 #: app/views/shared/admin/_note_navi.html.haml:16
 msgid "manage note(%{note})"
 msgstr "%{note} の管理"
-
-#: app/views/shared/admin/_note_navi.html.haml:10
-#: app/views/shared/admin/_note_navi.html.haml:23
-msgid "manage pages"
-msgstr "ページ管理"
 
 #: app/views/shared/admin/_note_navi.html.haml:13
 msgid "manage page(%{page})"
 msgstr "ページの管理(%{page})"
 
-#: app/views/shared/admin/_note_navi.html.haml:16
-#: app/views/shared/admin/_note_navi.html.haml:24
-msgid "manage attachments"
-msgstr "添付ファイル管理"
-
-#: app/views/shared/admin/_note_navi.html.haml:26
-msgid "manage property"
-msgstr "プロパティ編集"
-
-#: app/views/shared/admin/_note_navi.html.haml:27
-msgid "manage page"
-msgstr "本文編集"
-
 #: app/views/shared/admin/_user_navi.html.haml:3
 #: app/views/shared/admin/_user_navi.html.haml:6
-#: app/views/shared/admin/_user_navi.html.haml:22
+#: app/views/shared/admin/_user_navi.html.haml:14
 msgid "Search User"
 msgstr "ユーザ検索"
 
@@ -1422,15 +1405,6 @@ msgstr "ユーザ一覧"
 
 #: app/views/shared/admin/_user_navi.html.haml:7
 msgid "User|Edit(%{user})"
-msgstr "%{user} の編集"
-
-#: app/views/shared/admin/_user_navi.html.haml:9
-#: app/views/shared/admin/_user_navi.html.haml:12
-msgid "Search Account"
-msgstr "アカウント検索"
-
-#: app/views/shared/admin/_user_navi.html.haml:13
-msgid "Account|Edit(%{user})"
 msgstr "%{user} の編集"
 
 #: app/views/shared/not_found.html.haml:1
@@ -1464,6 +1438,18 @@ msgstr "ユーザ登録をしてください"
 #: app/views/users/new.html.haml:12
 msgid "Sign up"
 msgstr "登録する"
+
+#~ msgid "Account update successfully."
+#~ msgstr "ログインしました。"
+
+#~ msgid "Notify Mail"
+#~ msgstr "メールで知らせる"
+
+#~ msgid "Search Account"
+#~ msgstr "アカウント検索"
+
+#~ msgid "Account|Edit(%{user})"
+#~ msgstr "%{user} の編集"
 
 #~ msgid "You have been logged out."
 #~ msgstr "ログアウトしました。"
