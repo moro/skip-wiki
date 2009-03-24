@@ -32,7 +32,7 @@
                 %span.note&= "on #{note.display_name}"
               %td&= history.user.name
               %td.timestamp&= page.updated_at.strftime("%Y-%m-%d %H:%M")
-              %td.clippy= clippy(note_pages_url(current_note, page)
+              %td.clippy= clippy(note_page_url(note, page))
 
       = will_paginate(@pages)
 
