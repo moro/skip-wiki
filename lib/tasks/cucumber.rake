@@ -1,5 +1,4 @@
 $:.unshift(RAILS_ROOT + '/vendor/plugins/cucumber/lib')
-gem 'cucumber', '=0.1.16'
 require 'cucumber/rake/task'
 
 task :features => 'db:test:prepare'

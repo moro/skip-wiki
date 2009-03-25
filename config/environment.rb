@@ -41,7 +41,7 @@ Rails::Initializer.run do |config|
     # config.gem 'rspec', :lib => 'spec', :version => '=1.1.12'
     # config.gem 'rspec-rails', :lib => 'spec/rails', :version => '=1.1.12'
     config.gem 'webrat', :version => '>=0.4.1'
-    config.gem 'cucumber', :version => '=0.1.16'
+    config.gem 'cucumber', :version => '>=0.2.0'
   end
 
   # Only load the plugins named here, in the order given. By default, all plugins
