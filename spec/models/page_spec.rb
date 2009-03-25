@@ -328,6 +328,7 @@ describe Page do
     fixtures :notes
     before do
       @page = Page.new(@valid_attributes)
+      @page.note_id = @valid_attributes[:note_id]
       @page.edit("hogehogehoge", mock_model(User))
       @page.save!
     end

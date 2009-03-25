@@ -26,7 +26,7 @@ describe Admin::PagesController do
   describe "GET /notes/our_note/pages" do
     it "our_noteのページ一覧が全て取得できていること" do
       pending
-      Page.should_receive(:admin).with(@current_note.id).and_return([mock_page])
+      Page.should_receive(:admin).with(@current_note.id).and_return([mock_page(:attributes= => nil)])
       get :index, :note_id=>@current_note.name
       assigns(:pages).should == [mock_page]
     end
@@ -72,35 +72,44 @@ describe Admin::PagesController do
 
   describe "PUT /admin/notes/our_note/pages/our_note_page_1" do
     describe "ページの更新に成功する場合" do
-      it "ページ更新のリクエストが送られていること" do
+      before do
         Page.should_receive(:find).with("our_note_page_1").and_return(mock_page)
-        mock_page.should_receive(:update_attributes).with({'these'=>'params'})
-        put :update, :id=>"our_note_page_1", :note_id=>"our_note", :page=>{'these'=>'params'}
+
+        mock_page.should_receive(:attributes=).with({'these'=>'params', 'deleted' => "---deleted---"})
+        mock_page.should_receive(:deleted=).with("---deleted---")
+        mock_page.should_receive(:save).and_return true
+      end
+
+      it "ページ更新のリクエストが送られていること" do
+        put :update, :id=>"our_note_page_1", :note_id=>"our_note", :page=>{'these'=>'params', 'deleted' => '---deleted---'}
       end
 
       it "ページの更新が成功すること" do
-        Page.stub!(:find).and_return(mock_page(:update_attributes=>true))
-        put :update, :id=>"our_note_page_1", :note_id=>"our_note"
+        put :update, :id=>"our_note_page_1", :note_id=>"our_note", :page=>{'these'=>'params', 'deleted' => '---deleted---'}
         assigns(:page).should == mock_page
       end
 
       it "更新後、ページ一覧画面にリダイレクトされること" do
-        Page.stub!(:find).and_return(mock_page(:update_attributes=>true))
-        put :update, :id=>"our_note_page_1", :note_id=>@current_note
+        put :update, :id=>"our_note_page_1", :note_id=>"our_note", :page=>{'these'=>'params', 'deleted' => '---deleted---'}
         response.should redirect_to(admin_note_page_path(@current_note,mock_page))
       end
     end
 
     describe "ページの更新に失敗する場合" do
+      before do
+        Page.stub!(:find).and_return(mock_page)
+
+        mock_page.should_receive(:attributes=).with({'these'=>'params', 'deleted' => "---deleted---"})
+        mock_page.should_receive(:deleted=).with("---deleted---")
+        mock_page.should_receive(:save).and_return false
+      end
+
       it "ページ更新のリクエストが送られていること" do
-        Page.should_receive(:find).with("our_note_page_1").and_return(mock_page)
-        mock_page.should_receive(:update_attributes).with({'these'=>'params'})
-        put :update, :id=>"our_note_page_1", :note_id=>"our_note", :page=>{'these'=>'params'}
+        put :update, :id=>"our_note_page_1", :note_id=>"our_note", :page=>{'these'=>'params', 'deleted' => '---deleted---'}
       end
 
       it "編集画面にリダイレクトされること" do
-        Page.stub!(:find).and_return(mock_page(:update_attributes=>false))
-        put :update, :id=>"our_note_page_1", :note_id=>@current_note
+        put :update, :id=>"our_note_page_1", :note_id=>"our_note", :page=>{'these'=>'params', 'deleted' => '---deleted---'}
         response.should redirect_to(edit_admin_note_page_path(@current_note,mock_page))
       end
 

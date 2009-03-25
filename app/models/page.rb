@@ -78,6 +78,7 @@ SQL
   scope_do :chained_scope
   chainable_scope :labeled, :authored, :fulltext
 
+  attr_protected :note_id, :deleted
   before_validation :assign_default_pubulification
   after_save :reset_history_caches, :update_label_index
 

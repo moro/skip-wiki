@@ -23,7 +23,10 @@ class Admin::PagesController < Admin::ApplicationController
 
   def update
     @page = Page.find(params[:id])
-    if @page.update_attributes(params[:page])
+    @page.attributes = params[:page]
+    @page.deleted = params[:page][:deleted]
+
+    if @page.save
       flash[:notice] = _("Page was successfully updated.")
       redirect_to admin_note_page_path(requested_note,@page)
     else
