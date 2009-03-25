@@ -19,11 +19,13 @@ describe Admin::NotesController do
     end
 
     it "should map #update" do
-      route_for(:controller => 'admin/notes', :action => 'update', :id => '1').should == "/admin/notes/1"
+      route_for(:controller => 'admin/notes', :action => 'update', :id => '1').should ==
+        {:path => "/admin/notes/1", :method => "PUT"}
     end
  
     it "should map #destroy" do
-      route_for(:controller => 'admin/notes', :action => 'destroy', :id => '1').should == "/admin/notes/1"
+      route_for(:controller => 'admin/notes', :action => 'destroy', :id => '1').should ==
+        {:path => "/admin/notes/1", :method => "DELETE"}
     end
   end
  

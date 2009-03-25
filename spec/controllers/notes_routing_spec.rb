@@ -5,7 +5,7 @@ describe NotesController do
     it "should map #index" do
       route_for(:controller => "notes", :action => "index").should == "/notes"
     end
-  
+
     it "should map #dashboard" do
       route_for(:controller => "notes", :action => "dashboard").should == "/"
     end
@@ -13,21 +13,21 @@ describe NotesController do
     it "should map #new" do
       route_for(:controller => "notes", :action => "new").should == "/notes/new"
     end
-  
+
     it "should map #show" do
-      route_for(:controller => "notes", :action => "show", :id => 1).should == "/notes/1"
+      route_for(:controller => "notes", :action => "show", :id => "1").should == "/notes/1"
     end
-  
+
     it "should map #edit" do
-      route_for(:controller => "notes", :action => "edit", :id => 1).should == "/notes/1/edit"
+      route_for(:controller => "notes", :action => "edit", :id => "1").should == "/notes/1/edit"
     end
-  
+
     it "should map #update" do
-      route_for(:controller => "notes", :action => "update", :id => 1).should == "/notes/1"
+      route_for(:controller => "notes", :action => "update", :id => "1").should == {:path => "/notes/1", :method => "PUT"}
     end
-  
+
     it "should map #destroy" do
-      route_for(:controller => "notes", :action => "destroy", :id => 1).should == "/notes/1"
+      route_for(:controller => "notes", :action => "destroy", :id => "1").should == {:path => "/notes/1", :method => "DELETE" }
     end
   end
 

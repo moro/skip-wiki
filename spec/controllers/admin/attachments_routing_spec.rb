@@ -7,7 +7,8 @@ describe Admin::AttachmentsController do
     end
 
     it "should map #destroy" do
-      route_for(:controller=>"admin/attachments", :action=>"destroy", :note_id=>"our_note", :id=>"our_attachment").should == "/admin/notes/our_note/attachments/our_attachment"
+      route_for(:controller=>"admin/attachments", :action=>"destroy", :note_id=>"our_note", :id=>"our_attachment").should ==
+        {:path => "/admin/notes/our_note/attachments/our_attachment", :method => "DELETE"}
     end 
   end
 

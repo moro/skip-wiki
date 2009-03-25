@@ -11,19 +11,21 @@ describe LabelIndicesController do
     end
 
     it "should map #show" do
-      route_for(:controller => "label_indices", :action => "show", :id => 1, :note_id => "a_note").should == "/notes/a_note/label_indices/1"
+      route_for(:controller => "label_indices", :action => "show", :id => "1", :note_id => "a_note").should == "/notes/a_note/label_indices/1"
     end
 
     it "should map #edit" do
-      route_for(:controller => "label_indices", :action => "edit", :id => 1, :note_id => "a_note").should == "/notes/a_note/label_indices/1/edit"
+      route_for(:controller => "label_indices", :action => "edit", :id => "1", :note_id => "a_note").should == "/notes/a_note/label_indices/1/edit"
     end
 
     it "should map #update" do
-      route_for(:controller => "label_indices", :action => "update", :id => 1, :note_id => "a_note").should == "/notes/a_note/label_indices/1"
+      route_for(:controller => "label_indices", :action => "update", :id => "1", :note_id => "a_note").should ==
+        {:path => "/notes/a_note/label_indices/1", :method => "PUT" }
     end
 
     it "should map #destroy" do
-      route_for(:controller => "label_indices", :action => "destroy", :id => 1, :note_id => "a_note").should == "/notes/a_note/label_indices/1"
+      route_for(:controller => "label_indices", :action => "destroy", :id => "1", :note_id => "a_note").should ==
+        {:path => "/notes/a_note/label_indices/1", :method => "DELETE" }
     end
   end
 
