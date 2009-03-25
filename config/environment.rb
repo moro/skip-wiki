@@ -34,16 +34,6 @@ Rails::Initializer.run do |config|
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :version=> '>=2.3.6', :source => 'http://gems.github.com/'
   config.gem 'openskip-skip_embedded', :lib => 'skip_embedded', :version => '>=0.0.15', :source => 'http://gems.github.com'
 
-  if Rails.env == "test"
-    # loading rspec-rails in initializer causes problem,
-    # `rake spec` and `spec -fs SPEC_FILE' works without comment out.
-    #
-    # config.gem 'rspec', :lib => 'spec', :version => '=1.1.12'
-    # config.gem 'rspec-rails', :lib => 'spec/rails', :version => '=1.1.12'
-    config.gem 'webrat', :version => '>=0.4.1'
-    config.gem 'cucumber', :version => '>=0.2.0'
-  end
-
   # Only load the plugins named here, in the order given. By default, all plugins
   # in vendor/plugins are loaded in alphabetical order.
   # :all can be used as a placeholder for all plugins not explicitly named
