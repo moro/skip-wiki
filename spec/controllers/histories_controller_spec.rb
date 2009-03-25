@@ -4,8 +4,12 @@ describe HistoriesController do
   fixtures :notes, :pages
   before do
     @current_note = notes(:our_note)
-    controller.stub!(:authenticate).and_return(true)
+    @user = mock_model(User)
+
+    controller.stub!(:current_user).and_return(@user)
     controller.stub!(:current_note).and_return(@current_note)
+
+    @user.stub!(:page_editable?).with(@current_note).and_return true
   end
 
   #Delete these examples and add some real ones
