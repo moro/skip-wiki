@@ -308,6 +308,22 @@ describe Page do
     end
   end
 
+  describe ".active" do
+    fixtures :notes
+    before do
+      @page = Page.new(@valid_attributes)
+      @page.edit("hogehogehoge", mock_model(User))
+      @page.save!
+      @page.reload
+
+      @page.logical_destroy
+    end
+
+    it "can't find logical_destroy-ed page" do
+      lambda{ Page.active.find(@page) }.should raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
+
   describe ".admin" do
     fixtures :notes
     before do
@@ -315,7 +331,7 @@ describe Page do
       @page.edit("hogehogehoge", mock_model(User))
       @page.save!
     end
- 
+
     it "note_id=1に関連するページが取得できること" do
       Page.admin(1).should == [@page]
     end

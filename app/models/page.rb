@@ -22,6 +22,8 @@ class Page < ActiveRecord::Base
   validate_on_update :published_page_cant_rename
   before_destroy :frontpage_cant_destroy
 
+  named_scope :active, {:conditions => {:deleted => false}}
+
   named_scope :recent, proc{|*args|
     {
      :order => "#{table_name}.updated_at DESC",
@@ -150,6 +152,10 @@ SQL
     @new_history = histories.build(:content => Content.new(:data => content),
                                    :user => user,
                                    :revision => revision.succ)
+  end
+
+  def logical_destroy
+    update_attribute(:deleted, true)
   end
 
   def to_param
