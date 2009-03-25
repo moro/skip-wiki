@@ -29,7 +29,7 @@ Rails::Initializer.run do |config|
   config.gem 'gettext',  :lib => 'gettext/rails', :version => '1.93.0'
   config.gem 'diff-lcs', :lib => 'diff/lcs'
   config.gem 'haml'
-  config.gem 'moro-repim', :source => 'http://gems.github.com/'
+  config.gem 'moro-repim', :lib => 'repim', :source => 'http://gems.github.com/'
   config.gem 'moro-scope_do', :lib => 'scope_do', :version => '>=0.1.1', :source =>  'http://gems.github.com/'
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :version=> '>=2.3.6', :source => 'http://gems.github.com/'
   config.gem 'openskip-skip_embedded', :lib => 'skip_embedded', :version => '>=0.0.15', :source => 'http://gems.github.com'
