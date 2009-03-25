@@ -10,12 +10,12 @@
       =f.error_messages
       = hidden_field_tag "_method", "PUT"
       %table.input= render :partial => 'page_form', :locals =>{:form =>f }
-      = submit_tag _("Update")
+      = submit_tag _("Update %{entity}") % {:entity => _("page")}
 
   #delete
     %h2&= _("Delete %{entity}") % {:entity => _("page")}
-    -form_tag(note_page_path(current_note, @page), :method => "delete") do |f|
-      = submit_tag _("Delete")
+    -form_tag(note_page_path(current_note, @page), :method => "delete") do
+      = submit_tag _("Delete %{entity}") % {:entity => _("page")}
 
 :javascript
   jQuery(function(){

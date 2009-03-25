@@ -83,7 +83,7 @@ class PagesController < ApplicationController
   end
 
   def destroy
-    @page = current_note.pages.active.find(params[:id])
+    @page = accessible_pages.find(params[:id])
     if @page.logical_destroy
       flash[:notice] = _("Page was deleted successfully")
       redirect_to(note_pages_path(current_note))

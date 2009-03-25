@@ -9,6 +9,7 @@
     .clear
   - label_indices.each do |label|
     - pages = current_user.page_editable?(current_note) ? label.pages : label.pages.published
+    - pages = pages.active
     - next if pages.empty?
     %div.label{:style=>"background:#{h(label.color)}"}
       %h3= link_to h(label.display_name), note_pages_path(current_note, :label_index_id => label)

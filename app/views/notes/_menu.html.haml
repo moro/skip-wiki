@@ -1,7 +1,7 @@
 .by-date.menu-item
   %h3&= _("Updated")
   %ul
-    - group_by_date(note.pages.recent(10)).each do |date, ps|
+    - group_by_date(note.pages.active.recent(10)).each do |date, ps|
       %li
         %h4&= date
         %ul.submenu
