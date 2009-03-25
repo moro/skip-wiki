@@ -22,7 +22,7 @@ default_label:  &label_defaults
       display_name: "ラベル 9"
 
 production:
-  skip_collabolation:
+  skip_collaboration:
     secret_key: "---FIXME----BEFORE---DEPLOYMENT---"
     skip_url: "http://product.skip.local"
     fulltext_search:
@@ -35,7 +35,7 @@ production:
   <<: *label_defaults
 
 development:
-  skip_collabolation:
+  skip_collaboration:
     secret_key: "1f3c30382d9f2060baf14f0cdb102fe2"
     skip_url: "http://test.skip.local"
     fulltext_search:
@@ -48,7 +48,7 @@ development:
   <<: *label_defaults
 
 test:
-  skip_collabolation:
+  skip_collaboration:
     secret_key: "1f3c30382d9f2060baf14f0cdb102fe2"
     skip_url: "http://test.skip.local"
     fulltext_search:
