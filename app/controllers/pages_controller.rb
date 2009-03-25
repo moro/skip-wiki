@@ -82,12 +82,20 @@ class PagesController < ApplicationController
     end
   end
 
+  def destroy
+    @page = current_note.pages.active.find(params[:id])
+    if @page.logical_destroy
+      flash[:notice] = _("Page was deleted successfully")
+      redirect_to(note_pages_path(current_note))
+    end
+  end
+
   private
   def accessible_pages(user = current_user, note = nil)
     if params[:note_id] && note ||= current_note
-      user.page_editable?(note) ? note.pages : note.pages.published
+      user.page_editable?(note) ? note.pages.active : note.pages.active.published
     else
-      Page.scoped(:conditions => ["#{Page.quoted_table_name}.note_id IN (?)", user.free_or_accessible_notes.all.map(&:id)])
+      Page.active.scoped(:conditions => ["#{Page.quoted_table_name}.note_id IN (?)", user.free_or_accessible_notes.all.map(&:id)])
     end
   end
 
