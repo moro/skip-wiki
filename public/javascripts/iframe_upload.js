@@ -38,7 +38,7 @@
     }
     var afterLoadCallback = function(){
       if(submitCallback){submitCallback.call();}
-      callback.call();
+      callback.call(this);
     };
 
     var root = jQuery(this);
