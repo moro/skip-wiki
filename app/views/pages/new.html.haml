@@ -7,7 +7,7 @@
     %span.operation&= _("close")
 
 =javascript_include_tag("iframe_upload")
-- div_for(@page) do
+- div_for(@page, :class => "page-content") do
   %h1&= _("New Page")
   = error_messages_for :page
 
