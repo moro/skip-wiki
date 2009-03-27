@@ -20,8 +20,10 @@
         - if current_user.accessible?(current_note)
           %td.publication
             - if page.published?
+              =icon_tag("star")
               %span.published&= _("Published")
             - else
+              =icon_tag("lock")
               %span.not_yet&= _("Not yet")
           %td.timestamp&= page.published_at.strftime("%Y-%m-%d %H:%M")
         %td.timestamp&= page.updated_at.strftime("%Y-%m-%d %H:%M")
