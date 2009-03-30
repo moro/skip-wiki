@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2009-03-25 13:39+0900\n"
+"POT-Creation-Date: 2009-03-30 13:06+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgid "Note was successfully updated."
 msgstr "ノート「%{note}」を作成しました。"
 
 #: app/controllers/admin/notes_controller.rb:24
-#: app/controllers/admin/pages_controller.rb:30
+#: app/controllers/admin/pages_controller.rb:33
 #: app/controllers/admin/users_controller.rb:22
 msgid "validation error"
 msgstr "バリデーションエラーが発生しました。"
@@ -50,16 +50,16 @@ msgstr "ノート「%{note}」を作成しました。"
 msgid "Note can't deleted."
 msgstr "添付ファイルの作成に失敗しました。"
 
-#: app/controllers/admin/pages_controller.rb:27
+#: app/controllers/admin/pages_controller.rb:30
 msgid "Page was successfully updated."
 msgstr "ノート「%{note}」を作成しました。"
 
-#: app/controllers/admin/pages_controller.rb:39
+#: app/controllers/admin/pages_controller.rb:42
 #: app/controllers/pages_controller.rb:88
 msgid "Page was deleted successfully"
 msgstr "ページを削除しました。"
 
-#: app/controllers/admin/pages_controller.rb:42
+#: app/controllers/admin/pages_controller.rb:45
 msgid "Failed to delete a page"
 msgstr "ページ削除に失敗しました"
 
@@ -86,6 +86,10 @@ msgstr "「%{page}」を作成しました。"
 #: app/controllers/pages_controller.rb:73
 msgid "The page %{page} is successfully updated"
 msgstr "「%{page}」を更新しました。"
+
+#: app/controllers/pages_controller.rb:97
+msgid "Page was recovered successfully"
+msgstr "ページを復旧しました。"
 
 #: app/controllers/users_controller.rb:15
 msgid "Thanks for signing up!."
@@ -325,6 +329,19 @@ msgstr "プロパティを編集"
 #: app/helpers/pages_helper.rb:96 app/views/histories/index.html.haml:2
 msgid "page histories"
 msgstr "編集履歴"
+
+#: app/helpers/pages_helper.rb:97 app/views/pages/edit.html.haml:23
+#: app/views/pages/edit.html.haml:25
+msgid "Delete %{entity}"
+msgstr "%{entity}を削除"
+
+#: app/helpers/pages_helper.rb:97 app/models/page.rb:-
+#: app/views/histories/new.html.haml:17 app/views/pages/edit.html.haml:9
+#: app/views/pages/edit.html.haml:11 app/views/pages/edit.html.haml:15
+#: app/views/pages/edit.html.haml:20 app/views/pages/edit.html.haml:23
+#: app/views/pages/edit.html.haml:25 app/views/pages/new.html.haml:28
+msgid "page"
+msgstr "ページ"
 
 #: app/models/account.rb:-
 msgid "account"
@@ -582,13 +599,6 @@ msgstr "確認"
 msgid "%{name} group"
 msgstr "%{name}グループ"
 
-#: app/models/page.rb:- app/views/histories/new.html.haml:17
-#: app/views/pages/edit.html.haml:8 app/views/pages/edit.html.haml:13
-#: app/views/pages/edit.html.haml:16 app/views/pages/edit.html.haml:18
-#: app/views/pages/new.html.haml:28
-msgid "page"
-msgstr "ページ"
-
 #: app/models/page.rb:-
 msgid "Page|Note"
 msgstr ""
@@ -635,20 +645,20 @@ msgstr ""
 msgid "Page|Updated at"
 msgstr "更新日時"
 
-#: app/models/page.rb:-
+#: app/models/page.rb:- app/views/admin/pages/edit.html.haml:13
 #, fuzzy
 msgid "Page|Deleted"
 msgstr "削除"
 
-#: app/models/page.rb:87
+#: app/models/page.rb:88
 msgid "FrontPage"
 msgstr "表紙"
 
-#: app/models/page.rb:186
+#: app/models/page.rb:191
 msgid "the name `%{n}' is reserved"
 msgstr "ページ識別子は「%{n}」意外にしてください。"
 
-#: app/models/page.rb:193
+#: app/models/page.rb:198
 msgid "published page can't be renamed."
 msgstr ""
 
@@ -721,7 +731,7 @@ msgstr "E-Mailアドレス"
 #: app/views/admin/histories/new.html.haml:30
 #: app/views/admin/notes/edit.html.haml:61
 #: app/views/admin/notes/show.html.haml:41
-#: app/views/admin/pages/edit.html.haml:13
+#: app/views/admin/pages/edit.html.haml:17
 #: app/views/admin/users/edit.html.haml:27 app/views/groups/show.html.haml:24
 #: app/views/label_indices/_new.html.haml:15 app/views/notes/edit.html.haml:73
 #: app/views/users/edit.html.haml:14
@@ -930,12 +940,12 @@ msgid "Page|Delete"
 msgstr "削除"
 
 #: app/views/admin/pages/_pages.html.haml:21
-#: app/views/pages/_pages.html.haml:23
+#: app/views/pages/_pages.html.haml:29
 msgid "Published"
 msgstr "公開中"
 
 #: app/views/admin/pages/_pages.html.haml:23
-#: app/views/pages/_pages.html.haml:25
+#: app/views/pages/_pages.html.haml:32
 msgid "Not yet"
 msgstr "未公開"
 
@@ -1033,7 +1043,7 @@ msgid "Show diff"
 msgstr "変更を表示"
 
 #: app/views/histories/new.html.haml:17 app/views/layouts/pages.html.haml:38
-#: app/views/pages/edit.html.haml:8 app/views/pages/edit.html.haml:13
+#: app/views/pages/edit.html.haml:15 app/views/pages/edit.html.haml:20
 msgid "Update %{entity}"
 msgstr "%{entity}を更新"
 
@@ -1268,13 +1278,25 @@ msgstr "ラベルを追加"
 msgid "History"
 msgstr "履歴"
 
-#: app/views/pages/_pages.html.haml:29
+#: app/views/pages/_pages.html.haml:24
+msgid "Deleted"
+msgstr "削除済み"
+
+#: app/views/pages/_pages.html.haml:36
 msgid "Show history"
 msgstr "履歴を表示"
 
-#: app/views/pages/edit.html.haml:16 app/views/pages/edit.html.haml:18
-msgid "Delete %{entity}"
-msgstr "%{entity}を削除"
+#: app/views/pages/edit.html.haml:9 app/views/pages/edit.html.haml:11
+msgid "Recover %{entity}"
+msgstr "%{entity}を復旧する"
+
+#: app/views/pages/edit.html.haml:11
+msgid "Really recover?"
+msgstr "本当に復旧させますか?"
+
+#: app/views/pages/edit.html.haml:25
+msgid "Really delete?"
+msgstr "本当に削除しますか?"
 
 #: app/views/pages/index.html.haml:2
 msgid "%{name}'s accessible pages."

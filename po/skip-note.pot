@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2009-03-25 13:39+0900\n"
+"POT-Creation-Date: 2009-03-30 13:06+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgid "Note was successfully updated."
 msgstr ""
 
 #: app/controllers/admin/notes_controller.rb:24
-#: app/controllers/admin/pages_controller.rb:30
+#: app/controllers/admin/pages_controller.rb:33
 #: app/controllers/admin/users_controller.rb:22
 msgid "validation error"
 msgstr ""
@@ -50,16 +50,16 @@ msgstr ""
 msgid "Note can't deleted."
 msgstr ""
 
-#: app/controllers/admin/pages_controller.rb:27
+#: app/controllers/admin/pages_controller.rb:30
 msgid "Page was successfully updated."
 msgstr ""
 
-#: app/controllers/admin/pages_controller.rb:39
+#: app/controllers/admin/pages_controller.rb:42
 #: app/controllers/pages_controller.rb:88
 msgid "Page was deleted successfully"
 msgstr ""
 
-#: app/controllers/admin/pages_controller.rb:42
+#: app/controllers/admin/pages_controller.rb:45
 msgid "Failed to delete a page"
 msgstr ""
 
@@ -85,6 +85,10 @@ msgstr ""
 
 #: app/controllers/pages_controller.rb:73
 msgid "The page %{page} is successfully updated"
+msgstr ""
+
+#: app/controllers/pages_controller.rb:97
+msgid "Page was recovered successfully"
 msgstr ""
 
 #: app/controllers/users_controller.rb:15
@@ -318,6 +322,19 @@ msgstr ""
 
 #: app/helpers/pages_helper.rb:96 app/views/histories/index.html.haml:2
 msgid "page histories"
+msgstr ""
+
+#: app/helpers/pages_helper.rb:97 app/views/pages/edit.html.haml:23
+#: app/views/pages/edit.html.haml:25
+msgid "Delete %{entity}"
+msgstr ""
+
+#: app/helpers/pages_helper.rb:97 app/models/page.rb:-
+#: app/views/histories/new.html.haml:17 app/views/pages/edit.html.haml:9
+#: app/views/pages/edit.html.haml:11 app/views/pages/edit.html.haml:15
+#: app/views/pages/edit.html.haml:20 app/views/pages/edit.html.haml:23
+#: app/views/pages/edit.html.haml:25 app/views/pages/new.html.haml:28
+msgid "page"
 msgstr ""
 
 #: app/models/account.rb:-
@@ -574,13 +591,6 @@ msgstr ""
 msgid "%{name} group"
 msgstr ""
 
-#: app/models/page.rb:- app/views/histories/new.html.haml:17
-#: app/views/pages/edit.html.haml:8 app/views/pages/edit.html.haml:13
-#: app/views/pages/edit.html.haml:16 app/views/pages/edit.html.haml:18
-#: app/views/pages/new.html.haml:28
-msgid "page"
-msgstr ""
-
 #: app/models/page.rb:-
 msgid "Page|Note"
 msgstr ""
@@ -627,19 +637,19 @@ msgstr ""
 msgid "Page|Updated at"
 msgstr ""
 
-#: app/models/page.rb:-
+#: app/models/page.rb:- app/views/admin/pages/edit.html.haml:13
 msgid "Page|Deleted"
 msgstr ""
 
-#: app/models/page.rb:87
+#: app/models/page.rb:88
 msgid "FrontPage"
 msgstr ""
 
-#: app/models/page.rb:186
+#: app/models/page.rb:191
 msgid "the name `%{n}' is reserved"
 msgstr ""
 
-#: app/models/page.rb:193
+#: app/models/page.rb:198
 msgid "published page can't be renamed."
 msgstr ""
 
@@ -712,7 +722,7 @@ msgstr ""
 #: app/views/admin/histories/new.html.haml:30
 #: app/views/admin/notes/edit.html.haml:61
 #: app/views/admin/notes/show.html.haml:41
-#: app/views/admin/pages/edit.html.haml:13
+#: app/views/admin/pages/edit.html.haml:17
 #: app/views/admin/users/edit.html.haml:27 app/views/groups/show.html.haml:24
 #: app/views/label_indices/_new.html.haml:15 app/views/notes/edit.html.haml:73
 #: app/views/users/edit.html.haml:14
@@ -921,12 +931,12 @@ msgid "Page|Delete"
 msgstr ""
 
 #: app/views/admin/pages/_pages.html.haml:21
-#: app/views/pages/_pages.html.haml:23
+#: app/views/pages/_pages.html.haml:29
 msgid "Published"
 msgstr ""
 
 #: app/views/admin/pages/_pages.html.haml:23
-#: app/views/pages/_pages.html.haml:25
+#: app/views/pages/_pages.html.haml:32
 msgid "Not yet"
 msgstr ""
 
@@ -1024,7 +1034,7 @@ msgid "Show diff"
 msgstr ""
 
 #: app/views/histories/new.html.haml:17 app/views/layouts/pages.html.haml:38
-#: app/views/pages/edit.html.haml:8 app/views/pages/edit.html.haml:13
+#: app/views/pages/edit.html.haml:15 app/views/pages/edit.html.haml:20
 msgid "Update %{entity}"
 msgstr ""
 
@@ -1259,12 +1269,24 @@ msgstr ""
 msgid "History"
 msgstr ""
 
-#: app/views/pages/_pages.html.haml:29
+#: app/views/pages/_pages.html.haml:24
+msgid "Deleted"
+msgstr ""
+
+#: app/views/pages/_pages.html.haml:36
 msgid "Show history"
 msgstr ""
 
-#: app/views/pages/edit.html.haml:16 app/views/pages/edit.html.haml:18
-msgid "Delete %{entity}"
+#: app/views/pages/edit.html.haml:9 app/views/pages/edit.html.haml:11
+msgid "Recover %{entity}"
+msgstr ""
+
+#: app/views/pages/edit.html.haml:11
+msgid "Really recover?"
+msgstr ""
+
+#: app/views/pages/edit.html.haml:25
+msgid "Really delete?"
 msgstr ""
 
 #: app/views/pages/index.html.haml:2
