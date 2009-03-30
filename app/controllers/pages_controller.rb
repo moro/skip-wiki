@@ -87,6 +87,9 @@ class PagesController < ApplicationController
     if @page.logical_destroy
       flash[:notice] = _("Page was deleted successfully")
       redirect_to(note_pages_path(current_note))
+    else
+      flash[:warn] = _("Failed to delete page.")
+      redirect_to(edit_note_page_url(current_note, @page))
     end
   end
 

@@ -107,11 +107,22 @@ describe PagesController do
     end
   end
 
+  describe "DELETE /notes/hoge/pages/page_1 [FAILURE]" do
+    fixtures :notes
+    before do
+      Page.should_receive(:find).with("page_1", anything).and_return(@page = mock_model(Page))
+      @page.should_receive(:logical_destroy).and_return(false)
+
+      delete :destroy, :note_id => "our_note", :id => "page_1"
+    end
+    it{ response.should redirect_to( edit_note_page_url("our_note", @page) ) }
+    it{ flash[:warn].should_not be_blank }
+  end
+
   describe "GET /notes/hoge/new" do
     it "作成されるページの公開日時が作成日時に設定されていること" do
       get :new
       assigns(:page).published_at.strftime("%Y-%m-%d").should == Time.now.strftime("%Y-%m-%d")
     end
   end
-   
 end

@@ -88,13 +88,17 @@ module PagesHelper
   end
 
   def page_operation(selected = request.request_uri)
-    options_for_select([
+    common_options = [
       [_("menu"), nil],
       [_("show page"), note_page_path(current_note, @page)],
       [_("edit content"), new_note_page_history_path(current_note, @page)],
       [_("edit page"), edit_note_page_path(current_note, @page)],
       [_("page histories"), note_page_histories_path(current_note, @page)],
-      [_("Delete %{entity}") % {:entity => _("page")}, edit_note_page_path(current_note, @page, :anchor=>"delete")],
-    ], selected)
+    ]
+    unless @page.front_page?
+      common_options << [_("Delete %{entity}") % {:entity => _("page")}, edit_note_page_path(current_note, @page, :anchor=>"delete")]
+    end
+
+    options_for_select(common_options, selected)
   end
 end

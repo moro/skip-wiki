@@ -156,7 +156,7 @@ SQL
   end
 
   def logical_destroy
-    update_attribute(:deleted, true)
+    front_page? ? false : update_attribute(:deleted, true)
   end
 
   def recover
@@ -165,6 +165,10 @@ SQL
 
   def to_param
     name_changed? ? name_was : name
+  end
+
+  def front_page?
+    (name_was == FRONTPAGE_NAME || name == FRONTPAGE_NAME)
   end
 
   private
@@ -187,7 +191,7 @@ SQL
   end
 
   def frontpage_cant_rename
-    if name_changed? && name_was == FRONTPAGE_NAME
+    if name_changed? && front_page?
       errors.add :name, _("the name `%{n}' is reserved") % {:n => FRONTPAGE_NAME}
       return false
     end
@@ -202,6 +206,6 @@ SQL
 
   def frontpage_cant_destroy
     return true if note.nil?
-    !(name_was == FRONTPAGE_NAME || name == FRONTPAGE_NAME)
+    !(front_page?)
   end
 end
