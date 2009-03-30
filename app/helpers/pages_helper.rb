@@ -94,6 +94,7 @@ module PagesHelper
       [_("edit content"), new_note_page_history_path(current_note, @page)],
       [_("edit page"), edit_note_page_path(current_note, @page)],
       [_("page histories"), note_page_histories_path(current_note, @page)],
+      [_("Delete %{entity}") % {:entity => _("page")}, edit_note_page_path(current_note, @page, :anchor=>"delete")],
     ], selected)
   end
 end

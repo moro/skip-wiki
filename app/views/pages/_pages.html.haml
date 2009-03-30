@@ -15,11 +15,16 @@
     - each_with_histories(pages) do |page, history|
       %tr
         %td.label= labelize(page.label_index)
-        %td.name= link_to h(page.display_name), note_page_url(current_note, page)
+        %td.name= link_to_unless page.deleted, h(page.display_name), note_page_url(current_note, page)
         %td&= history.user.name
         - if current_user.accessible?(current_note)
           %td.publication
-            - if page.published?
+            - if page.deleted
+              =icon_tag("delete")
+              %span.published&= _("Deleted")
+              %br
+              %span.op= link_to(_("Recover %{entity}") % {:entity => _("page")}, edit_note_page_path(current_note, page))
+            - elsif page.published?
               =icon_tag("star")
               %span.published&= _("Published")
             - else

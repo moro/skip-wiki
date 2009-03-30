@@ -4,18 +4,25 @@
     %span.operation&= _("close")
 
 - div_for(@page, :class => "app-layout") do
-  #edit
-    %h2&= _("Update %{entity}") % {:entity => _("page")}
-    - form_for(:page, :url=>note_page_path(current_note, @page)) do |f|
-      =f.error_messages
-      = hidden_field_tag "_method", "PUT"
-      %table.input= render :partial => 'page_form', :locals =>{:form =>f }
-      = submit_tag _("Update %{entity}") % {:entity => _("page")}
+  - if @page.deleted
+    #recover
+      %h2&= _("Recover %{entity}") % {:entity => _("page")}
+      -form_tag(recovery_note_page_path(current_note, @page)) do
+        = submit_tag _("Recover %{entity}") % {:entity => _("page")}, :confirm => _("Really recover?")
 
-  #delete
-    %h2&= _("Delete %{entity}") % {:entity => _("page")}
-    -form_tag(note_page_path(current_note, @page), :method => "delete") do
-      = submit_tag _("Delete %{entity}") % {:entity => _("page")}
+  - else
+    #edit
+      %h2&= _("Update %{entity}") % {:entity => _("page")}
+      - form_for(:page, :url=>note_page_path(current_note, @page)) do |f|
+        =f.error_messages
+        = hidden_field_tag "_method", "PUT"
+        %table.input= render :partial => 'page_form', :locals =>{:form =>f }
+        = submit_tag _("Update %{entity}") % {:entity => _("page")}
+
+    #delete
+      %h2&= _("Delete %{entity}") % {:entity => _("page")}
+      -form_tag(note_page_path(current_note, @page), :method => "delete") do
+        = submit_tag _("Delete %{entity}") % {:entity => _("page")}, :confirm => _("Really delete?")
 
 :javascript
   jQuery(function(){

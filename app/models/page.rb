@@ -159,6 +159,10 @@ SQL
     update_attribute(:deleted, true)
   end
 
+  def recover
+    update_attribute(:deleted, false)
+  end
+
   def to_param
     name_changed? ? name_was : name
   end

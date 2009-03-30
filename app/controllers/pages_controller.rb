@@ -3,11 +3,11 @@ class PagesController < ApplicationController
   layout :select_layout
 
   def index
-    @pages = accessible_pages.fulltext(params[:keyword]).
-                              labeled(params[:label_index_id]).
-                              authored(*safe_split(params[:authors])).
-                              scoped(page_order_white_list(params[:order])).
-                              paginate(paginate_option(Page))
+    @pages = accessible_pages(true).fulltext(params[:keyword]).
+                                    labeled(params[:label_index_id]).
+                                    authored(*safe_split(params[:authors])).
+                                    scoped(page_order_white_list(params[:order])).
+                                    paginate(paginate_option(Page))
 
     if params[:note_id].blank?
       render(:template => "pages/index", :layout => "application")
@@ -56,7 +56,7 @@ class PagesController < ApplicationController
 
   def edit
     @note = current_note
-    @page = accessible_pages.find(params[:id])
+    @page = accessible_pages(true).find(params[:id])
     respond_to(:html)
   end
 
@@ -90,10 +90,25 @@ class PagesController < ApplicationController
     end
   end
 
+  def recovery
+    @page = accessible_pages(true).find(params[:id])
+
+    if @page.recover
+      flash[:notice] = _("Page was recovered successfully")
+      redirect_to(note_pages_path(current_note))
+    end
+  end
+
   private
-  def accessible_pages(user = current_user, note = nil)
+  def accessible_pages(include_deleted = false, user = current_user, note = nil)
     if params[:note_id] && note ||= current_note
-      user.page_editable?(note) ? note.pages.active : note.pages.active.published
+      if include_deleted && user.accessible?(note)
+        note.pages
+      elsif user.page_editable?(note)
+        note.pages.active
+      else
+        note.pages.active.published
+      end
     else
       Page.active.scoped(:conditions => ["#{Page.quoted_table_name}.note_id IN (?)", user.free_or_accessible_notes.all.map(&:id)])
     end
