@@ -47,7 +47,7 @@ module NotesHelper
   end
 
   def with_last_modified_page(notes, &block)
-    ps = Page.last_modified_per_notes(notes.map(&:id))
+    ps = Page.active.last_modified_per_notes(notes.map(&:id))
     ret = notes.map{|note| [note, ps.detect{|p| p.note_id == note.id }] }
     block_given? ? ret.each{|n,p| yield n, p } : ret
   end

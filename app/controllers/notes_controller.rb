@@ -23,7 +23,7 @@ class NotesController < ApplicationController
 
   def dashboard
     @notes = current_user.free_or_accessible_notes.recent(DASHBOARD_ITEM_NUM + 1)
-    @pages = Page.scoped(:conditions=>["note_id IN (?)", @notes.map(&:id)]).recent(DASHBOARD_ITEM_NUM + 1)
+    @pages = Page.active.scoped(:conditions=>["note_id IN (?)", @notes.map(&:id)]).recent(DASHBOARD_ITEM_NUM + 1)
   end
 
   # GET /notes/1
