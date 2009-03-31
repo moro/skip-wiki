@@ -139,3 +139,7 @@ end
 Given(/ノート"(\w+)"の公開範囲を「全員が読み書きできる」に設定する/) do |note|
   Note.find(note).update_attributes!(:publicity => Note::PUBLICITY_WRITABLE)
 end
+
+Given(/トップページを表示している/) do
+  visit root_path
+end

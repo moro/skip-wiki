@@ -12,5 +12,5 @@
     %dd&= @user.account.identity_url
 
   - unless SkipEmbedded::OpFixation.sso_enabled?
-    = link_to "Edit", edit_user_path(@user)
+    = link_to _("Edit"), edit_user_path(@user)
 

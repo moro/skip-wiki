@@ -9,22 +9,7 @@ class LabelIndex < ActiveRecord::Base
 
   belongs_to :note
   has_many :label_indexings
-  has_many :pages, :through => :label_indexings do
-    def previous(order)
-      load_target_with_label_indexings
-      target.sort_by(&:order_in_label).reverse.detect{|page| page.order_in_label < order }
-    end
-
-    def next(order)
-      load_target_with_label_indexings
-      target.sort_by(&:order_in_label).detect{|page| page.order_in_label > order }
-    end
-
-    private
-    def load_target_with_label_indexings
-      with_scope(:find =>{:include => "label_indexings"}){ load_target }
-    end
-  end
+  has_many :pages, :through => :label_indexings
 
   scope_do :has_children
   has_children :pages
