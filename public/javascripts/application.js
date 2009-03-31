@@ -155,18 +155,51 @@
       return tr;
     }
 
+    function buildTable(attachments){
+      var tbody = jQuery("<tbody>")
+      jQuery.each(attachments, function(_num_, atmt){
+        tbody.append(attachmentToTableRow(atmt["attachment"]));
+      });
+      return jQuery("<table>").append(tbody);
+    }
+
+    function showNext(){
+      var cur = root.find("table:visible");
+      return replace(cur, cur.next("table:hidden"));
+    }
+
+    function showPrev(){
+      var cur = root.find("table:visible");
+      return replace(cur, cur.prev("table:hidden"));
+    }
+
+    function replace(hide, show){
+      if(show.length > 0){ hide.hide(); show.show() }
+      return show;
+    }
+
     function loadAttachments(palette, url, label){
+      var per_page = 5;
       if(!url) return;
       jQuery.getJSON(url, function(data,stat){
         if(data.length == 0) return;
-        var tbody = jQuery("<tbody>");
-        jQuery.each(data, function(_num_, atmt){
-          tbody.append(attachmentToTableRow(atmt["attachment"]));
-        });
-        palette.
-          append(jQuery("<table>").
-            append(jQuery("<caption></caption>").text(label)).
-            append(tbody));
+
+        var max = Math.floor(data.length / per_page) + 1;
+        if(max > 1){
+          root.find("div.palette").before(
+            jQuery("<div class='navigation'>").
+              append(jQuery("<span class='previous ss_sprite ss_arrow_left'></span>").click(showPrev)).
+              append(jQuery("<span class='operation'></span>").text("前").click(showPrev)).
+              append(jQuery("<span class='operation next'></span>").text("次").click(showNext)).
+              append(jQuery("<span class='ss_sprite ss_arrow_right'></span>").click(showNext))
+            );
+        }
+        for(var i= 0 ; i < max ; i++){
+          var t = buildTable(data.slice(i*per_page, (i+1)*per_page));
+          t.addClass("page" + (i+1));
+          palette.append(t);
+        }
+        palette.find("table:not(:first)").hide();
       });
     }
 
