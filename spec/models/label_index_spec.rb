@@ -56,12 +56,6 @@ describe LabelIndex do
 
     it{ @label.should have(2).pages }
 
-    it(".next(1)は@p2であること") { @label.pages.next(1).should == @p2 }
-    it(".next(2)はnilであること") { @label.pages.next(2).should be_nil }
-
-    it(".previous(1)はnilであること") { @label.pages.previous(1).should be_nil }
-    it(".previous(2)は@p1であること") { @label.pages.previous(2).should == @p1 }
-
     it("@p1のorder_in_labelは1であること"){ @p1.order_in_label.should == 1 }
   end
 end
