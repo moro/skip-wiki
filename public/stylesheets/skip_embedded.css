@@ -35,7 +35,6 @@ div#header div#search {
   position: absolute;
   top: 25px;
   right: 5px;
-  z-index: -1;
 }
 
 div#header div#search form {
