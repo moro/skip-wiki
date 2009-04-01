@@ -23,6 +23,10 @@ describe Attachment do
     it "should assign display name" do
       @attachment.display_name.should == "at_small.png"
     end
+
+    it "should be valid" do
+      @attachment.should be_valid
+    end
   end
 end
 
