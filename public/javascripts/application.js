@@ -185,7 +185,7 @@
         if(data.length == 0) return;
 
         var max = Math.floor(data.length / per_page) + 1;
-        if(max > 1){
+        if(max > 1 && root.find("div.navigation").length == 0){
           root.find("div.palette").before(
             jQuery("<div class='navigation'>").
               append(jQuery("<span class='previous ss_sprite ss_arrow_left'></span>").click(showPrev)).
