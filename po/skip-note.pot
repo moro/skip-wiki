@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2009-04-01 15:11+0900\n"
+"POT-Creation-Date: 2009-04-01 15:42+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,6 +93,18 @@ msgstr ""
 
 #: app/controllers/pages_controller.rb:100
 msgid "Page was recovered successfully"
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:16
+msgid "You have been logged out."
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:22
+msgid "Logged in successfully"
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:27
+msgid "Couldn't log you in as '%{openid_url}'"
 msgstr ""
 
 #: app/controllers/users_controller.rb:15
