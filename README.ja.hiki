@@ -1,4 +1,4 @@
-!SKIP-Noteについて
+!SKIP Wikiについて
 
 !! クイックスタート
 
@@ -6,9 +6,9 @@
 
 !!! アーカイブを展開する
 
- $ wget http://some.where/path/to/skip-note-0.0.9.zip
- $ unzip skip-note-0.0.9.zip
- $ cd skip-note
+ $ wget http://some.where/path/to/skip-wiki-0.9.0.zip
+ $ unzip skip-wiki-0.9.0.zip
+ $ cd skip-wiki
 
 !!! 必要なディレクトリを作る
 

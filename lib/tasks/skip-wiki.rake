@@ -1,4 +1,4 @@
-namespace :skip_note do
+namespace :skip_wiki do
   desc "execute some setup tasks / gems:install db:create db:migrate makemo"
   task :setup => %w[gems:install db:create db:migrate makemo]
 
@@ -22,10 +22,10 @@ namespace :skip_note do
     commit = ENV["COMMIT"] || "HEAD"
     if tag = ENV["TAG"]
       system(*["git", "tag", tag, commit])
-      out = "skip_note-#{tag}"
+      out = "skip-wiki-#{tag}"
       commit = tag
     else
-      out = Time.now.strftime("skip_note-%Y%m%d%H%M%S")
+      out = Time.now.strftime("skip-wiki-%Y%m%d%H%M%S")
     end
     FileUtils.mkdir_p "pkg/#{out}"
     system("git archive --format tar #{commit} | tar xvf - -C pkg/#{out}")
