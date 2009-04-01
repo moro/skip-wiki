@@ -11,5 +11,20 @@ class SessionsController < ApplicationController
   use_attribute_exchange(["http://axschema.org", "http://schema.openid.net"],
                          :display_name => "/namePerson", :name => "/namePerson/friendly" )
 
+  def destroy
+    super
+    flash[:notice] = _("You have been logged out.")
+  end
+
+  private
+  def login_successfully(*args)
+    super
+    flash[:notice] = _("Logged in successfully")
+  end
+
+  def authenticate_failure(*args)
+    super
+    flash[:error] = _("Couldn't log you in as '%{openid_url}'") % {:openid_url => assigns[:openid_url] || assigns["openid.claimed_id"]}
+  end
 end
 
