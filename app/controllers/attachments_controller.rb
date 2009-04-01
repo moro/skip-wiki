@@ -32,11 +32,12 @@ class AttachmentsController < ApplicationController
   end
 
   def create
-    @attachment = current_note.attachments.build(params[:attachment])
+    @attachment = current_note.attachments.build(params[:attachment].slice(:uploaded_data))
     if @attachment.save
       opt = ajax_upload? ? IframeUploader.index_opt : {}
       redirect_to note_attachments_url(current_note, opt)
     else
+      logger.warn(@attachment.errors.full_messages)
       render :action => "new"
     end
   end
