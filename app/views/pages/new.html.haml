@@ -1,5 +1,6 @@
 - content_for(:header) do
   =javascript_include_tag("fckeditor/fckeditor.js")
+  =javascript_include_tag("linkPalette")
 
 - content_for :floating do
   .labels-form
@@ -8,6 +9,7 @@
 
 =javascript_include_tag("iframe_upload")
 - div_for(@page, :class => "page-content") do
+  #linkPalette{:style=>"display:none"}= render :partial => 'histories/link_palette'
   %h1&= _("New Page")
   = error_messages_for :page
 
@@ -21,7 +23,6 @@
       =f.label(:content, h(_("Page|Content")))
       %span.operation.trigger= _("Link Palette")
     %div.content
-      #linkPalette
       = f.text_area(:content, :id=>"page_content", :size=>"80x70")
 
     .submit

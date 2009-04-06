@@ -170,16 +170,21 @@
       root.show();
     }
 
-    function init(){
+    var activate = reload;
+
+    function init(ev){
       root.attr("class", "enabled").draggable({
           handle:"h3",
           containment:root.parents("div.page-content")
         });
 
+      root.css("top", ev.pageY + "px");
+      root.css("left", ev.pageX + "px");
+
       root.find("h3 span").click(hidePalette);
       root.find('#palette-tab').tabs({selected: 0});
       initPageSearchField(root.find("#palette-pages"));
-      reload()
+      activate()
     }
 
     root.find("#upload-attachment").iframeUploader(jQuery.extend(config["uploader"], {callback: uploaderCallback}));
