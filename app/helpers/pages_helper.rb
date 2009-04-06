@@ -73,12 +73,9 @@ module PagesHelper
   def palette_opt(page)
     {
       :editor => "history_content",
-      :note_attachments => note_attachments_path(current_note),
-      :message => {:title => _("Link Palette"),
-                   :close=> _("close"),
-                   :insert_link_label => _("Insert Link"),
-                   :note_attachments  => _("note attachments"),
-                   :upload_attachment => _("Attach file(s)") },
+      :url => {:attachments => note_attachments_url(current_note),
+               :pages => note_pages_url(current_note) },
+      :message => { :insert_link_label => _("Insert Link") },
       :uploader => {:target => IframeUploader::UPLOAD_KEY,
                     :trigger => "submit",
                     :src => {:form =>   new_note_attachment_path(current_note, IframeUploader.palette_opt),

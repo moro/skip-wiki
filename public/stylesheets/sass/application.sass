@@ -751,12 +751,19 @@ table.notes-index, table.pages-index
       :margin-left 5em
 
   .palette
-    :overflow auto
-    :height 300px
+    ul li
+      :font-size = !small_font_size
+
+    .palette-pane
+      :overflow auto
+      :height 300px
 
   .navigation
-    :height 1em
-    :background #ddd
+    :height 15px
+    :font-size 12px
+    :padding 5px
+    :border-bottom 2px dashed silver
+
     span.previous
       :margin-left 20%
     span.next
@@ -773,6 +780,7 @@ table.notes-index, table.pages-index
     td.display_name
       :width 200px
       img
+        :max-width 200px
         :border 1px solid gray
     td.insert
       :text-align center
@@ -921,4 +929,7 @@ p.history-info
   div.target iframe
     :width 0
     :height 0
+
+.ui-tabs .ui-tabs-hide
+  display: none
 

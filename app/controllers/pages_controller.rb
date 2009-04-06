@@ -6,13 +6,18 @@ class PagesController < ApplicationController
     @pages = accessible_pages(true).fulltext(params[:keyword]).
                                     labeled(params[:label_index_id]).
                                     authored(*safe_split(params[:authors])).
-                                    scoped(page_order_white_list(params[:order])).
-                                    paginate(paginate_option(Page))
+                                    scoped(page_order_white_list(params[:order]))
 
-    if params[:note_id].blank?
-      render(:template => "pages/index", :layout => "application")
-    else
-      render(:template => "pages/notes_index", :layout => "notes")
+    respond_to do |format|
+      format.html do
+        @pages = @pages.paginate(paginate_option(Page))
+        option = params[:note_id].blank? ? {:template => "pages/index", :layout => "application"} :
+                                           {:template => "pages/notes_index", :layout => "notes"}
+        render(option)
+      end
+      format.js do
+        render :json => @pages.active.find(:all, :include => :note).map{|p| {:page=>page_to_json(p)} }
+      end
     end
   end
 
@@ -121,6 +126,14 @@ class PagesController < ApplicationController
     case params[:action]
     when *%w[new create] then "notes"
     else "pages"
+    end
+  end
+
+  def page_to_json(page)
+    returning(page.attributes.slice("display_name")) do |json|
+      json[:path] = note_page_path(page.note, page)
+      json[:updated_at] = page.updated_at.strftime("%Y/%m/%d %H:%M")
+      json[:created_at] = page.created_at.strftime("%Y/%m/%d %H:%M")
     end
   end
 end

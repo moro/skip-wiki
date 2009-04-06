@@ -1,5 +1,6 @@
 - content_for(:header) do
   =javascript_include_tag("fckeditor/fckeditor.js")
+  =javascript_include_tag("linkPalette")
 
 =javascript_include_tag("iframe_upload")
 - div_for(@page) do
@@ -9,7 +10,7 @@
       %label{:for=>"history_content"}&= h(_("Page|Content"))
       %span.operation.trigger= _("Link Palette")
     %div.content
-      #linkPalette
+      #linkPalette{:style=>"display:none"}= render :partial => 'link_palette'
       = text_area_tag("history[content]", @page.content, :id=>"history_content", :size=>"80x70")
 
     .submit

@@ -1,0 +1,12 @@
+%h3
+  =h _("Link Palette")
+  %span&= _("close")
+
+#palette-tab.palette
+  %ul
+    %li= link_to _("attachments"), "#palette-attachments"
+    %li= link_to _("pages"), "#palette-pages"
+    %li= link_to _("new attachments"), "#upload-attachment"
+  #palette-attachments.palette-pane
+  #palette-pages.palette-pane
+  #upload-attachment.palette-pane.upload
