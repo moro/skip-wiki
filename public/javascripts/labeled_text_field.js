@@ -16,6 +16,7 @@
           target.removeClass(focusClass).val(message);
         };
       });
+    return target;
   };
 })(jQuery);
 

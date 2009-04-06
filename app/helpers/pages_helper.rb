@@ -75,7 +75,14 @@ module PagesHelper
       :editor => "history_content",
       :url => {:attachments => note_attachments_url(current_note),
                :pages => note_pages_url(current_note) },
-      :message => { :insert_link_label => _("Insert Link") },
+      :messages => {
+        :tab => {:insert_link_label => _("Insert Link"),
+                 :navi_prev => _("PREV"),
+                 :navi_next => _("NEXT")},
+        :page_search => {:show_all => _("Show all"),
+                         :filter   => _("Filter"),
+                         :keyword  => _("Input keyword to search")}
+      },
       :uploader => {:target => IframeUploader::UPLOAD_KEY,
                     :trigger => "submit",
                     :src => {:form =>   new_note_attachment_path(current_note, IframeUploader.palette_opt),

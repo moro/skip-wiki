@@ -758,16 +758,19 @@ table.notes-index, table.pages-index
       :overflow auto
       :height 300px
 
+      div.indicator
+        :text-align center
+
   .navigation
     :height 15px
     :font-size 12px
     :padding 5px
     :border-bottom 2px dashed silver
+    :width 90%
+    :margin 3px auto
 
-    span.previous
-      :margin-left 20%
     span.next
-      :margin-left 60%
+      :margin-left 80%
 
   span.insertLink
     :font-size = !small_font_size
@@ -787,6 +790,23 @@ table.notes-index, table.pages-index
       :width 6em
   .upload div.form iframe
     :height 5em
+
+  #palette-pages form
+    :width 90%
+    :margin 5px auto
+    input.focus
+      :color black
+    input.submit
+      :width 80px
+      :color black
+      :float none
+      :margin 0
+    input
+      :width 250px
+      :color gray
+      :font-size = !small_font_size
+    span.operation
+      :color #333366
 
 ul.float
   :list-style none

@@ -4,9 +4,17 @@
 
 #palette-tab.palette
   %ul
-    %li= link_to _("attachments"), "#palette-attachments"
-    %li= link_to _("pages"), "#palette-pages"
-    %li= link_to _("new attachments"), "#upload-attachment"
+    %li= link_to _("note attachments"), "#palette-attachments"
+    %li= link_to _("note pages"), "#palette-pages"
+    %li= link_to _("Attach file(s)"), "#upload-attachment"
   #palette-attachments.palette-pane
+    .indicator{:style=>"display:none"}= image_tag("ibox_indicator.gif")
   #palette-pages.palette-pane
+    - form_tag note_pages_path(current_note), :method => "GET" do
+      = text_field_tag :keyword, :class => "search"
+      = submit_tag h(_"Filter"), :class => "submit"
+      %span.operation&= _("Show all")
+    .indicator{:style=>"display:none"}= image_tag("ibox_indicator.gif")
+
   #upload-attachment.palette-pane.upload
+
