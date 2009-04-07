@@ -63,7 +63,7 @@
       if(src){
         var img = jQuery("<img />").attr("src", src).attr("alt", label);
         var display = img.clone();
-        if(jQuery.browser.msie){ display.attr("width", 200) };
+        if(jQuery.browser.msie){ display.attr({width:"200", height:"150"}) };
         return display.click(function(){ insertToEditor(img); });
       }else{
         return jQuery("<span></span>").text(filename.substr(0,16));
