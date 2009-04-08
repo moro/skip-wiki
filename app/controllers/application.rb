@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
   end
 
   # Override Repim's to translate message and specify signup layout.
-  def access_denied(message = nil)
+  def access_denied_without_open_id_sso(message = nil)
     store_location
     flash[:error] = _("Login required.")
     render :template => "sessions/new", :layout => "application", :status => :unauthorized
