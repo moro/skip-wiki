@@ -8,13 +8,15 @@
       var data = root.parents("form").serializeArray();
       data = jQuery.grep(data, function(o){return o.name != "_method"});
 
-     root.find("div.rendered").load(config["url"], data, function(){
-          root.next("textarea").hide();
-          root.
-            find("div.rendered").fadeIn("fast").end().
-            find("ul li.show").hide().end().end().
-            find("ul li.hide").fadeIn("fast");
-      });
+      try{
+        root.find("div.rendered").load(config["url"], data, function(){
+            root.next("textarea").hide();
+            root.
+              find("div.rendered").fadeIn("fast").end().
+              find("ul li.show").hide().end().
+              find("ul li.hide").fadeIn("fast");
+        });
+      }catch(e){ console.log(e) };
       return false;
     }
 
@@ -22,14 +24,13 @@
       root.next("textarea").fadeIn("fast");
       root.
         find("div.rendered").hide().end().
-        find("ul li.hide").hide().end().end().
+        find("ul li.hide").hide().end().
         find("ul li.show").fadeIn("fast");
       return false;
     };
 
-    root.find("li.show a.wii_button").click(showPreview);
-    root.find("li.hide a.wii_button").click(hidePreview);
-    hidePreview();
+    root.find("li.show a.operation").click(showPreview);
+    root.find("li.hide a.operation").click(hidePreview).trigger("click");
   };
 
   jQuery.fn.editor = function(config){

@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
   include PagesModule::PagesUtil
   layout :select_layout
+  helper_method :render_hiki
+  hide_action :render_hiki
 
   def index
     @pages = accessible_pages(true).fulltext(params[:keyword]).
@@ -53,8 +55,7 @@ class PagesController < ApplicationController
   def preview
     respond_to do |format|
       format.js do
-        # FIXME
-        render :text=>HikiDoc.to_xhtml(params[:page][:content], :level=>2), :type=>"text/html"
+        render :text=> render_hiki(params[:history][:content])
       end
     end
   end
@@ -105,6 +106,10 @@ class PagesController < ApplicationController
       flash[:notice] = _("Page was recovered successfully")
       redirect_to(note_pages_path(current_note))
     end
+  end
+
+  def render_hiki(content)
+    ActionView::Base.white_list_sanitizer.sanitize(HikiDoc.to_xhtml(content, :level =>2))
   end
 
   private

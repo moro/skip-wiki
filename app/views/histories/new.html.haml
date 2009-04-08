@@ -11,7 +11,12 @@
       %label{:for=>"history_content"}&= h(_("Page|Content"))
       %span.operation.trigger= _("Link Palette")
     %div.content
-      = text_area_tag("history[content]", @page.content, :id=>"history_content", :size=>"80x70")
+      #preview
+        %ul
+          %li.hide= link_to(_("Hide preview"), '', :class => "operation")
+          %li.show= link_to(_("Show preview"), '', :class => "operation")
+        .rendered
+      = text_area_tag("history[content]", @page.content, :id=>"history_content", :size=>"100x30")
 
     .submit
       %span.notice{:style=>"display:none"}&= _("Modified, need to save.")
@@ -23,8 +28,8 @@
 :javascript
   $(document).ready(function(){
     // jQuery(".previewable").preview({"url":"#{preview_new_note_page_path(current_note.id)}"});
-    jQuery("#history_content").editor(#{editor_opt(@page).to_json});
-    jQuery("#linkPalette").linkPalette(#{palette_opt(@page).to_json})
+    // jQuery("#history_content").editor(#{editor_opt(@page).to_json});
+    jQuery("#linkPalette").linkPalette(#{palette_opt(@page).to_json});
   });
 
   function FCKeditor_OnComplete( editorInstance ){

@@ -46,10 +46,6 @@ module PagesHelper
     sanitize(content, :attributes=>allow)
   end
 
-  def render_hiki(content)
-    sanitize(HikiDoc.to_xhtml(content, :level=>2))
-  end
-
   def navi_item(text, path, current_path, *css)
     if path == current_path
       content = h(text)
