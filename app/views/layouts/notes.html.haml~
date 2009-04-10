@@ -5,8 +5,13 @@
     = render :partial => 'shared/common_header'
 
   %body
+    #logo.note-layout
+      = link_to "SKIP Wiki", root_path
+      %p{:style=>"display:none"}= link_to _('SKIP Wiki'), root_path
+
     #header.note-layout
       = render :partial => 'shared/common_body_header'
+      #current-note= render :partial => 'shared/current_note_and_operation'
 
     = render :partial=>"shared/flash_message"
     #top= render :partial => 'shared/top'
