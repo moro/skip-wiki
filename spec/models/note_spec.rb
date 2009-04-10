@@ -40,7 +40,7 @@ describe Note do
     end
   end
 
-  describe "pages.add(attrs, user)" do
+  describe "pages.add(attrs, user) (hiki)" do
     fixtures :users
     before(:each) do
       @note = NoteBuilder.new(@user, @valid_attributes).note
@@ -48,25 +48,43 @@ describe Note do
       @initialize_attrs = {
         :name=>"FrontPage",
         :display_name => "トップページ",
-        :format_type => "hiki",
-        :content => "hogehogehoge",
+        :content_hiki => "hogehogehoge",
+        :content_html => "<p>hogehogehoge</p>",
       }
 
-      @page = @note.pages.add(@initialize_attrs, @user)
     end
 
-    it "create new page" do
-      @page.save!
-      @note.reload.should have(1).pages
+    describe "HTML format" do
+      before do
+        @page = @note.pages.add(@initialize_attrs.merge(:format_type => "html"), @user)
+      end
+      it "create new page" do
+        @page.save!
+        @note.reload.should have(1).pages
+      end
+
+      it "do not create untill @page.save" do
+        @note.reload.should have(0).pages
+      end
+
+      it "作成されたページのLabelIndexがデフォルトラベルであること" do
+        @page.save!
+        @page.reload.label_index.should == @note.default_label
+      end
+
+      it "contentは'<p>hogehogehoge</p>'であること" do
+        @page.content.should == '<p>hogehogehoge</p>'
+      end
     end
 
-    it "do not create untill @page.save" do
-      @note.reload.should have(0).pages
-    end
+    describe "Hiki format" do
+      before do
+        @page = @note.pages.add(@initialize_attrs.merge(:format_type => "hiki"), @user)
+      end
 
-    it "作成されたページのLabelIndexがデフォルトラベルであること" do
-      @page.save!
-      @page.reload.label_index.should == @note.default_label
+      it "contentは'hogehogehoge'であること" do
+        @page.content.should == 'hogehogehoge'
+      end
     end
   end
 

@@ -24,8 +24,9 @@ class Note < ActiveRecord::Base
   has_many :pages, :dependent => :delete_all do
     def add(attrs, user)
       returning(build) do |page|
-        page.edit(attrs[:content], user)
-        page.attributes = attrs.except(:content)
+        content = attrs[:format_type] == "hiki" ? attrs[:content_hiki] : attrs[:content_html]
+        page.edit(content, user)
+        page.attributes = attrs.except(:content, :content_hiki, :content_html)
         page.label_index_id ||= proxy_owner.default_label.id
       end
     end
