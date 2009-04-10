@@ -1,0 +1,10 @@
+%span.title= link_to(current_note.display_name, note_page_path(current_note, "FrontPage"))
+%span&= current_note.description
+- if current_user.accessible?(current_note)
+p  %span.note-operation= select_tag("note_operation", note_operation(request.request_uri))
+
+:javascript
+  jQuery(document).ready(function(){
+    $("div#current-note span.operation").click(function(){jQuery(this).nextAll("div.note-navi").toggle()});
+    $("span.note-operation select").dropdownNavigation();
+  });

@@ -80,7 +80,7 @@ body
   a
     :font-weight bold
   img
-    :height 50px
+    :height 45px
 
 #services
   :float right
@@ -598,11 +598,19 @@ div.caption
   :_width 100%
   :margin-left 50%
 
+  h3
+    :background-color #ccc
+    :font-size 10px
+    :background-image url(sprites.png)
+    :padding 1px
+
+
   ul.accessible-notes
     :list-style none
-    :padding-left 2em
+    :padding-left 12px
     :width 100%
     li
+      :margin-right 20px
       :margin-bottom 5px
       :border-bottom 1px solid silver
 

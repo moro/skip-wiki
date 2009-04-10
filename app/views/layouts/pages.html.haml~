@@ -5,14 +5,15 @@
     = render :partial => 'shared/common_header'
 
   %body
+    #logo.page-layout
+      = link_to "SKIP Wiki", root_path
+      %p{:style=>"display:none"}= link_to _('SKIP Wiki'), root_path
+
     #header.page-layout
-      #logo{:style=>"align: top; margin: 3px 0 0 5px;"}
-        %h1{:style=>"display:none"}= link_to 'SKIP Wiki', root_path
-        = link_to image_tag("logo.gif", :alt=>"SKIP Wiki - Logo"), root_path
       = render :partial => 'shared/common_body_header'
+      #current-note= render :partial => 'shared/current_note_and_operation'
 
     = render :partial=>"shared/flash_message"
-
     #top= render :partial => 'shared/top'
 
     #floating{:style=>"z-index:1"}= yield :floating
@@ -26,6 +27,9 @@
                 %span.labeled= sanitize _("Labeled as %{label}") % {:label=>val_tag(@page.label_index.display_name)}
                 - if current_note.label_navigation_style == LabelIndex::NAVIGATION_STYLE_TOGGLE
                   %span.operation.show-label-navi&= _("show label navigation")
+
+                - if current_user.page_editable?(current_note)
+                  %span.page-operation= select_tag("page_operation", page_operation)
 
               - if current_user.page_editable?(current_note)
                 .edit{:style=>"display:none"}
@@ -46,15 +50,7 @@
                     $("h1 span.page-operation select").dropdownNavigation();
                   });
 
-            - if current_user.page_editable?(current_note)
-              #page-menu
-                %ul.float
-                  %li= link_to("表示", note_page_path(current_note, @page))
-                  %li= link_to("編集", new_note_page_history_path(current_note, @page))
-                  %li= link_to("履歴", note_page_histories_path(current_note, @page))
-                  %li= link_to("プロパティ", edit_note_page_path(current_note, @page))
-              .clear
-           
+            .user-bar= render :partial => 'shared/user_navi'
             .clear
 
           - if fullscreen_action?
