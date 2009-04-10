@@ -119,15 +119,10 @@
     var root = jQuery(this);
     var messages = config["messages"];
     var tab_config = {
-      callback : insertToEditor,
+      callback : function(elem){ config["callback"](elem); hidePalette(); },
       per_page : 5,
       messages : messages["tab"]
     };
-
-    function insertToEditor(elem){
-      FCKeditorAPI.GetInstance(config["editor"]).InsertHtml(elem.wrap('<span></span>').parent().html());
-      hidePalette();
-    }
 
     function loadItems(palette, url){
       if(!url) return;

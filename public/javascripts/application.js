@@ -4,13 +4,15 @@
 (function() {
   jQuery.fn.preview = function(config){
     var root = this;
+    var textarea = (config["texrtarea"]) ? jQuery(config["textarea"]) : root.siblings("textarea");
+
     function showPreview(){
       var data = root.parents("form").serializeArray();
       data = jQuery.grep(data, function(o){return o.name != "_method"});
 
       try{
         root.find("div.rendered").load(config["url"], data, function(){
-            root.next("textarea").hide();
+            textarea.hide();
             root.
               find("div.rendered").fadeIn("fast").end().
               find("ul li.show").hide().end().
@@ -21,7 +23,7 @@
     }
 
     function hidePreview(){
-      root.next("textarea").fadeIn("fast");
+      textarea.fadeIn("fast");
       root.
         find("div.rendered").hide().end().
         find("ul li.hide").hide().end().
@@ -33,7 +35,54 @@
     root.find("li.hide a.operation").click(hidePreview).trigger("click");
   };
 
-  jQuery.fn.editor = function(config){
+  jQuery.fn.editContnt = function(config){
+    var root = jQuery(this);
+    var label = jQuery(config["label"]);
+    var hiki_content = jQuery(config["hiki_content"]);
+    var html_content = jQuery(config["html_content"]);
+
+    function toggle(){
+      if(jQuery(this).val() == "hiki"){
+        label.attr("for", hiki_content.find("textarea").attr("id"));
+        hiki_content.show(); html_content.hide();
+      }else{
+        label.attr("for", html_content.find("textarea").attr("id"));
+        hiki_content.hide(); html_content.show();
+      }
+    }
+
+    function linkPaletteCallback(elem){
+      if(currentFormatType() == "hiki"){
+        var hiki_text = hiki_content.find("textarea:visible");
+        if(hiki_text.length > 0){
+          var ins  = (elem.get(0).tagName == "IMG") ? "[FIXME]" : "[[" + elem.text() + "|" + elem.attr("href") + "]]";
+          insertTextArea(hiki_text, ins);
+        }
+      }else{
+        var fckeditor_id = html_content.find("textarea").attr("id");
+        FCKeditorAPI.GetInstance(fckeditor_id).InsertHtml(elem.wrap('<span></span>').parent().html());
+      }
+    }
+
+    function insertTextArea(textearea, newString){
+      var pos = textarea.get(0).selectionStart;
+      var text = textarea.val();
+
+      textarea.val(text.substr(0, pos) + newString + text.substr(pos, text.length));
+    }
+
+    function currentFormatType(){
+      return root.find("input:checked[type=radio][name='page[format_type]']").val();
+    }
+
+    root.find("input[type=radio][name='page[format_type]']").change(toggle).filter(":checked").trigger("change");
+    hiki_content.find("div.preview").preview(config["preview"]);
+    html_content.find("textarea").richEditor(config["richEditor"]);
+    console.log(jQuery.extend({}, config["linkPalette"], {"callback":linkPaletteCallback}));
+    jQuery(config["palette"]).linkPalette(jQuery.extend({}, config["linkPalette"], {"callback":linkPaletteCallback}));
+  };
+
+  jQuery.fn.richEditor = function(config){
     var root = this;
     var form = root.parents("form");
 
@@ -48,17 +97,8 @@
         this.oFCKeditor.ReplaceTextarea() ;
         if(!config["submit_to_save"]){ addDynamicSave() };
       }
-      root.hide().
-        siblings(".previewable").hide().end().
-        siblings("iframe").fadeIn("fast").end();
     };
-/* Hiki
-    function activateHikiAndPreview(){
-      root.fadeIn("fast").
-        siblings("iframe").hide().end().
-        siblings(".previewable").fadeIn("fast");
-    };
-*/
+
     function addDynamicSave(){
       form.one("submit", createHistory).
            find("input[type=submit]").disable().end().
@@ -110,14 +150,7 @@
       return false;
     };
 
-    function dispatch(){
-      if(config["initialState"] == "html"){
-        activateFCKeditor();
-      }else{
-        activateHikiAndPreview();
-      }
-    };
-    dispatch();
+    activateFCKeditor();
   };
 
   jQuery.fn.reloadLabelRadios = function(config){
