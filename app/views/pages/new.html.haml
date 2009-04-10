@@ -20,22 +20,44 @@
         %td= f.text_field(:display_name)
       = render :partial => 'page_form', :locals =>{:form =>f }
     %h2
-      =f.label(:content, h(_("Page|Content")))
+      %label{:for=>"page_content_rich"}&= _("Page|Content")
       %span.operation.trigger= _("Link Palette")
     %div.content
-      = f.text_area(:content, :id=>"page_content", :size=>"80x70")
+      = f.radio_button(:format_type, "html")
+      %label{:for => "page_format_type_html"}&= _("Rich text")
+      = f.radio_button(:format_type, "hiki")
+      %label{:for => "page_format_type_hiki"}&= _("Wiki text")
+
+      #hiki-content
+        #preview
+          %ul
+            %li.hide= link_to(_("Hide preview"), '', :class => "operation")
+            %li.show= link_to(_("Show preview"), '', :class => "operation")
+          .rendered
+        = f.text_area(:content, :name => "page[content_hiki]", :id=>"page_content_text", :size=>"100x30")
+      #html-content
+        = f.text_area(:content, :name => "page[content_html]", :id=>"page_content_rich", :size=>"80x70")
 
     .submit
       = submit_tag _("Create %{entity}") % {:entity => _("page")}
 
 :ruby
   e_opt = editor_opt(@page).merge(:submit_to_save => true)
-  p_opt = palette_opt(@page).merge(:editor => "page_content")
+  p_opt = palette_opt(@page).merge(:editor => "page_content_rich")
+  preview_opt = {:url => preview_new_note_page_path(current_note), :textarea => "#wiki-content textarea" }
 
 :javascript
   $(document).ready(function(){
-    jQuery("#page_content").editor(#{e_opt.to_json});
+    jQuery("#page_content_rich").editor(#{e_opt.to_json});
     jQuery("#linkPalette").linkPalette(#{p_opt.to_json})
+    jQuery("#preview").preview(#{preview_opt.to_json});
+    $("input[type=radio][name='page[format_type]']").change(function(){
+      if($(this).val() == "hiki"){
+        $("#hiki-content").show(); $("#html-content").hide();
+      }else{
+        $("#hiki-content").hide(); $("#html-content").show();
+      }
+    });
 
     var label_form = $("div.labels-form");
     label_form.manageLabel();

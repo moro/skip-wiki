@@ -69,7 +69,7 @@ end
 
 Given( /^そのノートにはページ"(.*)"が作成済みである$/)  do |page_name|
   attrs = valid_attributes[:page].merge(name_options(page_name))
-  attrs[:content] = "Content for the page `#{page_name}'"
+  attrs[:content_html] = "Content for the page `#{page_name}'"
   @page = @note.pages.add(attrs, @user)
   @page.save!
 end

@@ -55,7 +55,7 @@ class PagesController < ApplicationController
   def preview
     respond_to do |format|
       format.js do
-        render :text=> render_hiki(params[:history][:content])
+        render :text=> render_hiki(params[:page][:content_hiki])
       end
     end
   end
