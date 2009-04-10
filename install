@@ -1,0 +1,341 @@
+スクリプトは 2009年04月09日 15時02分59秒
+ に開始しました]0;pastaonly@ubuntu-vbox: ~/git/skip-wikipastaonly@ubuntu-vbox:~/git/skip-wiki$ sudo apt-get install rubygems
+[sudo] password for pastaonly: 
+パッケージリストを読み込んでいます... 0%パッケージリストを読み込んでいます... 0%パッケージリストを読み込んでいます... 8%パッケージリストを読み込んでいます... 完了
+依存関係ツリーを作成しています... 0%          依存関係ツリーを作成しています... 0%依存関係ツリーを作成しています... 50%依存関係ツリーを作成しています... 50%依存関係ツリーを作成しています       
+状態情報を読み取っています... 0%状態情報を読み取っています... 1%状態情報を読み取っています... 完了
+以下の特別パッケージがインストールされます:
+  irb1.8 libgems-ruby1.8 libopenssl-ruby1.8 libreadline-ruby1.8 libruby1.8 rdoc1.8 ruby1.8
+提案パッケージ:
+  graphviz ri1.8 ruby1.8-examples
+以下のパッケージが新たにインストールされます:
+  irb1.8 libgems-ruby1.8 libopenssl-ruby1.8 libreadline-ruby1.8 libruby1.8 rdoc1.8 ruby1.8 rubygems
+アップグレード: 0 個、新規インストール: 8 個、削除: 0 個、保留: 324 個。
+2194kB のアーカイブを取得する必要があります。
+この操作後に追加で 15.5MB のディスク容量が消費されます。
+続行しますか [Y/n]? Y
+0% [処理中]              取得:1 http://ubuntutym.u-toyama.ac.jp hardy-updates/main libruby1.8 1.8.6.111-2ubuntu1.2 [1384kB]
+              0% [1 libruby1.8 3433/1384kB 0%]                                20% [1 libruby1.8 450509/1384kB 32%]                                    46% [1 libruby1.8 1010005/1384kB 72%]                                     63% [処理中]               取得:2 http://ubuntutym.u-toyama.ac.jp hardy-updates/universe libreadline-ruby1.8 1.8.6.111-2ubuntu1.2 [10.5kB]
+               63% [2 libreadline-ruby1.8 0/10.5kB 0%]                                       63% [処理中]               取得:3 http://ubuntutym.u-toyama.ac.jp hardy-updates/main ruby1.8 1.8.6.111-2ubuntu1.2 [24.9kB]
+               63% [3 ruby1.8 0/24.9kB 0%]                           64% [処理中]               取得:4 http://ubuntutym.u-toyama.ac.jp hardy-updates/universe irb1.8 1.8.6.111-2ubuntu1.2 [74.1kB]
+               64% [4 irb1.8 0/74.1kB 0%]                          68% [処理中]               取得:5 http://ubuntutym.u-toyama.ac.jp hardy-updates/universe rdoc1.8 1.8.6.111-2ubuntu1.2 [125kB]
+               68% [5 rdoc1.8 0/125kB 0%]                          73% [処理中]               取得:6 http://ubuntutym.u-toyama.ac.jp hardy-updates/universe libopenssl-ruby1.8 1.8.6.111-2ubuntu1.2 [108kB]
+               73% [6 libopenssl-ruby1.8 0/108kB 0%]                                     78% [処理中]               取得:7 http://ubuntutym.u-toyama.ac.jp hardy/universe libgems-ruby1.8 0.9.4-4 [416kB]
+               78% [7 libgems-ruby1.8 0/416kB 0%]                                  97% [処理中]               取得:8 http://ubuntutym.u-toyama.ac.jp hardy/universe rubygems 0.9.4-4 [51.7kB]
+               98% [8 rubygems 13090/51.7kB 25%]                                 100% [処理中]                2194kB を 2s で取得しました (1079kB/s)
+未選択パッケージ libruby1.8 を選択しています。
+(データベースを読み込んでいます ... 現在 103123 個のファイルとディレクトリがインストールされています。)
+(.../libruby1.8_1.8.6.111-2ubuntu1.2_i386.deb から) libruby1.8 を展開しています...
+未選択パッケージ libreadline-ruby1.8 を選択しています。
+(.../libreadline-ruby1.8_1.8.6.111-2ubuntu1.2_i386.deb から) libreadline-ruby1.8 を展開しています...
+未選択パッケージ ruby1.8 を選択しています。
+(.../ruby1.8_1.8.6.111-2ubuntu1.2_i386.deb から) ruby1.8 を展開しています...
+未選択パッケージ irb1.8 を選択しています。
+(.../irb1.8_1.8.6.111-2ubuntu1.2_all.deb から) irb1.8 を展開しています...
+未選択パッケージ rdoc1.8 を選択しています。
+(.../rdoc1.8_1.8.6.111-2ubuntu1.2_all.deb から) rdoc1.8 を展開しています...
+未選択パッケージ libopenssl-ruby1.8 を選択しています。
+(.../libopenssl-ruby1.8_1.8.6.111-2ubuntu1.2_i386.deb から) libopenssl-ruby1.8 を展開しています...
+未選択パッケージ libgems-ruby1.8 を選択しています。
+(.../libgems-ruby1.8_0.9.4-4_all.deb から) libgems-ruby1.8 を展開しています...
+未選択パッケージ rubygems を選択しています。
+(.../rubygems_0.9.4-4_all.deb から) rubygems を展開しています...
+libruby1.8 (1.8.6.111-2ubuntu1.2) を設定しています ...
+
+libreadline-ruby1.8 (1.8.6.111-2ubuntu1.2) を設定しています ...
+ruby1.8 (1.8.6.111-2ubuntu1.2) を設定しています ...
+irb1.8 (1.8.6.111-2ubuntu1.2) を設定しています ...
+
+rdoc1.8 (1.8.6.111-2ubuntu1.2) を設定しています ...
+libopenssl-ruby1.8 (1.8.6.111-2ubuntu1.2) を設定しています ...
+libgems-ruby1.8 (0.9.4-4) を設定しています ...
+rubygems (0.9.4-4) を設定しています ...
+Processing triggers for libc6 ...
+ldconfig deferred processing now taking place
+]0;pastaonly@ubuntu-vbox: ~/git/skip-wikipastaonly@ubuntu-vbox:~/git/skip-wiki$ 
+]0;pastaonly@ubuntu-vbox: ~/git/skip-wikipastaonly@ubuntu-vbox:~/git/skip-wiki$ 
+]0;pastaonly@ubuntu-vbox: ~/git/skip-wikipastaonly@ubuntu-vbox:~/git/skip-wiki$ sudo gem install gettext --version 1.93.0
+Bulk updating Gem source index for: http://gems.rubyforge.org
+ERROR:  While executing gem ... (Gem::GemNotFoundException)
+    Could not find gettext (= 1.93.0) in any repository
+]0;pastaonly@ubuntu-vbox: ~/git/skip-wikipastaonly@ubuntu-vbox:~/git/skip-wiki$ sudo gem install fastercsv
+Bulk updating Gem source index for: http://gems.rubyforge.org
+Successfully installed fastercsv-1.4.0
+Installing ri documentation for fastercsv-1.4.0...
+Installing RDoc documentation for fastercsv-1.4.0...
+]0;pastaonly@ubuntu-vbox: ~/git/skip-wikipastaonly@ubuntu-vbox:~/git/skip-wiki$ sudo gem install gettext --version 1.93.0
+Successfully installed gettext-1.93.0
+Installing ri documentation for gettext-1.93.0...
+Installing RDoc documentation for gettext-1.93.0...
+]0;pastaonly@ubuntu-vbox: ~/git/skip-wikipastaonly@ubuntu-vbox:~/git/skip-wiki$ sudo gem install ruby-openid
+Successfully installed ruby-openid-2.1.4
+Installing ri documentation for ruby-openid-2.1.4...
+Installing RDoc documentation for ruby-openid-2.1.4...
+]0;pastaonly@ubuntu-vbox: ~/git/skip-wikipastaonly@ubuntu-vbox:~/git/skip-wiki$ sudo gem install rails --version 2.1.2
+Install required dependency rake? [Yn]  Y
+Install required dependency activesupport? [Yn]  Y
+Install required dependency activerecord? [Yn]  Y
+Install required dependency actionpack? [Yn]  Y
+Install required dependency actionmailer? [Yn]  Y
+Install required dependency activeresource? [Yn]  Y
+Successfully installed rails-2.1.2
+Successfully installed rake-0.8.4
+Successfully installed activesupport-2.1.2
+Successfully installed activerecord-2.1.2
+Successfully installed actionpack-2.1.2
+Successfully installed actionmailer-2.1.2
+Successfully installed activeresource-2.1.2
+Installing ri documentation for rake-0.8.4...
+Installing ri documentation for activesupport-2.1.2...
+Installing ri documentation for activerecord-2.1.2...
+Installing ri documentation for actionpack-2.1.2...
+Installing ri documentation for actionmailer-2.1.2...
+Installing ri documentation for activeresource-2.1.2...
+Installing RDoc documentation for rake-0.8.4...
+Installing RDoc documentation for activesupport-2.1.2...
+Installing RDoc documentation for activerecord-2.1.2...
+Installing RDoc documentation for actionpack-2.1.2...
+Installing RDoc documentation for actionmailer-2.1.2...
+Installing RDoc documentation for activeresource-2.1.2...
+]0;pastaonly@ubuntu-vbox: ~/git/skip-wikipastaonly@ubuntu-vbox:~/git/skip-wiki$ sudo gem install mysql
+Select which gem to install for your platform (i486-linux)
+ 1. mysql 2.7.3 (mswin32)
+ 2. mysql 2.7.1 (mswin32)
+ 3. mysql 2.7 (ruby)
+ 4. mysql 2.6 (ruby)
+ 5. Skip this gem
+ 6. Cancel installation
+> 3
+Building native extensions.  This could take a while...
+ERROR:  While executing gem ... (Gem::Installer::ExtensionBuildError)
+    ERROR: Failed to build gem native extension.
+
+ruby extconf.rb install mysql
+sh: ruby: not found
+
+
+Gem files will remain installed in /var/lib/gems/1.8/gems/mysql-2.7 for inspection.
+Results logged to /var/lib/gems/1.8/gems/mysql-2.7/gem_make.out
+]0;pastaonly@ubuntu-vbox: ~/git/skip-wikipastaonly@ubuntu-vbox:~/git/skip-wiki$ 
+]0;pastaonly@ubuntu-vbox: ~/git/skip-wikipastaonly@ubuntu-vbox:~/git/skip-wiki$ 
+]0;pastaonly@ubuntu-vbox: ~/git/skip-wikipastaonly@ubuntu-vbox:~/git/skip-wiki$ mkdir tmp log
+]0;pastaonly@ubuntu-vbox: ~/git/skip-wikipastaonly@ubuntu-vbox:~/git/skip-wiki$ cp config/database.yml.sample config.[K/database.yml.sample [K[K[K[K[K[K[K[K
+]0;pastaonly@ubuntu-vbox: ~/git/skip-wikipastaonly@ubuntu-vbox:~/git/skip-wiki$ mysql -u root -p
+プログラム 'mysql' はまだインストールされていません。  次のように入力することでインストールできます:
+sudo apt-get install mysql-client-5.0
+bash: mysql: command not found
+]0;pastaonly@ubuntu-vbox: ~/git/skip-wikipastaonly@ubuntu-vbox:~/git/skip-wiki$ aput -[K[K[K[Kt-get install mysql-client5.0
+E: ロックファイル /var/lib/dpkg/lock をオープンできません - open (13 Permission denied)
+E: Unable to lock the administration directory (/var/lib/dpkg/), are you root?
+]0;pastaonly@ubuntu-vbox: ~/git/skip-wikipastaonly@ubuntu-vbox:~/git/skip-wiki$ 
+]0;pastaonly@ubuntu-vbox: ~/git/skip-wikipastaonly@ubuntu-vbox:~/git/skip-wiki$ apt-get install mysql-client5.0[1@s[1@u[1@d[1@o[1@ 
+パッケージリストを読み込んでいます... 0%パッケージリストを読み込んでいます... 0%パッケージリストを読み込んでいます... 7%パッケージリストを読み込んでいます... 完了
+依存関係ツリーを作成しています... 0%          依存関係ツリーを作成しています... 0%依存関係ツリーを作成しています... 0%依存関係ツリーを作成しています... 20%依存関係ツリーを作成しています... 50%依存関係ツリーを作成しています... 50%依存関係ツリーを作成しています... 55%依存関係ツリーを作成しています... 65%依存関係ツリーを作成しています... 73%依存関係ツリーを作成しています... 84%依存関係ツリーを作成しています... 94%依存関係ツリーを作成しています       
+状態情報を読み取っています... 0%状態情報を読み取っています... 1%状態情報を読み取っています... 完了
+E: パッケージ mysql-client5.0 が見つかりません
+]0;pastaonly@ubuntu-vbox: ~/git/skip-wikipastaonly@ubuntu-vbox:~/git/skip-wiki$ [Kpastaonly@ubuntu-vbox:~/git/skip-wiki$ sudo apt-get install mysql-client-5.0
+
+パッケージリストを読み込んでいます... 0%パッケージリストを読み込んでいます... 100%パッケージリストを読み込んでいます... 完了
+依存関係ツリーを作成しています... 0%          依存関係ツリーを作成しています... 0%依存関係ツリーを作成しています... 10%依存関係ツリーを作成しています... 50%依存関係ツリーを作成しています... 50%依存関係ツリーを作成しています... 52%依存関係ツリーを作成しています... 61%依存関係ツリーを作成しています... 72%依存関係ツリーを作成しています... 84%依存関係ツリーを作成しています... 95%依存関係ツリーを作成しています       
+状態情報を読み取っています... 0%状態情報を読み取っています... 1%状態情報を読み取っています... 完了
+以下の特別パッケージがインストールされます:
+  libdbd-mysql-perl libdbi-perl libmysqlclient15off libnet-daemon-perl libplrpc-perl mysql-common
+提案パッケージ:
+  dbishell libcompress-zlib-perl mysql-doc-5.0
+以下のパッケージが新たにインストールされます:
+  libdbd-mysql-perl libdbi-perl libmysqlclient15off libnet-daemon-perl libplrpc-perl mysql-client-5.0
+  mysql-common
+アップグレード: 0 個、新規インストール: 7 個、削除: 0 個、保留: 324 個。
+10.7MB のアーカイブを取得する必要があります。
+この操作後に追加で 25.4MB のディスク容量が消費されます。
+続行しますか [Y/n]? 0% [処理中]              取得:1 http://ubuntutym.u-toyama.ac.jp hardy-updates/main mysql-common 5.0.51a-3ubuntu5.4 [60.3kB]
+              0% [1 mysql-common 0/60.3kB 0%]                               0% [処理中]              取得:2 http://ubuntutym.u-toyama.ac.jp hardy-updates/main libmysqlclient15off 5.0.51a-3ubuntu5.4 [1837kB]
+              0% [2 libmysqlclient15off 0/1837kB 0%]                                      2% [2 libmysqlclient15off 196608/1837kB 10%]4% [2 libmysqlclient15off 393216/1837kB 21%]7% [2 libmysqlclient15off 709445/1837kB 38%]8% [2 libmysqlclient15off 840517/1837kB 45%]9% [2 libmysqlclient15off 971589/1837kB 52%]                                            11% [2 libmysqlclient15off 1168197/1837kB 63%]14% [2 libmysqlclient15off 1529017/1837kB 83%]16% [2 libmysqlclient15off 1660089/1837kB 90%]                                              17% [処理中]               取得:3 http://ubuntutym.u-toyama.ac.jp hardy/main libnet-daemon-perl 0.38-1.1 [45.9kB]
+               17% [3 libnet-daemon-perl 0/45.9kB 0%]                                      18% [処理中]               取得:4 http://ubuntutym.u-toyama.ac.jp hardy/main libplrpc-perl 0.2017-1.1 [35.0kB]
+               18% [4 libplrpc-perl 0/35.0kB 0%]                                 18% [処理中]               取得:5 http://ubuntutym.u-toyama.ac.jp hardy/main libdbi-perl 1.601-1 [771kB]
+               18% [5 libdbi-perl 0/771kB 0%]                              20% [5 libdbi-perl 262144/771kB 34%]                                    22% [5 libdbi-perl 483328/771kB 62%]                                                              396kB/s 20s25% [5 libdbi-perl 707415/771kB 91%]                                                              396kB/s 20s25% [処理中]                                                                                   396kB/s 20s                                                                                                             取得:6 http://ubuntutym.u-toyama.ac.jp hardy/main libdbd-mysql-perl 4.005-1 [134kB]
+25% [6 libdbd-mysql-perl 0/134kB 0%]                                                              396kB/s 20s26% [処理中]                                                                                   396kB/s 19s                                                                                                             取得:7 http://ubuntutym.u-toyama.ac.jp hardy-updates/main mysql-client-5.0 5.0.51a-3ubuntu5.4 [7826kB]
+26% [7 mysql-client-5.0 0/7826kB 0%]                                                              396kB/s 19s29% [7 mysql-client-5.0 262144/7826kB 3%]                                                         396kB/s 19s31% [7 mysql-client-5.0 458752/7826kB 5%]                                                         396kB/s 18s34% [7 mysql-client-5.0 785079/7826kB 10%]                                                        396kB/s 17s37% [7 mysql-client-5.0 1112759/7826kB 14%]                                                       396kB/s 16s40% [7 mysql-client-5.0 1440439/7826kB 18%]                                                       396kB/s 16s42% [7 mysql-client-5.0 1703936/7826kB 21%]                                                       396kB/s 15s43% [7 mysql-client-5.0 1781760/7826kB 22%]                                                       396kB/s 15s45% [7 mysql-client-5.0 2039808/7826kB 26%]                                                       396kB/s 14s47% [7 mysql-client-5.0 2162688/7826kB 27%]                                                       396kB/s 14s48% [7 mysql-client-5.0 2314240/7826kB 29%]                                                       425kB/s 12s49% [7 mysql-client-5.0 2423479/7826kB 30%]                                                       425kB/s 12s52% [7 mysql-client-5.0 2752512/7826kB 35%]                                                       425kB/s 11s55% [7 mysql-client-5.0 3078839/7826kB 39%]                                                       425kB/s 11s57% [7 mysql-client-5.0 3311119/7826kB 42%]                                                       425kB/s 10s59% [7 mysql-client-5.0 3436679/7826kB 43%]                                                       425kB/s 10s61% [7 mysql-client-5.0 3649839/7826kB 46%]                                                        425kB/s 9s62% [7 mysql-client-5.0 3799735/7826kB 48%]                                                        425kB/s 9s63% [7 mysql-client-5.0 3918479/7826kB 50%]                                                        425kB/s 9s64% [7 mysql-client-5.0 3984015/7826kB 50%]                                                        425kB/s 9s65% [7 mysql-client-5.0 4115087/7826kB 52%]                                                        425kB/s 8s67% [7 mysql-client-5.0 4350639/7826kB 55%]                                                        425kB/s 8s69% [7 mysql-client-5.0 4520631/7826kB 57%]                                                        355kB/s 9s70% [7 mysql-client-5.0 4651703/7826kB 59%]                                                        355kB/s 8s71% [7 mysql-client-5.0 4728615/7826kB 60%]                                                        355kB/s 8s72% [7 mysql-client-5.0 4913847/7826kB 62%]                                                        355kB/s 8s74% [7 mysql-client-5.0 5106919/7826kB 65%]                                                        355kB/s 7s76% [7 mysql-client-5.0 5302559/7826kB 67%]                                                        355kB/s 7s77% [7 mysql-client-5.0 5422279/7826kB 69%]                                                        355kB/s 6s78% [7 mysql-client-5.0 5570560/7826kB 71%]                                                        355kB/s 6s80% [7 mysql-client-5.0 5746688/7826kB 73%]                                                        355kB/s 5s81% [7 mysql-client-5.0 5831351/7826kB 74%]                                                        355kB/s 5s83% [7 mysql-client-5.0 6042779/7826kB 77%]                                                        355kB/s 5s84% [7 mysql-client-5.0 6119424/7826kB 78%]                                                        355kB/s 4s85% [7 mysql-client-5.0 6326019/7826kB 80%]                                                        298kB/s 5s86% [7 mysql-client-5.0 6430720/7826kB 82%]                                                        298kB/s 4s88% [7 mysql-client-5.0 6606339/7826kB 84%]                                                        298kB/s 4s90% [7 mysql-client-5.0 6799059/7826kB 86%]                                                        298kB/s 3s92% [7 mysql-client-5.0 6971339/7826kB 89%]                                                        298kB/s 2s92% [7 mysql-client-5.0 6971339/7826kB 89%]                                                        298kB/s 2s92% [7 mysql-client-5.0 6987776/7826kB 89%]                                                        298kB/s 2s92% [7 mysql-client-5.0 7000064/7826kB 89%]                                                        298kB/s 2s92% [7 mysql-client-5.0 7036875/7826kB 89%]                                                        298kB/s 2s92% [7 mysql-client-5.0 7076535/7826kB 90%]                                                        298kB/s 2s93% [7 mysql-client-5.0 7102464/7826kB 90%]                                                        298kB/s 2s93% [7 mysql-client-5.0 7142071/7826kB 91%]                                                        298kB/s 2s93% [7 mysql-client-5.0 7142071/7826kB 91%]                                                        126kB/s 5s94% [7 mysql-client-5.0 7192576/7826kB 91%]                                                        126kB/s 5s94% [7 mysql-client-5.0 7273143/7826kB 92%]                                                        126kB/s 4s100% [処理中]                                                                                   126kB/s 0s                                                                                                             10.7MB を 32s で取得しました (325kB/s)
+未選択パッケージ mysql-common を選択しています。
+(データベースを読み込んでいます ... 現在 105518 個のファイルとディレクトリがインストールされています。)
+(.../mysql-common_5.0.51a-3ubuntu5.4_all.deb から) mysql-common を展開しています...
+未選択パッケージ libmysqlclient15off を選択しています。
+(.../libmysqlclient15off_5.0.51a-3ubuntu5.4_i386.deb から) libmysqlclient15off を展開しています...
+未選択パッケージ libnet-daemon-perl を選択しています。
+(.../libnet-daemon-perl_0.38-1.1_all.deb から) libnet-daemon-perl を展開しています...
+未選択パッケージ libplrpc-perl を選択しています。
+(.../libplrpc-perl_0.2017-1.1_all.deb から) libplrpc-perl を展開しています...
+未選択パッケージ libdbi-perl を選択しています。
+(.../libdbi-perl_1.601-1_i386.deb から) libdbi-perl を展開しています...
+未選択パッケージ libdbd-mysql-perl を選択しています。
+(.../libdbd-mysql-perl_4.005-1_i386.deb から) libdbd-mysql-perl を展開しています...
+未選択パッケージ mysql-client-5.0 を選択しています。
+(.../mysql-client-5.0_5.0.51a-3ubuntu5.4_i386.deb から) mysql-client-5.0 を展開しています...
+mysql-common (5.0.51a-3ubuntu5.4) を設定しています ...
+libmysqlclient15off (5.0.51a-3ubuntu5.4) を設定しています ...
+
+libnet-daemon-perl (0.38-1.1) を設定しています ...
+libplrpc-perl (0.2017-1.1) を設定しています ...
+libdbi-perl (1.601-1) を設定しています ...
+libdbd-mysql-perl (4.005-1) を設定しています ...
+mysql-client-5.0 (5.0.51a-3ubuntu5.4) を設定しています ...
+Processing triggers for libc6 ...
+ldconfig deferred processing now taking place
+]0;pastaonly@ubuntu-vbox: ~/git/skip-wikipastaonly@ubuntu-vbox:~/git/skip-wiki$ sudo apt-get install mysql-client-5.0[K[K[K[K[K[K[K[K[K[K[K[Kl
+パッケージリストを読み込んでいます... 0%パッケージリストを読み込んでいます... 0%パッケージリストを読み込んでいます... 7%パッケージリストを読み込んでいます... 完了
+依存関係ツリーを作成しています... 0%          依存関係ツリーを作成しています... 0%依存関係ツリーを作成しています... 0%依存関係ツリーを作成しています... 8%依存関係ツリーを作成しています... 50%依存関係ツリーを作成しています... 50%依存関係ツリーを作成しています... 53%依存関係ツリーを作成しています... 64%依存関係ツリーを作成しています... 75%依存関係ツリーを作成しています... 86%依存関係ツリーを作成しています... 98%依存関係ツリーを作成しています       
+状態情報を読み取っています... 0%状態情報を読み取っています... 1%状態情報を読み取っています... 完了
+E: パッケージ mysql が見つかりません
+]0;pastaonly@ubuntu-vbox: ~/git/skip-wikipastaonly@ubuntu-vbox:~/git/skip-wiki$ sudo apt-get install mysql-server
+パッケージリストを読み込んでいます... 0%パッケージリストを読み込んでいます... 100%パッケージリストを読み込んでいます... 完了
+依存関係ツリーを作成しています... 0%          依存関係ツリーを作成しています... 0%依存関係ツリーを作成しています... 8%依存関係ツリーを作成しています... 50%依存関係ツリーを作成しています... 50%依存関係ツリーを作成しています... 53%依存関係ツリーを作成しています... 64%依存関係ツリーを作成しています... 75%依存関係ツリーを作成しています... 88%依存関係ツリーを作成しています... 99%依存関係ツリーを作成しています       
+状態情報を読み取っています... 0%状態情報を読み取っています... 1%状態情報を読み取っています... 完了
+以下の特別パッケージがインストールされます:
+  mysql-server-5.0
+提案パッケージ:
+  mysql-doc-5.0 tinyca
+推奨パッケージ:
+  libhtml-template-perl mailx
+以下のパッケージが新たにインストールされます:
+  mysql-server mysql-server-5.0
+アップグレード: 0 個、新規インストール: 2 個、削除: 0 個、保留: 324 個。
+27.5MB のアーカイブを取得する必要があります。
+この操作後に追加で 86.2MB のディスク容量が消費されます。
+続行しますか [Y/n]? Y
+0% [処理中]              取得:1 http://ubuntutym.u-toyama.ac.jp hardy-updates/main mysql-server-5.0 5.0.51a-3ubuntu5.4 [27.4MB]
+              0% [1 mysql-server-5.0 3431/27.4MB 0%]                                      0% [1 mysql-server-5.0 134503/27.4MB 0%]1% [1 mysql-server-5.0 327047/27.4MB 1%]2% [1 mysql-server-5.0 589191/27.4MB 2%]3% [1 mysql-server-5.0 916871/27.4MB 3%]                                        4% [1 mysql-server-5.0 1310087/27.4MB 4%]5% [1 mysql-server-5.0 1572231/27.4MB 5%]7% [1 mysql-server-5.0 2030983/27.4MB 7%]8% [1 mysql-server-5.0 2387968/27.4MB 8%]9% [1 mysql-server-5.0 2686343/27.4MB 9%]                                         10% [1 mysql-server-5.0 2883263/27.4MB 10%]11% [1 mysql-server-5.0 3079559/27.4MB 11%]                                           12% [1 mysql-server-5.0 3472775/27.4MB 12%]                                                       544kB/s 44s13% [1 mysql-server-5.0 3734919/27.4MB 13%]                                                       544kB/s 43s14% [1 mysql-server-5.0 3997063/27.4MB 14%]                                                       544kB/s 43s15% [1 mysql-server-5.0 4324743/27.4MB 15%]                                                       544kB/s 42s16% [1 mysql-server-5.0 4652423/27.4MB 16%]                                                       544kB/s 41s18% [1 mysql-server-5.0 4980415/27.4MB 18%]                                                       544kB/s 41s19% [1 mysql-server-5.0 5307783/27.4MB 19%]                                                       544kB/s 40s19% [1 mysql-server-5.0 5438855/27.4MB 19%]                                                       544kB/s 40s20% [1 mysql-server-5.0 5635775/27.4MB 20%]                                                       544kB/s 40s20% [1 mysql-server-5.0 5700999/27.4MB 20%]                                                       544kB/s 40s20% [1 mysql-server-5.0 5700999/27.4MB 20%]                                                       544kB/s 40s20% [1 mysql-server-5.0 5700999/27.4MB 20%]                                                       364kB/s 59s20% [1 mysql-server-5.0 5700999/27.4MB 20%]                                                       364kB/s 59s20% [1 mysql-server-5.0 5700999/27.4MB 20%]                                                       364kB/s 59s20% [1 mysql-server-5.0 5766535/27.4MB 21%]                                                       364kB/s 59s21% [1 mysql-server-5.0 5787648/27.4MB 21%]                                                       364kB/s 59s21% [1 mysql-server-5.0 5832071/27.4MB 21%]                                                       364kB/s 59s21% [1 mysql-server-5.0 5832383/27.4MB 21%]                                                       364kB/s 59s21% [1 mysql-server-5.0 5877760/27.4MB 21%]                                                       364kB/s 59s21% [1 mysql-server-5.0 5897919/27.4MB 21%]                                                       364kB/s 59s21% [1 mysql-server-5.0 5963143/27.4MB 21%]                                                       364kB/s 59s21% [1 mysql-server-5.0 5963143/27.4MB 21%]                                                  41.9kB/s 8min33s21% [1 mysql-server-5.0 5963143/27.4MB 21%]                                                  41.9kB/s 8min33s21% [1 mysql-server-5.0 5963143/27.4MB 21%]                                                  41.9kB/s 8min33s21% [1 mysql-server-5.0 6028679/27.4MB 21%]                                                  41.9kB/s 8min31s22% [1 mysql-server-5.0 6225287/27.4MB 22%]                                                  41.9kB/s 8min26s22% [1 mysql-server-5.0 6290823/27.4MB 22%]                                                  41.9kB/s 8min25s22% [1 mysql-server-5.0 6290823/27.4MB 22%]                                                  41.9kB/s 8min25s22% [1 mysql-server-5.0 6290823/27.4MB 22%]                                                  41.9kB/s 8min25s22% [1 mysql-server-5.0 6303744/27.4MB 22%]                                                  41.9kB/s 8min25s23% [1 mysql-server-5.0 6356359/27.4MB 23%]                                                  41.9kB/s 8min23s23% [1 mysql-server-5.0 6356359/27.4MB 23%]                                                  41.9kB/s 8min23s23% [1 mysql-server-5.0 6356359/27.4MB 23%]                                                  64.3kB/s 5min28s23% [1 mysql-server-5.0 6421895/27.4MB 23%]                                                  64.3kB/s 5min27s23% [1 mysql-server-5.0 6434816/27.4MB 23%]                                                  64.3kB/s 5min27s24% [1 mysql-server-5.0 6618815/27.4MB 24%]                                                  64.3kB/s 5min24s24% [1 mysql-server-5.0 6815111/27.4MB 24%]                                                  64.3kB/s 5min21s25% [1 mysql-server-5.0 6893568/27.4MB 25%]                                                  64.3kB/s 5min20s25% [1 mysql-server-5.0 7011719/27.4MB 25%]                                                  64.3kB/s 5min18s25% [1 mysql-server-5.0 7077888/27.4MB 25%]                                                  64.3kB/s 5min17s25% [1 mysql-server-5.0 7127040/27.4MB 25%]                                                  64.3kB/s 5min16s25% [1 mysql-server-5.0 7142791/27.4MB 26%]                                                  64.3kB/s 5min16s26% [1 mysql-server-5.0 7208327/27.4MB 26%]                                                  64.3kB/s 5min15s26% [1 mysql-server-5.0 7237632/27.4MB 26%]                                                   139kB/s 2min26s26% [1 mysql-server-5.0 7339711/27.4MB 26%]                                                   139kB/s 2min25s27% [1 mysql-server-5.0 7601543/27.4MB 27%]                                                   139kB/s 2min23s28% [1 mysql-server-5.0 7732615/27.4MB 28%]                                                   139kB/s 2min22s28% [1 mysql-server-5.0 7863687/27.4MB 28%]                                                   139kB/s 2min21s29% [1 mysql-server-5.0 8191367/27.4MB 29%]                                                   139kB/s 2min19s30% [1 mysql-server-5.0 8453511/27.4MB 30%]                                                   139kB/s 2min17s31% [1 mysql-server-5.0 8584583/27.4MB 31%]                                                   139kB/s 2min16s31% [1 mysql-server-5.0 8650119/27.4MB 31%]                                                   139kB/s 2min15s31% [1 mysql-server-5.0 8715655/27.4MB 31%]                                                   139kB/s 2min15s31% [1 mysql-server-5.0 8781191/27.4MB 32%]                                                   139kB/s 2min15s32% [1 mysql-server-5.0 8977799/27.4MB 32%]                                                   139kB/s 2min13s32% [1 mysql-server-5.0 9043335/27.4MB 32%]                                                    296kB/s 1min2s33% [1 mysql-server-5.0 9239943/27.4MB 33%]                                                    296kB/s 1min1s34% [1 mysql-server-5.0 9436551/27.4MB 34%]                                                       296kB/s 60s34% [1 mysql-server-5.0 9567935/27.4MB 34%]                                                       296kB/s 60s35% [1 mysql-server-5.0 9829767/27.4MB 35%]                                                       296kB/s 59s36% [1 mysql-server-5.0 10091911/27.4MB 36%]                                                      296kB/s 58s37% [1 mysql-server-5.0 10222983/27.4MB 37%]                                                      296kB/s 58s37% [1 mysql-server-5.0 10288519/27.4MB 37%]                                                      296kB/s 58s37% [1 mysql-server-5.0 10354055/27.4MB 37%]                                                      296kB/s 57s38% [1 mysql-server-5.0 10550663/27.4MB 38%]                                                      296kB/s 57s38% [1 mysql-server-5.0 10616199/27.4MB 38%]                                                      296kB/s 56s39% [1 mysql-server-5.0 10747271/27.4MB 39%]                                                      296kB/s 56s39% [1 mysql-server-5.0 10944191/27.4MB 39%]                                                      312kB/s 53s40% [1 mysql-server-5.0 11120640/27.4MB 40%]                                                      312kB/s 52s40% [1 mysql-server-5.0 11206023/27.4MB 40%]                                                      312kB/s 52s41% [1 mysql-server-5.0 11271559/27.4MB 41%]                                                      312kB/s 51s41% [1 mysql-server-5.0 11271559/27.4MB 41%]                                                      312kB/s 51s41% [1 mysql-server-5.0 11271559/27.4MB 41%]                                                      312kB/s 51s41% [1 mysql-server-5.0 11271559/27.4MB 41%]                                                      312kB/s 51s41% [1 mysql-server-5.0 11271871/27.4MB 41%]                                                      312kB/s 51s41% [1 mysql-server-5.0 11402631/27.4MB 41%]                                                      312kB/s 51s41% [1 mysql-server-5.0 11533703/27.4MB 42%]                                                      312kB/s 51s42% [1 mysql-server-5.0 11669504/27.4MB 42%]                                                      312kB/s 50s42% [1 mysql-server-5.0 11743232/27.4MB 42%]                                                      312kB/s 50s42% [1 mysql-server-5.0 11796159/27.4MB 43%]                                                  132kB/s 1min58s43% [1 mysql-server-5.0 11861383/27.4MB 43%]                                                  132kB/s 1min58s43% [1 mysql-server-5.0 11926919/27.4MB 43%]                                                  132kB/s 1min57s44% [1 mysql-server-5.0 12124160/27.4MB 44%]                                                  132kB/s 1min56s44% [1 mysql-server-5.0 12320135/27.4MB 44%]                                                  132kB/s 1min54s45% [1 mysql-server-5.0 12516743/27.4MB 45%]                                                  132kB/s 1min53s46% [1 mysql-server-5.0 12647815/27.4MB 46%]                                                  132kB/s 1min52s46% [1 mysql-server-5.0 12909959/27.4MB 47%]                                                  132kB/s 1min50s48% [1 mysql-server-5.0 13237639/27.4MB 48%]                                                  132kB/s 1min47s48% [1 mysql-server-5.0 13434247/27.4MB 48%]                                                  132kB/s 1min46s49% [1 mysql-server-5.0 13499783/27.4MB 49%]                                                  132kB/s 1min45s49% [1 mysql-server-5.0 13565319/27.4MB 49%]                                                      294kB/s 47s49% [1 mysql-server-5.0 13630855/27.4MB 49%]                                                      294kB/s 47s49% [1 mysql-server-5.0 13631167/27.4MB 49%]                                                      294kB/s 47s50% [1 mysql-server-5.0 13761927/27.4MB 50%]                                                      294kB/s 46s50% [1 mysql-server-5.0 13827463/27.4MB 50%]                                                      294kB/s 46s50% [1 mysql-server-5.0 13827463/27.4MB 50%]                                                      294kB/s 46s50% [1 mysql-server-5.0 13844480/27.4MB 50%]                                                      294kB/s 46s50% [1 mysql-server-5.0 13892999/27.4MB 50%]                                                      294kB/s 46s50% [1 mysql-server-5.0 13958535/27.4MB 50%]                                                      294kB/s 46s51% [1 mysql-server-5.0 14151680/27.4MB 51%]                                                      294kB/s 45s52% [1 mysql-server-5.0 14417287/27.4MB 52%]                                                      294kB/s 44s53% [1 mysql-server-5.0 14679431/27.4MB 53%]                                                   183kB/s 1min9s54% [1 mysql-server-5.0 15007423/27.4MB 54%]                                                   183kB/s 1min8s55% [1 mysql-server-5.0 15269567/27.4MB 55%]                                                   183kB/s 1min6s55% [1 mysql-server-5.0 15347712/27.4MB 55%]                                                   183kB/s 1min6s56% [1 mysql-server-5.0 15596935/27.4MB 56%]                                                   183kB/s 1min4s57% [1 mysql-server-5.0 15859391/27.4MB 57%]                                                   183kB/s 1min3s58% [1 mysql-server-5.0 16039936/27.4MB 58%]                                                   183kB/s 1min2s58% [1 mysql-server-5.0 16172591/27.4MB 58%]                                                   183kB/s 1min1s59% [1 mysql-server-5.0 16355328/27.4MB 59%]                                                      183kB/s 60s60% [1 mysql-server-5.0 16528831/27.4MB 60%]                                                      183kB/s 59s60% [1 mysql-server-5.0 16683591/27.4MB 60%]                                                      183kB/s 58s61% [1 mysql-server-5.0 16794551/27.4MB 61%]                                                      183kB/s 58s61% [1 mysql-server-5.0 16969728/27.4MB 61%]                                                      375kB/s 28s62% [1 mysql-server-5.0 17104179/27.4MB 62%]                                                      375kB/s 27s62% [1 mysql-server-5.0 17107931/27.4MB 62%]                                                      375kB/s 27s62% [1 mysql-server-5.0 17111683/27.4MB 62%]                                                      375kB/s 27s62% [1 mysql-server-5.0 17115435/27.4MB 62%]                                                      375kB/s 27s62% [1 mysql-server-5.0 17119187/27.4MB 62%]                                                      375kB/s 27s62% [1 mysql-server-5.0 17186091/27.4MB 62%]                                                      375kB/s 27s63% [1 mysql-server-5.0 17375891/27.4MB 63%]                                                      375kB/s 26s63% [1 mysql-server-5.0 17574451/27.4MB 64%]                                                      375kB/s 26s64% [1 mysql-server-5.0 17735051/27.4MB 64%]                                                      375kB/s 26s64% [1 mysql-server-5.0 17825471/27.4MB 64%]                                                      375kB/s 25s65% [1 mysql-server-5.0 17887232/27.4MB 65%]                                                      375kB/s 25s65% [1 mysql-server-5.0 18105891/27.4MB 66%]                                                      181kB/s 51s66% [1 mysql-server-5.0 18153151/27.4MB 66%]                                                      181kB/s 51s66% [1 mysql-server-5.0 18365771/27.4MB 66%]                                                      181kB/s 50s67% [1 mysql-server-5.0 18520531/27.4MB 67%]                                                      181kB/s 49s67% [1 mysql-server-5.0 18681856/27.4MB 68%]                                                      181kB/s 48s68% [1 mysql-server-5.0 18862171/27.4MB 68%]                                                      181kB/s 47s69% [1 mysql-server-5.0 19043211/27.4MB 69%]                                                      181kB/s 46s69% [1 mysql-server-5.0 19235931/27.4MB 70%]                                                      181kB/s 45s70% [1 mysql-server-5.0 19398335/27.4MB 70%]                                                      181kB/s 44s70% [1 mysql-server-5.0 19488768/27.4MB 71%]                                                      181kB/s 44s71% [1 mysql-server-5.0 19659003/27.4MB 71%]                                                      181kB/s 43s72% [1 mysql-server-5.0 19881251/27.4MB 72%]                                                      181kB/s 41s72% [1 mysql-server-5.0 20024331/27.4MB 73%]                                                      308kB/s 24s73% [1 mysql-server-5.0 20211211/27.4MB 73%]                                                      308kB/s 23s74% [1 mysql-server-5.0 20422656/27.4MB 74%]                                                      308kB/s 22s74% [1 mysql-server-5.0 20577983/27.4MB 75%]                                                      308kB/s 22s75% [1 mysql-server-5.0 20736811/27.4MB 75%]                                                      308kB/s 21s75% [1 mysql-server-5.0 20885731/27.4MB 76%]                                                      308kB/s 21s76% [1 mysql-server-5.0 21060931/27.4MB 76%]                                                      308kB/s 20s77% [1 mysql-server-5.0 21198171/27.4MB 77%]                                                      308kB/s 20s77% [1 mysql-server-5.0 21393811/27.4MB 78%]                                                      308kB/s 19s78% [1 mysql-server-5.0 21561023/27.4MB 78%]                                                      308kB/s 19s79% [1 mysql-server-5.0 21735451/27.4MB 79%]                                                      308kB/s 18s79% [1 mysql-server-5.0 21916491/27.4MB 79%]                                                      308kB/s 18s80% [1 mysql-server-5.0 22052864/27.4MB 80%]                                                      319kB/s 16s81% [1 mysql-server-5.0 22271271/27.4MB 81%]                                                      319kB/s 16s81% [1 mysql-server-5.0 22390991/27.4MB 81%]                                                      319kB/s 15s82% [1 mysql-server-5.0 22544063/27.4MB 82%]                                                      319kB/s 15s82% [1 mysql-server-5.0 22636271/27.4MB 82%]                                                      319kB/s 15s82% [1 mysql-server-5.0 22675135/27.4MB 82%]                                                      319kB/s 15s82% [1 mysql-server-5.0 22806207/27.4MB 83%]                                                      319kB/s 14s83% [1 mysql-server-5.0 22992511/27.4MB 83%]                                                      319kB/s 14s83% [1 mysql-server-5.0 23003136/27.4MB 83%]                                                      319kB/s 14s84% [1 mysql-server-5.0 23302031/27.4MB 84%]                                                      319kB/s 13s85% [1 mysql-server-5.0 23498752/27.4MB 85%]                                                      319kB/s 12s86% [1 mysql-server-5.0 23704991/27.4MB 86%]                                                      319kB/s 11s86% [1 mysql-server-5.0 23804271/27.4MB 86%]                                                      273kB/s 13s87% [1 mysql-server-5.0 23920319/27.4MB 87%]                                                      273kB/s 13s87% [1 mysql-server-5.0 24113791/27.4MB 87%]                                                      273kB/s 12s88% [1 mysql-server-5.0 24199168/27.4MB 88%]                                                      273kB/s 12s88% [1 mysql-server-5.0 24276992/27.4MB 88%]                                                      273kB/s 11s89% [1 mysql-server-5.0 24499231/27.4MB 89%]                                                      273kB/s 10s89% [1 mysql-server-5.0 24641215/27.4MB 89%]                                                      273kB/s 10s90% [1 mysql-server-5.0 24814591/27.4MB 90%]                                                       273kB/s 9s90% [1 mysql-server-5.0 24978111/27.4MB 91%]                                                       273kB/s 9s91% [1 mysql-server-5.0 25099967/27.4MB 91%]                                                       273kB/s 8s91% [1 mysql-server-5.0 25223168/27.4MB 91%]                                                       273kB/s 8s92% [1 mysql-server-5.0 25395671/27.4MB 92%]                                                       273kB/s 7s93% [1 mysql-server-5.0 25573791/27.4MB 93%]                                                       288kB/s 6s93% [1 mysql-server-5.0 25755327/27.4MB 93%]                                                       288kB/s 5s94% [1 mysql-server-5.0 25862871/27.4MB 94%]                                                       288kB/s 5s94% [1 mysql-server-5.0 26029311/27.4MB 94%]                                                       288kB/s 5s94% [1 mysql-server-5.0 26083007/27.4MB 95%]                                                       288kB/s 4s95% [1 mysql-server-5.0 26263552/27.4MB 95%]                                                       288kB/s 4s96% [1 mysql-server-5.0 26403071/27.4MB 96%]                                                       288kB/s 3s96% [1 mysql-server-5.0 26598711/27.4MB 96%]                                                       288kB/s 3s97% [1 mysql-server-5.0 26715511/27.4MB 97%]                                                       288kB/s 2s97% [1 mysql-server-5.0 26931591/27.4MB 98%]                                                       288kB/s 1s98% [1 mysql-server-5.0 27066047/27.4MB 98%]                                                       288kB/s 1s98% [1 mysql-server-5.0 27188551/27.4MB 99%]                                                       288kB/s 1s99% [1 mysql-server-5.0 27352071/27.4MB 99%]                                                       289kB/s 0s99% [処理中]                                                                                    289kB/s 0s                                                                                                             取得:2 http://ubuntutym.u-toyama.ac.jp hardy-updates/main mysql-server 5.0.51a-3ubuntu5.4 [54.2kB]
+99% [2 mysql-server 0/54.2kB 0%]                                                                   289kB/s 0s100% [処理中]                                                                                   289kB/s 0s                                                                                                             27.5MB を 1min46s で取得しました (259kB/s)
+パッケージを事前設定しています ...
+[?1049h[1;39r[4l[?25l[m(B[37m[40m[1;39r[H[2J[1;1H[1m[37m[44m[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K[1;1H[?25l[?12l[?25h[m(B[37m[44mパッケージの設定[14;5H[30m[47m┌───────────────────────────────┤ [31mmysql-server-5.0 を設定しています[30m ├───────────────────────────────┐[15;5H│ 強制ではないですが、MySQL を管理する "root" ユーザのパスワードを設定することを強くお勧めします。  │[1m[37m[40m [16;5H[m(B[30m[47m│                                                                                                   │[1m[37m[40m [17;5H[m(B[30m[47m│ 入力が空の場合はパスワードは変更されません。                                                      │[1m[37m[40m [18;5H[m(B[30m[47m│                                                                                                   │[1m[37m[40m [19;5H[m(B[30m[47m│ MySQL の "root" ユーザに対する新しいパスワード:                                                   │[1m[37m[40m [20;5H[m(B[30m[47m│                                                                                                   │[1m[37m[40m [21;5H[m(B[30m[47m│ [37m[44m_________________________________________________________________________________________________[30m[47m │[1m[37m[40m [22;5H[m(B[30m[47m│                                                                                                   │[1m[37m[40m [23;5H[m(B[30m[47m│                                              <了解>                                               │[1m[37m[40m [24;5H[m(B[30m[47m│                                                                                                   │[1m[37m[40m [25;5H[m(B[30m[47m└───────────────────────────────────────────────────────────────────────────────────────────────────┘[1m[37m[40m [26;6H                                                                                                     [21;7H[?25l[?12l[?25h[39;1H[m(B[37m[40m[m(B[39;49m[K[?1049l未選択パッケージ mysql-server-5.0 を選択しています。
+(データベースを読み込んでいます ... 現在 105780 個のファイルとディレクトリがインストールされています。)
+(.../mysql-server-5.0_5.0.51a-3ubuntu5.4_i386.deb から) mysql-server-5.0 を展開しています...
+[?1049h[1;39r[4l[?25l[m(B[37m[40m[1;39r[H[2J[1;1H[1m[37m[44m[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K[1;1H[?25l[?12l[?25h[m(B[37m[44mパッケージの設定[14;5H[30m[47m┌───────────────────────────────┤ [31mmysql-server-5.0 を設定しています[30m ├───────────────────────────────┐[15;5H│ 強制ではないですが、MySQL を管理する "root" ユーザのパスワードを設定することを強くお勧めします。  │[1m[37m[40m [16;5H[m(B[30m[47m│                                                                                                   │[1m[37m[40m [17;5H[m(B[30m[47m│ 入力が空の場合はパスワードは変更されません。                                                      │[1m[37m[40m [18;5H[m(B[30m[47m│                                                                                                   │[1m[37m[40m [19;5H[m(B[30m[47m│ MySQL の "root" ユーザに対する新しいパスワード:                                                   │[1m[37m[40m [20;5H[m(B[30m[47m│                                                                                                   │[1m[37m[40m [21;5H[m(B[30m[47m│ [37m[44m_________________________________________________________________________________________________[30m[47m │[1m[37m[40m [22;5H[m(B[30m[47m│                                                                                                   │[1m[37m[40m [23;5H[m(B[30m[47m│                                              <了解>                                               │[1m[37m[40m [24;5H[m(B[30m[47m│                                                                                                   │[1m[37m[40m [25;5H[m(B[30m[47m└───────────────────────────────────────────────────────────────────────────────────────────────────┘[1m[37m[40m [26;6H                                                                                                     [21;7H[?25l[23;52H[m(B[37m[41m<了解>[23;53H[?12l[?25h[30m[47m<了解>[21;7H[?25l[23;52H[37m[41m<了解>[23;53H[?12l[?25h[39;1H[40m[m(B[39;49m[K[?1049l未選択パッケージ mysql-server を選択しています。
+(.../mysql-server_5.0.51a-3ubuntu5.4_all.deb から) mysql-server を展開しています...
+mysql-server-5.0 (5.0.51a-3ubuntu5.4) を設定しています ...
+[?1049h[1;39r[4l[?25l[m(B[37m[40m[1;39r[H[2J[1;1H[1m[37m[44m[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K[1;1H[?25l[?12l[?25h[m(B[37m[44mパッケージの設定[14;5H[30m[47m┌───────────────────────────────┤ [31mmysql-server-5.0 を設定しています[30m ├───────────────────────────────┐[15;5H│ 強制ではないですが、MySQL を管理する "root" ユーザのパスワードを設定することを強くお勧めします。  │[1m[37m[40m [16;5H[m(B[30m[47m│                                                                                                   │[1m[37m[40m [17;5H[m(B[30m[47m│ 入力が空の場合はパスワードは変更されません。                                                      │[1m[37m[40m [18;5H[m(B[30m[47m│                                                                                                   │[1m[37m[40m [19;5H[m(B[30m[47m│ MySQL の "root" ユーザに対する新しいパスワード:                                                   │[1m[37m[40m [20;5H[m(B[30m[47m│                                                                                                   │[1m[37m[40m [21;5H[m(B[30m[47m│ [37m[44m_________________________________________________________________________________________________[30m[47m │[1m[37m[40m [22;5H[m(B[30m[47m│                                                                                                   │[1m[37m[40m [23;5H[m(B[30m[47m│                                              <了解>                                               │[1m[37m[40m [24;5H[m(B[30m[47m│                                                                                                   │[1m[37m[40m [25;5H[m(B[30m[47m└───────────────────────────────────────────────────────────────────────────────────────────────────┘[1m[37m[40m [26;6H                                                                                                     [21;7H[m(B[37m[44m****____[?25l[23;52H[41m<了解>[23;53H[?12l[?25h[39;1H[40m[m(B[39;49m[K[?1049l * Stopping MySQL database server mysqld       [110G [104G[ OK ]
+Reloading AppArmor profiles : done.
+ * Starting MySQL database server mysqld       [110G [104G[ OK ]
+ * Checking for corrupt, not cleanly closed and upgrade needing tables.
+
+mysql-server (5.0.51a-3ubuntu5.4) を設定しています ...
+]0;pastaonly@ubuntu-vbox: ~/git/skip-wikipastaonly@ubuntu-vbox:~/git/skip-wiki$ 
+]0;pastaonly@ubuntu-vbox: ~/git/skip-wikipastaonly@ubuntu-vbox:~/git/skip-wiki$ 
+]0;pastaonly@ubuntu-vbox: ~/git/skip-wikipastaonly@ubuntu-vbox:~/git/skip-wiki$ mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 1
+Server version: 5.0.51a-

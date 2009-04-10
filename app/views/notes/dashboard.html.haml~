@@ -27,8 +27,7 @@
         = link_to h(_("View All")), :controller => "notes", :action => "search" , :sortto_sym => "updated_on"
 
     #mypage
-      %h2
-        = icon_tag('folder_star') + _("Dashboard")
+      %h2&= _("Dashboard")
       %h3&= _("Accessible Note")
       %ul.accessible-notes
         - @notes.each do |note|
