@@ -17,7 +17,7 @@
           %li.show= link_to(_("Show preview"), '#', :class => "operation")
         .clear
         .rendered
-      = text_area_tag("history[content]", @page.content, :id=>"history_content", :size=>"100x30")
+      = text_area_tag("history[content]", @page.content, :id=>"history_content", :size=>"100x20")
 
     .submit
       %span.notice{:style=>"display:none"}&= _("Modified, need to save.")
@@ -29,7 +29,7 @@
 :javascript
   $(document).ready(function(){
     jQuery("div.content").skipEditor({
-      "currentFormatType" : "hiki",
+      "currentFormatType" : "#{@page.format_type}",
       "richEditor": {"name": "history_content", "basePath": "/skip-wiki/javascripts/fckeditor/", "height":350},
       "hikiEditor": {"selector" : "#history_content", "preview":{"selector":"div.preview", "url": "#{preview_new_note_page_path(current_note)}"} },
       "linkPalette" : jQuery.extend({"selector":"#linkPalette"}, #{palette_opt(@page).to_json})

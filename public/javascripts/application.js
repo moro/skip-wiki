@@ -79,11 +79,14 @@
       getData : function(ignore){ return this.textarea.val(); },
       needToSave : function(){ return this.getData() != this.originalContent },
       insert : function(elem){
-        var text = this.textarea.val();
         var ins  = (elem.get(0).tagName == "IMG") ? "[FIXME]" : "[[" + elem.text() + "|" + elem.attr("href") + "]]";
-        var pos  = this.textarea.get(0).selectionStart;
-
-        this.textarea.val(text.substr(0, pos) + ins + text.substr(pos, text.length));
+        var text = this.textarea.val();
+        if(this.textarea.get(0).selectionStart){ // Firefox
+          var pos  = this.textarea.get(0).selectionStart;
+          this.textarea.val(text.substr(0, pos) + ins + text.substr(pos, text.length));
+        }else{
+          this.textarea.val(text + ins);
+        }
       },
       enablePreview : function(config){
         this.textarea.siblings(config["selector"]).preview({"url":config["url"], "editor": this });
