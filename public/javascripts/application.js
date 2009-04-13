@@ -7,8 +7,13 @@
     var textarea = (config["texrtarea"]) ? jQuery(config["textarea"]) : root.siblings("textarea");
 
     function showPreview(){
-      var data = root.parents("form").serializeArray();
-      data = jQuery.grep(data, function(o){return o.name != "_method"});
+      if(config["editor"]){
+        var data = { "page[content_hiki]" : config["editor"].getData(),
+                     "authenticity_token":root.parents("form").find("input[name=authenticity_token]").val() }
+      }else{
+        var data = root.parents("form").serializeArray();
+        data = jQuery.grep(data, function(o){return o.name != "_method"});
+      }
 
       try{
         root.find("div.rendered").load(config["url"], data, function(){
@@ -51,51 +56,103 @@
       }
     }
 
-    function linkPaletteCallback(elem){
-      if(currentFormatType() == "hiki"){
-        var hiki_text = hiki_content.find("textarea:visible");
-        if(hiki_text.length > 0){
-          var ins  = (elem.get(0).tagName == "IMG") ? "[FIXME]" : "[[" + elem.text() + "|" + elem.attr("href") + "]]";
-          insertTextArea(hiki_text, ins);
-        }
-      }else{
-        var fckeditor_id = html_content.find("textarea").attr("id");
-        FCKeditorAPI.GetInstance(fckeditor_id).InsertHtml(elem.wrap('<span></span>').parent().html());
-      }
-    }
-
-    function insertTextArea(textearea, newString){
-      var pos = textarea.get(0).selectionStart;
-      var text = textarea.val();
-
-      textarea.val(text.substr(0, pos) + newString + text.substr(pos, text.length));
-    }
-
     function currentFormatType(){
       return root.find("input:checked[type=radio][name='page[format_type]']").val();
     }
 
     root.find("input[type=radio][name='page[format_type]']").change(toggle).filter(":checked").trigger("change");
-    hiki_content.find("div.preview").preview(config["preview"]);
     html_content.find("textarea").richEditor(config["richEditor"]);
-    console.log(jQuery.extend({}, config["linkPalette"], {"callback":linkPaletteCallback}));
-    jQuery(config["palette"]).linkPalette(jQuery.extend({}, config["linkPalette"], {"callback":linkPaletteCallback}));
   };
 
-  jQuery.fn.richEditor = function(config){
+  jQuery.fn.skipEditor = function(config){
     var root = this;
     var form = root.parents("form");
 
-    function api(){
-      return FCKeditorAPI.GetInstance(root.attr("id"));
+    function HikiEditor(){ this.initialize.apply(this, arguments); };
+    HikiEditor.prototype = {
+      initialize : function(textarea, preview){
+        this.textarea = jQuery(textarea);
+        this.originalContent = this.textarea.val();
+
+        this.enablePreview(preview);
+      },
+      setData : function(content){
+        this.originalContent = content;
+        this.textarea.val(content);
+        // FIXME
+        jQuery(".page form").find("input[type=submit]").disable().end().find("span.notice").hide();
+      },
+      getData : function(ignore){ return this.textarea.val(); },
+      needToSave : function(){ return this.getData() != this.originalContent },
+      insert : function(elem){
+        var text = this.textarea.val();
+        var ins  = (elem.get(0).tagName == "IMG") ? "[FIXME]" : "[[" + elem.text() + "|" + elem.attr("href") + "]]";
+        var pos  = this.textarea.get(0).selectionStart;
+
+        this.textarea.val(text.substr(0, pos) + ins + text.substr(pos, text.length));
+      },
+      enablePreview : function(config){
+        this.textarea.siblings(config["selector"]).preview({"url":config["url"], "editor": this });
+      },
+      beginObserver : function(editor){
+        this.textarea.delayedObserver(0.5, function(){
+          if(editor.needToSave()){
+            jQuery(".page form").find("input[type=submit]").enable().end().find("span.notice").show();
+          }else{
+            jQuery(".page form").find("input[type=submit]").disable().end().find("span.notice").hide();
+          }
+        });
+      }
+    };
+
+    function RichEditor(){ this.initialize.apply(this, arguments); };
+    RichEditor.prototype = {
+      initialize : function(editorName, basePath, height){
+        var editor = new FCKeditor(editorName, "100%", height||"330", "Normal") ;
+        editor.BasePath = basePath;
+        editor.ReplaceTextarea() ;
+
+        this.api = function(){ return FCKeditorAPI.GetInstance(editorName) };
+      },
+      setData : function(content){ this.api().SetData(content, true) },
+      getData : function(force){ return this.api().GetData(force) },
+      needToSave: function(){ return this.api().IsDirty() && (jQuery.trim( this.api().GetHTML(true) ).length > 0); },
+      insert : function(elem){ this.api().InsertHtml(elem.wrap('<span></span>').parent().html()); }
     }
 
-    function activateFCKeditor(){
-      if(!this.oFCKeditor){
-        this.oFCKeditor = new FCKeditor(root.attr("id"), "100%", config["height"]||"330", "Normal") ;
-        this.oFCKeditor.BasePath = config["basePath"];
-        this.oFCKeditor.ReplaceTextarea() ;
-        if(!config["submit_to_save"]){ addDynamicSave() };
+    function SwitchableEditor(){ this.initialize.apply(this, arguments) };
+    SwitchableEditor.prototype = {
+      initialize : function(currentFormatType, richEditorOpt, hikiEditorOpt, config){
+        this.richEditorOpt = richEditorOpt;
+        this.hikiEditorOpt = hikiEditorOpt;
+        this.submit_to_save = config["submit_to_save"];
+        if(!jQuery.isFunction(currentFormatType)){
+          this.currentFormatType = function(){ return currentFormatType };
+        }else{
+          this.currentFormatType = currentFormatType;
+        }
+      },
+
+      setData : function(content){ return this.editor().setData(content) },
+      getData : function(force){ return this.editor().getData(force) },
+      needToSave: function(){ return this.editor().needToSave() },
+      insert : function(elem){ this.editor().insert(elem) },
+
+      editor : function(){
+        if(this.currentFormatType() == "hiki"){
+          if(!this.hikiEditor){
+            this.hikiEditor = new HikiEditor(this.hikiEditorOpt["selector"], this.hikiEditorOpt["preview"]);
+            if(!this.submit_to_save){
+              this.hikiEditor.beginObserver(this.hikiEditor);
+            }
+          }
+          return this.hikiEditor;
+        }else{
+          if(!this.richEditor){
+            this.richEditor = new RichEditor(this.richEditorOpt["name"], this.richEditorOpt["basePath"], this.richEditorOpt["height"]);
+          }
+          return this.richEditor;
+        }
       }
     };
 
@@ -106,12 +163,12 @@
     };
 
     function confirmBack(){
-      if(needToSave()){
+      if(editorApi.needToSave()){
         return confirm("未保存の更新があります。移動しますか?");
       }else{
         return true;
       }
-    }
+    };
 
     function createHistory(){
       var button = jQuery(this);
@@ -125,17 +182,12 @@
       return saveHistory("PUT", function(){});
     }
 
-    function needToSave(){
-      return api().IsDirty() &&
-             (jQuery.trim( api().GetHTML(true) ).length > 0);
-    }
-
     function saveHistory(method, onSuccess){
-      if(!needToSave()){
+      if(!editorApi.needToSave()){
         alert("No need to save");
         return false;
       }
-      var content = api().GetData(true);
+      var content = editorApi.getData(true);
 
       jQuery.ajax({ type: method,
                     url:  form.attr("action") + ".js",
@@ -143,14 +195,20 @@
                             "history[content]"  : content }),
                     complete : function(req, stat){
                       if(stat == "success"){
-                        api().SetData(content, true);
+                        editorApi.setData(content);
                         onSuccess(req, stat);
                       }
                     } });
       return false;
-    };
+    }
+    if(!config["submit_to_save"]){ addDynamicSave() };
 
-    activateFCKeditor();
+    var editorApi = new SwitchableEditor(config["currentFormatType"], config["richEditor"], config["hikiEditor"], config);
+    editorApi.editor(); // boot with initial state;
+
+    jQuery(config["linkPalette"]["selector"]).linkPalette(
+      jQuery.extend({}, config["linkPalette"], {"callback":function(elem){ editorApi.insert(elem) }})
+    );
   };
 
   jQuery.fn.reloadLabelRadios = function(config){
