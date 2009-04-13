@@ -35,30 +35,24 @@
             %li.show= link_to(_("Show preview"), '#', :class => "operation")
           .clear
           .rendered
-        = f.text_area(:content, :name => "page[content_hiki]", :id=>"page_content_hiki", :size=>"80x70")
+        = f.text_area(:content, :name => "page[content_hiki]", :id=>"page_content_hiki", :size=>"80x20")
       #html_content
         = f.text_area(:content, :name => "page[content_html]", :id=>"page_content_html", :size=>"80x70")
 
     .submit
       = submit_tag _("Create %{entity}") % {:entity => _("page")}
 
-:ruby
-  e_opt = editor_opt(@page).merge(:submit_to_save => true)
-  palette_opt = palette_opt(@page).merge(:editor => "page_content_html")
 
 :javascript
   $(document).ready(function(){
-    jQuery("div.content").editContnt({
-      "label":"h2 > label",
-      "hiki_content" : "#hiki_content",
-      "html_content" : "#html_content",
-      "palette" : "#linkPalette",
-      "preview" : ({
-        "url":  "#{preview_new_note_page_path(current_note)}"
-      }),
-      "richEditor" : (#{e_opt.to_json}),
-      "linkPalette" : (#{palette_opt.to_json})
+    jQuery("div.content").skipEditor({
+      "submit_to_save": true,
+      "currentFormatType" : function(){ return jQuery("input:checked[type=radio][name='page[format_type]']").val(); },
+      "richEditor": {"name": "page_content_html", "basePath": "/skip-wiki/javascripts/fckeditor/", "height":350},
+      "hikiEditor": {"selector" : "#page_content_hiki", "preview":{"selector":"div.preview", "url": "#{preview_new_note_page_path(current_note)}"} },
+      "linkPalette" : #{palette_opt(@page).to_json}
     });
+    jQuery("input[type=radio][name='page[format_type]']").toggleEditor("#html_content", "#hiki_content", {"label":"h2 > label"});
 
     var label_form = $("div.labels-form");
     label_form.manageLabel();

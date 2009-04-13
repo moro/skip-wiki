@@ -40,11 +40,10 @@
     root.find("li.hide a.operation").click(hidePreview).trigger("click");
   };
 
-  jQuery.fn.editContnt = function(config){
-    var root = jQuery(this);
+  jQuery.fn.toggleEditor = function(rich, hiki, config){
     var label = jQuery(config["label"]);
-    var hiki_content = jQuery(config["hiki_content"]);
-    var html_content = jQuery(config["html_content"]);
+    var hiki_content = jQuery(hiki);
+    var html_content = jQuery(rich);
 
     function toggle(){
       if(jQuery(this).val() == "hiki"){
@@ -56,12 +55,7 @@
       }
     }
 
-    function currentFormatType(){
-      return root.find("input:checked[type=radio][name='page[format_type]']").val();
-    }
-
-    root.find("input[type=radio][name='page[format_type]']").change(toggle).filter(":checked").trigger("change");
-    html_content.find("textarea").richEditor(config["richEditor"]);
+    jQuery(this).change(toggle).filter(":checked").trigger("change");
   };
 
   jQuery.fn.skipEditor = function(config){
@@ -201,14 +195,20 @@
                     } });
       return false;
     }
-    if(!config["submit_to_save"]){ addDynamicSave() };
 
     var editorApi = new SwitchableEditor(config["currentFormatType"], config["richEditor"], config["hikiEditor"], config);
     editorApi.editor(); // boot with initial state;
 
-    jQuery(config["linkPalette"]["selector"]).linkPalette(
+    if(config["submit_to_save"]){
+      jQuery("input[type=radio][name='page[format_type]']").change(function(){ editorApi.editor() });
+    } else {
+      addDynamicSave();
+    };
+
+    jQuery(config["linkPalette"]["selector"] || "#linkPalette").linkPalette(
       jQuery.extend({}, config["linkPalette"], {"callback":function(elem){ editorApi.insert(elem) }})
     );
+    return jQuery(this);
   };
 
   jQuery.fn.reloadLabelRadios = function(config){
