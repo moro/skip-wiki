@@ -62,7 +62,7 @@
 
     try{
       root.
-        find("div.step:not(:first)").hide().end().
+        find("div.step").hide().end().find("div.step:first").show().end().
         find("div.step").each(function(){
           jQuery(this).
           bind("onForward", function(){
