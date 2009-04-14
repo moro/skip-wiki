@@ -49,9 +49,7 @@ describe User do
 
   describe "#skip_uid" do
     before do
-      @user = User.create(:name => "alice", :display_name => "alice")
-      @user.create_account
-      @user.account.identity_url = "http://foo.bar/user/alice"
+      @user = create_user(:name => 'alice')
     end
 
     it "#skip_uid.should == 'alice'" do
@@ -129,11 +127,8 @@ describe User do
     end
 
     describe "#build_skip_membership" do
-      # FIXME フィクスチャのセットアップまとめる
       before do
-        @user = User.create(:name => "alice", :display_name => "alice")
-        @user.create_account
-        @user.account.identity_url = "http://foo.bar/user/alice"
+        @user = create_user(:name => "alice")
 
         SkipGroup.should_receive(:fetch_and_store).with("alice").and_return([
           @a_group = SkipGroup.create!(:name=>"a_group", :display_name=>"display_name", :gid=>"a_group"),
@@ -190,6 +185,7 @@ describe User do
 protected
   def create_user(options = {})
     record = User.new({:name => "a_user", :display_name => "A User"}.merge(options))
+    record.identity_url = "http://openid.example.com/user/"+record.name
     record.save
     record
   end

@@ -8,8 +8,8 @@
     %dt&= _("User|Display name")
     %dd&= @user.display_name
 
-    %dt&= _("Account|Identity url")
-    %dd&= @user.account.identity_url
+    %dt&= _("User|Identity url")
+    %dd&= @user.identity_url
 
   - unless SkipEmbedded::OpFixation.sso_enabled?
     = link_to _("Edit"), edit_user_path(@user)

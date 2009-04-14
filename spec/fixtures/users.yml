@@ -3,14 +3,17 @@ quentin:
   id:                        1
   name:                      quentin
   display_name:              quentin
+  identity_url:              http://openid.example.com/quentin
 
 aaron:
   id:                        2
   name:                      aaron
   display_name:              aaron
+  identity_url:              http://openid.example.com/aaron
 
 old_password_holder:
   id:                        3
   name:                      old_password_holder
   display_name:              old_password_holder
+  identity_url:              http://openid.example.com/old_password_holder
 

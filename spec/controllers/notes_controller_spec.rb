@@ -35,9 +35,7 @@ describe NotesController do
     fixtures :users, :notes
     before do
       @target =  notes(:our_note)
-      User.should_receive(:find).
-        with(:first, :conditions => ["#{Account.quoted_table_name}.identity_url = ?", "--IDENTITY--"], :include => :account).
-        and_return(users(:quentin))
+      User.should_receive(:find_by_identity_url).with("--IDENTITY--").and_return(users(:quentin))
 
       Note.should_receive(:find).and_return([@target])
 

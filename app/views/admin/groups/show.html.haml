@@ -11,7 +11,7 @@
 
   - form_tag(admin_group_memberships_path(@group)) do |f|
     %table.group-users
-      - User.find(:all, :include=>"account").each do |user|
+      - User.find(:all).each do |user|
         - id_attr = dom_id(user, "memberships")
         - prefix = "memberships[#{h(user.id)}]"
         %tr{:class=>cycle("odd","even")}
@@ -22,7 +22,7 @@
           %td
             %label{:for=>id_attr}&= user.name
           %td&= user.display_name
-          %td.identity_url&= user.account.identity_url
+          %td.identity_url&= user.identity_url
 
     =back_link_to(_("Note Properties"), admin_note_path(@note.id))
     =submit_tag(_("Update"))

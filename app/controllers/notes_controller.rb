@@ -115,8 +115,7 @@ class NotesController < ApplicationController
 
   def accessible
     if params[:user]
-      user = User.find(:first, :include => :account,
-                                :conditions => ["#{Account.quoted_table_name}.identity_url = ?", params[:user]])
+      user = User.find_by_identity_url(params[:user])
     else
       user =current_user
     end

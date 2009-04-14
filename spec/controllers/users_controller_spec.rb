@@ -20,8 +20,7 @@ describe UsersController do
     it{ response.should be_redirect }
     it{ session[:identity_url].should be_blank }
 
-    it{ assigns(:user).account.should_not be_new_record }
-    it{ assigns(:user).account.identity_url.should == "http://openid.example.com/ascii" }
+    it{ assigns(:user).identity_url.should == "http://openid.example.com/ascii" }
 
     it{ assigns(:user).should_not be_new_record }
     it{ assigns(:user).name.should == "ascii" }
@@ -41,8 +40,7 @@ describe UsersController do
     it{ session[:identity_url].should be_blank }
     it{ session[:user].should be_blank }
 
-    it{ assigns(:user).account.should_not be_new_record }
-    it{ assigns(:user).account.identity_url.should == "http://openid.example.com/ascii" }
+    it{ assigns(:user).identity_url.should == "http://openid.example.com/ascii" }
 
     it{ assigns(:user).should_not be_new_record }
     it{ assigns(:user).name.should == "ascii" }
@@ -60,8 +58,7 @@ describe UsersController do
 
     it{ response.should render_template("new") }
 
-    it{ assigns(:user).account.should be_new_record }
-    it{ assigns(:user).account.identity_url.should == "http://openid.example.com/ascii" }
+    it{ assigns(:user).identity_url.should == "http://openid.example.com/ascii" }
 
     it{ assigns(:user).should be_new_record }
     it{ assigns(:user).name.should == "" }

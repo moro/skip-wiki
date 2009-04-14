@@ -18,7 +18,6 @@ class User < ActiveRecord::Base
   has_many :groups, :through => :memberships
   has_many :builtin_groups, :foreign_key => "owner_id"
 
-  has_one :account
   has_one :skip_account
 
   scope_do :named_acl
@@ -36,17 +35,12 @@ class User < ActiveRecord::Base
     {:conditions => ["name LIKE ? OR display_name LIKE ?", w, w]}
   }
 
-  def self.find_by_identity_url(identity_url)
-    find(:first, :include => :account,
-                 :conditions => ["#{Account.quoted_table_name}.identity_url = ?", identity_url])
-  end
-
   def name=(value)
     write_attribute :name, (value ? value.downcase : nil)
   end
 
   def skip_uid
-    skip_account ? skip_account.skip_uid : SkipAccount.skip_uid(account.identity_url)
+    skip_account ? skip_account.skip_uid : SkipAccount.skip_uid(identity_url)
   end
 
   def skip_uid=(uid)

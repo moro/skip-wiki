@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe SessionsController do
-  fixtures :users, :accounts
+  fixtures :users
   before do
     SessionsController.user_klass = User
     controller.session[:user_id] = users(:quentin).id

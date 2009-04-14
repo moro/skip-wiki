@@ -9,7 +9,7 @@
       = render :partial => 'form', :locals => {:f => f}
       %tr.identity-url
         %th&= _("OpenID URL")
-        %td&= @user.account.identity_url
+        %td&= @user.identity_url
 
     = submit_tag _("Update")
 

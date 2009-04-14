@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def create
     # logout_keeping_session!
     @user = User.new(SkipEmbedded::OpFixation.sso_enabled? ? session[:user] : params[:user])
-    @user.account = Account.new{|a| a.identity_url = session[:identity_url] }
+    @user.identity_url = session[:identity_url]
     if @user.save
       reset_session
       session[:identity_url] = nil
