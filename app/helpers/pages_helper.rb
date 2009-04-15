@@ -42,8 +42,7 @@ module PagesHelper
   end
 
   def render_richtext(content)
-    allow = HTML::WhiteListSanitizer.allowed_attributes.dup.add("style")
-    sanitize(content, :attributes=>allow)
+    sanitize_richtext(content)
   end
 
   def navi_item(text, path, current_path, *css)
