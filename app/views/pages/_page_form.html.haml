@@ -12,10 +12,9 @@
       =clippy(url)
 
 %tr
-  %th= form.label(:published_at, h(_("Page|Published at")))
-  %td
-    = datepicker_with_time(@page, :published_at)
-    = date_picker("input.datepicker")
+  %th= form.label(:published, h(_("Page|Published")))
+  %td= form.check_box(:published)
+
 %tr
   %th
     = form.label(:label_indices, h(_("Page|Label indices")))

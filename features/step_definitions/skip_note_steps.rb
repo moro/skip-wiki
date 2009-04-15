@@ -11,10 +11,10 @@ valid_attributes = {
     :group_backend_id => ""
   }.freeze,
   :page => {
-      :name => "value for name",
-      :display_name => "value for display_name",
-      :published_at => 1.days.ago,
-      :format_type => "html",
+    :name => "value for name",
+    :display_name => "value for display_name",
+    :published => true,
+    :format_type => "html",
   }.freeze,
   :label => {
       :display_name => "Ruby",

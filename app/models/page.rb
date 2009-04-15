@@ -15,7 +15,7 @@ class Page < ActiveRecord::Base
   validates_associated :new_history, :if => :new_history, :on => :create
   validates_presence_of :content, :on => :create
 
-  validates_presence_of :name, :published_at
+  validates_presence_of :name
   validates_inclusion_of :format_type, :in => %w[hiki html]
 
   validate_on_update :frontpage_cant_rename
@@ -31,9 +31,7 @@ class Page < ActiveRecord::Base
     }
   }
 
-  named_scope :published, proc{|*date|
-    {:conditions => ["#{quoted_table_name}.published_at < ?", date.shift || DateTime.now]}
-  }
+  named_scope :published, {:conditions => ["#{quoted_table_name}.published = ?", true]}
 
   named_scope :authored, proc{|*authors|
     hs = History.heads.find(:all, :select => "#{History.quoted_table_name}.page_id",
@@ -79,7 +77,6 @@ SQL
   chainable_scope :labeled, :authored, :fulltext
 
   attr_protected :note_id, :deleted
-  before_validation :assign_default_pubulification
   after_save :reset_history_caches, :update_label_index
 
   def self.front_page(attrs = {})
@@ -87,7 +84,7 @@ SQL
       :name => FRONTPAGE_NAME,
       :display_name => _("FrontPage"),
       :format_type => "html",
-      :published_at => Time.now,
+      :published => true,
     }.merge(attrs)
     new(attrs)
   end
@@ -100,18 +97,6 @@ SQL
     (idx = self.label_indexings.first) && idx.page_order
   end
 
-  def published_at=(timy_or_hash)
-    if timy_or_hash.is_a?(Hash) && [:date, :hour, :min].all?{|k| timy_or_hash.has_key?(k) }
-      d = Date.parse(timy_or_hash[:date])
-      timy_or_hash =
-        Time.zone.local(d.year, d.month, d.day, timy_or_hash[:hour].to_i, timy_or_hash[:min].to_i)
-    end
-    write_attribute(:published_at, timy_or_hash)
-  end
-
-  def published?(pivot = Time.now)
-    published_at <= pivot
-  end
 
   def name_editable?
     new_record? || !(published? || name == "FrontPage")
@@ -172,10 +157,6 @@ SQL
   end
 
   private
-  def assign_default_pubulification
-    self.published_at ||= DateTime.now
-  end
-
   def reset_history_caches
     @revision = @new_history = nil
   end

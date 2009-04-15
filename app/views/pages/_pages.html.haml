@@ -6,7 +6,6 @@
       %th.user&= _("Page|Auther")
       - if current_user.accessible?(current_note)
         %th.publication&= _("Publication")
-        %th.timestamp&= _("Page|Published at")
       %th.timestamp&= _("Page|Updated at")
       - if current_user.accessible?(current_note)
         %th.history&= _("History")
@@ -30,7 +29,6 @@
             - else
               =icon_tag("lock")
               %span.not_yet&= _("Not yet")
-          %td.timestamp&= page.published_at.strftime("%Y-%m-%d %H:%M")
         %td.timestamp&= page.updated_at.strftime("%Y-%m-%d %H:%M")
         - if current_user.accessible?(current_note)
           %td.history= link_to h(_"Show history"), note_page_histories_path(current_note, page)

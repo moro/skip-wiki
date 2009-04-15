@@ -7,7 +7,7 @@ our_note_page_1:
   name: our_note_page_1
   display_name: MyString
   format_type: html
-  published_at: 2008-10-17 13:38:45
+  published: true
   deleted_at: 2008-10-17 13:38:45
   lock_version: 1
 
@@ -18,6 +18,6 @@ our_note_page_2:
   name: our_note_page_2
   display_name: MyString
   format_type: html
-  published_at: 2008-10-17 13:38:45
+  published: true
   deleted_at: 2008-10-17 13:38:45
   lock_version: 1

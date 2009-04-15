@@ -14,40 +14,10 @@ describe Page do
       :name => "value for name",
       :display_name => "value for display_name",
       :format_type => "hiki",
-      :published_at => Time.now,
+      :published => true,
       :deleted_at => Time.now,
       :lock_version => "1"
     }
-  end
-
-  describe "#published_at=()" do
-    before do
-      Time.zone = "Asia/Tokyo"
-
-      @page = Page.new
-      @expect = Time.zone.local(2009, 1, 30, 14, 30)
-      @timy = {:date => "2009-01-30", :hour => "14", :min => "30"}
-      @page.published_at = @timy
-    end
-
-    it "は2009-01-30 14:30:00であること" do
-      @page.published_at.should == @expect
-    end
-
-    it "mass assignmentも動作すること" do
-      Page.new(:published_at => @timy).published_at.should == @expect
-    end
-
-    it "従来のUTC文字列指定タイプやDateTime指定も動くこと" do
-      ["2009-01-30 05:30:00", "2009/01/30 05:30:00", @expect].each do |str|
-        Page.new(:published_at => str).published_at.should == @expect
-      end
-    end
-
-    it "ページは公開済みであること" do
-      @page.should be_published
-    end
-
   end
 
   describe "#label_index_id = an_label.id" do
@@ -71,7 +41,7 @@ describe Page do
       before do
         @note.stub!(:label_indices).and_return(LabelIndex)
         @page.edit("content", mock_model(User))
-        @page.published_at = Time.local(2009,1,1,0,0,0)
+        @page.published = true
         @page.save!
       end
 

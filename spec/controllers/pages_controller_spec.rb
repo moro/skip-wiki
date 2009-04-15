@@ -76,10 +76,11 @@ describe PagesController do
   describe "PUT /notes/hoge/pages [SUCCESS]" do
     fixtures :notes
     before do
-      page_param = {:published_at => 1.days.since, :name => "page_1", :display_name => "page_1", :format_type => "html", :content_html => "<p>foobar</p>"}.with_indifferent_access
+      page_param = {:published => "1", :name => "page_1", :display_name => "page_1", :format_type => "html", :content_html => "<p>foobar</p>"}.with_indifferent_access
       @current_note.label_indices << LabelIndex.no_label
 
       @page = @current_note.pages.add(page_param, @user)
+      @page.published = false
       @page.save!
     end
 
@@ -119,10 +120,10 @@ describe PagesController do
     it{ flash[:warn].should_not be_blank }
   end
 
-  describe "GET /notes/hoge/new" do
-    it "作成されるページの公開日時が作成日時に設定されていること" do
+  describe "GET /notes/hoge/pages/new" do
+    it "作成されるページのは公開に設定されていること" do
       get :new
-      assigns(:page).published_at.strftime("%Y-%m-%d").should == Time.now.strftime("%Y-%m-%d")
+      assigns(:page).should be_published
     end
   end
 end
