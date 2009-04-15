@@ -1,6 +1,12 @@
 class MergeAccountTable < ActiveRecord::Migration
   def self.up
-    add_column :users, :identity_url, :string, :null => false, :limit => 255
+    options = {:null => false, :limit => 255}
+
+    if ActiveRecord::Base.connection.adapter_name == "SQLite"
+      options[:default] = ""
+    end
+
+    add_column :users, :identity_url, :string, options
 
     begin
       Account

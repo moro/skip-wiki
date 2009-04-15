@@ -1,6 +1,6 @@
 class AddListAttachmentToNote < ActiveRecord::Migration
   def self.up
-    add_column :notes, :list_attachments, :bool, :default => false
+    add_column :notes, :list_attachments, :boolean, :default => false
   end
 
   def self.down
