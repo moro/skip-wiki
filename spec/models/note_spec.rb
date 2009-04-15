@@ -103,6 +103,14 @@ describe Note do
       @note.reload.should have(1).pages
     end
 
+    it "添付ファイル一覧表示の設定になっていること" do
+      @note.should be_list_attachment
+    end
+
+    it "添付ファイル一覧表示の設定になっていること" do
+      @note.label_navigation_style.should == LabelIndex::NAVIGATION_STYLE_ALWAYS
+    end
+
     it "ページのnameはFrontPageであること" do
       page = @note.reload.pages.first
       page.name.should == "FrontPage"
