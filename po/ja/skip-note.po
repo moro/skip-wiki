@@ -640,8 +640,8 @@ msgstr ""
 
 #: app/models/page.rb:- app/views/admin/pages/_pages.html.haml:8
 #: app/views/pages/_page_form.html.haml:15 app/views/pages/_pages.html.haml:9
-msgid "Page|Published at"
-msgstr "公開日時"
+msgid "Page|Published"
+msgstr "公開する"
 
 #: app/models/page.rb:-
 msgid "Page|Deleted at"
