@@ -49,10 +49,10 @@
             - if current_user.page_editable?(current_note)
               #page-menu
                 %ul.float
-                  %li= link_to("è¡¨ç¤º", note_page_path(current_note, @page))
-                  %li= link_to("ç·¨é›†", new_note_page_history_path(current_note, @page))
-                  %li= link_to("å±¥æ­´", note_page_histories_path(current_note, @page))
-                  %li= link_to("ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£", edit_note_page_path(current_note, @page))
+                  %li= link_to("’É½’¼¨", note_page_path(current_note, @page))
+                  %li= link_to("’ÊÔ’½¸", new_note_page_history_path(current_note, @page))
+                  %li= link_to("’Íú’Îò", note_page_histories_path(current_note, @page))
+                  %li= link_to("’¥×’¥í’¥Ñ’¥Æ’¥£", edit_note_page_path(current_note, @page))
               .clear
            
             .clear

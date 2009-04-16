@@ -17,6 +17,7 @@ body
     :margin auto auto
 
   div#top
+
     ul
       :float right
       li
@@ -32,12 +33,12 @@ body
     :border 1px dashed gray
 
   #current-note
-    :position absolute
-    :top 20px
-    :left 20px
-    span
+    :float left
+    :text-align left
+    :width 50%
+    div
       :font-size 0.8em
-    span.title
+    div.note_title
       :font-size 24px
 
   a
@@ -69,6 +70,14 @@ body
       :border-bottom 1px solid silver
     li:last-child
       :border-bottom 0
+
+#note-menu
+  :float right
+
+#page-menu
+  :float right
+  li
+    :margin 2px 3px
 
 #logo
   :position absolute
@@ -156,6 +165,8 @@ body
     :margin-left = !content_margin
 
   .page-header
+    :float left
+    :width 100%
     :border-style solid
     :border-width 5px 2px 1px 20px
     h1
@@ -608,7 +619,7 @@ div.caption
   ul.accessible-notes
     :list-style none
     :padding-left 12px
-    :width 100%
+    :width 81%
     li
       :margin-right 20px
       :margin-bottom 5px
