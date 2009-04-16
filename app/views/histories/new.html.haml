@@ -11,12 +11,13 @@
       %label{:for=>"history_content"}&= h(_("Page|Content"))
       %span.operation.trigger= _("Link Palette")
     %div.content
-      .preview
-        %ul.float
-          %li.hide= link_to(_("Hide preview"), '#', :class => "operation")
-          %li.show= link_to(_("Show preview"), '#', :class => "operation")
-        .clear
-        .rendered
+      - if @page.format_type == "hiki"
+        .preview
+          %ul.float
+            %li.hide= link_to(_("Hide preview"), '#', :class => "operation")
+            %li.show= link_to(_("Show preview"), '#', :class => "operation")
+          .clear
+          .rendered
       = text_area_tag("history[content]", @page.content, :id=>"history_content", :size=>"100x20")
 
     .submit
