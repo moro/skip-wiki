@@ -57,7 +57,7 @@
     var label_form = $("div.labels-form");
     label_form.manageLabel();
     $("table.input th .operation").click(function(){ label_form.show() });
-    $("div.labels-form .operation").click(function(){
+    $("div.labels-form > span.operation").click(function(){
       label_form.hide();
       $("ul.label-indices").reloadLabelRadios(#{{:url=>note_label_indices_path(current_note)}.to_json});
     });

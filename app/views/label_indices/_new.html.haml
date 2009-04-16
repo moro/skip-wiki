@@ -8,7 +8,8 @@
             - form_opt = {:url=>note_label_index_path(current_note, l_idx)}
             .show
               = labelize(l_idx, false, current_note)
-              %span.op.ipe-trigger&= _("Click to edit")
+              %br
+              %span.operation.ipe-trigger&= _("Click to edit")
             .edit{:style=>"display:none"}
               - form_for :label_index, l_idx, form_opt.merge(:html=>{:method=>"PUT",:style=>"display:visible"}) do |f|
                 = f.text_field :display_name, :size=>12, :id=>"#{l_idx.id}_display_name"
