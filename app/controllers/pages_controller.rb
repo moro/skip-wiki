@@ -108,7 +108,7 @@ class PagesController < ApplicationController
   end
 
   def render_hiki(content)
-    ActionView::Base.white_list_sanitizer.sanitize(HikiDoc.to_xhtml(content, :level =>2))
+    ActionView::Base.white_list_sanitizer.sanitize(PikiDoc.to_xhtml(content, :level =>2))
   end
 
   private

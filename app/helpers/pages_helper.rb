@@ -1,4 +1,3 @@
-require 'hikidoc'
 
 module PagesHelper
   def fullscreen_action?(note = current_note)

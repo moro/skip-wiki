@@ -1,0 +1,1 @@
+PikiDoc.register(PikiInlineImage.new)
