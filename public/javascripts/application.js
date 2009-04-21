@@ -73,13 +73,14 @@
       setData : function(content){
         this.originalContent = content;
         this.textarea.val(content);
-        // FIXME
+        // FIXME Observerに通知する方法
         jQuery(".page form").find("input[type=submit]").disable().end().find("span.notice").hide();
       },
       getData : function(ignore){ return this.textarea.val(); },
       needToSave : function(){ return this.getData() != this.originalContent },
       insert : function(elem){
-        var ins  = (elem.get(0).tagName == "IMG") ? "[FIXME]" : "[[" + elem.text() + "|" + elem.attr("href") + "]]";
+        var ins  = (elem.get(0).tagName == "IMG") ? "{{image('"+ elem.attr('src') +"')}}"
+                                                  : "[[" + elem.text() + "|" + elem.attr("href") + "]]";
         var text = this.textarea.val();
         if(this.textarea.get(0).selectionStart){ // Firefox
           var pos  = this.textarea.get(0).selectionStart;
