@@ -45,6 +45,16 @@ class ApplicationController < ActionController::Base
     current_note
   end
 
+  def authenticate_with_session_or_oauth
+    if oauthenticate
+      if token = ClientApplication.find_token(current_token)
+        self.current_user = token.user
+      else
+      end
+    end
+    authenticate
+  end
+
   def paginate_option(target = Note)
     { :page => params[:page],
       :order => "#{target.quoted_table_name}.updated_at DESC",

@@ -18,6 +18,9 @@ class User < ActiveRecord::Base
 
   has_one :skip_account
 
+  has_many :client_applications
+  has_many :tokens, :class_name=>"OauthToken",:order=>"authorized_at DESC",:include=>[:client_application]
+
   scope_do :named_acl
   named_acl :notes
 

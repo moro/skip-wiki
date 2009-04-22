@@ -104,7 +104,7 @@ class NotesController < ApplicationController
 
   private
   def authenticate_with_api_or_login_required
-    params[:user].blank? ? authenticate : check_secret_key
+    params[:user].blank? ? authenticate_with_session_or_oauth : check_secret_key
   end
 
   def note_to_json(note)

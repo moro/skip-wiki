@@ -28,6 +28,7 @@ Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem 'gettext',  :lib => 'gettext/rails', :version => '1.93.0'
   config.gem 'diff-lcs', :lib => 'diff/lcs'
+  config.gem 'oauth'
   config.gem 'haml'
   config.gem 'moro-repim', :lib => 'repim', :source => 'http://gems.github.com/'
   config.gem 'moro-scope_do', :lib => 'scope_do', :version => '>=0.1.1', :source =>  'http://gems.github.com/'
@@ -43,6 +44,7 @@ Rails::Initializer.run do |config|
     haml
     jrails
     open_id_authentication
+    oauth-plugin
     attachment_fu
     moro-scope_do
   ]

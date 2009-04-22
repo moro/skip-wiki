@@ -159,10 +159,10 @@ describe OauthController, "getting an access token" do
 end
 
 class OauthorizedController<ApplicationController
-  before_filter :login_or_oauth_required, :only => :both
-  before_filter :login_required, :only => :interactive
+  before_filter :authenticate_with_session_or_oauth, :only => :both
+  before_filter :authenticate, :only => :interactive
   before_filter :oauth_required, :only => :token_only
-  
+
   def interactive
   end
   
