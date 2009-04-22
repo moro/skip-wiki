@@ -161,7 +161,7 @@ end
 class OauthorizedController<ApplicationController
   before_filter :authenticate_with_session_or_oauth, :only => :both
   before_filter :authenticate, :only => :interactive
-  before_filter :oauth_required, :only => :token_only
+  before_filter :authenticate_with_oauth, :only => :token_only
 
   def interactive
   end
@@ -251,7 +251,7 @@ describe OauthorizedController, " access control" do
     setup_to_authorize_request
     sign_request_with_oauth(@access_token)
     get :interactive
-    response.code.should == "302"
+    response.code.should == "401"
     controller.send(:current_user).should be_nil
     controller.send(:current_token).should be_nil
   end
