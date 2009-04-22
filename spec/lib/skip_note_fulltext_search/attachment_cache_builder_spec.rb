@@ -7,7 +7,11 @@ describe SkipNoteFulltextSearch::AttachmentCacheBuilder, :type => :model do
       :host => "example.com",
       :protocol => "http"
     }
+    @orig = ActionController::AbstractRequest.relative_url_root
     ActionController::AbstractRequest.relative_url_root = "/skip-knowledge"
+  end
+  after(:all) do
+    ActionController::AbstractRequest.relative_url_root = @orig
   end
 
   fixtures :notes
