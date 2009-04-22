@@ -1,4 +1,5 @@
 <div class="flash"><%= flash[:notice] %></div>
+<div class='app-layout'>
 <h1>OAuth Client Applications</h1>
 <% unless @tokens.empty? %>
 <p>The following tokens have been issued to applications in your name</p>
@@ -38,3 +39,4 @@
 	<% end %>
 <% end %>
 <h3><%= link_to "Register your application", :action => :new %></h3>
+</div>

@@ -1,0 +1,38 @@
+.app-layout
+  %span.back= link_to(_("Back"), oauth_clients_path)
+  %h1&= "OAuth details for #{@client_application.name}"
+
+  // FIXME gettext
+  %p.registration
+    =link_to "この内容でコンシューマに登録する", register_consumer_link(@client_application) 
+
+  %table.skipwiki
+    %caption&= _("Registered")
+    %tr
+      %th&= _("Client application|Consumer key")
+      %td&= @client_application.key
+
+    %tr
+      %th&= _("Client application|Consumer secret")
+      %td&= @client_application.secret
+
+    %tr
+      %th&= _("Client application|callback")
+      %td&= @client_application.callback_url
+
+  %table.skipwiki
+    %caption&= _("Service explanation")
+    %tr
+      %th&= _("Request Token URL")
+      %td&= request_token_url
+
+    %tr
+      %th&= _("Access Token URL")
+      %td&= access_token_url
+
+    %tr
+      %th&= _("Authorize URL")
+      %td&= authorize_url
+
+  %p.info&= _(" We support hmac-sha1 (recommended) as well as plain text in ssl mode.")
+

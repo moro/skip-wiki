@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_with_oauth(current_token_loaded = false)
     if (current_token_loaded || oauthenticate) &&
-       (token = ClientApplication.find_token(current_token))
+       (token = ClientApplication.find_token(current_token.token))
       self.current_user = token.user
       return true
     else
