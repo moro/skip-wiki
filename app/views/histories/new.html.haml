@@ -31,7 +31,7 @@
   $(document).ready(function(){
     jQuery("div.content").skipEditor({
       "currentFormatType" : "#{@page.format_type}",
-      "richEditor": {"name": "history_content", "basePath": "/skip-wiki/javascripts/fckeditor/", "height":350},
+      "richEditor": {"name": "history_content", "basePath": "#{request.relative_url_root}/javascripts/fckeditor/", "height":350},
       "hikiEditor": {"selector" : "#history_content", "preview":{"selector":"div.preview", "url": "#{preview_new_note_page_path(current_note)}"} },
       "linkPalette" : jQuery.extend({"selector":"#linkPalette"}, #{palette_opt(@page).to_json})
     });

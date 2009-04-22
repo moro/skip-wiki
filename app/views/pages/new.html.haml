@@ -48,7 +48,7 @@
     jQuery("div.content").skipEditor({
       "submit_to_save": true,
       "currentFormatType" : function(){ return jQuery("input:checked[type=radio][name='page[format_type]']").val(); },
-      "richEditor": {"name": "page_content_html", "basePath": "/skip-wiki/javascripts/fckeditor/", "height":350},
+      "richEditor": {"name": "page_content_html", "basePath": "#{request.relative_url_root}/javascripts/fckeditor/", "height":350},
       "hikiEditor": {"selector" : "#page_content_hiki", "preview":{"selector":"div.preview", "url": "#{preview_new_note_page_path(current_note)}"} },
       "linkPalette" : #{palette_opt(@page).to_json}
     });
