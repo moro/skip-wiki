@@ -49,14 +49,14 @@ class Page < ActiveRecord::Base
 
   # TODO 採用が決まったら回帰テスト書く
   named_scope :last_modified_per_notes, proc{|note_ids|
-    {:conditions => [<<-SQL, note_ids] }
+    {:conditions => [<<-SQL, false, note_ids] }
     #{quoted_table_name}.id IN (
       SELECT p0.id
       FROM   #{quoted_table_name} AS p0
       INNER JOIN (
         SELECT p2.note_id AS note_id, MAX(p2.updated_at) AS updated_at
         FROM #{quoted_table_name} AS p2
-        WHERE p2.note_id IN (?)
+        WHERE p2.deleted = ? AND p2.note_id IN (?)
         GROUP BY p2.note_id
       ) AS p1 USING (note_id, updated_at)
     )
@@ -153,6 +153,16 @@ SQL
 
   def front_page?
     (name_was == FRONTPAGE_NAME || name == FRONTPAGE_NAME)
+  end
+
+  def last_editor
+    if histories.loaded?
+      head.user
+    else
+      User.find(:first, :joins => "INNER JOIN histories ON histories.user_id = users.id",
+                        :conditions => ["histories.page_id = ?", id],
+                        :order => "histories.revision DESC")
+    end
   end
 
   private

@@ -18,6 +18,10 @@ class NotesController < ApplicationController
       format.html { @notes = @notes.paginate(paginate_option) }
       format.xml { render :xml => @notes }
       format.js { render :json => @notes.map{|n| note_to_json(n) } }
+      format.rss do
+        @notes.paginate(paginate_option.merge(:per_page=>20))
+        render :layout => false
+      end
     end
   end
 

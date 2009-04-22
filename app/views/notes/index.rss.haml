@@ -1,0 +1,19 @@
+!!! XML
+%rss{:version=>"2.0","xmlns:dc"=>"http://purl.org/dc/elements/1.1/","xmlns:content"=>"http://purl.org/rss/1.0/modules/content/","xml:lang"=>"ja"}
+  %channel
+    %title&= "#{current_user.display_name}のノート"
+    %link&= notes_path
+    %description&== aioue
+    %dc:creator&= current_user.name
+    - with_last_modified_page(@notes).each do |note, page|
+      %item
+        - if page && page.name == "FrontPage" && page.updated_at == page.created_at
+          %title&= "[NEW]" + note.display_name
+        - elsif page
+          %title&= [page.display_name,note.display_name].join(" -- ")
+        - else
+          %title&= "[Broken]" + note.display_name
+        %link&= note_page_url(note, page)
+        %dc:creator&= note.name
+        %pubDate&= note.updated_at.rfc822
+
