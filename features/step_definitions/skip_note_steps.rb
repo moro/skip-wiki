@@ -124,8 +124,12 @@ Given(/ペンディング:\s*(\w.+)$/) do |reason|
   pending(reason)
 end
 
-Given(/ナビゲーションメニューから"(\w+)"を選択する/) do |label|
-  visit select(label)
+Given(/((?:ノート)|(?:ページ))メニューの"(\w+)"リンクをクリックする/) do |type, label|
+  container = {
+    "ノート" => "div#note-menu",
+    "ページ" => "div#page-menu",
+  }[type]
+  Given %Q["#{container}"中の"#{label}"リンクをクリックする]
 end
 
 Given(/ノート"(\w+)"の公開範囲を「全員が読める。メンバーのみが書き込める。」に設定する/) do |note|
