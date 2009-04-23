@@ -1,5 +1,5 @@
 - from_palette = ajax_upload? && params[:ajax_upload] == IframeUploader::FROM_PALETTE
-%table.upload-form.input{:class => (from_palette ? "palette" : "")}
+%table.skipwiki.upload-form.input{:class => (from_palette ? "palette" : "")}
   %tr
     %th.file= f.label :uploaded_data, _("Attachment|Upload Data")
     %td.file= f.file_field :uploaded_data, :size => 32

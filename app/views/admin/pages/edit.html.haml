@@ -7,7 +7,7 @@
     - form_for(:page, :url=>admin_note_page_path(@note, @page)) do |f|
       =f.error_messages
       = hidden_field_tag "_method", "PUT"
-      %table.input
+      %table.skipwiki.input
         = render :partial => 'pages/page_form', :locals =>{:form =>f }
         %tr.deleted
           %th&= _("Page|Deleted")

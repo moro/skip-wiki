@@ -11,7 +11,7 @@
           = icon_tag('folder_page') + h(_("Updated pages"))
           - if has_more?(@pages)
             %span.operation= link_to(_("more..."), pages_path)
-        %table.pages-index
+        %table.skipwiki.pages-index
           %tr
             %th.updated_title&= _("Page|Display name")
             %th.updated_at&= _("Page|Updated at")

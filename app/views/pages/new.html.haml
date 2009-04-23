@@ -14,7 +14,7 @@
   = error_messages_for :page
 
   - form_for(:page, :url=>note_pages_path(current_note)) do |f|
-    %table.input
+    %table.input.skipwiki
       %tr
         %th= f.label(:display_name, h(_("Page|Display name")))
         %td= f.text_field(:display_name)

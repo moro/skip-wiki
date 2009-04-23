@@ -14,12 +14,14 @@ body
   :padding-bottom 1em
 
   *
-    :margin auto auto
+    // :margin auto auto
 
   div#top
 
     ul
       :float right
+      :margin-top auto
+      :margin-bottom auto
       li
         :margin auto 5px
 
@@ -874,7 +876,7 @@ table.label-indices
       input[type=submit]
         :font-size = !small_font_size
 
-#content_for_layout table
+#content_for_layout table.skipwiki
   :border-collapse collapse
   tr
     th

@@ -18,7 +18,7 @@
           <br/>
           まずはノートを作成する対象を選択してください。
 
-        %table
+        %table.skipwiki
           %tr
             %td
               =f.radio_button(:group_backend_type, "BuiltinGroup")
@@ -37,7 +37,7 @@
         .topic
           続いてノートのカテゴリを選択してください。<br/>
 
-        %table
+        %table.skipwiki
           - Category.lang("ja").each do |c|
             %tr
               %td
@@ -75,7 +75,7 @@
         .topic
           次のステップではノートの公開範囲を設定します。<br/>
 
-        %table
+        %table.skipwiki
           - [Note::PUBLICITY_MEMBER_ONLY, Note::PUBLICITY_READABLE, Note::PUBLICITY_WRITABLE].each do |pub|
             %tr
               %td
@@ -110,7 +110,7 @@
         .topic
           次のステップではページ表示時のラベルナビゲーションの表示方方を設定します。<br/>
 
-        %table
+        %table.skipwiki
           - LabelIndex.navigation_styles.each do |style|
             %tr
               %td
@@ -147,7 +147,7 @@
           %strong= _("Note|Name")
           を入力してください。
 
-        %table
+        %table.skipwiki
           %tr
             %td= f.label :display_name, _("Note|Display name")
             %td= f.text_field :display_name
@@ -176,7 +176,7 @@
           %strong= _("Note|Description")
           を入力してください。
 
-        %table
+        %table.skipwiki
           %tr
             %td= f.label :description, _("Note|Description")
             %td= f.text_field :description, :size=>"60"
@@ -195,7 +195,7 @@
           %strong= _("Note|List attachments")
           を入力してください。
 
-        %table
+        %table.skipwiki
           - [false, true].each do |val|
             %tr
               %td
@@ -223,7 +223,7 @@
           この内容でよろしいですか?
           =f.submit _("Create")
 
-        %table.confirmation.input
+        %table.confirmation.input.skipwiki
           %tr.group_backend_type
             %th&= _("Note|GroupBackendType")
             %td&= ""

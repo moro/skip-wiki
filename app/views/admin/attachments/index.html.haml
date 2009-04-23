@@ -6,7 +6,7 @@
   - div_for(current_note, :class=>"app-layout") do
     .attachments
       %h3&= _("Attached files")
-      %table
+      %table.skipwiki
         - @attachments.each do |at|
           %tr
             %td&= at.content_type

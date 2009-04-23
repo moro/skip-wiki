@@ -12,7 +12,7 @@
 
   .attachments
     %h3&= _("Attached files")
-    %table
+    %table.skipwiki
       - @attachments.each do |at|
         %tr
           %td.content_type&= at.content_type

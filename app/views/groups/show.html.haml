@@ -6,7 +6,7 @@
     %p&= _("Users who belongs to this note.")
 
   - form_tag(group_memberships_path(@group)) do |f|
-    %table.group-users
+    %table.skipwiki.group-users
       - User.find(:all).each do |user|
         - id_attr = dom_id(user, "memberships")
         - prefix = "memberships[#{h(user.id)}]"
