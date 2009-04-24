@@ -1,5 +1,6 @@
 require 'oauth'
 require 'oauth/server'
+
 class ClientApplication < ActiveRecord::Base
   belongs_to :user
   has_many :tokens, :class_name => "OauthToken"
@@ -7,6 +8,8 @@ class ClientApplication < ActiveRecord::Base
   validates_uniqueness_of :key
   before_validation_on_create :generate_keys
   
+  attr_protected :family
+
   def self.find_token(token_key)
     token = OauthToken.find_by_token(token_key, :include => :client_application)
     if token && token.authorized?
@@ -32,6 +35,14 @@ class ClientApplication < ActiveRecord::Base
       false
     end
   end
+
+  def granted_by_service_contract?
+    !!family
+  end
+
+  def granted_by_service_contract!
+    update_attribute(:family, true)
+  end
   
   def oauth_server
     @oauth_server ||= OAuth::Server.new("http://your.site")
@@ -44,7 +55,7 @@ class ClientApplication < ActiveRecord::Base
   def create_request_token
     RequestToken.create :client_application => self
   end
-  
+
 protected
   
   def generate_keys

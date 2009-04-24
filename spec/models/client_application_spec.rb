@@ -31,30 +31,46 @@ end
 describe ClientApplication do #, :shared => true do
   include OAuthSpecHelpers
   fixtures :users, :client_applications, :oauth_tokens
-  before(:each) do
-    @application = ClientApplication.create :name => "Agree2", :url => "http://agree2.com", :user => users(:quentin)
-    create_consumer
-  end
+  describe "not SKIP family" do
+    before(:each) do
+      @application = ClientApplication.create :name => "Agree2", :url => "http://agree2.com", :user => users(:quentin), :family => true
+      create_consumer
+    end
 
-  it "should be valid" do
-    @application.should be_valid
-  end
-  
+    it "should be valid" do
+      @application.should be_valid
+    end
+
+    it "should not skip family" do
+      @application.should_not be_granted_by_service_contract
+    end
     
-  it "should not have errors" do
-    @application.errors.full_messages.should == []
-  end
-  
-  it "should have key and secret" do
-    @application.key.should_not be_nil
-    @application.secret.should_not be_nil
+    it "should have key and secret" do
+      @application.key.should_not be_nil
+      @application.secret.should_not be_nil
+    end
+
+    it "should have credentials" do
+      @application.credentials.should_not be_nil
+      @application.credentials.key.should == @application.key
+      @application.credentials.secret.should == @application.secret
+    end
   end
 
-  it "should have credentials" do
-    @application.credentials.should_not be_nil
-    @application.credentials.key.should == @application.key
-    @application.credentials.secret.should == @application.secret
+  describe "SKIP family" do
+    before(:each) do
+      @application = ClientApplication.create :name => "Agree2", :url => "http://agree2.com"
+      @application.granted_by_service_contrac!
+      create_consumer
+    end
+
+    it "should be valid" do
+      @application.should be_valid
+    end
+
+    it "should not skip family" do
+      @application.should be_granted_by_service_contract
+    end
   end
-  
 end
 
