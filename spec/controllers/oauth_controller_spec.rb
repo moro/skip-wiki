@@ -40,6 +40,7 @@ describe OauthController, "token authorization" do
   before(:each) do
     login
     setup_oauth
+    @request_token.client_application.stub!(:granted_by_service_contract?).and_return false
     RequestToken.stub!(:find_by_token).and_return(@request_token)
   end
   
@@ -50,6 +51,13 @@ describe OauthController, "token authorization" do
   def do_post
     @request_token.should_receive(:authorize!).with(@user)
     post :authorize, :oauth_token => @request_token.token, :authorize => "1"
+  end
+
+  def do_get_to_granted_by_contract_app
+    @request_token.client_application.should_receive(:granted_by_service_contract?).and_return(true)
+
+    @request_token.should_receive(:authorize!).with(@user)
+    get :authorize, :oauth_token => @request_token.token
   end
 
   def do_post_without_user_authorization
@@ -90,6 +98,12 @@ describe OauthController, "token authorization" do
   
   it "should redirect to default callback" do
     do_post
+    response.should be_redirect
+    response.should redirect_to("http://application/callback?oauth_token=#{@request_token.token}")
+  end
+
+  it "should redirect to default callback when request to granted_by_service_contract app" do
+    do_get_to_granted_by_contract_app
     response.should be_redirect
     response.should redirect_to("http://application/callback?oauth_token=#{@request_token.token}")
   end

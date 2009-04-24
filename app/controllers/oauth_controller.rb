@@ -30,14 +30,14 @@ class OauthController < ApplicationController
   def authorize
     @token = RequestToken.find_by_token params[:oauth_token]
     unless @token.invalidated?    
-      if request.post? 
-        if params[:authorize] == '1'
-          @token.authorize!(current_user)
-          redirect_to_callback_or_render_success
-        elsif params[:authorize] == "0"
-          @token.invalidate!
-          render :action => "authorize_failure"
-        end
+      if((request.post? && params[:authorize] == '1') ||
+         @token.client_application.granted_by_service_contract?)
+
+        @token.authorize!(current_user)
+        redirect_to_callback_or_render_success
+      elsif request.post?
+        @token.invalidate!
+        render :action => "authorize_failure"
       end
     else
       render :action => "authorize_failure"
