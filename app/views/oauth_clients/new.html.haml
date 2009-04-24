@@ -1,0 +1,4 @@
+%h1&= _("Register a new %{entity}") % {:entity => _("client application")}
+- form_for(:client_application, :url => { :action => :create }) do |f|
+  = render :partial => "form", :locals => { :f => f }
+  = submit_tag _("Create")
