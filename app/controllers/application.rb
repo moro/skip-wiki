@@ -47,21 +47,25 @@ class ApplicationController < ActionController::Base
 
   def authenticate_with_session_or_oauth
     if oauthenticate
-      authenticate_with_oauth(:loaded)
+      signed_in? ? true : invalid_oauth_response
     else
       authenticate
     end
   end
 
   def authenticate_with_oauth(current_token_loaded = false)
-    if (current_token_loaded || oauthenticate) &&
+    if oauthenticate
        (token = ClientApplication.find_token(current_token.token))
-      self.current_user = token.user
       return true
     else
       logger.info "failed oauthenticate"
       invalid_oauth_response
     end
+  end
+
+  def current_token=(token)
+    super
+    self.current_user = @current_user # oauth plugin assigns
   end
 
   def paginate_option(target = Note)
