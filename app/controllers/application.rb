@@ -75,6 +75,9 @@ class ApplicationController < ActionController::Base
   def access_denied_without_open_id_sso(message = nil)
     store_location
     flash[:error] = _("Login required.")
-    render :template => "sessions/new", :layout => "application", :status => :unauthorized
+    respond_to do |format|
+      format.html{ render :template => "sessions/new", :layout => "application", :status => :unauthorized }
+      format.rss { render :text => "Unauthorized", :status => :unauthorized }
+    end
   end
 end
