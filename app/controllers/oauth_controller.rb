@@ -1,6 +1,5 @@
 class OauthController < ApplicationController
   before_filter :authenticate, :except => [:request_token, :access_token, :test_request]
-  before_filter :login_or_oauth_required, :only => [:test_request]
   before_filter :verify_oauth_consumer_signature, :only => [:request_token]
   before_filter :verify_oauth_request_token, :only => [:access_token]
   # Uncomment the following if you are using restful_open_id_authentication
@@ -34,12 +33,7 @@ class OauthController < ApplicationController
       if request.post? 
         if params[:authorize] == '1'
           @token.authorize!(current_user)
-          redirect_url = params[:oauth_callback] || @token.client_application.callback_url
-          if redirect_url
-            redirect_to "#{redirect_url}?oauth_token=#{@token.token}"
-          else
-            render :action => "authorize_success"
-          end
+          redirect_to_callback_or_render_success
         elsif params[:authorize] == "0"
           @token.invalidate!
           render :action => "authorize_failure"
@@ -59,4 +53,13 @@ class OauthController < ApplicationController
     redirect_to oauth_clients_url
   end
   
+  private
+  def redirect_to_callback_or_render_success(token = @token)
+    redirect_url = params[:oauth_callback] || token.client_application.callback_url
+    if redirect_url
+      redirect_to "#{redirect_url}?oauth_token=#{token.token}"
+    else
+      render :template => "authorize_success"
+    end
+  end
 end
