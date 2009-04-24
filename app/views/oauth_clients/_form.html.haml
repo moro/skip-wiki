@@ -1,15 +1,15 @@
 
 %table.skipwiki.input
   %tr.reqired
-    %th= f.label(:name)
+    %th= f.label(:name, _("ClientApplication|Name"))
     %td= f.text_field(:name)
   %tr.reqired
-    %th= f.label(:url)
+    %th= f.label(:url, _("ClientApplication|Url"))
     %td= f.text_field(:url)
   %tr.reqired
-    %th= f.label(:callback_url)
+    %th= f.label(:callback_url, _("ClientApplication|Callback url"))
     %td= f.text_field(:callback_url)
   %tr
-    %th= f.label(:support_url)
+    %th= f.label(:support_url, _("ClientApplication|Support url"))
     %td= f.text_field(:support_url)
 
