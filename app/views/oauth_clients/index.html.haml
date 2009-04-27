@@ -1,0 +1,55 @@
+.app-layout
+  %h1
+    OAuth Client Applications
+  - unless @tokens.empty?
+    %h2&= _("Issued client applications.")
+    %p
+      The following tokens have been issued to applications in your name
+    %table.skipwiki
+      %tr
+        %th&= _("client application")
+        %th&= _("AccessToken|Family")
+        %th&= _("AccessToken|Authorized at")
+        %th&= _("Revoke")
+      - @tokens.each do |token|
+        %tr
+          %td= link_to token.client_application.name, token.client_application.url
+          - if token.client_application.granted_by_service_contract?
+            %td= icon_tag("monitor_add") + _("User added client app")
+          - else
+            %td= icon_tag("user_add") + _("Granted by service contract")
+          %td= token.authorized_at
+          %td
+            - form_tag :controller => 'oauth', :action => 'revoke' do
+              = hidden_field_tag 'token', token.token
+              = submit_tag "Revoke!"
+  %h2
+    &= _("Applications you registerd")
+    %span.info&= _("for Application Developers")
+
+  - if @client_applications.empty?
+    %p
+      Do you have an application you would like to register for use with us using the
+      %a{ :href => "http://oauth.net" }
+        OAuth
+      standard?
+    %p You must register your web application before it can make OAuth requests to this service
+  - else
+    %p
+      You have the following client applications registered:
+    %table.skipwiki
+      %tr
+        %th&= _("client application")
+        %th&= _("AccessToken|Family")
+        %th&= _("show credentials")
+      - @client_applications.each do |client|
+        %tr
+          %td= link_to client.name, client.url
+          - if client.granted_by_service_contract?
+            %td= icon_tag("monitor_add") + _("User added client app")
+          - else
+            %td= icon_tag("user_add") + _("Granted by service contract")
+          %td= link_to_unless client.granted_by_service_contract?, _("Show"), :action => :show, :id => client.id
+
+  %h3= link_to("Register your application", :action => :new)
+
