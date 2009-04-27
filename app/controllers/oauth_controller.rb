@@ -1,5 +1,5 @@
 class OauthController < ApplicationController
-  before_filter :authenticate, :except => [:request_token, :access_token, :test_request]
+  before_filter :authenticate, :except => [:request_token, :access_token]
   before_filter :verify_oauth_consumer_signature, :only => [:request_token]
   before_filter :verify_oauth_request_token, :only => [:access_token]
   # Uncomment the following if you are using restful_open_id_authentication
@@ -23,10 +23,6 @@ class OauthController < ApplicationController
     end
   end
 
-  def test_request
-    render :text => params.collect{|k,v|"#{k}=#{v}"}.join("&")
-  end
-  
   def authorize
     @token = RequestToken.find_by_token params[:oauth_token]
     unless @token.invalidated?    
@@ -37,10 +33,10 @@ class OauthController < ApplicationController
         redirect_to_callback_or_render_success
       elsif request.post?
         @token.invalidate!
-        render :action => "authorize_failure"
+        render :template => "authorize_failure"
       end
     else
-      render :action => "authorize_failure"
+      render :template => "authorize_failure"
     end
   end
   

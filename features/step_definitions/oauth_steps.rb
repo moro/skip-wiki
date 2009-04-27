@@ -26,7 +26,7 @@ end
 
 When /^SKIPファミリのコンシューマ"([^\"]*)"を登録する$/ do |name|
   @application = ClientApplication.create :name => name, :url => "http://www.example.com", :callback_url => "http://extsite.com/callback"
-  @application.granted_by_service_contract! # FIXME rename -> grant_as_family!
+  @application.grant_as_family!
 end
 
 When /^"([^\"]*)"のアクセストークンを取得する$/ do |name|

@@ -60,7 +60,7 @@ describe ClientApplication do #, :shared => true do
   describe "SKIP family" do
     before(:each) do
       @application = ClientApplication.create :name => "Agree2", :url => "http://agree2.com"
-      @application.granted_by_service_contrac!
+      @application.grant_as_family!
       create_consumer
     end
 

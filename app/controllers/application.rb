@@ -53,9 +53,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def authenticate_with_oauth(current_token_loaded = false)
+  def authenticate_with_oauth
     if oauthenticate
-       (token = ClientApplication.find_token(current_token.token))
       return true
     else
       logger.info "failed oauthenticate"
@@ -65,7 +64,7 @@ class ApplicationController < ActionController::Base
 
   def current_token=(token)
     super
-    self.current_user = @current_user # oauth plugin assigns
+    self.current_user = @current_user # oauth plugin assigns '@current_user' but we use '@__current_user__'
   end
 
   def paginate_option(target = Note)

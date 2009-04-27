@@ -40,7 +40,7 @@ class ClientApplication < ActiveRecord::Base
     !!family
   end
 
-  def granted_by_service_contract!
+  def grant_as_family!
     update_attribute(:family, true)
   end
   
