@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: skip-note 0.1.0\n"
-"POT-Creation-Date: 2009-04-16 10:45+0900\n"
+"POT-Creation-Date: 2009-04-24 10:18+0900\n"
 "PO-Revision-Date: 2008-11-04 16:29+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,7 +67,7 @@ msgstr "ページ削除に失敗しました"
 msgid "User was successfully updated."
 msgstr "ログインしました。"
 
-#: app/controllers/application.rb:58
+#: app/controllers/application.rb:77
 msgid "Login required."
 msgstr ""
 
@@ -79,7 +79,7 @@ msgstr "「%{name}」を削除しました"
 msgid "Successfully update membership."
 msgstr "グループメンバーを追加しました。"
 
-#: app/controllers/notes_controller.rb:66
+#: app/controllers/notes_controller.rb:70
 msgid "Note `%{note}' was successfully created."
 msgstr "ノート「%{note}」を作成しました。"
 
@@ -129,7 +129,7 @@ msgstr ""
 #: app/helpers/admin/application_helper.rb:17
 #: app/helpers/admin/application_helper.rb:25
 #: app/helpers/admin/users_helper.rb:4 app/helpers/application_helper.rb:61
-#: app/helpers/notes_helper.rb:80 app/helpers/pages_helper.rb:91
+#: app/helpers/notes_helper.rb:80 app/helpers/pages_helper.rb:90
 #: app/views/shared/admin/_requested_note_and_operation.html.haml:3
 msgid "menu"
 msgstr "メニュー"
@@ -192,11 +192,11 @@ msgstr "%{page}に戻る"
 msgid "manage common files"
 msgstr "共通ファイル管理"
 
-#: app/helpers/histories_helper.rb:8 app/helpers/pages_helper.rb:76
+#: app/helpers/histories_helper.rb:8 app/helpers/pages_helper.rb:75
 msgid "NEXT"
 msgstr "次"
 
-#: app/helpers/histories_helper.rb:17 app/helpers/pages_helper.rb:75
+#: app/helpers/histories_helper.rb:17 app/helpers/pages_helper.rb:74
 msgid "PREV"
 msgstr "前"
 
@@ -303,55 +303,55 @@ msgstr "ページを追加"
 msgid "show note"
 msgstr "ノート情報"
 
-#: app/helpers/pages_helper.rb:13
+#: app/helpers/pages_helper.rb:12
 msgid "Sending..."
 msgstr "送信中..."
 
-#: app/helpers/pages_helper.rb:74
+#: app/helpers/pages_helper.rb:73
 msgid "Insert Link"
 msgstr "リンクを挿入"
 
-#: app/helpers/pages_helper.rb:77 app/views/admin/pages/index.html.haml:18
+#: app/helpers/pages_helper.rb:76 app/views/admin/pages/index.html.haml:18
 #: app/views/histories/_link_palette.html.haml:16
 #: app/views/notes/_search.html.haml:6 app/views/pages/index.html.haml:8
 #: app/views/pages/notes_index.html.haml:14
 msgid "Show all"
 msgstr "すべて表示"
 
-#: app/helpers/pages_helper.rb:78 app/views/admin/pages/index.html.haml:17
+#: app/helpers/pages_helper.rb:77 app/views/admin/pages/index.html.haml:17
 #: app/views/histories/_link_palette.html.haml:15
 #: app/views/pages/index.html.haml:7 app/views/pages/notes_index.html.haml:13
 msgid "Filter"
 msgstr "絞り込み"
 
-#: app/helpers/pages_helper.rb:79
+#: app/helpers/pages_helper.rb:78
 #: app/views/shared/_skip_full_text_search_form.html.erb:5
 msgid "Input keyword to search"
 msgstr "検索したいキーワードを入れてください"
 
-#: app/helpers/pages_helper.rb:92 app/views/admin/histories/new.html.haml:31
+#: app/helpers/pages_helper.rb:91 app/views/admin/histories/new.html.haml:31
 #: app/views/histories/new.html.haml:26
 msgid "show page"
 msgstr "ページを表示"
 
-#: app/helpers/pages_helper.rb:93 app/views/histories/new.html.haml:8
+#: app/helpers/pages_helper.rb:92 app/views/histories/new.html.haml:8
 msgid "edit content"
 msgstr "ページを編集"
 
-#: app/helpers/pages_helper.rb:94
+#: app/helpers/pages_helper.rb:93
 msgid "edit page"
 msgstr "プロパティを編集"
 
-#: app/helpers/pages_helper.rb:95 app/views/histories/index.html.haml:2
+#: app/helpers/pages_helper.rb:94 app/views/histories/index.html.haml:2
 msgid "page histories"
 msgstr "編集履歴"
 
-#: app/helpers/pages_helper.rb:98 app/views/pages/edit.html.haml:24
+#: app/helpers/pages_helper.rb:97 app/views/pages/edit.html.haml:24
 #: app/views/pages/edit.html.haml:26
 msgid "Delete %{entity}"
 msgstr "%{entity}を削除"
 
-#: app/helpers/pages_helper.rb:98 app/models/page.rb:-
+#: app/helpers/pages_helper.rb:97 app/models/page.rb:-
 #: app/views/histories/new.html.haml:25 app/views/pages/_pages.html.haml:25
 #: app/views/pages/edit.html.haml:9 app/views/pages/edit.html.haml:11
 #: app/views/pages/edit.html.haml:15 app/views/pages/edit.html.haml:20
@@ -440,6 +440,46 @@ msgstr "カテゴリー作成日"
 msgid "Category|Updated at"
 msgstr "カテゴリー更新日"
 
+#: app/models/client_application.rb:-
+msgid "client application"
+msgstr "連携アプリ(OAuthコンシューマ)"
+
+#: app/models/client_application.rb:-
+msgid "ClientApplication|Name"
+msgstr "識別子"
+
+#: app/models/client_application.rb:-
+msgid "ClientApplication|Url"
+msgstr "メインURL"
+
+#: app/models/client_application.rb:-
+msgid "ClientApplication|Support url"
+msgstr "サポートURL"
+
+#: app/models/client_application.rb:-
+msgid "ClientApplication|Callback url"
+msgstr "コールバックURL"
+
+#: app/models/client_application.rb:-
+msgid "ClientApplication|Key"
+msgstr "トークン"
+
+#: app/models/client_application.rb:-
+msgid "ClientApplication|Secret"
+msgstr "シークレット"
+
+#: app/models/client_application.rb:-
+msgid "ClientApplication|User"
+msgstr ""
+
+#: app/models/client_application.rb:-
+msgid "ClientApplication|Created at"
+msgstr "作成日"
+
+#: app/models/client_application.rb:-
+msgid "ClientApplication|Updated at"
+msgstr "更新日"
+
 #: app/models/content.rb:-
 msgid "content"
 msgstr "内容"
@@ -488,6 +528,28 @@ msgstr "更新日時"
 msgid "History|Description"
 msgstr "編集コメント"
 
+#: app/models/label_index.rb:- app/views/admin/notes/show.html.haml:27
+#: app/views/label_indices/_new.html.haml:1
+#: app/views/label_indices/index.html.haml:4
+msgid "label index"
+msgstr "ラベル"
+
+#: app/models/label_index.rb:- app/views/label_indices/index.html.haml:7
+msgid "LabelIndex|Display name"
+msgstr "ラベル名"
+
+#: app/models/label_index.rb:-
+msgid "LabelIndex|Color"
+msgstr "ラベル色"
+
+#: app/models/label_index.rb:-
+msgid "LabelIndex|Note"
+msgstr "ノート"
+
+#: app/models/label_index.rb:-
+msgid "LabelIndex|Default label"
+msgstr "標準のラベル"
+
 #: app/models/label_index.rb:-
 msgid "label indexing"
 msgstr ""
@@ -511,28 +573,6 @@ msgstr ""
 #: app/models/label_index.rb:-
 msgid "LabelIndexing|Page order"
 msgstr "ラベル識別子"
-
-#: app/models/label_index.rb:- app/views/admin/notes/show.html.haml:27
-#: app/views/label_indices/_new.html.haml:1
-#: app/views/label_indices/index.html.haml:4
-msgid "label index"
-msgstr "ラベル"
-
-#: app/models/label_index.rb:- app/views/label_indices/index.html.haml:7
-msgid "LabelIndex|Display name"
-msgstr "ラベル名"
-
-#: app/models/label_index.rb:-
-msgid "LabelIndex|Color"
-msgstr "ラベル色"
-
-#: app/models/label_index.rb:-
-msgid "LabelIndex|Note"
-msgstr "ノート"
-
-#: app/models/label_index.rb:-
-msgid "LabelIndex|Default label"
-msgstr "標準のラベル"
 
 #: app/models/label_index.rb:25 app/views/pages/_labels.html.haml:17
 #: app/views/pages/_labels.html.haml:23
@@ -585,6 +625,68 @@ msgstr "確認"
 msgid "%{name} group"
 msgstr "%{name}グループ"
 
+#: app/models/oauth_nonce.rb:-
+msgid "oauth nonce"
+msgstr ""
+
+#: app/models/oauth_nonce.rb:-
+msgid "OauthNonce|Nonce"
+msgstr ""
+
+#: app/models/oauth_nonce.rb:-
+msgid "OauthNonce|Timestamp"
+msgstr ""
+
+#: app/models/oauth_nonce.rb:-
+msgid "OauthNonce|Created at"
+msgstr ""
+
+#: app/models/oauth_nonce.rb:-
+msgid "OauthNonce|Updated at"
+msgstr ""
+
+#: app/models/oauth_token.rb:-
+msgid "oauth token"
+msgstr ""
+
+#: app/models/oauth_token.rb:-
+msgid "OauthToken|User"
+msgstr ""
+
+#: app/models/oauth_token.rb:-
+msgid "OauthToken|Type"
+msgstr ""
+
+#: app/models/oauth_token.rb:-
+msgid "OauthToken|Client application"
+msgstr ""
+
+#: app/models/oauth_token.rb:-
+msgid "OauthToken|Token"
+msgstr ""
+
+#: app/models/oauth_token.rb:-
+msgid "OauthToken|Secret"
+msgstr ""
+
+#: app/models/oauth_token.rb:-
+msgid "OauthToken|Authorized at"
+msgstr ""
+
+#: app/models/oauth_token.rb:-
+msgid "OauthToken|Invalidated at"
+msgstr ""
+
+#: app/models/oauth_token.rb:-
+#, fuzzy
+msgid "OauthToken|Created at"
+msgstr "ファイル作成日"
+
+#: app/models/oauth_token.rb:-
+#, fuzzy
+msgid "OauthToken|Updated at"
+msgstr "更新日時"
+
 #: app/models/page.rb:-
 msgid "Page|Note"
 msgstr ""
@@ -598,7 +700,7 @@ msgid "Page|Name"
 msgstr "ページ識別子"
 
 #: app/models/page.rb:- app/views/admin/pages/_pages.html.haml:5
-#: app/views/layouts/pages.html.haml:38 app/views/notes/dashboard.html.haml:16
+#: app/views/layouts/pages.html.haml:34 app/views/notes/dashboard.html.haml:16
 #: app/views/pages/_pages.html.haml:5 app/views/pages/index.html.haml:21
 #: app/views/pages/new.html.haml:19
 msgid "Page|Display name"
@@ -620,7 +722,7 @@ msgstr ""
 msgid "Page|Created at"
 msgstr ""
 
-#: app/models/page.rb:- app/views/admin/pages/_pages.html.haml:8
+#: app/models/page.rb:- app/views/admin/pages/_pages.html.haml:9
 #: app/views/notes/dashboard.html.haml:17 app/views/pages/_pages.html.haml:9
 #: app/views/pages/index.html.haml:23
 msgid "Page|Updated at"
@@ -639,11 +741,11 @@ msgstr "公開する"
 msgid "FrontPage"
 msgstr "表紙"
 
-#: app/models/page.rb:176
+#: app/models/page.rb:186
 msgid "the name `%{n}' is reserved"
 msgstr "ページ識別子は「%{n}」意外にしてください。"
 
-#: app/models/page.rb:183
+#: app/models/page.rb:193
 msgid "published page can't be renamed."
 msgstr ""
 
@@ -693,7 +795,6 @@ msgstr ""
 
 #: app/views/shared/_skip_full_text_search_form.html.erb:15
 #: app/views/notes/_search.html.haml:5
-#: app/views/shared/_user_navi.html.haml:14
 #: app/views/shared/admin/_note_navi.html.haml:34
 #: app/views/shared/admin/_user_navi.html.haml:20
 msgid "Search"
@@ -719,7 +820,7 @@ msgstr "Identity URL"
 #: app/views/admin/notes/show.html.haml:41
 #: app/views/admin/pages/edit.html.haml:17
 #: app/views/admin/users/edit.html.haml:27 app/views/groups/show.html.haml:24
-#: app/views/label_indices/_new.html.haml:15 app/views/notes/edit.html.haml:73
+#: app/views/label_indices/_new.html.haml:16 app/views/notes/edit.html.haml:73
 #: app/views/users/edit.html.haml:14
 msgid "Update"
 msgstr "更新"
@@ -739,7 +840,7 @@ msgstr "編集"
 #: app/views/admin/accounts/index.html.haml:16
 #: app/views/admin/notes/index.html.haml:12
 #: app/views/admin/notes/index.html.haml:19
-#: app/views/admin/pages/_pages.html.haml:25
+#: app/views/admin/pages/_pages.html.haml:27
 #: app/views/admin/users/index.html.haml:18 app/views/users/show.html.haml:15
 msgid "Edit"
 msgstr "編集"
@@ -759,7 +860,7 @@ msgstr "ダウンロード"
 #: app/views/admin/notes/index.html.haml:13
 #: app/views/admin/notes/index.html.haml:20
 #: app/views/admin/notes/show.html.haml:46
-#: app/views/admin/pages/_pages.html.haml:26
+#: app/views/admin/pages/_pages.html.haml:28
 #: app/views/attachments/index.html.haml:23
 #: app/views/label_indices/index.html.haml:12
 msgid "Delete"
@@ -866,7 +967,7 @@ msgid "Note|Updated at"
 msgstr "更新日時"
 
 #: app/views/admin/notes/index.html.haml:20
-#: app/views/admin/pages/_pages.html.haml:26
+#: app/views/admin/pages/_pages.html.haml:28
 msgid "Are you sure?"
 msgstr "削除してもよろしいですか？"
 
@@ -883,13 +984,13 @@ msgid "add groups"
 msgstr "グループを追加"
 
 #: app/views/admin/notes/show.html.haml:36
-#: app/views/label_indices/_new.html.haml:11
+#: app/views/label_indices/_new.html.haml:12
 msgid "Click to edit"
 msgstr "[クリックして編集]"
 
 #: app/views/admin/notes/show.html.haml:42
-#: app/views/label_indices/_new.html.haml:17
-#: app/views/layouts/pages.html.haml:40
+#: app/views/label_indices/_new.html.haml:18
+#: app/views/layouts/pages.html.haml:36
 msgid "Cancel"
 msgstr "取消"
 
@@ -919,25 +1020,30 @@ msgstr "編集者"
 msgid "Publication"
 msgstr "公開状況"
 
-#: app/views/admin/pages/_pages.html.haml:9
+#: app/views/admin/pages/_pages.html.haml:8
+#, fuzzy
+msgid "Page|Published at"
+msgstr "公開する"
+
+#: app/views/admin/pages/_pages.html.haml:10
 #: app/views/pages/_pages.html.haml:12 app/views/pages/index.html.haml:24
 msgid "Copy URL"
 msgstr "URLをコピー"
 
-#: app/views/admin/pages/_pages.html.haml:10
+#: app/views/admin/pages/_pages.html.haml:11
 msgid "Page|Edit"
 msgstr "編集"
 
-#: app/views/admin/pages/_pages.html.haml:11
+#: app/views/admin/pages/_pages.html.haml:12
 msgid "Page|Delete"
 msgstr "削除"
 
-#: app/views/admin/pages/_pages.html.haml:20
+#: app/views/admin/pages/_pages.html.haml:21
 #: app/views/pages/_pages.html.haml:28
 msgid "Published"
 msgstr "公開中"
 
-#: app/views/admin/pages/_pages.html.haml:22
+#: app/views/admin/pages/_pages.html.haml:23
 #: app/views/pages/_pages.html.haml:31
 msgid "Not yet"
 msgstr "未公開"
@@ -987,13 +1093,13 @@ msgid "close"
 msgstr "閉じる"
 
 #: app/views/histories/_link_palette.html.haml:7
-#: app/views/shared/_user_navi.html.haml:7
+#: app/views/shared/_top.html.haml:10 app/views/shared/_user_navi.html.haml:7
 #: app/views/shared/admin/_requested_note_and_operation.html.haml:8
 msgid "note attachments"
 msgstr "添付ファイル一覧"
 
 #: app/views/histories/_link_palette.html.haml:8
-#: app/views/shared/_user_navi.html.haml:3
+#: app/views/shared/_top.html.haml:8 app/views/shared/_user_navi.html.haml:3
 msgid "note pages"
 msgstr "ページ一覧"
 
@@ -1053,7 +1159,7 @@ msgstr "プレビューを隠す"
 msgid "Show preview"
 msgstr "プレビューを表示"
 
-#: app/views/histories/new.html.haml:25 app/views/layouts/pages.html.haml:38
+#: app/views/histories/new.html.haml:25 app/views/layouts/pages.html.haml:34
 #: app/views/pages/edit.html.haml:15 app/views/pages/edit.html.haml:20
 msgid "Update %{entity}"
 msgstr "%{entity}を更新"
@@ -1070,15 +1176,25 @@ msgstr "「%{note}」のラベル一覧"
 msgid "Pages related to %{label}"
 msgstr "%{label}のついたページ一覧"
 
-#: app/views/layouts/notes.html.haml:10 app/views/layouts/pages.html.haml:10
-msgid "SKIP Wiki"
-msgstr "SKIP Wiki"
+#: app/views/layouts/application.html.haml:16
+#: app/views/notes/dashboard.html.haml:31
+msgid "Dashboard"
+msgstr "マイページ"
 
-#: app/views/layouts/pages.html.haml:27
+#: app/views/layouts/application.html.haml:17
+#: app/views/shared/admin/_main_operation.html.haml:1
+msgid "Admin menu"
+msgstr "管理者メニュー"
+
+#: app/views/layouts/application.html.haml:18
+msgid "new note"
+msgstr "ノートを作る"
+
+#: app/views/layouts/pages.html.haml:26
 msgid "Labeled as %{label}"
 msgstr "ラベル: %{label}"
 
-#: app/views/layouts/pages.html.haml:29
+#: app/views/layouts/pages.html.haml:28
 msgid "show label navigation"
 msgstr "ラベルバーを表示"
 
@@ -1130,23 +1246,19 @@ msgstr "更新されたページ"
 msgid "more..."
 msgstr "もっと見る..."
 
-#: app/views/notes/dashboard.html.haml:30 app/views/shared/_top.html.haml:3
-msgid "Dashboard"
-msgstr "マイページ"
-
-#: app/views/notes/dashboard.html.haml:31
+#: app/views/notes/dashboard.html.haml:32
 msgid "Accessible Note"
 msgstr "編集可能なノート"
 
-#: app/views/notes/dashboard.html.haml:37
+#: app/views/notes/dashboard.html.haml:38
 msgid "Accessible"
 msgstr "グループメンバー"
 
-#: app/views/notes/dashboard.html.haml:39
+#: app/views/notes/dashboard.html.haml:40
 msgid "Public writable"
 msgstr "ゲスト書き込み"
 
-#: app/views/notes/dashboard.html.haml:41
+#: app/views/notes/dashboard.html.haml:42
 msgid "Public readable"
 msgstr "閲覧のみ"
 
@@ -1243,6 +1355,46 @@ msgstr ""
 #: app/views/notes/new.html.haml:106
 msgid ""
 "Wikipediaのようにみんなでコンテンツを作っていくノートにしたい場合に選びます。"
+msgstr ""
+
+#: app/views/oauth_clients/show.html.haml:2
+msgid "Back"
+msgstr ""
+
+#: app/views/oauth_clients/show.html.haml:10
+msgid "Registered"
+msgstr ""
+
+#: app/views/oauth_clients/show.html.haml:12
+msgid "Client application|Consumer key"
+msgstr ""
+
+#: app/views/oauth_clients/show.html.haml:16
+msgid "Client application|Consumer secret"
+msgstr ""
+
+#: app/views/oauth_clients/show.html.haml:20
+msgid "Client application|callback"
+msgstr ""
+
+#: app/views/oauth_clients/show.html.haml:24
+msgid "Service explanation"
+msgstr ""
+
+#: app/views/oauth_clients/show.html.haml:26
+msgid "Request Token URL"
+msgstr "リクエストトークン取得URL(request_token_url)"
+
+#: app/views/oauth_clients/show.html.haml:30
+msgid "Access Token URL"
+msgstr "アクセストークン取得URL(access_token_url)"
+
+#: app/views/oauth_clients/show.html.haml:34
+msgid "Authorize URL"
+msgstr "認証URL(authorize_url)"
+
+#: app/views/oauth_clients/show.html.haml:37
+msgid " We support hmac-sha1 (recommended) as well as plain text in ssl mode."
 msgstr ""
 
 #: app/views/pages/_filter_query.html.haml:1
@@ -1355,7 +1507,7 @@ msgstr ""
 "ができます。"
 
 #: app/views/sessions/new.html.haml:17
-#: app/views/shared/_common_body_header.html.haml:7
+#: app/views/shared/_common_body_header.html.haml:11
 msgid "Login"
 msgstr "ログイン"
 
@@ -1371,15 +1523,15 @@ msgstr "利用規約"
 msgid "FIXME"
 msgstr ""
 
-#: app/views/shared/_common_body_header.html.haml:3
+#: app/views/shared/_common_body_header.html.haml:7
 msgid "Login ID: %{name}"
 msgstr "ログインID: %{name}"
 
-#: app/views/shared/_common_body_header.html.haml:4
+#: app/views/shared/_common_body_header.html.haml:8
 msgid "Edit profile"
 msgstr "自分の管理"
 
-#: app/views/shared/_common_body_header.html.haml:5
+#: app/views/shared/_common_body_header.html.haml:9
 msgid "Logout"
 msgstr "ログアウト"
 
@@ -1415,16 +1567,6 @@ msgstr "ニュース"
 msgid "Support"
 msgstr "サポート"
 
-#: app/views/shared/_top.html.haml:4
-#: app/views/shared/admin/_main_operation.html.haml:1
-msgid "Admin menu"
-msgstr "管理者メニュー"
-
-#: app/views/shared/_top.html.haml:5
-msgid "new note"
-msgstr "ノートを作る"
-
-#: app/views/shared/_user_navi.html.haml:11
 #: app/views/shared/admin/_note_navi.html.haml:6
 #: app/views/shared/admin/_note_navi.html.haml:9
 #: app/views/shared/admin/_note_navi.html.haml:12
@@ -1492,9 +1634,8 @@ msgstr "登録する"
 msgid "User|Identity url"
 msgstr "Identity URL"
 
-#, fuzzy
-#~ msgid "Page|Published at"
-#~ msgstr "公開する"
+#~ msgid "SKIP Wiki"
+#~ msgstr "SKIP Wiki"
 
 #~ msgid "account"
 #~ msgstr "アカウント"
