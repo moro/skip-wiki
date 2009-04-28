@@ -93,7 +93,7 @@ class NotesController < ApplicationController
   # DELETE /notes/1
   # DELETE /notes/1.xml
   def destroy
-    @note = Note.find(params[:id])
+    @note = Note.find_by_name(params[:id])
     @note.destroy
 
     respond_to do |format|
@@ -124,7 +124,7 @@ class NotesController < ApplicationController
   end
 
   def explicit_user_required
-    self.current_note = current_user.free_or_accessible_notes.find(params[:id])
+    self.current_note = current_user.free_or_accessible_notes.find_by_name(params[:id])
     unless current_user.accessible?(current_note)
       render_not_found
     end

@@ -21,7 +21,7 @@ describe HistoriesController do
   describe "GET 'index'" do
     before do
       @page = pages(:our_note_page_1)
-      @current_note.pages.should_receive(:find).with(@page.to_param).and_return(@page)
+      @current_note.pages.should_receive(:find_by_name).with(@page.to_param).and_return(@page)
     end
 
     it "should be successful" do
@@ -35,7 +35,7 @@ describe HistoriesController do
       @page = pages(:our_note_page_1)
       @history = mock_model(History, :revision => 10)
 
-      Page.should_receive(:find).with(@page.to_param, anything()).and_return(@page)
+      Page.should_receive(:find_by_name).with(@page.to_param).and_return(@page)
       @page.should_receive(:histories).and_return([@history])
 
       get 'show', :page_id => @page.to_param, :id => @history.id
@@ -54,7 +54,7 @@ describe HistoriesController do
     before do
       @page = pages(:our_note_page_1)
       @page.should_receive(:diff).and_return([0,%w[abc abd]])
-      Page.should_receive(:find).with(@page.to_param, anything()).and_return(@page)
+      Page.should_receive(:find_by_name).with(@page.to_param, anything()).and_return(@page)
     end
     it "should be successful" do
       get 'diff', :page_id => @page.to_param

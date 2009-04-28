@@ -2,7 +2,6 @@ class Page < ActiveRecord::Base
   CRLF = /\r?\n/
   FRONTPAGE_NAME = "FrontPage"
 
-  has_friendly_id :name
   attr_reader :new_history
   attr_writer :label_index_id
   attr_writer :order_in_label

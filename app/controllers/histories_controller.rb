@@ -3,26 +3,26 @@ class HistoriesController < ApplicationController
   include IframeUploader
 
   def index
-    @page = history_accessible_pages.find(params[:page_id])
+    @page = history_accessible_pages.find_by_name(params[:page_id])
     @histories = @page.histories
   end
 
   def show
-    @page = history_accessible_pages.find(params[:page_id])
+    @page = history_accessible_pages.find_by_name(params[:page_id])
     @history = @page.histories.detect{|h| h.id == params[:id].to_i }
   end
 
   def diff
-    @page = history_accessible_pages.find(params[:page_id], :include=>:histories)
+    @page = history_accessible_pages.find_by_name(params[:page_id], :include=>:histories)
     @diffs = @page.diff(params[:from], params[:to])
   end
 
   def new
-    @page = history_accessible_pages.find(params[:page_id])
+    @page = history_accessible_pages.find_by_name(params[:page_id])
   end
 
   def create
-    @page = history_accessible_pages.find(params[:page_id])
+    @page = history_accessible_pages.find_by_name(params[:page_id])
     @history = @page.edit(params[:history][:content], current_user)
     if @history.save
       respond_to do |format|
@@ -38,7 +38,7 @@ class HistoriesController < ApplicationController
   end
 
   def update
-    @page = history_accessible_pages.find(params[:page_id])
+    @page = history_accessible_pages.find_by_name(params[:page_id])
     @history = @page.histories.find(params[:id], :include=>:content)
     if @history.content.data != params[:history][:content]
       @history.content.data = params[:history][:content]

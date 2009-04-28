@@ -9,6 +9,6 @@ class Admin::ApplicationController < ApplicationController
   end
 
   def requested_note
-    @note = Note.find(params[:note_id])
+    @note = Note.find_by_name(params[:note_id])
   end
 end

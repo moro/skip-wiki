@@ -49,14 +49,14 @@ describe Admin::PagesController do
 
   describe "DELETE /admin/our_note/pages/our_note_page_1" do
     it "pageにdestroyリクエストが飛んでいること" do
-      Page.should_receive(:find).with("7").and_return(mock_page)
+      Page.should_receive(:find_by_name).with("7").and_return(mock_page)
       mock_page.should_receive(:destroy)
       delete :destroy, :id=>"7"
     end
 
     it "ページ一覧画面にリダイレクトされること" do
       controller.should_receive(:requested_note).and_return(@current_note)
-      Page.should_receive(:find).and_return(mock_page(:destroy=>true))
+      Page.should_receive(:find_by_name).and_return(mock_page(:destroy=>true))
       delete :destroy, :id=>"7", :note_id=>@current_note
       response.should redirect_to(admin_note_pages_path(@current_note))
     end
@@ -64,7 +64,7 @@ describe Admin::PagesController do
 
   describe "GET /admin/notes/our_note/pages/out_note_page_1/edit" do
     it "対象ページが１件取得できること" do
-      Page.should_receive(:find).with("our_note_page_1").and_return(mock_page)
+      Page.should_receive(:find_by_name).with("our_note_page_1").and_return(mock_page)
       get :edit, :id=>"our_note_page_1", :note_id=>@current_note
       assigns(:page).should == mock_page
     end
@@ -73,7 +73,7 @@ describe Admin::PagesController do
   describe "PUT /admin/notes/our_note/pages/our_note_page_1" do
     describe "ページの更新に成功する場合" do
       before do
-        Page.should_receive(:find).with("our_note_page_1").and_return(mock_page)
+        Page.should_receive(:find_by_name).with("our_note_page_1").and_return(mock_page)
 
         mock_page.should_receive(:attributes=).with({'these'=>'params', 'deleted' => "---deleted---"})
         mock_page.should_receive(:deleted=).with("---deleted---")
@@ -97,7 +97,7 @@ describe Admin::PagesController do
 
     describe "ページの更新に失敗する場合" do
       before do
-        Page.stub!(:find).and_return(mock_page)
+        Page.stub!(:find_by_name).and_return(mock_page)
 
         mock_page.should_receive(:attributes=).with({'these'=>'params', 'deleted' => "---deleted---"})
         mock_page.should_receive(:deleted=).with("---deleted---")

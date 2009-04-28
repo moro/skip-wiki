@@ -13,16 +13,16 @@ class Admin::PagesController < Admin::ApplicationController
 
   def show
     @note = requested_note
-    @page = Page.find(params[:id])
+    @page = Page.find_by_name(params[:id])
   end
 
   def edit
     @note = requested_note    
-    @page = Page.find(params[:id])
+    @page = Page.find_by_name(params[:id])
   end
 
   def update
-    @page = Page.find(params[:id])
+    @page = Page.find_by_name(params[:id])
     @page.attributes = params[:page]
     @page.deleted = params[:page][:deleted]
 
@@ -37,7 +37,7 @@ class Admin::PagesController < Admin::ApplicationController
 
   def destroy
     begin
-      @page = Page.find(params[:id])
+      @page = Page.find_by_name(params[:id])
       @page.destroy
       flash[:notice] = _("Page was deleted successfully")
       redirect_to admin_note_pages_path(requested_note)

@@ -111,7 +111,7 @@ describe PagesController do
   describe "DELETE /notes/hoge/pages/page_1 [FAILURE]" do
     fixtures :notes
     before do
-      Page.should_receive(:find).with("page_1", anything).and_return(@page = mock_model(Page))
+      Page.should_receive(:find_by_name).with("page_1").and_return(@page = mock_model(Page))
       @page.should_receive(:logical_destroy).and_return(false)
 
       delete :destroy, :note_id => "our_note", :id => "page_1"

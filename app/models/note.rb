@@ -10,8 +10,6 @@ class Note < ActiveRecord::Base
                    N_("Select label navigation style"), N_("Input name"), N_("Input description"),
                    N_("Select list attachments"), N_("Confirm") ].freeze
 
-  has_friendly_id :name
-
   validates_presence_of :owner_group, :name, :display_name, :description
   validates_uniqueness_of :name
   validates_inclusion_of :publicity, :in => (PUBLICITY_READABLE..PUBLICITY_MEMBER_ONLY)

@@ -23,7 +23,7 @@ describe NotesController do
 
       it "should render all notes as xml" do
         request.env["HTTP_ACCEPT"] = "application/xml"
-        Note.should_receive(:find).with(anything).and_return(notes = mock("Array of Notes"))
+        Note.should_receive(:find).with(:all).and_return(notes = mock("Array of Notes"))
         notes.should_receive(:to_xml).and_return("generated XML")
         get :index
         response.body.should == "generated XML"
@@ -37,7 +37,7 @@ describe NotesController do
       @target =  notes(:our_note)
       User.should_receive(:find_by_identity_url).with("--IDENTITY--").and_return(users(:quentin))
 
-      Note.should_receive(:find).and_return([@target])
+      Note.should_receive(:find).with(:all).and_return([@target])
 
       request.env["HTTP_X_SECRET_KEY"] = SkipEmbedded::InitialSettings['skip_collaboration']['secret_key']
       xhr :get, :index, :user => "--IDENTITY--"
@@ -103,7 +103,7 @@ describe NotesController do
 
     it "should expose the requested note as @note" do
       pending
-      @user.groups.should_receive(:find).with("37").and_return(mock_note)
+      @user.groups.should_receive(:find_by_name).with("37").and_return(mock_note)
       get :edit, :id => "37"
       assigns[:note].should equal(mock_note)
     end
@@ -168,13 +168,13 @@ describe NotesController do
       end
 
       it "should expose the requested note as @note" do
-        Note.stub!(:find).and_return(mock_note(:update_attributes => true))
+        Note.stub!(:find_by_name).and_return(mock_note(:update_attributes => true))
         put :update, :id => "1"
         assigns(:note).should equal(mock_note)
       end
 
       it "should redirect to the note" do
-        Note.stub!(:find).and_return(mock_note(:update_attributes => true))
+        Note.stub!(:find_by_name).and_return(mock_note(:update_attributes => true))
         put :update, :id => "1"
         response.should redirect_to(note_url(mock_note))
       end
@@ -190,13 +190,13 @@ describe NotesController do
       end
 
       it "should expose the note as @note" do
-        Note.stub!(:find).and_return(mock_note(:update_attributes => false))
+        Note.stub!(:find_by_name).and_return(mock_note(:update_attributes => false))
         put :update, :id => "1"
         assigns(:note).should equal(mock_note)
       end
 
       it "should re-render the 'edit' template" do
-        Note.stub!(:find).and_return(mock_note(:update_attributes => false))
+        Note.stub!(:find_by_name).and_return(mock_note(:update_attributes => false))
         put :update, :id => "1"
         response.should render_template('edit')
       end
@@ -208,13 +208,13 @@ describe NotesController do
   describe "responding to DELETE destroy" do
 
     it "should destroy the requested note" do
-      Note.should_receive(:find).with("37").and_return(mock_note)
+      Note.should_receive(:find_by_name).with("37").and_return(mock_note)
       mock_note.should_receive(:destroy)
       delete :destroy, :id => "37"
     end
   
     it "should redirect to the notes list" do
-      Note.stub!(:find).and_return(mock_note(:destroy => true))
+      Note.stub!(:find_by_name).and_return(mock_note(:destroy => true))
       delete :destroy, :id => "1"
       response.should redirect_to(notes_url)
     end

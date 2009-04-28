@@ -133,15 +133,15 @@ Given(/((?:ノート)|(?:ページ))メニューの"(\w+)"リンクをクリッ�
 end
 
 Given(/ノート"(\w+)"の公開範囲を「全員が読める。メンバーのみが書き込める。」に設定する/) do |note|
-  Note.find(note).update_attributes!(:publicity => Note::PUBLICITY_READABLE)
+  Note.find_by_name(note).update_attributes!(:publicity => Note::PUBLICITY_READABLE)
 end
 
 Given(/ノート"(\w+)"の公開範囲を「メンバーのみが読み書きできる」に設定する/) do |note|
-  Note.find(note).update_attributes!(:publicity => Note::PUBLICITY_MEMBER_ONLY)
+  Note.find_by_name(note).update_attributes!(:publicity => Note::PUBLICITY_MEMBER_ONLY)
 end
 
 Given(/ノート"(\w+)"の公開範囲を「全員が読み書きできる」に設定する/) do |note|
-  Note.find(note).update_attributes!(:publicity => Note::PUBLICITY_WRITABLE)
+  Note.find_by_name(note).update_attributes!(:publicity => Note::PUBLICITY_WRITABLE)
 end
 
 Given(/トップページを表示している/) do
