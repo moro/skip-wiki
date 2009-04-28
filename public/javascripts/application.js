@@ -342,25 +342,31 @@ application.callbacks = {
     }
   },
 
-  refreshAttachments : function(){
-    var url = this.contentWindow.document.location.href;
-    jQuery.getJSON(url, null, function(data, status){
-      var tbody = $("div.attachments table tbody");
-      var tr = tbody.find("tr:nth-child(1)").clone();
-      tbody.empty();
-      var row = null;
-      jQuery.each(data, function(num, json){
-        var atmt = json["attachment"];
-        row = tr.clone();
-        row.find("td.content_type").text(atmt["content_type"]).end().
-            find("td.display_name").text(atmt["display_name"]).end().
-            find("td.size").text(atmt["size"]).end().
-            find("td.updated_at").text(atmt["updated_at"]).end().
-            find("td.operation a").attr("href", atmt["path"]).end().
-        appendTo(tbody);
+  refreshAttachments : function(errorMessage){
+    return function(){
+      var url = this.contentWindow.document.location.href;
+      jQuery.getJSON(url, null, function(data, status){
+        var tbody = $("div.attachments table tbody");
+        if(tbody.find("tr:not(.attachment-row-prototype)").length == data.length){
+          alert(errorMessage) // FIXME エラーメッセージ表示の作戦を考える
+          return false;
+        }
+        var tr = tbody.find("tr:nth-child(1)").clone();
+        tbody.empty();
+        var row = null;
+        jQuery.each(data, function(num, json){
+          var atmt = json["attachment"];
+          row = tr.clone().removeClass("attachment-row-prototype");
+          row.find("td.content_type").text(atmt["content_type"]).end().
+              find("td.display_name").text(atmt["display_name"]).end().
+              find("td.size").text(atmt["size"]).end().
+              find("td.updated_at").text(atmt["updated_at"]).end().
+              find("td.operation a").attr("href", atmt["path"]).end().
+          appendTo(tbody);
+        });
+        tbody.find("tr:first-child").effect("highlight", {}, 2*1000);
       });
-      tbody.find("tr:first-child").effect("highlight", {}, 2*1000);
-    });
+    }
   }
 };
 
