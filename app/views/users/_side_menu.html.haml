@@ -5,4 +5,5 @@
       %li= link_to_if false, h(_("User|Skip Account")), "#" # FIXME
       %li= link_to_if true,  h(_("User|Memberships")), user_memberships_path(current_user)
       %li= link_to_if false, h(_("User|Notes")), "#"
+    %li= link_to h(_("client application")), oauth_clients_path
 

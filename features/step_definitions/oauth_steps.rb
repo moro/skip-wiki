@@ -3,7 +3,7 @@ require 'rss'
 module OAuthStepHelper
   def get_consumer(application = @application)
     OAuth::Consumer.new(application.key, application.secret,
-                        :site => application.url,
+                        :site => "http://" + self.host, # => "http://www.example.com"
                         :authorize_path => authorize_path,
                         :request_token_path => request_token_path,
                         :access_token_path => access_token_path)
@@ -25,7 +25,9 @@ When /^OAuthコンシューマー登録画面を表示している$/ do
 end
 
 When /^SKIPファミリのコンシューマ"([^\"]*)"を登録する$/ do |name|
-  @application = ClientApplication.create :name => name, :url => "http://www.example.com", :callback_url => "http://extsite.com/callback"
+  @application = ClientApplication.create(:name => name,
+                                          :url => "http://consumer.oauth-example.com",
+                                          :callback_url => "http://consumer.oauth-example.com/callback")
   @application.grant_as_family!
 end
 
