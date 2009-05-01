@@ -9,6 +9,7 @@ class ClientApplication < ActiveRecord::Base
   before_validation_on_create :generate_keys
   
   attr_protected :family
+  named_scope :families, {:conditions => {:family => true}}
 
   def self.find_token(token_key)
     token = OauthToken.find_by_token(token_key, :include => :client_application)
