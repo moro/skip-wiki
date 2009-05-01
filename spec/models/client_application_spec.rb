@@ -71,6 +71,36 @@ describe ClientApplication do #, :shared => true do
     it "should not skip family" do
       @application.should be_granted_by_service_contract
     end
+
+    describe ".publish_access_token" do
+      Spec::Matchers.define :have_authorized_access_token_for do |app|
+        description{ "have authorized AccessToken for #{app.to_s}" }
+
+        match do |user|
+          t, = app.tokens.find_all_by_type_and_user_id("AccessToken", user)
+          t.authorized?
+        end
+      end
+
+      Spec::Matchers.define :have_invalidated_request_token_for do |app|
+        description{ "have invalidated RequestToken for #{app.to_s}" }
+
+        match do |user|
+          t, = app.tokens.find_all_by_type_and_user_id("RequestToken", user)
+          t.invalidated?
+        end
+      end
+
+      subject { User.create(:name => "alice", :display_name => "alice"){|u| u.identity_url = "---" } }
+
+      before do
+        @application.publish_access_token(subject)
+      end
+
+      it{ should have(2).tokens }
+      it{ should have_authorized_access_token_for(@application) }
+      it{ should have_invalidated_request_token_for(@application) }
+    end
   end
 end
 

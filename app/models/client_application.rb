@@ -56,6 +56,14 @@ class ClientApplication < ActiveRecord::Base
     RequestToken.create :client_application => self
   end
 
+  def publish_access_token(user)
+    raise ArgumentError unless granted_by_service_contract?
+
+    req_token = create_request_token
+    req_token.authorize!(user)
+    req_token.exchange!
+  end
+
 protected
   
   def generate_keys
